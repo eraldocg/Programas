@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Mask, ExtCtrls, SEDDateEdit, Vcl.Menus;
+  Dialogs, StdCtrls, Mask, ExtCtrls, SEDDateEdit, Vcl.Menus, Vcl.Imaging.jpeg;
 
 type
   TIndicaRelComparativoForm = class(TForm)
@@ -16,6 +16,7 @@ type
     BtOK: TButton;
     BtCancelar: TButton;
     MainMenu1: TMainMenu;
+    Image4: TImage;
     procedure FormShow(Sender: TObject);
     procedure BtOKClick(Sender: TObject);
   private

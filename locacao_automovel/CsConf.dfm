@@ -6,7 +6,7 @@ object CsConfForm: TCsConfForm
   Caption = 'Consulta de Locador'
   ClientHeight = 425
   ClientWidth = 497
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -29,6 +29,14 @@ object CsConfForm: TCsConfForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Filtro:'
+    Color = 7562340
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
   end
   object Label4: TLabel
     Left = 287
@@ -37,6 +45,14 @@ object CsConfForm: TCsConfForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Condi'#231#227'o:'
+    Color = 7562340
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
   end
   object Panel1: TPanel
     Left = 0
@@ -45,7 +61,7 @@ object CsConfForm: TCsConfForm
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 4
     object BtOk: TButton
@@ -81,12 +97,12 @@ object CsConfForm: TCsConfForm
     end
   end
   object DBGrid1: TSedDBGrid
-    Left = 6
+    Left = 3
     Top = 104
     Width = 491
     Height = 288
     DataSource = BancodeDados.dsConfig
-    FixedColor = clSilver
+    FixedColor = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11

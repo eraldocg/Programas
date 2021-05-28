@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Forms,
-  Dialogs, DB, jpeg, ExtCtrls, StdCtrls, Controls, Classes, Vcl.Menus;
+  Dialogs, DB, jpeg, ExtCtrls, StdCtrls, Controls, Classes, Vcl.Menus,
+  Vcl.Imaging.pngimage;
 
 type
   TAcessoForm = class(TForm)

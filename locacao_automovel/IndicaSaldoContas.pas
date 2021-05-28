@@ -30,6 +30,7 @@ type
     TipoContasCONTA: TStringField;
     TipoContasABREV: TStringField;
     TipoContasREFERENCIA: TStringField;
+    Image4: TImage;
     procedure FormShow(Sender: TObject);
     procedure BtOKClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);

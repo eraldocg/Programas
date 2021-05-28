@@ -168,6 +168,8 @@ type
     dbedtDIAS_TOLERANCIA: TDBEdit;
     EditNomeArqRet: TSedDBComboBox;
     Label43: TLabel;
+    Label44: TLabel;
+    EditChave_PIX: TDBEdit;
     procedure BtInserirClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

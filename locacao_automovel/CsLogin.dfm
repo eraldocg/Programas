@@ -6,7 +6,7 @@ object CsLoginForm: TCsLoginForm
   Caption = 'Consulta de Usu'#225'rios'
   ClientHeight = 425
   ClientWidth = 497
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -28,6 +28,12 @@ object CsLoginForm: TCsLoginForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Filtro:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object Label4: TLabel
     Left = 287
@@ -36,6 +42,12 @@ object CsLoginForm: TCsLoginForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Condi'#231#227'o:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object Image1: TImage
     Left = -2
@@ -67,7 +79,7 @@ object CsLoginForm: TCsLoginForm
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 4
     object BtOk: TButton
@@ -108,7 +120,7 @@ object CsLoginForm: TCsLoginForm
     Width = 491
     Height = 288
     DataSource = BancodeDados.dsLogin
-    FixedColor = clSilver
+    FixedColor = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11

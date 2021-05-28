@@ -13,12 +13,12 @@ type
     BtOk: TButton;
     BtCancelar: TButton;
     BtNovo: TButton;
-    Image1: TImage;
     Label2: TLabel;
     Label4: TLabel;
     CBOpcao: TComboBox;
     EditConsulta: TEdit;
     CBTipo: TComboBox;
+    Image3: TImage;
     procedure FormShow(Sender: TObject);
     procedure EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DBGrid1TitleClick(Column: TColumn);

@@ -1096,7 +1096,6 @@ type
     VeiculosPLACA: TStringField;
     VeiculosMARCA: TStringField;
     VeiculosMODELO: TStringField;
-    VeiculosANO: TIntegerField;
     VeiculosCOR: TStringField;
     VeiculosRENAVAM: TStringField;
     VeiculosSIT: TIntegerField;
@@ -1158,6 +1157,11 @@ type
     qryCliNOME: TStringField;
     qryServVEICULO_ID: TIntegerField;
     Cont_Serv_ClienDT_CONTRATO_FIM: TDateField;
+    BancosCHAVE_PIX: TStringField;
+    VeiculosANO_FAB: TIntegerField;
+    VeiculosANO_MODELO: TIntegerField;
+    VeiculosPLACA_ANTERIOR: TStringField;
+    Cont_Serv_ClienDias_locacao: TIntegerField;
     procedure ClientesAfterOpen(DataSet: TDataSet);
     procedure ClientesBeforeClose(DataSet: TDataSet);
     procedure ClientesAfterInsert(DataSet: TDataSet);
@@ -2734,6 +2738,19 @@ begin
     QryFornec.Open;
     Cont_Serv_ClienFornecedor_nome.Value := QryFornecNOME.Value;
     QryFornec.Close;
+  end;
+
+  if (Cont_Serv_ClienDT_CONTRATO_FIM.Value >0) and (Cont_Serv_ClienDT_CONTRATO.Value >0) then
+  try
+
+    if Cont_Serv_ClienDT_CONTRATO_FIM.Value > Cont_Serv_ClienDT_CONTRATO.Value then
+     Cont_Serv_ClienDias_locacao.Value:=Trunc(Cont_Serv_ClienDT_CONTRATO_FIM.Value- Cont_Serv_ClienDT_CONTRATO.Value)
+    else
+     Cont_Serv_ClienDias_locacao.Value:=0;
+
+
+  except
+    Cont_Serv_ClienDias_locacao.Value:=0;
   end;
 
 end;

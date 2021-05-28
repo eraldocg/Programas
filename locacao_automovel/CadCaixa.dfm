@@ -6,7 +6,7 @@ object CadCaixaForm: TCadCaixaForm
   Caption = 'Controle de Caixa'
   ClientHeight = 500
   ClientWidth = 707
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -31,7 +31,7 @@ object CadCaixaForm: TCadCaixaForm
     Height = 32
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 0
     DesignSize = (
@@ -55,7 +55,7 @@ object CadCaixaForm: TCadCaixaForm
       OnClick = BtGravarClick
     end
     object BtCancelar: TButton
-      Left = 552
+      Left = 553
       Top = 5
       Width = 75
       Height = 25
@@ -73,7 +73,7 @@ object CadCaixaForm: TCadCaixaForm
       TabOrder = 1
     end
     object BtNovo: TButton
-      Left = 475
+      Left = 476
       Top = 5
       Width = 75
       Height = 25
@@ -105,13 +105,15 @@ object CadCaixaForm: TCadCaixaForm
       Visible = False
     end
     object btImp: TButton
-      Left = 398
+      Left = 400
       Top = 5
       Width = 75
       Height = 25
       Cursor = crHandPoint
       Anchors = [akRight, akBottom]
       Caption = 'Imprimir'
+      DoubleBuffered = False
+      ParentDoubleBuffered = False
       TabOrder = 4
       OnClick = btImpClick
     end
@@ -132,7 +134,8 @@ object CadCaixaForm: TCadCaixaForm
       Height = 341
       Align = alClient
       DataSource = BancodeDados.DSLivroCaixa
-      FixedColor = clSilver
+      FixedColor = clWhite
+      GradientEndColor = clSilver
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -144,7 +147,7 @@ object CadCaixaForm: TCadCaixaForm
       ReadOnly = True
       TabOrder = 0
       TitleFont.Charset = ANSI_CHARSET
-      TitleFont.Color = -1
+      TitleFont.Color = clBlack
       TitleFont.Height = -11
       TitleFont.Name = 'Arial'
       TitleFont.Style = [fsBold]
@@ -260,7 +263,7 @@ object CadCaixaForm: TCadCaixaForm
       Anchors = [akTop, akRight]
       Caption = 'Filtro:'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -275,7 +278,7 @@ object CadCaixaForm: TCadCaixaForm
       Anchors = [akTop, akRight]
       Caption = 'Condi'#231#227'o:'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -290,7 +293,7 @@ object CadCaixaForm: TCadCaixaForm
       AutoSize = False
       Caption = 'Data Final:'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -306,7 +309,7 @@ object CadCaixaForm: TCadCaixaForm
       AutoSize = False
       Caption = 'Data Inicial:'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -314,7 +317,7 @@ object CadCaixaForm: TCadCaixaForm
       Transparent = True
     end
     object Label4: TLabel
-      Left = 43
+      Left = 42
       Top = 65
       Width = 69
       Height = 14
@@ -322,7 +325,7 @@ object CadCaixaForm: TCadCaixaForm
       AutoSize = False
       Caption = 'Situa'#231#227'o:'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -418,7 +421,7 @@ object CadCaixaForm: TCadCaixaForm
     Left = 276
     Top = 6
     Bitmap = {
-      494C010106000900900010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010106000900980010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

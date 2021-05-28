@@ -47,6 +47,7 @@ type
     btn_SMS: TImage;
     Servicos1: TMenuItem;
     btLocacao: TButton;
+    Image1: TImage;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

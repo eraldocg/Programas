@@ -35,6 +35,7 @@ type
     TipoContasUSR_CAD: TIntegerField;
     TipoContasUSUARIO_ID: TIntegerField;
     TipoContasDT_ALTERADO: TDateField;
+    Image3: TImage;
     procedure FormShow(Sender: TObject);
     procedure BtOKClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);

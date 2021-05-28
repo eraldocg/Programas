@@ -6,10 +6,10 @@ object CsVeiculosForm: TCsVeiculosForm
   Caption = 'Consulta de Ve'#237'culos'
   ClientHeight = 425
   ClientWidth = 497
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  Font.Color = clBlack
   Font.Height = -11
   Font.Name = 'Arial'
   Font.Style = []
@@ -29,6 +29,12 @@ object CsVeiculosForm: TCsVeiculosForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Filtro:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object Label4: TLabel
     Left = 287
@@ -37,6 +43,12 @@ object CsVeiculosForm: TCsVeiculosForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Condi'#231#227'o:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object lbVisualizar: TLabel
     Left = 4
@@ -46,7 +58,7 @@ object CsVeiculosForm: TCsVeiculosForm
     Alignment = taRightJustify
     Caption = 'Visualizar:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -76,7 +88,7 @@ object CsVeiculosForm: TCsVeiculosForm
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 4
     object BtOk: TButton
@@ -112,12 +124,12 @@ object CsVeiculosForm: TCsVeiculosForm
     end
   end
   object DBGrid1: TSedDBGrid
-    Left = 3
-    Top = 103
-    Width = 491
+    Left = 0
+    Top = 102
+    Width = 497
     Height = 288
     DataSource = BancodeDados.dsVeiculos
-    FixedColor = clSilver
+    FixedColor = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -159,14 +171,14 @@ object CsVeiculosForm: TCsVeiculosForm
       end
       item
         Expanded = False
-        FieldName = 'ANO'
-        Width = 44
+        FieldName = 'COR'
+        Width = 82
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'COR'
-        Width = 82
+        FieldName = 'ANO_FAB'
+        Width = 93
         Visible = True
       end>
   end
@@ -231,8 +243,8 @@ object CsVeiculosForm: TCsVeiculosForm
   end
   object PopupMenu1: TPopupMenu
     OnChange = PopupMenu1Change
-    Left = 174
-    Top = 65528
+    Left = 252
+    Top = 52
     object Editar1: TMenuItem
       Caption = '&Editar'
       ShortCut = 16453
@@ -255,8 +267,8 @@ object CsVeiculosForm: TCsVeiculosForm
     end
   end
   object MainMenu1: TMainMenu
-    Left = 132
-    Top = 2
+    Left = 294
+    Top = 60
     object Excluir2: TMenuItem
       Caption = 'Excluir'
       ShortCut = 16430

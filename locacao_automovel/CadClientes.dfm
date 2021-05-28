@@ -6,7 +6,7 @@ object CadClientesForm: TCadClientesForm
   Caption = 'Cadastro de Clientes'
   ClientHeight = 526
   ClientWidth = 517
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -30,7 +30,7 @@ object CadClientesForm: TCadClientesForm
     Height = 30
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 1
     object DBText5: TDBText
@@ -41,7 +41,7 @@ object CadClientesForm: TCadClientesForm
       DataField = 'CLI_ID'
       DataSource = BancodeDados.DsClientes
       Font.Charset = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
@@ -54,7 +54,7 @@ object CadClientesForm: TCadClientesForm
       Height = 14
       Caption = 'C'#243'digo:'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
@@ -98,15 +98,11 @@ object CadClientesForm: TCadClientesForm
     Height = 496
     ActivePage = TabSheet1
     Align = alClient
-    Style = tsButtons
+    Style = tsFlatButtons
     TabOrder = 0
     OnChange = PageControl1Change
     object TabSheet1: TTabSheet
       Caption = 'Dados principais'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label1: TLabel
         Left = 41
         Top = 10
@@ -115,7 +111,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'Nome:'
         Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -129,7 +125,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'C.P.F.:'
         Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -203,7 +199,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'Nascimento:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -217,7 +213,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'Nacionalidade:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -231,7 +227,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'Sexo:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -245,7 +241,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'U.F:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -259,7 +255,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'Naturalidade:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -273,7 +269,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'Estado Civil:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -287,7 +283,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'Profiss'#227'o:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -302,7 +298,7 @@ object CadClientesForm: TCadClientesForm
         AutoSize = False
         Caption = 'Passaporte:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -316,7 +312,7 @@ object CadClientesForm: TCadClientesForm
         Alignment = taRightJustify
         Caption = 'U.F.:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -331,7 +327,7 @@ object CadClientesForm: TCadClientesForm
         AutoSize = False
         Caption = #211'rg'#227'o Emissor:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -346,7 +342,7 @@ object CadClientesForm: TCadClientesForm
         AutoSize = False
         Caption = 'Expedi'#231#227'o:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -361,7 +357,7 @@ object CadClientesForm: TCadClientesForm
         AutoSize = False
         Caption = 'RG:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -369,11 +365,17 @@ object CadClientesForm: TCadClientesForm
       end
       object Label27: TLabel
         Left = 351
-        Top = 246
+        Top = 240
         Width = 45
         Height = 14
         Alignment = taRightJustify
         Caption = 'Situa'#231#227'o:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
       object EditNome: TDBEdit
         Left = 81
@@ -412,20 +414,16 @@ object CadClientesForm: TCadClientesForm
       end
       object PageControl2: TPageControl
         Left = 0
-        Top = 265
+        Top = 260
         Width = 509
-        Height = 199
+        Height = 204
         ActivePage = TabSheet7
         Align = alBottom
-        Style = tsButtons
+        Style = tsFlatButtons
         TabOrder = 16
         OnChange = PageControl2Change
         object TabSheet7: TTabSheet
           Caption = 'Endere'#231'o'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label8: TLabel
             Left = 14
             Top = 65
@@ -433,6 +431,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'Logradouro:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label9: TLabel
             Left = 41
@@ -441,6 +445,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'Bairro:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label12: TLabel
             Left = 300
@@ -449,6 +459,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'CEP:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label14: TLabel
             Left = 37
@@ -457,6 +473,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'Fone 1:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label15: TLabel
             Left = 52
@@ -465,6 +487,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'Fax:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label16: TLabel
             Left = 266
@@ -473,6 +501,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'Fone 2:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label19: TLabel
             Left = 2
@@ -481,6 +515,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'E-mail Contato:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label26: TLabel
             Left = 5
@@ -489,6 +529,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'E-mail (NFSe):'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label30: TLabel
             Left = 420
@@ -497,6 +543,12 @@ object CadClientesForm: TCadClientesForm
             Height = 14
             Alignment = taRightJustify
             Caption = 'N.'#186':'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label35: TLabel
             Left = 53
@@ -506,7 +558,7 @@ object CadClientesForm: TCadClientesForm
             Alignment = taRightJustify
             Caption = 'U.F:'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
+            Font.Color = clWhite
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
@@ -520,7 +572,7 @@ object CadClientesForm: TCadClientesForm
             Alignment = taRightJustify
             Caption = 'Cidade:'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
+            Font.Color = clWhite
             Font.Height = -11
             Font.Name = 'Arial'
             Font.Style = []
@@ -660,7 +712,7 @@ object CadClientesForm: TCadClientesForm
           end
           object EditNaturalidade: TDBLookupComboBox
             Left = 75
-            Top = 23
+            Top = 24
             Width = 414
             Height = 20
             Color = clWhite
@@ -682,43 +734,73 @@ object CadClientesForm: TCadClientesForm
           ExplicitHeight = 0
           object Label21: TLabel
             Left = 54
-            Top = 5
+            Top = 7
             Width = 40
             Height = 14
             Alignment = taRightJustify
             Caption = 'Contato:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label22: TLabel
             Left = 65
-            Top = 47
+            Top = 49
             Width = 29
             Height = 14
             Alignment = taRightJustify
             Caption = 'Login:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label23: TLabel
             Left = 61
-            Top = 68
+            Top = 70
             Width = 31
             Height = 14
             Alignment = taRightJustify
             Caption = 'Senha'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label24: TLabel
             Left = 2
-            Top = 26
+            Top = 28
             Width = 92
             Height = 14
             Alignment = taRightJustify
             Caption = 'Fantasia Reduzida:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object Label25: TLabel
             Left = 26
-            Top = 89
+            Top = 91
             Width = 68
             Height = 14
             Alignment = taRightJustify
             Caption = 'C'#243'd. Rastreio:'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
           end
           object EditSenha: TDBEdit
             Left = 96
@@ -799,27 +881,39 @@ object CadClientesForm: TCadClientesForm
         OnDblClick = EditFotoDblClick
       end
       object DBCheckBox4: TDBCheckBox
-        Left = 82
-        Top = 245
+        Left = 81
+        Top = 240
         Width = 75
         Height = 17
         Cursor = crHandPoint
         Caption = 'Confi'#225'vel?'
         DataField = 'CONFIAVEL'
         DataSource = BancodeDados.DsClientes
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 14
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
       object DBCheckBox6: TDBCheckBox
         Left = 172
-        Top = 245
+        Top = 240
         Width = 89
         Height = 17
         Cursor = crHandPoint
         Caption = 'Fatura Nota?'
         DataField = 'FAT_NOTA'
         DataSource = BancodeDados.DsClientes
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 15
         ValueChecked = '1'
         ValueUnchecked = '0'
@@ -1569,8 +1663,8 @@ object CadClientesForm: TCadClientesForm
         TabOrder = 7
       end
       object SedDBComboBox1: TSedDBComboBox
-        Left = 400
-        Top = 242
+        Left = 402
+        Top = 236
         Width = 95
         Height = 22
         Style = csOwnerDrawFixed
@@ -1592,10 +1686,6 @@ object CadClientesForm: TCadClientesForm
       Caption = 'Informa'#231#245'es de registro'
       ImageIndex = 1
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel2: TPanel
         Left = 0
         Top = 293
@@ -1667,10 +1757,6 @@ object CadClientesForm: TCadClientesForm
     object TabSheet8: TTabSheet
       Caption = 'Observa'#231#245'es'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SedDBGrid2: TSedDBGrid
         Left = 0
         Top = 0
@@ -1678,7 +1764,7 @@ object CadClientesForm: TCadClientesForm
         Height = 464
         Align = alClient
         DataSource = BancodeDados.dsObservac
-        FixedColor = clSilver
+        FixedColor = clWhite
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
         Font.Height = -35
@@ -1689,7 +1775,7 @@ object CadClientesForm: TCadClientesForm
         ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = ANSI_CHARSET
-        TitleFont.Color = clBlack
+        TitleFont.Color = -1
         TitleFont.Height = -11
         TitleFont.Name = 'Arial'
         TitleFont.Style = [fsBold]
@@ -1712,10 +1798,6 @@ object CadClientesForm: TCadClientesForm
     object tbScanDoc: TTabSheet
       Caption = 'Documentos Diversos'
       ImageIndex = 7
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SedDBGrid3: TSedDBGrid
         Left = 0
         Top = 0
@@ -1723,7 +1805,7 @@ object CadClientesForm: TCadClientesForm
         Height = 464
         Align = alClient
         DataSource = BancodeDados.dsS_Doc
-        FixedColor = clSilver
+        FixedColor = clWhite
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11

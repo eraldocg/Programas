@@ -29,7 +29,7 @@ type
     Label6: TLabel;
     EditModelo: TDBEdit;
     Label7: TLabel;
-    EditAno: TDBEdit;
+    EditAnoFabr: TDBEdit;
     Label8: TLabel;
     EditCor: TDBEdit;
     Label9: TLabel;
@@ -43,6 +43,11 @@ type
     EditValorFranq: TDBEdit;
     Label10: TLabel;
     EditContrato: TDBLookupComboBox;
+    Label11: TLabel;
+    Label12: TLabel;
+    EditAnoMod: TDBEdit;
+    EditPlacaAnterior: TDBEdit;
+    Image2: TImage;
     procedure BtInserirClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -105,10 +110,10 @@ Screen.Cursor:=crSQLWait;
   end;
 
   if podeIR then
-  if not (BancodeDados.VeiculosANO.Value>0) then
+  if not (BancodeDados.VeiculosANO_FAB.Value>0) then
   begin
-    Mensagem('Ano inválido!', mtInformation, [mbok], mrok, 0);
-    EditAno.SetFocus;
+    Mensagem('Ano de fabricação inválido!', mtInformation, [mbok], mrok, 0);
+    EditAnoFabr.SetFocus;
     podeIR:=False;
   end;
 

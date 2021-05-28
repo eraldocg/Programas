@@ -3275,6 +3275,10 @@ end;
 
 procedure TPrincipalForm.DBGrid1DblClick(Sender: TObject);
 begin
+if not(usrID > 0) then
+  Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
+else
+begin
   if not Assigned(CadInformeForm) then
     CadInformeForm := TCadInformeForm.Create(Application);
   try
@@ -3283,25 +3287,34 @@ begin
     CadInformeForm.Release;
     CadInformeForm := nil;
   end;
+end;
 
 end;
 
 procedure TPrincipalForm.Documentos1Click(Sender: TObject);
 begin
-
-  if not Assigned(CsDocumentosForm) then
-    CsDocumentosForm := tCsDocumentosForm.Create(Application);
-  try
-    CsDocumentosForm.ShowModal;
-  finally
-    CsDocumentosForm.Release;
-    CsDocumentosForm := nil;
+  if not(usrID > 0) then
+    Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
+  else
+  begin
+    if not Assigned(CsDocumentosForm) then
+      CsDocumentosForm := tCsDocumentosForm.Create(Application);
+    try
+      CsDocumentosForm.ShowModal;
+    finally
+      CsDocumentosForm.Release;
+      CsDocumentosForm := nil;
+    end;
   end;
 
 end;
 
 procedure TPrincipalForm.Editar1Click(Sender: TObject);
 begin
+  if not(usrID > 0) then
+    Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
+  else
+  begin
   if not Assigned(CadInformeForm) then
     CadInformeForm := TCadInformeForm.Create(Application);
   try
@@ -3309,6 +3322,7 @@ begin
   finally
     CadInformeForm.Release;
     CadInformeForm := nil;
+  end;
   end;
 end;
 

@@ -6,7 +6,7 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
   Caption = 'Visualiza'#231#227'o de Impress'#227'o '
   ClientHeight = 532
   ClientWidth = 723
-  Color = clSilver
+  Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -58,7 +58,7 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
     Align = alTop
     BevelOuter = bvNone
     BorderStyle = bsSingle
-    Color = 15066597
+    Color = 7562340
     ParentBackground = False
     TabOrder = 2
     object btImprimir: TSpeedButton
@@ -68,6 +68,12 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
       Height = 20
       Caption = '&Imprimir'
       Flat = True
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
       OnClick = btImprimirClick
     end
     object btSalvar: TSpeedButton
@@ -78,6 +84,12 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
       Caption = 'Salvar'
       Enabled = False
       Flat = True
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
     end
     object btEnviar: TSpeedButton
       Left = 113
@@ -87,6 +99,12 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
       Caption = 'Enviar'
       Enabled = False
       Flat = True
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
     end
     object btFechar: TSpeedButton
       Left = 168
@@ -95,6 +113,12 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
       Height = 20
       Caption = '&Fechar'
       Flat = True
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
       OnClick = btFecharClick
     end
     object Label1: TLabel
@@ -103,6 +127,12 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
       Width = 32
       Height = 14
       Caption = 'P'#225'gina'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
     end
     object Label2: TLabel
       Left = 301
@@ -110,6 +140,12 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
       Width = 12
       Height = 14
       Caption = 'de'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
     end
     object EditPag1: TEdit
       Left = 263
@@ -343,6 +379,7 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
     end
   end
   object qryV_ClientServ: TFDQuery
+    OnCalcFields = qryV_ClientServCalcFields
     Connection = BancodeDados.FDConnection1
     ResourceOptions.AssignedValues = [rvParamCreate]
     SQL.Strings = (
@@ -479,10 +516,6 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
       Origin = 'MODELO'
       Size = 60
     end
-    object qryV_ClientServANO: TIntegerField
-      FieldName = 'ANO'
-      Origin = 'ANO'
-    end
     object qryV_ClientServCOR: TStringField
       FieldName = 'COR'
       Origin = 'COR'
@@ -575,6 +608,19 @@ object relContratoMatriculaForm: TrelContratoMatriculaForm
     object qryV_ClientServDT_CONTRATO_FIM: TDateField
       FieldName = 'DT_CONTRATO_FIM'
       Origin = 'DT_CONTRATO_FIM'
+    end
+    object qryV_ClientServANO_FAB: TIntegerField
+      FieldName = 'ANO_FAB'
+      Origin = 'ANO_FAB'
+    end
+    object qryV_ClientServDias_locacao: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'Dias_locacao'
+      Calculated = True
+    end
+    object qryV_ClientServANO_MODELO: TIntegerField
+      FieldName = 'ANO_MODELO'
+      Origin = 'ANO_MODELO'
     end
   end
   object dsV_ClientServ: TDataSource

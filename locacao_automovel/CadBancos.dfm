@@ -6,7 +6,7 @@ object CadBancosForm: TCadBancosForm
   Caption = 'Cadastro de Banco'
   ClientHeight = 631
   ClientWidth = 496
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -414,7 +414,7 @@ object CadBancosForm: TCadBancosForm
     Height = 28
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 1
     object DBText5: TDBText
@@ -498,9 +498,9 @@ object CadBancosForm: TCadBancosForm
     Top = 0
     Width = 496
     Height = 603
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     Align = alClient
-    Style = tsButtons
+    Style = tsFlatButtons
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Dados do Banco'
@@ -512,7 +512,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Banco:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -527,7 +527,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Local de Pagamento:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -542,7 +542,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Nome do Benefici'#225'rio,'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -556,16 +556,22 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Alignment = taRightJustify
         Caption = 'Imagem do Banco/Escola:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
       object Label20: TLabel
-        Left = 77
+        Left = 16
         Top = 49
-        Width = 59
+        Width = 120
         Height = 14
         Alignment = taRightJustify
-        Caption = 'Abrevia'#231#227'o:'
+        Caption = 'Nome Banco p/ Contrato:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -580,7 +586,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Caminho do Retorno:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -609,7 +615,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Caminho da Remessa:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -643,7 +649,7 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Caption = 'Outras Informa'#231#245'es para Gerar Boleto:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -657,7 +663,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Sacador / Avalista:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -689,7 +695,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'CNPJ e Endere'#231'o:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -704,7 +710,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Dia Fixo p/ Desconto:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -718,7 +724,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'N.'#186' de Dias para Protesto:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -732,7 +738,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Dias de Toler'#226'ncia p/ Multa:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -744,6 +750,12 @@ object CadBancosForm: TCadBancosForm
         Width = 348
         Height = 112
         Caption = 'Defini'#231#245'es'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 12
         object SpeedButton6: TSpeedButton
           Left = 238
@@ -770,7 +782,7 @@ object CadBancosForm: TCadBancosForm
           DataField = 'COB_REG'
           DataSource = BancodeDados.DSBancos
           Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -819,7 +831,7 @@ object CadBancosForm: TCadBancosForm
           DataField = 'ACEITA_DEB_AUT'
           DataSource = BancodeDados.DSBancos
           Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -838,7 +850,7 @@ object CadBancosForm: TCadBancosForm
           DataField = 'CONT_ENCERRADA'
           DataSource = BancodeDados.DSBancos
           Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -857,7 +869,7 @@ object CadBancosForm: TCadBancosForm
           DataField = 'HOMOLOGACAO'
           DataSource = BancodeDados.DSBancos
           Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -874,6 +886,12 @@ object CadBancosForm: TCadBancosForm
         Height = 190
         BevelOuter = bvNone
         Color = clSilver
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 3
         OnDblClick = lbGerarBol_1DblClick
         object lb1: TLabel
@@ -884,7 +902,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'C'#243'digo Banco: '
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -898,7 +916,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Leiaute de Arquivo (Retorno/Remessa):'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -912,7 +930,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'DV:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -926,7 +944,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'C'#243'digo Cedente:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -940,7 +958,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Carteira:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -954,7 +972,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Varia'#231#227'o da Carteira:'
           Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -969,7 +987,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'DV:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -983,7 +1001,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'DV:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -997,7 +1015,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Ag'#234'ncia:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1011,7 +1029,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Conta Corrente Tipo:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1025,7 +1043,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'DV:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1039,7 +1057,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'N'#176' de Conv'#234'nio / C'#243'digo Escritural:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1053,7 +1071,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Contrato:'
           Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -1067,7 +1085,7 @@ object CadBancosForm: TCadBancosForm
           Height = 14
           Caption = 'Informa'#231#245'es de Conv'#234'nio para Gerar Boleto:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1087,7 +1105,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Conta N'#250'mero:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1101,7 +1119,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Esp'#233'cie Doc.:'
           Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -1575,7 +1593,7 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Caption = 'Remessa:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -1595,7 +1613,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Contrato Remessa ou '
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -1610,7 +1628,7 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Cod. Transmiss'#227'o:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -1625,11 +1643,26 @@ object CadBancosForm: TCadBancosForm
         Alignment = taRightJustify
         Caption = 'Nome do Arquivo de Retorno:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
+      end
+      object Label44: TLabel
+        Left = 65
+        Top = 456
+        Width = 52
+        Height = 14
+        Alignment = taRightJustify
+        Caption = 'Chave PIX:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        Transparent = True
       end
       object lbGerarBol_2: TPanel
         Left = -4
@@ -1638,6 +1671,12 @@ object CadBancosForm: TCadBancosForm
         Height = 166
         BevelOuter = bvNone
         Color = clSilver
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 1
         OnDblClick = lbGerarBol_2DblClick
         object Label11: TLabel
@@ -1648,7 +1687,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'C'#243'digo Banco: '
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1662,7 +1701,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'DV:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1676,7 +1715,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'DV:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1690,7 +1729,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Ag'#234'ncia: '
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1704,7 +1743,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Conta Corrente:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1718,7 +1757,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'DV:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1731,7 +1770,7 @@ object CadBancosForm: TCadBancosForm
           Height = 14
           Caption = 'Dados Personalizados p/ Impress'#227'o do Boleto:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1751,7 +1790,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Carteira:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1944,6 +1983,12 @@ object CadBancosForm: TCadBancosForm
         Height = 118
         BevelOuter = bvNone
         Color = clSilver
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 2
         object Label56: TLabel
           Left = 7
@@ -1952,7 +1997,7 @@ object CadBancosForm: TCadBancosForm
           Height = 14
           Caption = 'Informa'#231#245'es de Controle Autom'#225'tico do SED Escolar:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
@@ -1972,7 +2017,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Sequ'#234'ncia de N. N'#250'mero (Preenchido automaticamente):'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -1986,7 +2031,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'N'#250'mero da '#218'ltima Remessa Processada:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -2000,7 +2045,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'Sequ'#234'ncia de Remessa p/ D'#233'b. Autom'#225'tico (Preenchido auto.):'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -2014,7 +2059,7 @@ object CadBancosForm: TCadBancosForm
           Alignment = taRightJustify
           Caption = 'N'#250'mero do '#218'ltimo Nosso N'#250'mero Processado:'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
+          Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
@@ -2142,6 +2187,16 @@ object CadBancosForm: TCadBancosForm
           '2')
         TabOrder = 4
       end
+      object EditChave_PIX: TDBEdit
+        Left = 120
+        Top = 454
+        Width = 362
+        Height = 20
+        Color = clWhite
+        DataField = 'CHAVE_PIX'
+        DataSource = BancodeDados.DSBancos
+        TabOrder = 5
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'Instru'#231#245'es'
@@ -2211,6 +2266,12 @@ object CadBancosForm: TCadBancosForm
           'to com sua ag'#234'ncia banc'#225'ria para obter mais informa'#231#245'es. N'#227'o esq' +
           'ue'#231'a de informar que deseja emitir boleto de cobran'#231'a e que a em' +
           'iss'#227'o ser'#225' atrav'#233's de sistema pr'#243'prio (SED Escolar).'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label31: TLabel
@@ -2222,6 +2283,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '1. Fa'#231'a um conv'#234'nio/contrato de cobran'#231'a com uma ag'#234'ncia banc'#225'ri' +
           'a.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label32: TLabel
@@ -2233,6 +2300,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '2. Configure no sistema SED Escolar com os dados da conta da esc' +
           'ola (consulte o suporte t'#233'cnico).'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label34: TLabel
@@ -2244,6 +2317,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '3. Envie alguns boletos para o banco homologar (consulte seu ger' +
           'ente ou atendimento banc'#225'rio).'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label35: TLabel
@@ -2255,6 +2334,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '4. Caso sua conta precise emitir remessa, consulte o atendimento' +
           ' banc'#225'rio, para validar o arquivo remessa.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label36: TLabel
@@ -2266,6 +2351,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '5. Ap'#243's a homologa'#231#227'o, imprima alguns boletos com valores simb'#243'l' +
           'icos.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label37: TLabel
@@ -2277,6 +2368,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '9. Consulte o pessoal do banco para obter informa'#231#245'es de recebim' +
           'ento de arquivo retorno.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label38: TLabel
@@ -2288,6 +2385,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '8. Entre 1 a 2 dias '#250'teis, veja se os boletos pagos foram credit' +
           'ados na conta da escola.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label39: TLabel
@@ -2297,6 +2400,12 @@ object CadBancosForm: TCadBancosForm
         Height = 36
         AutoSize = False
         Caption = '7. Repita o mesmo processo usando a linha dit'#225'vel.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label40: TLabel
@@ -2308,6 +2417,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '6. Teste o pagamento de um ou mais boletos usando o c'#243'digo de ba' +
           'rras.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object Label41: TLabel
@@ -2319,6 +2434,12 @@ object CadBancosForm: TCadBancosForm
         Caption = 
           '10. Veja a rela'#231#227'o de bancos para retorno e remessa (cobran'#231'a re' +
           'gistrada) ou d'#233'bito em conta:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         WordWrap = True
       end
       object btBanco2: TSpeedButton

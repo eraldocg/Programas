@@ -47,6 +47,7 @@ type
     Label12: TLabel;
     EditVlDesct: TSedCurrency;
     TempPARCELA: TStringField;
+    Image1: TImage;
     procedure FormShow(Sender: TObject);
     procedure BTApagarClick(Sender: TObject);
     procedure BTSimularClick(Sender: TObject);

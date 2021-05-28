@@ -81,6 +81,9 @@ type
     qryCPFCNPJ: TStringField;
     qryCPFFORNE_ID: TIntegerField;
     qryCPFNOME: TStringField;
+    Image4: TImage;
+    Image1: TImage;
+    Image2: TImage;
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure BtGravarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

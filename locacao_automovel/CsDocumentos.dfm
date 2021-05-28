@@ -6,7 +6,7 @@ object CsDocumentosForm: TCsDocumentosForm
   Caption = 'Consulta de Documentos'
   ClientHeight = 423
   ClientWidth = 491
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -24,8 +24,8 @@ object CsDocumentosForm: TCsDocumentosForm
   PixelsPerInch = 96
   TextHeight = 14
   object Image1: TImage
-    Left = -16
-    Top = -16
+    Left = 212
+    Top = 178
     Width = 552
     Height = 107
     Cursor = crHandPoint
@@ -38,7 +38,7 @@ object CsDocumentosForm: TCsDocumentosForm
     Alignment = taRightJustify
     Caption = 'Visualizar:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -83,6 +83,12 @@ object CsDocumentosForm: TCsDocumentosForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Condi'#231#227'o:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object Label2: TLabel
     Left = 308
@@ -91,6 +97,12 @@ object CsDocumentosForm: TCsDocumentosForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Filtro:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object Panel1: TPanel
     Left = 0
@@ -99,18 +111,17 @@ object CsDocumentosForm: TCsDocumentosForm
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
     ParentBackground = False
     ParentFont = False
     TabOrder = 5
-    ExplicitWidth = 497
     object BtOk: TButton
-      Left = 417
+      Left = 411
       Top = 3
       Width = 75
       Height = 25
@@ -120,7 +131,7 @@ object CsDocumentosForm: TCsDocumentosForm
       TabOrder = 0
     end
     object BtNovo: TButton
-      Left = 259
+      Left = 253
       Top = 3
       Width = 75
       Height = 25
@@ -130,7 +141,7 @@ object CsDocumentosForm: TCsDocumentosForm
       OnClick = BtNovoClick
     end
     object BtCancelar: TButton
-      Left = 338
+      Left = 332
       Top = 3
       Width = 75
       Height = 25
@@ -142,12 +153,12 @@ object CsDocumentosForm: TCsDocumentosForm
     end
   end
   object DBGrid1: TSedDBGrid
-    Left = 1
+    Left = 0
     Top = 90
-    Width = 489
+    Width = 492
     Height = 304
     DataSource = BancodeDados.dsDocumentos
-    FixedColor = clSilver
+    FixedColor = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -215,7 +226,6 @@ object CsDocumentosForm: TCsDocumentosForm
     Items.Strings = (
       'C'#243'digo'
       'Nome do Documento')
-    ExplicitLeft = 342
   end
   object CBTipo: TComboBox
     Left = 336
@@ -233,7 +243,6 @@ object CsDocumentosForm: TCsDocumentosForm
       'Come'#231'ando por...'
       'Contendo...'
       'Igual '#224'...')
-    ExplicitLeft = 342
   end
   object EditConsulta: TEdit
     Left = 296
@@ -243,7 +252,6 @@ object CsDocumentosForm: TCsDocumentosForm
     Anchors = [akTop, akRight]
     TabOrder = 3
     OnKeyDown = EditConsultaKeyDown
-    ExplicitLeft = 302
   end
   object MainMenu1: TMainMenu
     Left = 70
@@ -277,6 +285,7 @@ object CsDocumentosForm: TCsDocumentosForm
     object Excluir1: TMenuItem
       Caption = 'Excluir'
       ShortCut = 16430
+      OnClick = Excluir1Click
     end
     object N1: TMenuItem
       Caption = '-'

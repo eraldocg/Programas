@@ -18,7 +18,6 @@ type
     EditConsulta: TEdit;
     CBTipo: TComboBox;
     BtOk: TButton;
-    Image1: TImage;
     PopupMenu1: TPopupMenu;
     ExcluirRegistro2: TMenuItem;
     MainMenu1: TMainMenu;
@@ -26,6 +25,7 @@ type
     Panel2: TPanel;
     DBGrid1: TSedDBGrid;
     BtExecutar: TSpeedButton;
+    Image3: TImage;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure BtNovoClick(Sender: TObject);

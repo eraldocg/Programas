@@ -42,6 +42,7 @@ type
     procedure cbVisualizarChange(Sender: TObject);
     procedure EditConsultaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure Excluir1Click(Sender: TObject);
     // procedure DBGrid1CellClick(Column: TColumn);
   private
     { Private declarations }
@@ -160,6 +161,33 @@ procedure TCsDocumentosForm.EditConsultaKeyDown(Sender: TObject; var Key: Word;
 begin
 if (Key = VK_Return) then
   BtExecutarClick(Sender);
+
+end;
+
+procedure TCsDocumentosForm.Excluir1Click(Sender: TObject);
+begin
+if BancodeDados.DocumentosDOC_ID.Value>0 then begin
+HabilitarBotoes(self,false);
+  try
+
+    BancodeDados.QrySql.Close;
+    BancodeDados.QrySql.SQL.Text:='select distinct doc_id  from veiculos where doc_id = '+IntToStr(BancodeDados.DocumentosDOC_ID.Value);
+    BancodeDados.QrySql.Open;
+
+    if BancodeDados.QrySql.IsEmpty then
+    begin
+      if PrincipalForm.LiberaAcesso then
+      begin
+        if not BancodeDados.FDConnection1.InTransaction then BancodeDados.FDConnection1.StartTransaction;
+        BancodeDados.Documentos.Delete;
+        Bancodedados.FDConnection1.CommitRetaining;
+      end;
+    end else Mensagem('Registro com vínculo no cadastro de veículos!'#13+'Ação não permitida!', mtInformation, [mbOk], mrOk, 0);
+  except on E : Exception do
+    TraduzErro(E.Message);
+  end;
+HabilitarBotoes(self,true);
+end;
 
 end;
 

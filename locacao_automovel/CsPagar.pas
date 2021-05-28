@@ -14,7 +14,6 @@ type
     BtNovo: TButton;
     BtCancelar: TButton;
     Panel2: TPanel;
-    Image2: TImage;
     Label2: TLabel;
     Label4: TLabel;
     CBOpcao: TComboBox;

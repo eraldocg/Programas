@@ -8,7 +8,8 @@ uses
   Vcl.Buttons, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, SEDDateEdit, Data.DB, 
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, 
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, 
-  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Imaging.jpeg;
 
 type
   TIndicaLigacoesForm = class(TForm)
@@ -55,6 +56,7 @@ type
     CsClientesVISITA: TIntegerField;
     CsClientesOUTRO: TIntegerField;
     CsClientesCOBRANCA: TIntegerField;
+    Image4: TImage;
     procedure FormShow(Sender: TObject);
     procedure BtOKClick(Sender: TObject);
     procedure CsClientesCalcFields(DataSet: TDataSet);

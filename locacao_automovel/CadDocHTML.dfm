@@ -5,7 +5,7 @@ object CadDocHTMLForm: TCadDocHTMLForm
   Caption = 'Cadastro de documento'
   ClientHeight = 586
   ClientWidth = 1000
-  Color = clWindow
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -1034,7 +1034,7 @@ object CadDocHTMLForm: TCadDocHTMLForm
     Top = 65
     Width = 1000
     Height = 502
-    ActivePage = tbPrin
+    ActivePage = tbConf
     Align = alClient
     MultiLine = True
     TabOrder = 2
@@ -1141,8 +1141,8 @@ object CadDocHTMLForm: TCadDocHTMLForm
             '1; Passaporte (Locador)                      ; <%emp_passaporte%' +
             '>    ;'
           
-            '1; PIX (Locador)                                   ; <%emp_chave' +
-            '_pix%>     ;'
+            '1; PIX do locador (Locador)                ; <%emp_chave_pix%>  ' +
+            '   ;'
           ''
           ''
           '2; INFORMA'#199#213'ES DO CLIENTE  ;                               ;'
@@ -1238,8 +1238,11 @@ object CadDocHTMLForm: TCadDocHTMLForm
             '3; Modelo (Ve'#237'culo)                       ; <%veic_modelo%>     ' +
             '              ;'
           
-            '3; Ano (Ve'#237'culo)                            ; <%veic_ano%>      ' +
-            '                  ;'
+            '3; Ano Fabrica'#231#227'o (Ve'#237'culo)          ; <%veic_ano_fabricacao%>  ' +
+            '    ;'
+          
+            '3; Ano Modelo (Ve'#237'culo)                ; <%veic_ano_modelo%>    ' +
+            '       ;'
           
             '3; Cor (Ve'#237'culo)                            ; <%veic_cor%>      ' +
             '                    ;'
@@ -1297,11 +1300,17 @@ object CadDocHTMLForm: TCadDocHTMLForm
             '4; Nome do banco                                 ; <%banco%>    ' +
             '   ;'
           
+            '4; Nome do banco abrevia'#231#227'o              ; <%banco_abrev%>      ' +
+            ' ;'
+          
             '4; Ag'#234'ncia                                             ; <%agenc' +
             'ia%>       ;'
           
             '4; Conta banc'#225'ria                                 ; <%conta_banc' +
             'aria%>       ;'
+          
+            '4; PIX da conta banc'#225'ria (Banco)         ; <%banco_chave_pix%>  ' +
+            '   ;'
           
             '4; Observa'#231#227'o do contrato                  ; <%contrato_obs%>   ' +
             '    ;'
@@ -1313,7 +1322,13 @@ object CadDocHTMLForm: TCadDocHTMLForm
             '_fim%>             ;'
           
             '4; Data final do contrato por extenso  ; <%data_contrato_fim_ext' +
-            '%>         ;')
+            '%>         ;'
+          
+            '4; N'#250'mero de dias do contrato                        ; <%N_dias_' +
+            'contrato%>             ;'
+          
+            '4; N. dias do contrato por extenso       ; <%N_dias_contrato_ext' +
+            '%>             ;')
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 1
@@ -1562,7 +1577,7 @@ object CadDocHTMLForm: TCadDocHTMLForm
     Left = 270
     Top = 298
     Bitmap = {
-      494C010113006800040110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010113006800140110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

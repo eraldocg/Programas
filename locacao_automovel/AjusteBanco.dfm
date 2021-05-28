@@ -6,7 +6,7 @@ object AjusteBancoForm: TAjusteBancoForm
   Caption = 'Atualiza'#231#227'o de Banco de Dados'
   ClientHeight = 440
   ClientWidth = 1183
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -28,7 +28,7 @@ object AjusteBancoForm: TAjusteBancoForm
     Top = 0
     Width = 852
     Height = 440
-    ActivePage = TabMysql
+    ActivePage = TabFirebird
     Align = alLeft
     Style = tsButtons
     TabOrder = 0
@@ -81,6 +81,11 @@ object AjusteBancoForm: TAjusteBancoForm
                 'update RDB$RELATION_FIELDS set RDB$NULL_FLAG = 1 where (RDB$FIEL' +
                 'D_NAME = '#39'VEICULO_ID'#39') and (RDB$RELATION_NAME = '#39'CONT_SERV_CLIEN' +
                 #39');'#167
+              
+                'update RDB$RELATION_FIELDS set RDB$FIELD_SOURCE = '#39'STRING16'#39' whe' +
+                're (RDB$FIELD_NAME = '#39'ABREV'#39') and (RDB$RELATION_NAME = '#39'BANCOS'#39')' +
+                ';'#167
+              ''
               ''
               'alter table cont_serv_clien drop ativo;'#167
               'alter table cont_serv_clien drop servic_id;'#167
@@ -101,7 +106,9 @@ object AjusteBancoForm: TAjusteBancoForm
               'alter table config add vl_mult_contratual money;'#167
               'alter table config add valor money;'#167
               'alter table veiculos add vl_franq_seguro money;'#167
-              ''
+              'alter table veiculos add ano_fab integer;'#167
+              'alter table veiculos add ano_modelo integer;'#167
+              'alter table veiculos add placa_anterior varchar(20);'#167
               ''
               'alter table config add nascimento date;'#167
               'alter table config add sexo varchar(1);'#167
@@ -121,6 +128,8 @@ object AjusteBancoForm: TAjusteBancoForm
               'alter table config add passaporte varchar(20);'#167
               'alter table config add celular_1 varchar(16);'#167
               'alter table config add chave_pix varchar(60);'#167
+              'alter table bancos add chave_pix varchar(60);'#167
+              ''
               ''
               'alter table clientes drop fantasia;'#167
               'alter table clientes drop cidade_antiga;'#167
@@ -674,7 +683,8 @@ object AjusteBancoForm: TAjusteBancoForm
               '    placa,'
               '    marca,'
               '    modelo,'
-              '    ano,'
+              '    ano_fab,'
+              '    ano_modelo,'
               '    cor,'
               '    renavam,'
               '    conf_id,'
@@ -698,7 +708,8 @@ object AjusteBancoForm: TAjusteBancoForm
               
                 's.c_s_c_id, s.dt_alt_vl, s.forne_id, s.valor, s.grade_id, s.venc' +
                 '_dia, s.dt_contrato, s.dt_contrato_fim, s.banco_id, v.veiculo_id' +
-                ', v.placa, v.marca, v.modelo, v.ano, v.cor, v.renavam,'
+                ', v.placa, v.marca, v.modelo, v.ano_fab,  v.ano_modelo, v.cor, v' +
+                '.renavam,'
               
                 'v.conf_id, v.doc_id as contrato_id, v.vl_franq_seguro, v.obs as ' +
                 'obs_veiculo'
@@ -2242,6 +2253,12 @@ object AjusteBancoForm: TAjusteBancoForm
     Height = 200
     BevelOuter = bvNone
     Caption = 'Pressione o bot'#227'o '#39'Iniciar'#39' para atualizar o banco...'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     object Gauge1: TGauge
       Left = 112
@@ -2279,7 +2296,7 @@ object AjusteBancoForm: TAjusteBancoForm
     Left = 966
     Top = 346
     Bitmap = {
-      494C010107004801240A10001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107004801300A10001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2719,8 +2736,8 @@ object AjusteBancoForm: TAjusteBancoForm
   end
   object WaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 990
-    Top = 70
+    Left = 926
+    Top = 54
   end
   object FDBatchMove_3: TFDBatchMove
     Reader = SQLReader3

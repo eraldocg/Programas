@@ -6,7 +6,7 @@ object CsBancosForm: TCsBancosForm
   Caption = 'Consulta de Bancos'
   ClientHeight = 419
   ClientWidth = 502
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -27,6 +27,12 @@ object CsBancosForm: TCsBancosForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Filtro:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object Label4: TLabel
     Left = 290
@@ -35,6 +41,12 @@ object CsBancosForm: TCsBancosForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Condi'#231#227'o:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object lbVisualizar: TLabel
     Left = 4
@@ -44,7 +56,7 @@ object CsBancosForm: TCsBancosForm
     Alignment = taRightJustify
     Caption = 'Visualizar:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -74,7 +86,7 @@ object CsBancosForm: TCsBancosForm
     Height = 30
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 5
     object BtOk: TButton
@@ -128,12 +140,12 @@ object CsBancosForm: TCsBancosForm
     end
   end
   object DBGrid1: TSedDBGrid
-    Left = 3
-    Top = 103
-    Width = 495
-    Height = 285
+    Left = 0
+    Top = 107
+    Width = 505
+    Height = 279
     DataSource = BancodeDados.DSBancos
-    FixedColor = clSilver
+    FixedColor = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -225,8 +237,8 @@ object CsBancosForm: TCsBancosForm
       'CONTAS ENCERRADAS')
   end
   object PopupMenu1: TPopupMenu
-    Left = 168
-    Top = 38
+    Left = 236
+    Top = 166
     object DuplicarRegistro1: TMenuItem
       Caption = 'Duplicar Registro'
       OnClick = DuplicarRegistro1Click
@@ -237,8 +249,8 @@ object CsBancosForm: TCsBancosForm
     ResourceOptions.AssignedValues = [rvParamCreate]
     SQL.Strings = (
       'select * from BANCOS where banco_id=:ID')
-    Left = 134
-    Top = 36
+    Left = 180
+    Top = 204
     ParamData = <
       item
         Name = 'ID'

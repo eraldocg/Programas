@@ -6,7 +6,7 @@ object CadLoginForm: TCadLoginForm
   Caption = 'Cadastro de Usu'#225'rio'
   ClientHeight = 182
   ClientWidth = 365
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -31,7 +31,7 @@ object CadLoginForm: TCadLoginForm
     AutoSize = False
     Caption = 'Senha:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -46,7 +46,7 @@ object CadLoginForm: TCadLoginForm
     AutoSize = False
     Caption = 'Descri'#231#227'o:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -62,7 +62,7 @@ object CadLoginForm: TCadLoginForm
     AutoSize = False
     Caption = 'N'#237'vel:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -75,7 +75,7 @@ object CadLoginForm: TCadLoginForm
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 4
     object DBText5: TDBText
@@ -87,7 +87,7 @@ object CadLoginForm: TCadLoginForm
       DataField = 'LOGIN_ID'
       DataSource = BancodeDados.dsLogin
       Font.Charset = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
@@ -100,7 +100,7 @@ object CadLoginForm: TCadLoginForm
       Height = 14
       Caption = 'C'#243'digo:'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
@@ -165,6 +165,12 @@ object CadLoginForm: TCadLoginForm
     Caption = 'Ativo?'
     DataField = 'ATIVO'
     DataSource = BancodeDados.dsLogin
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 0
     ValueChecked = '1'
     ValueUnchecked = '0'

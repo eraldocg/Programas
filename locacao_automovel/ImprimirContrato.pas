@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, 
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, 
-  Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB, Vcl.Buttons, SEDCurrency;
+  Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB, Vcl.Buttons, SEDCurrency,
+  Vcl.Imaging.jpeg;
 
 type
   TImprimirContratoForm = class(TForm)
@@ -20,6 +21,7 @@ type
     btF2: TSpeedButton;
     GroupBox1: TGroupBox;
     chkContrato: TRadioButton;
+    Image1: TImage;
     procedure BtImprimirClick(Sender: TObject);
   private
     { Private declarations }

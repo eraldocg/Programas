@@ -105,7 +105,6 @@ type
     qryV_ClientServPLACA: TStringField;
     qryV_ClientServMARCA: TStringField;
     qryV_ClientServMODELO: TStringField;
-    qryV_ClientServANO: TIntegerField;
     qryV_ClientServCOR: TStringField;
     qryV_ClientServRENAVAM: TStringField;
     qryV_ClientServCONF_ID: TIntegerField;
@@ -132,12 +131,16 @@ type
     qryV_ClientServRG_UF: TStringField;
     qryV_ClientServPASSAPORTE: TStringField;
     qryV_ClientServDT_CONTRATO_FIM: TDateField;
+    qryV_ClientServANO_FAB: TIntegerField;
+    qryV_ClientServANO_MODELO: TIntegerField;
+    qryV_ClientServDias_locacao: TIntegerField;
     procedure ApplicationEvents1Message(var Msg: tagMSG; var Handled: Boolean);
     procedure DocTempBeforePost(DataSet: TDataSet);
     procedure btFecharClick(Sender: TObject);
     procedure btImprimirClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure qryV_ClientServCalcFields(DataSet: TDataSet);
   private
 
 
@@ -693,6 +696,23 @@ begin
   end;
 end;
 
+procedure TrelContratoMatriculaForm.qryV_ClientServCalcFields(
+  DataSet: TDataSet);
+begin
+  if (qryV_ClientServDT_CONTRATO_FIM.Value >0) and (qryV_ClientServDT_CONTRATO.Value >0) then
+  try
+
+    if qryV_ClientServDT_CONTRATO_FIM.Value > qryV_ClientServDT_CONTRATO.Value then
+     qryV_ClientServDias_locacao.Value:=Trunc(qryV_ClientServDT_CONTRATO_FIM.Value - qryV_ClientServDT_CONTRATO.Value)
+    else
+     qryV_ClientServDias_locacao.Value:=0;
+
+
+  except
+   qryV_ClientServDias_locacao.Value:=0;
+  end;
+end;
+
 procedure TrelContratoMatriculaForm.ApplicationEvents1Message(var Msg: tagMSG; var Handled: Boolean);
 begin
   if (Msg.Message = WM_RBUTTONDOWN) or (Msg.Message = WM_RBUTTONDBLCLK) then
@@ -1027,6 +1047,8 @@ begin
     else
       txtPagina := SubstituirString2(txtPagina, '<%emp_chave_pix%>', '***');
 
+
+
     { CLIENTE }
     txtPagina := SubstituirString2(txtPagina, '<%client_Codigo%>', FormatFloat('000000', relContratoMatriculaForm.qryV_ClientServCLI_ID.Value));
     txtPagina := SubstituirString2(txtPagina, '<%client_nome%>', AnsiUpperCase(relContratoMatriculaForm.qryV_ClientServNOME.Value));
@@ -1187,7 +1209,7 @@ begin
     else
       txtPagina := SubstituirString2(txtPagina, '<%client_passaporte%>', '***');
 
-    { INFORMAÇÕES FINANCEIRA }
+    { INFORMAÇÕES FINANCEIRA  E CONTRATUAIS }
     if Trim(relContratoMatriculaForm.qryV_ClientServOBS_CONTRATO.Value) <> '' then
       txtPagina := SubstituirString2(txtPagina, '<%contrato_obs%>', AnsiUpperCase(relContratoMatriculaForm.qryV_ClientServOBS_CONTRATO.Value))
     else
@@ -1209,6 +1231,17 @@ begin
     begin
       txtPagina := SubstituirString2(txtPagina, '<%data_contrato_fim%>', FormatDateTime('dd/mm/yyyy', date));
       txtPagina := SubstituirString2(txtPagina, '<%data_contrato_fim_ext%>', FormatDateTime('dd "de" mmmm "de" yyyy', date));
+    end;
+
+    if (relContratoMatriculaForm.qryV_ClientServDias_locacao.Value) >0 then
+    begin
+      txtPagina := SubstituirString2(txtPagina, '<%N_dias_contrato%>', FormatFloat('000',relContratoMatriculaForm.qryV_ClientServDias_locacao.Value) );
+      txtPagina := SubstituirString2(txtPagina, '<%N_dias_contrato_ext%>', Extenso2(relContratoMatriculaForm.qryV_ClientServDias_locacao.Value));
+    end
+    else
+    begin
+      txtPagina := SubstituirString2(txtPagina, '<%N_dias_contrato%>', '***');
+      txtPagina := SubstituirString2(txtPagina, '<%N_dias_contrato_ext%>', '***');
     end;
 
 
@@ -1243,7 +1276,14 @@ begin
       txtPagina := SubstituirString2(txtPagina, '<%multa%>', FormatFloat(',0.00%', BancodeDados.GradeFinMULTA.Value)) else txtPagina := SubstituirString2(txtPagina, '<%multa%>', '***');
 
       if (BancodeDados.GradeFinJUROS.Value>0) then
-      txtPagina := SubstituirString2(txtPagina, '<%juros%>', FormatFloat(',0.00%', BancodeDados.GradeFinJUROS.Value)) else txtPagina := SubstituirString2(txtPagina, '<%juros%>', '***');
+        txtPagina := SubstituirString2(txtPagina, '<%juros%>', FormatFloat(',0.00%', BancodeDados.GradeFinJUROS.Value))
+      else
+      if (BancodeDados.GradeFinJUROS_MES.Value>0) then
+        txtPagina := SubstituirString2(txtPagina, '<%juros%>', FormatFloat(',0.00%', BancodeDados.GradeFinJUROS.Value))
+      else
+        txtPagina := SubstituirString2(txtPagina, '<%juros%>', '***');
+
+
    end else
    begin
       txtPagina := SubstituirString2(txtPagina, '<%multa%>', '***');
@@ -1262,12 +1302,19 @@ begin
     if (qryV_ClientServVL_FRANQ_SEGURO.Value > 0) then
     txtPagina := SubstituirString2(txtPagina, '<%valor_multa_contratual_ext%>', extenso(BancodeDados.ConfigVL_MULT_CONTRATUAL.Value)) else txtPagina := SubstituirString2(txtPagina, '<%valor_multa_contratual_ext%>', '***');
 
-
+   //bancos
    if relContratoMatriculaForm.qryV_ClientServBANCO_ID.Value>0 then
    begin
      BancodeDados.Bancos.close;
      BancodeDados.Bancos.SQL.Text:='select * from bancos where banco_id = '+IntToStr(relContratoMatriculaForm.qryV_ClientServBANCO_ID.Value);
      BancodeDados.Bancos.Open();
+
+
+    if Trim(BancodeDados.BancosBANCO_NOME.Value) <> EmptyStr then
+      txtPagina := SubstituirString2(txtPagina, '<%banco_abrev%>', AnsiUpperCase(BancodeDados.BancosABREV.Value))
+    else
+      txtPagina := SubstituirString2(txtPagina, '<%banco_abrev%>', '***');
+
 
     if Trim(BancodeDados.BancosBANCO_NOME.Value) <> EmptyStr then
       txtPagina := SubstituirString2(txtPagina, '<%banco%>', AnsiUpperCase(BancodeDados.BancosBANCO_NOME.Value))
@@ -1278,6 +1325,12 @@ begin
       txtPagina := SubstituirString2(txtPagina, '<%agencia%>', AnsiUpperCase(BancodeDados.BancosAGENCIA.Value))
     else
       txtPagina := SubstituirString2(txtPagina, '<%agencia%>', '***');
+
+    if Trim(BancodeDados.BancosCHAVE_PIX.Value) <> EmptyStr then
+      txtPagina := SubstituirString2(txtPagina, '<%banco_chave_pix%>', BancodeDados.BancosCHAVE_PIX.Value)
+    else
+      txtPagina := SubstituirString2(txtPagina, '<%banco_chave_pix%>', '***');
+
 
     if Trim(BancodeDados.BancosCONTA_CORRENTE.Value) <> EmptyStr then
     begin
@@ -1311,10 +1364,16 @@ begin
     else
       txtPagina := SubstituirString2(txtPagina, '<%veic_modelo%>', '***');
 
-    if (relContratoMatriculaForm.qryV_ClientServANO.Value) >0 then
-      txtPagina := SubstituirString2(txtPagina, '<%veic_ano%>', IntToStr( relContratoMatriculaForm.qryV_ClientServANO.Value))
+    if (relContratoMatriculaForm.qryV_ClientServANO_FAB.Value) >0 then
+      txtPagina := SubstituirString2(txtPagina, '<%veic_ano_fabricacao%>', IntToStr( relContratoMatriculaForm.qryV_ClientServANO_FAB.Value))
     else
-      txtPagina := SubstituirString2(txtPagina, '<%veic_ano%>', '***');
+      txtPagina := SubstituirString2(txtPagina, '<%veic_ano_fabricacao%>', '***');
+
+    if (relContratoMatriculaForm.qryV_ClientServANO_MODELO.Value) >0 then
+      txtPagina := SubstituirString2(txtPagina, '<%veic_ano_modelo%>', IntToStr( relContratoMatriculaForm.qryV_ClientServANO_MODELO.Value))
+    else
+      txtPagina := SubstituirString2(txtPagina, '<%veic_ano_modelo%>', '***');
+
 
     if Trim(relContratoMatriculaForm.qryV_ClientServCOR.Value) <> '' then
       txtPagina := SubstituirString2(txtPagina, '<%veic_cor%>', relContratoMatriculaForm.qryV_ClientServCOR.Value)
