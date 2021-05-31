@@ -16,7 +16,7 @@ type
     BtOK: TButton;
     BtCancelar: TButton;
     MainMenu1: TMainMenu;
-    Image4: TImage;
+    Label3: TLabel;
     procedure FormShow(Sender: TObject);
     procedure BtOKClick(Sender: TObject);
   private

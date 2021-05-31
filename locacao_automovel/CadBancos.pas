@@ -21,7 +21,6 @@ type
     TabSheet2: TTabSheet;
     Label1: TLabel;
     Label14: TLabel;
-    Label2: TLabel;
     EditNome: TDBEdit;
     DBMemo1: TDBMemo;
     Label6: TLabel;
@@ -48,7 +47,7 @@ type
     F31: TMenuItem;
     lbNomeRef1: TLabel;
     Bevel1: TBevel;
-    lbGerarBol_1: TPanel;
+    lbGerarBol_1_OFF: TPanel;
     lb1: TLabel;
     EditCodBanco: TDBEdit;
     EditLayout: TSedDBComboBox;
@@ -56,7 +55,7 @@ type
     EditDVBanco: TDBEdit;
     lb3: TLabel;
     lb4: TLabel;
-    EditCodCedente: TDBEdit;
+    EditCodCedente1: TDBEdit;
     lb6: TLabel;
     EditCarteira: TDBEdit;
     lb7: TLabel;
@@ -128,22 +127,7 @@ type
     EditInforDesc: TDBCheckBox;
     EditDebito: TDBCheckBox;
     EditContaEncerrada: TDBCheckBox;
-    TabSheet4: TTabSheet;
-    Label30: TLabel;
-    Label31: TLabel;
-    Label32: TLabel;
-    Label34: TLabel;
-    Label35: TLabel;
-    Label36: TLabel;
-    Label37: TLabel;
-    Label38: TLabel;
-    Label39: TLabel;
-    Label40: TLabel;
-    Label41: TLabel;
-    btBanco2: TSpeedButton;
     DBNavigator1: TDBNavigator;
-    EditNomeCedente: TDBMemo;
-    Label33: TLabel;
     Label19: TLabel;
     Label24: TLabel;
     EditDiasProt: TDBEdit;
@@ -181,7 +165,7 @@ type
     procedure EditFotoDblClick(Sender: TObject);
     procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
     procedure btCamRemClick(Sender: TObject);
-    procedure lbGerarBol_1DblClick(Sender: TObject);
+    procedure lbGerarBol_1_OFFDblClick(Sender: TObject);
     procedure lbGerarBol_2DblClick(Sender: TObject);
     procedure EditCamRemDblClick(Sender: TObject);
     procedure EditCaminhoRetDblClick(Sender: TObject);
@@ -295,10 +279,13 @@ begin
   else
     CadBancosForm.Caption := 'Cadastro de Banco';
 
+
+    TabSheet2.TabVisible:=False;
+
   // EditSequencia.ReadOnly:=True;
   CadBancosForm.TabSheet1.Show;
   EditNome.SetFocus;
-  if (BancodeDados.BancosNOSSO_NUMERO.Value > 0) then
+  {if (BancodeDados.BancosNOSSO_NUMERO.Value > 0) then
   begin
     // lbGerarBol_1.Enabled    :=false;
     EditCodBanco.Enabled      := false;
@@ -347,8 +334,8 @@ begin
     EditSeqRem1.Enabled        := true;
     EditSeqRemDebAuto1.Enabled := true;
     EditUnicSeqNossNum1.Enabled:= true;
-    
-  end;
+
+  end;}
 //Width :=462;
 //Height:=629;
 
@@ -588,9 +575,9 @@ begin
 PopCodBancos.Popup(Mouse.CursorPos.X, Mouse.CursorPos.Y);
 end;
 
-procedure TCadBancosForm.lbGerarBol_1DblClick(Sender: TObject);
+procedure TCadBancosForm.lbGerarBol_1_OFFDblClick(Sender: TObject);
 begin
-  if not PrincipalForm.LiberaAcesso { (0,'',false,true) } then
+(*  if not PrincipalForm.LiberaAcesso { (0,'',false,true) } then
   begin
     // lbGerarBol_1.Enabled    :=false;
     EditCodBanco.Enabled := false;
@@ -634,12 +621,12 @@ begin
     EditEspecie.Enabled := true;
     //EditUnicSeqNossNum.Enabled     :=true;
   end;
-
+*)
 end;
 
 procedure TCadBancosForm.lbGerarBol_2DblClick(Sender: TObject);
 begin
-  if not PrincipalForm.LiberaAcesso then
+(*  if not PrincipalForm.LiberaAcesso then
   begin
     EditCodBanco2.Enabled := false;
     EditDVBanco2.Enabled := false;
@@ -663,6 +650,7 @@ begin
     EditUsoBanco.Enabled := true;
     EditCIP.Enabled := true;
   end;
+  *)
 end;
 
 end.

@@ -154,6 +154,8 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Modificar1Click(Sender: TObject);
     procedure EditPF_CPFExit(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
      procedure PegarEstadoProvincia(NacionalID: String);
@@ -175,6 +177,10 @@ var
   emailTeste: String;
   hr: TTime;
 begin
+  if Trim(BancodeDados.ConfigNOME.Value)<>EmptyStr then
+  begin
+
+
   HabilitarBotoes(Self, False);
 
   Screen.Cursor := crSQLWait;
@@ -195,13 +201,15 @@ begin
       if BancodeDados.EnviarEmail(emailTeste, 'Teste de email', 'Esta é uma mensagem de teste.', '') then
         Mensagem('Mensagem enviada com sucesso.' + #13 + 'Tempo gasto: ' + TimeToStr(Time - hr), mtInformation, [mbOk], mrOk, 0);
     end;
+    Close;
   end
   else
     ModalResult := mrOk;
   HabilitarBotoes(Self, true);
   Screen.Cursor := crDefault;
-end;
+  end;
 
+end;
 procedure TCadConfigForm.EditEmailPassChange(Sender: TObject);
 begin
   if not(BancodeDados.Config.State in [dsInsert, dsEdit]) then
@@ -240,6 +248,18 @@ begin
 
 end;
 
+procedure TCadConfigForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if BancodeDados.Config.State in [dsedit, dsinsert] then  BancodeDados.Config.Cancel;
+
+end;
+
+procedure TCadConfigForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  if Mensagem('Deseja sair agora?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idNo then
+    CanClose := False;
+end;
+
 procedure TCadConfigForm.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   if (Key = #13) and not(ActiveControl is TDBMemo) then
@@ -275,6 +295,11 @@ var
 PaisID, CidadeID : Integer;
 
 begin
+
+tbEmail.TabVisible:=False;
+tbMsg.TabVisible:=False;
+TabSheet1.TabVisible:=False;
+
   PaisID  := StrToIntDef(BancodeDados.ConfigNACIONALIDADE.Value,0);
   CidadeID:=StrToIntDef(BancodeDados.ConfigUF_NATURAL.Value,0);
 

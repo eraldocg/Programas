@@ -6,7 +6,7 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
   Caption = 'Relat'#243'rio de Liga'#231#245'es'
   ClientHeight = 316
   ClientWidth = 296
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,24 +18,6 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Label2: TLabel
-    Left = 29
-    Top = 142
-    Width = 45
-    Height = 13
-    Alignment = taRightJustify
-    Caption = 'Situa'#231#227'o:'
-    Enabled = False
-  end
-  object Label1: TLabel
-    Left = 50
-    Top = 165
-    Width = 24
-    Height = 13
-    Alignment = taRightJustify
-    Caption = 'Tipo:'
-    Enabled = False
-  end
   object Label19: TLabel
     Left = 7
     Top = 187
@@ -77,7 +59,7 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     AutoSize = False
     Caption = 'C'#243'digo:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -98,19 +80,51 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object LbNome: TLabel
-    Left = 134
-    Top = 6
-    Width = 159
-    Height = 33
+  object Label2: TLabel
+    Left = 8
+    Top = 144
+    Width = 67
+    Height = 14
+    Alignment = taRightJustify
     AutoSize = False
-    Font.Charset = DEFAULT_CHARSET
+    Caption = 'Situa'#231#227'o:'
+    Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Arial'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentFont = False
-    WordWrap = True
+    Transparent = True
+  end
+  object Label1: TLabel
+    Left = 18
+    Top = 165
+    Width = 56
+    Height = 14
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Tipo:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label3: TLabel
+    Left = 84
+    Top = 52
+    Width = 125
+    Height = 21
+    Alignment = taRightJustify
+    Caption = 'Relat'#243'rio de Liga'#231#245'es'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Franklin Gothic Medium Cond'
+    Font.Style = []
+    ParentFont = False
   end
   object cbSituacao: TComboBox
     Left = 76
@@ -193,7 +207,7 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 4
     object BtOK: TButton
@@ -218,67 +232,15 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
       TabOrder = 1
     end
   end
-  object gbOpcao: TGroupBox
-    Left = 3
-    Top = 33
-    Width = 290
-    Height = 50
-    Caption = 'Filtro'
-    ParentShowHint = False
-    ShowHint = False
-    TabOrder = 5
-    object rbClient: TRadioButton
-      Left = 10
-      Top = 21
-      Width = 71
-      Height = 17
-      Cursor = crHandPoint
-      Caption = 'Cliente'
-      Checked = True
-      Enabled = False
-      TabOrder = 0
-      TabStop = True
-    end
-  end
-  object gbOrdenar: TGroupBox
-    Left = 3
-    Top = 82
-    Width = 183
-    Height = 54
-    Caption = 'Ordenar'
-    ParentShowHint = False
-    ShowHint = False
-    TabOrder = 6
-    object rb1: TRadioButton
-      Left = 10
-      Top = 13
-      Width = 79
-      Height = 17
-      Cursor = crHandPoint
-      Caption = 'Cliente'
-      TabOrder = 0
-    end
-    object rb2: TRadioButton
-      Left = 10
-      Top = 30
-      Width = 77
-      Height = 17
-      Cursor = crHandPoint
-      Caption = 'Data cresc'
-      Checked = True
-      TabOrder = 1
-      TabStop = True
-    end
-  end
   object gbAgrupar: TGroupBox
-    Left = 190
+    Left = 189
     Top = 82
     Width = 103
     Height = 54
     Caption = 'Agrupar'
     ParentShowHint = False
     ShowHint = False
-    TabOrder = 7
+    TabOrder = 5
     object chkAgrup3: TRadioButton
       Left = 10
       Top = 30
@@ -309,7 +271,7 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     Caption = 'Modelo'
     ParentShowHint = False
     ShowHint = False
-    TabOrder = 8
+    TabOrder = 6
     object cbxModelo: TComboBox
       Left = 6
       Top = 18
@@ -333,7 +295,53 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     Height = 19
     AutoSize = False
     ReadOnly = True
-    TabOrder = 9
+    TabOrder = 7
+  end
+  object gbOrdenar: TGroupBox
+    Left = 3
+    Top = 82
+    Width = 183
+    Height = 54
+    Caption = 'Ordenar'
+    ParentShowHint = False
+    ShowHint = False
+    TabOrder = 8
+    object rb1: TRadioButton
+      Left = 10
+      Top = 13
+      Width = 79
+      Height = 17
+      Cursor = crHandPoint
+      Caption = 'Cliente'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 0
+    end
+    object rb2: TRadioButton
+      Left = 10
+      Top = 30
+      Width = 77
+      Height = 17
+      Cursor = crHandPoint
+      Caption = 'Data cresc'
+      Checked = True
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 1
+      TabStop = True
+    end
   end
   object CsClientes: TFDQuery
     OnCalcFields = CsClientesCalcFields
@@ -341,8 +349,8 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     ResourceOptions.AssignedValues = [rvParamCreate]
     SQL.Strings = (
       'select * from CLIENTES')
-    Left = 194
-    Top = 8
+    Left = 220
+    Top = 192
     object CsClientesCLI_ID: TIntegerField
       FieldName = 'CLI_ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -405,16 +413,16 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
   end
   object DsCsClientes: TDataSource
     DataSet = CsClientes
-    Left = 252
-    Top = 10
+    Left = 258
+    Top = 162
   end
   object qryContador: TFDQuery
     Connection = BancodeDados.FDConnection1
     ResourceOptions.AssignedValues = [rvParamCreate]
     SQL.Strings = (
       'select count(LIGACAO_ID) as total from ligacoes')
-    Left = 97
-    Top = 21
+    Left = 187
+    Top = 197
     object qryContadorTOTAL: TIntegerField
       FieldName = 'TOTAL'
       ProviderFlags = []
@@ -425,8 +433,8 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     ResourceOptions.AssignedValues = [rvParamCreate]
     SQL.Strings = (
       'select count(LIGACAO_ID) as total from ligacoes')
-    Left = 230
-    Top = 180
+    Left = 250
+    Top = 204
     object qryC2TOTAL: TIntegerField
       FieldName = 'TOTAL'
       ProviderFlags = []

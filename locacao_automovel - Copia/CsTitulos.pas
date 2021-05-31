@@ -42,7 +42,8 @@ type
     Button1: TButton;
     chkAgrupar: TCheckBox;
     lbAnalitico: TRadioButton;
-    Image3: TImage;
+    Image1: TImage;
+    Label19: TLabel;
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

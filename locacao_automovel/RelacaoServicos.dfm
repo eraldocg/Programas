@@ -3,7 +3,7 @@ object RelacaoServicosForm: TRelacaoServicosForm
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Rela'#231#227'o de Loca'#231#245'es'
+  Caption = 'Rela'#231#227'o de Servi'#231'o de Loca'#231#227'o'
   ClientHeight = 263
   ClientWidth = 736
   Color = 7562340

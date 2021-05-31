@@ -29,7 +29,6 @@ type
     CBOpcao: TComboBox;
     EditConsulta: TEdit;
     CBTipo: TComboBox;
-    Image3: TImage;
     btImprimir: TButton;
     Label1: TLabel;
     cbSituacao: TComboBox;
@@ -42,7 +41,6 @@ type
     F81: TMenuItem;
     Label5: TLabel;
     Label6: TLabel;
-    Image2: TImage;
     N2: TMenuItem;
     VisualizarRetorno1: TMenuItem;
     F91: TMenuItem;
@@ -80,6 +78,8 @@ type
     ChkBolValidos: TCheckBox;
     lbTipRec: TLabel;
     CbTipoReceb: TComboBox;
+    Label12: TLabel;
+    Image1: TImage;
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

@@ -6,7 +6,7 @@ object IndicaDemonstIRForm: TIndicaDemonstIRForm
   Caption = 'Demonstra'#231#227'o de Redimentos'
   ClientHeight = 271
   ClientWidth = 388
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,56 +21,102 @@ object IndicaDemonstIRForm: TIndicaDemonstIRForm
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 74
-    Top = 30
+    Left = 70
+    Top = 44
     Width = 56
     Height = 13
     Alignment = taRightJustify
     Caption = 'Data Inicial:'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
   end
   object Label2: TLabel
-    Left = 79
-    Top = 52
+    Left = 75
+    Top = 66
     Width = 51
     Height = 13
     Alignment = taRightJustify
     Caption = 'Data Final:'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
   end
   object Label3: TLabel
-    Left = 99
-    Top = 74
+    Left = 95
+    Top = 88
     Width = 31
     Height = 13
     Alignment = taRightJustify
     Caption = 'Conta:'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
   end
   object Label4: TLabel
-    Left = 104
-    Top = 100
+    Left = 100
+    Top = 114
     Width = 26
     Height = 13
     Alignment = taRightJustify
     Caption = 'Data:'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 17
+    Top = 12
+    Width = 180
+    Height = 21
+    Alignment = taRightJustify
+    Caption = 'Demonstra'#231#227'o de Rendimentos'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Franklin Gothic Medium Cond'
+    Font.Style = []
+    ParentFont = False
   end
   object dtIni: TSedDateEdit
-    Left = 134
-    Top = 28
+    Left = 130
+    Top = 42
     Width = 101
     Height = 19
     MaxLength = 10
     TabOrder = 0
   end
   object dtFim: TSedDateEdit
-    Left = 134
-    Top = 50
+    Left = 130
+    Top = 64
     Width = 101
     Height = 19
     MaxLength = 10
     TabOrder = 1
   end
   object EditConta: TDBLookupComboBox
-    Left = 134
-    Top = 72
+    Left = 130
+    Top = 86
     Width = 245
     Height = 19
     KeyField = 'CONTA_ID'
@@ -85,9 +131,10 @@ object IndicaDemonstIRForm: TIndicaDemonstIRForm
     Height = 30
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 7
+    ExplicitLeft = 2
     object BtOK: TButton
       Left = 310
       Top = 3
@@ -110,8 +157,8 @@ object IndicaDemonstIRForm: TIndicaDemonstIRForm
     end
   end
   object chkBol: TCheckBox
-    Left = 134
-    Top = 122
+    Left = 130
+    Top = 136
     Width = 159
     Height = 17
     Cursor = crHandPoint
@@ -119,8 +166,8 @@ object IndicaDemonstIRForm: TIndicaDemonstIRForm
     TabOrder = 4
   end
   object rgOrdenar: TRadioGroup
-    Left = 134
-    Top = 172
+    Left = 131
+    Top = 186
     Width = 245
     Height = 51
     Caption = 'Ordenar'
@@ -133,8 +180,8 @@ object IndicaDemonstIRForm: TIndicaDemonstIRForm
     TabOrder = 6
   end
   object chkAvulso: TCheckBox
-    Left = 134
-    Top = 144
+    Left = 130
+    Top = 158
     Width = 135
     Height = 17
     Cursor = crHandPoint
@@ -142,8 +189,8 @@ object IndicaDemonstIRForm: TIndicaDemonstIRForm
     TabOrder = 5
   end
   object cbData: TComboBox
-    Left = 134
-    Top = 96
+    Left = 130
+    Top = 110
     Width = 139
     Height = 22
     BevelKind = bkFlat

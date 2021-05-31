@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Forms,
-  Dialogs, DB, jpeg, ExtCtrls, StdCtrls, Controls, Classes, Vcl.Menus;
+  Dialogs, DB, jpeg, ExtCtrls, StdCtrls, Controls, Classes, Vcl.Menus,
+  Vcl.Imaging.pngimage;
 
 type
   TAcessoForm = class(TForm)
@@ -109,7 +110,6 @@ begin
 
       BancodeDados.Login.Close;
       BancodeDados.Login.SQL.text := 'select * from login where login = ' + QuotedStr(Trim(EditLogin.text)) + ' and ativo = 1';
-
       BancodeDados.Login.Open;
 
       if BancodeDados.Login.IsEmpty then
@@ -160,7 +160,8 @@ begin
          Application.Terminate;
         end;
       end;
-
+    if (usrID > 0) then
+    begin
       PrincipalForm.Cadastro1.Visible     :=true;
       PrincipalForm.locatario1.Visible    :=true;
 
@@ -170,6 +171,7 @@ begin
       PrincipalForm.MovimentacaoBancaria12.Visible:=true;
       PrincipalForm.Utilitarios1.Enabled  := True; //add por Denilson
 
+    end;
 
       if (usrNivel in [2]) then
       begin

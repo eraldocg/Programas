@@ -534,21 +534,6 @@ object CadBancosForm: TCadBancosForm
         ParentFont = False
         Transparent = True
       end
-      object Label2: TLabel
-        Left = 16
-        Top = 285
-        Width = 120
-        Height = 14
-        Alignment = taRightJustify
-        Caption = 'Nome do Benefici'#225'rio,'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = [fsBold]
-        ParentFont = False
-        Transparent = True
-      end
       object Label5: TLabel
         Left = 13
         Top = 6
@@ -585,6 +570,7 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Alignment = taRightJustify
         Caption = 'Caminho do Retorno:'
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -599,6 +585,7 @@ object CadBancosForm: TCadBancosForm
         Height = 19
         Cursor = crHandPoint
         Caption = 'F3'
+        Enabled = False
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
         Font.Height = -8
@@ -614,6 +601,7 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Alignment = taRightJustify
         Caption = 'Caminho da Remessa:'
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -628,6 +616,7 @@ object CadBancosForm: TCadBancosForm
         Height = 19
         Cursor = crHandPoint
         Caption = 'F2'
+        Enabled = False
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
         Font.Height = -8
@@ -638,13 +627,13 @@ object CadBancosForm: TCadBancosForm
       end
       object Bevel1: TBevel
         Left = 215
-        Top = 273
+        Top = 311
         Width = 304
         Height = 2
       end
       object lbNomeRef1: TLabel
         Left = 1
-        Top = 264
+        Top = 302
         Width = 212
         Height = 14
         Caption = 'Outras Informa'#231#245'es para Gerar Boleto:'
@@ -662,6 +651,7 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Alignment = taRightJustify
         Caption = 'Sacador / Avalista:'
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -687,21 +677,6 @@ object CadBancosForm: TCadBancosForm
         ShowHint = True
         OnClick = btBancosClick
       end
-      object Label33: TLabel
-        Left = 40
-        Top = 301
-        Width = 96
-        Height = 14
-        Alignment = taRightJustify
-        Caption = 'CNPJ e Endere'#231'o:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = [fsBold]
-        ParentFont = False
-        Transparent = True
-      end
       object Label19: TLabel
         Left = 332
         Top = 343
@@ -709,6 +684,7 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Alignment = taRightJustify
         Caption = 'Dia Fixo p/ Desconto:'
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -723,6 +699,7 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Alignment = taRightJustify
         Caption = 'N.'#186' de Dias para Protesto:'
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -737,6 +714,7 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Alignment = taRightJustify
         Caption = 'Dias de Toler'#226'ncia p/ Multa:'
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -756,7 +734,7 @@ object CadBancosForm: TCadBancosForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 11
         object SpeedButton6: TSpeedButton
           Left = 238
           Top = 15
@@ -879,11 +857,11 @@ object CadBancosForm: TCadBancosForm
           ValueUnchecked = '0'
         end
       end
-      object lbGerarBol_1: TPanel
+      object lbGerarBol_1_OFF: TPanel
         Left = 0
         Top = 68
         Width = 519
-        Height = 190
+        Height = 229
         BevelOuter = bvNone
         Color = clSilver
         Font.Charset = ANSI_CHARSET
@@ -893,7 +871,7 @@ object CadBancosForm: TCadBancosForm
         Font.Style = []
         ParentFont = False
         TabOrder = 3
-        OnDblClick = lbGerarBol_1DblClick
+        OnDblClick = lbGerarBol_1_OFFDblClick
         object lb1: TLabel
           Left = 55
           Top = 24
@@ -915,6 +893,7 @@ object CadBancosForm: TCadBancosForm
           Height = 14
           Alignment = taRightJustify
           Caption = 'Leiaute de Arquivo (Retorno/Remessa):'
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -943,6 +922,7 @@ object CadBancosForm: TCadBancosForm
           Height = 14
           Alignment = taRightJustify
           Caption = 'C'#243'digo Cedente:'
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -957,6 +937,7 @@ object CadBancosForm: TCadBancosForm
           Height = 14
           Alignment = taRightJustify
           Caption = 'Carteira:'
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -971,6 +952,7 @@ object CadBancosForm: TCadBancosForm
           Height = 14
           Alignment = taRightJustify
           Caption = 'Varia'#231#227'o da Carteira:'
+          Enabled = False
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -986,6 +968,7 @@ object CadBancosForm: TCadBancosForm
           Height = 14
           Alignment = taRightJustify
           Caption = 'DV:'
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -995,7 +978,7 @@ object CadBancosForm: TCadBancosForm
         end
         object lb9: TLabel
           Left = 289
-          Top = 108
+          Top = 121
           Width = 17
           Height = 14
           Alignment = taRightJustify
@@ -1009,7 +992,7 @@ object CadBancosForm: TCadBancosForm
         end
         object lb8: TLabel
           Left = 89
-          Top = 108
+          Top = 121
           Width = 47
           Height = 14
           Alignment = taRightJustify
@@ -1023,7 +1006,7 @@ object CadBancosForm: TCadBancosForm
         end
         object lb10: TLabel
           Left = 21
-          Top = 129
+          Top = 142
           Width = 115
           Height = 14
           Alignment = taRightJustify
@@ -1037,7 +1020,7 @@ object CadBancosForm: TCadBancosForm
         end
         object lb11: TLabel
           Left = 426
-          Top = 129
+          Top = 142
           Width = 17
           Height = 14
           Alignment = taRightJustify
@@ -1051,11 +1034,12 @@ object CadBancosForm: TCadBancosForm
         end
         object lb12: TLabel
           Left = 116
-          Top = 150
+          Top = 163
           Width = 189
           Height = 14
           Alignment = taRightJustify
           Caption = 'N'#176' de Conv'#234'nio / C'#243'digo Escritural:'
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -1065,11 +1049,12 @@ object CadBancosForm: TCadBancosForm
         end
         object lb13: TLabel
           Left = 337
-          Top = 171
+          Top = 184
           Width = 44
           Height = 14
           Alignment = taRightJustify
           Caption = 'Contrato:'
+          Enabled = False
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -1099,7 +1084,7 @@ object CadBancosForm: TCadBancosForm
         end
         object Label3: TLabel
           Left = 223
-          Top = 129
+          Top = 142
           Width = 82
           Height = 14
           Alignment = taRightJustify
@@ -1113,11 +1098,12 @@ object CadBancosForm: TCadBancosForm
         end
         object Label8: TLabel
           Left = 70
-          Top = 171
+          Top = 184
           Width = 66
           Height = 14
           Alignment = taRightJustify
           Caption = 'Esp'#233'cie Doc.:'
+          Enabled = False
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -1157,6 +1143,21 @@ object CadBancosForm: TCadBancosForm
           PopupMenu = PopCodBancos
           OnClick = btCodigoBancoClick
         end
+        object Label44: TLabel
+          Left = 82
+          Top = 206
+          Width = 52
+          Height = 14
+          Alignment = taRightJustify
+          Caption = 'Chave PIX:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+          Transparent = True
+        end
         object EditCodBanco: TDBEdit
           Left = 137
           Top = 21
@@ -1181,6 +1182,7 @@ object CadBancosForm: TCadBancosForm
           BevelKind = bkFlat
           DataField = 'LAYOUT'
           DataSource = BancodeDados.DSBancos
+          Enabled = False
           Items.Strings = (
             'CNAB400'
             'CBR641'
@@ -1206,13 +1208,14 @@ object CadBancosForm: TCadBancosForm
           ParentFont = False
           TabOrder = 1
         end
-        object EditCodCedente: TDBEdit
+        object EditCodCedente1: TDBEdit
           Left = 137
           Top = 63
           Width = 150
           Height = 20
           DataField = 'CODIGO_CEDENTE'
           DataSource = BancodeDados.DSBancos
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1228,6 +1231,7 @@ object CadBancosForm: TCadBancosForm
           Height = 20
           DataField = 'CARTEIRA'
           DataSource = BancodeDados.DSBancos
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1243,6 +1247,7 @@ object CadBancosForm: TCadBancosForm
           Height = 20
           DataField = 'VAR_CARTEIRA'
           DataSource = BancodeDados.DSBancos
+          Enabled = False
           Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1258,6 +1263,7 @@ object CadBancosForm: TCadBancosForm
           Height = 20
           DataField = 'DIG_COD_CEDENTE'
           DataSource = BancodeDados.DSBancos
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1268,7 +1274,7 @@ object CadBancosForm: TCadBancosForm
         end
         object EditDVAgencia: TDBEdit
           Left = 308
-          Top = 105
+          Top = 118
           Width = 35
           Height = 20
           DataField = 'DIG_AGENCIA'
@@ -1283,7 +1289,7 @@ object CadBancosForm: TCadBancosForm
         end
         object EditAgencia: TDBEdit
           Left = 137
-          Top = 105
+          Top = 118
           Width = 150
           Height = 20
           DataField = 'AGENCIA'
@@ -1298,7 +1304,7 @@ object CadBancosForm: TCadBancosForm
         end
         object EditConta: TDBEdit
           Left = 308
-          Top = 126
+          Top = 139
           Width = 116
           Height = 20
           DataField = 'CONTA_CORRENTE'
@@ -1313,7 +1319,7 @@ object CadBancosForm: TCadBancosForm
         end
         object EditDVConta: TDBEdit
           Left = 445
-          Top = 126
+          Top = 134
           Width = 35
           Height = 20
           DataField = 'DIG_CONTA_CORRENTE'
@@ -1328,11 +1334,12 @@ object CadBancosForm: TCadBancosForm
         end
         object EditConvenio: TDBEdit
           Left = 308
-          Top = 147
+          Top = 160
           Width = 116
           Height = 20
           DataField = 'CONVENIO'
           DataSource = BancodeDados.DSBancos
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -1343,11 +1350,12 @@ object CadBancosForm: TCadBancosForm
         end
         object EditContrato: TDBEdit
           Left = 383
-          Top = 168
+          Top = 181
           Width = 97
           Height = 20
           DataField = 'CONTRATO'
           DataSource = BancodeDados.DSBancos
+          Enabled = False
           Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1358,7 +1366,7 @@ object CadBancosForm: TCadBancosForm
         end
         object EditTipoConta: TDBEdit
           Left = 137
-          Top = 126
+          Top = 139
           Width = 51
           Height = 20
           DataField = 'TIPO_CONTA_CORRENTE'
@@ -1373,11 +1381,12 @@ object CadBancosForm: TCadBancosForm
         end
         object EditEspecie: TDBEdit
           Left = 137
-          Top = 168
+          Top = 181
           Width = 51
           Height = 20
           DataField = 'ESPECIE_DOC'
           DataSource = BancodeDados.DSBancos
+          Enabled = False
           Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1385,6 +1394,17 @@ object CadBancosForm: TCadBancosForm
           Font.Style = []
           ParentFont = False
           TabOrder = 13
+        end
+        object EditChave_PIX: TDBEdit
+          Left = 137
+          Top = 202
+          Width = 344
+          Height = 20
+          AutoSelect = False
+          Color = clWhite
+          DataField = 'CHAVE_PIX'
+          DataSource = BancodeDados.DSBancos
+          TabOrder = 15
         end
       end
       object EditNome: TDBEdit
@@ -1407,7 +1427,7 @@ object CadBancosForm: TCadBancosForm
       object EditAbrev: TDBEdit
         Left = 137
         Top = 46
-        Width = 100
+        Width = 206
         Height = 20
         DataField = 'ABREV'
         DataSource = BancodeDados.DSBancos
@@ -1427,13 +1447,14 @@ object CadBancosForm: TCadBancosForm
         AutoSelect = False
         DataField = 'CAMINHO_RETORNO'
         DataSource = BancodeDados.DSBancos
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 9
         OnDblClick = EditCaminhoRetDblClick
       end
       object EditFoto: TSedDBImage
@@ -1456,13 +1477,14 @@ object CadBancosForm: TCadBancosForm
         AutoSelect = False
         DataField = 'CAMINHO_REMESSA'
         DataSource = BancodeDados.DSBancos
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 8
         OnDblClick = EditCamRemDblClick
       end
       object SedDBComboBox1: TSedDBComboBox
@@ -1474,13 +1496,14 @@ object CadBancosForm: TCadBancosForm
         BevelKind = bkFlat
         DataField = 'SAC_AVALISTA'
         DataSource = BancodeDados.DSBancos
+        Enabled = False
         Items.Strings = (
           'N'#227'o utiliza'
           'Usar nome da pr'#243'pria institui'#231#227'o')
         Values.Strings = (
           '0'
           '1')
-        TabOrder = 11
+        TabOrder = 10
       end
       object EditLocal: TDBMemo
         Left = 137
@@ -1490,19 +1513,8 @@ object CadBancosForm: TCadBancosForm
         Color = clWhite
         DataField = 'LOCAL_PAGAMENTO'
         DataSource = BancodeDados.DSBancos
-        TabOrder = 8
+        TabOrder = 7
         OnDblClick = EditLocalDblClick
-      end
-      object EditNomeCedente: TDBMemo
-        Left = 137
-        Top = 284
-        Width = 343
-        Height = 34
-        Color = clWhite
-        DataField = 'NOME_CEDENTE'
-        DataSource = BancodeDados.DSBancos
-        TabOrder = 4
-        OnDblClick = EditNomeCedenteDblClick
       end
       object EditDiasProt: TDBEdit
         Left = 137
@@ -1511,13 +1523,14 @@ object CadBancosForm: TCadBancosForm
         Height = 20
         DataField = 'DIAS_PROTESTO'
         DataSource = BancodeDados.DSBancos
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 4
       end
       object dbcbbDIA_FIXO_DESC: TDBComboBox
         Left = 435
@@ -1529,6 +1542,7 @@ object CadBancosForm: TCadBancosForm
         BevelKind = bkFlat
         DataField = 'DESC_TOL'
         DataSource = BancodeDados.DSBancos
+        Enabled = False
         ItemHeight = 14
         Items.Strings = (
           ''
@@ -1565,7 +1579,7 @@ object CadBancosForm: TCadBancosForm
           '31')
         ParentShowHint = False
         ShowHint = False
-        TabOrder = 7
+        TabOrder = 6
       end
       object dbedtDIAS_TOLERANCIA: TDBEdit
         Left = 435
@@ -1574,13 +1588,14 @@ object CadBancosForm: TCadBancosForm
         Height = 20
         DataField = 'DIAS_TOLERANCIA'
         DataSource = BancodeDados.DSBancos
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 5
       end
     end
     object TabSheet3: TTabSheet
@@ -1642,27 +1657,13 @@ object CadBancosForm: TCadBancosForm
         Height = 14
         Alignment = taRightJustify
         Caption = 'Nome do Arquivo de Retorno:'
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-      end
-      object Label44: TLabel
-        Left = 65
-        Top = 456
-        Width = 52
-        Height = 14
-        Alignment = taRightJustify
-        Caption = 'Chave PIX:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        Transparent = True
       end
       object lbGerarBol_2: TPanel
         Left = -4
@@ -1671,6 +1672,7 @@ object CadBancosForm: TCadBancosForm
         Height = 166
         BevelOuter = bvNone
         Color = clSilver
+        Enabled = False
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -1968,6 +1970,7 @@ object CadBancosForm: TCadBancosForm
         AutoSelect = False
         DataField = 'FOL_CONTRAT_REM'
         DataSource = BancodeDados.DSBancos
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
@@ -1983,6 +1986,7 @@ object CadBancosForm: TCadBancosForm
         Height = 118
         BevelOuter = bvNone
         Color = clSilver
+        Enabled = False
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -2177,6 +2181,7 @@ object CadBancosForm: TCadBancosForm
         BevelKind = bkFlat
         DataField = 'NOME_ARQ_RET'
         DataSource = BancodeDados.DSBancos
+        Enabled = False
         Items.Strings = (
           'C'#243'digo do banco, data de proc. e nome do arquivo'
           'C'#243'digo do banco, data de proc. e n'#250'mero do arquivo'
@@ -2186,16 +2191,6 @@ object CadBancosForm: TCadBancosForm
           '1'
           '2')
         TabOrder = 4
-      end
-      object EditChave_PIX: TDBEdit
-        Left = 120
-        Top = 454
-        Width = 362
-        Height = 20
-        Color = clWhite
-        DataField = 'CHAVE_PIX'
-        DataSource = BancodeDados.DSBancos
-        TabOrder = 5
       end
     end
     object TabSheet2: TTabSheet
@@ -2249,216 +2244,6 @@ object CadBancosForm: TCadBancosForm
         DataSource = BancodeDados.DSBancos
         ScrollBars = ssVertical
         TabOrder = 0
-      end
-    end
-    object TabSheet4: TTabSheet
-      Caption = 'Roteiro para Valida'#231#227'o de Boleto'
-      ImageIndex = 3
-      object Label30: TLabel
-        Left = 24
-        Top = 21
-        Width = 433
-        Height = 71
-        AutoSize = False
-        Caption = 
-          'Para emiss'#227'o de boleto banc'#225'rio a escola precisar'#225' firmar um con' +
-          'v'#234'nio de cobran'#231'a com o banco de sua prefer'#234'ncia. Entre em conta' +
-          'to com sua ag'#234'ncia banc'#225'ria para obter mais informa'#231#245'es. N'#227'o esq' +
-          'ue'#231'a de informar que deseja emitir boleto de cobran'#231'a e que a em' +
-          'iss'#227'o ser'#225' atrav'#233's de sistema pr'#243'prio (SED Escolar).'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label31: TLabel
-        Left = 24
-        Top = 94
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '1. Fa'#231'a um conv'#234'nio/contrato de cobran'#231'a com uma ag'#234'ncia banc'#225'ri' +
-          'a.'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label32: TLabel
-        Left = 24
-        Top = 129
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '2. Configure no sistema SED Escolar com os dados da conta da esc' +
-          'ola (consulte o suporte t'#233'cnico).'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label34: TLabel
-        Left = 24
-        Top = 165
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '3. Envie alguns boletos para o banco homologar (consulte seu ger' +
-          'ente ou atendimento banc'#225'rio).'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label35: TLabel
-        Left = 24
-        Top = 201
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '4. Caso sua conta precise emitir remessa, consulte o atendimento' +
-          ' banc'#225'rio, para validar o arquivo remessa.'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label36: TLabel
-        Left = 24
-        Top = 237
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '5. Ap'#243's a homologa'#231#227'o, imprima alguns boletos com valores simb'#243'l' +
-          'icos.'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label37: TLabel
-        Left = 24
-        Top = 381
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '9. Consulte o pessoal do banco para obter informa'#231#245'es de recebim' +
-          'ento de arquivo retorno.'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label38: TLabel
-        Left = 24
-        Top = 345
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '8. Entre 1 a 2 dias '#250'teis, veja se os boletos pagos foram credit' +
-          'ados na conta da escola.'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label39: TLabel
-        Left = 24
-        Top = 309
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = '7. Repita o mesmo processo usando a linha dit'#225'vel.'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label40: TLabel
-        Left = 24
-        Top = 273
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '6. Teste o pagamento de um ou mais boletos usando o c'#243'digo de ba' +
-          'rras.'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object Label41: TLabel
-        Left = 24
-        Top = 417
-        Width = 433
-        Height = 36
-        AutoSize = False
-        Caption = 
-          '10. Veja a rela'#231#227'o de bancos para retorno e remessa (cobran'#231'a re' +
-          'gistrada) ou d'#233'bito em conta:'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        WordWrap = True
-      end
-      object btBanco2: TSpeedButton
-        Left = 59
-        Top = 434
-        Width = 18
-        Height = 19
-        Cursor = crHandPoint
-        Caption = '?'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = [fsBold]
-        ParentFont = False
-        ParentShowHint = False
-        PopupMenu = PopupBancos
-        ShowHint = True
-        OnClick = btBanco2Click
       end
     end
   end

@@ -6,7 +6,7 @@ object IndicaClientesServicosForm: TIndicaClientesServicosForm
   Caption = 'Rela'#231#227'o de Clientes e Servi'#231'os'
   ClientHeight = 368
   ClientWidth = 298
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -56,13 +56,29 @@ object IndicaClientesServicosForm: TIndicaClientesServicosForm
     Width = 159
     Height = 33
     AutoSize = False
+    Color = 7562340
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = [fsBold]
+    ParentColor = False
     ParentFont = False
     WordWrap = True
+  end
+  object Label1: TLabel
+    Left = 157
+    Top = 8
+    Width = 109
+    Height = 21
+    Alignment = taRightJustify
+    Caption = 'Clientes e Servi'#231'os'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Franklin Gothic Medium Cond'
+    Font.Style = []
+    ParentFont = False
   end
   object GroupBox2: TGroupBox
     Left = 3
@@ -242,7 +258,7 @@ object IndicaClientesServicosForm: TIndicaClientesServicosForm
   end
   object gbOpcao: TGroupBox
     Left = 3
-    Top = 33
+    Top = 30
     Width = 290
     Height = 50
     Caption = 'Filtro'
@@ -269,7 +285,7 @@ object IndicaClientesServicosForm: TIndicaClientesServicosForm
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 6
     object BtOK: TButton
@@ -304,8 +320,8 @@ object IndicaClientesServicosForm: TIndicaClientesServicosForm
     TabOrder = 0
   end
   object MainMenu1: TMainMenu
-    Left = 200
-    Top = 2
+    Left = 220
+    Top = 194
     object F21: TMenuItem
       Caption = 'F2'
       ShortCut = 113

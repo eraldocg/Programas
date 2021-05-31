@@ -20,9 +20,10 @@ type
     chkLigacoes: TRadioButton;
     MainMenu1: TMainMenu;
     TabSheet2: TTabSheet;
-    Image3: TImage;
     Image2: TImage;
     Image4: TImage;
+    Image1: TImage;
+    Label1: TLabel;
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
     procedure BtOKClick(Sender: TObject);

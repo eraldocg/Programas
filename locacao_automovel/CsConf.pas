@@ -25,6 +25,8 @@ type
     MainMenu1: TMainMenu;
     Excluir2: TMenuItem;
     Editar2: TMenuItem;
+    Image2: TImage;
+    Label1: TLabel;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
@@ -34,6 +36,7 @@ type
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormCreate(Sender: TObject);
+    procedure Excluir1Click(Sender: TObject);
     // procedure DBGrid1CellClick(Column: TColumn);
   private
     { Private declarations }
@@ -128,6 +131,37 @@ procedure TCsConfForm.EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TSh
 begin
   if (Key = VK_DOWN) and not(ActiveControl is TDBGrid) then
     DBGrid1.SetFocus;
+end;
+
+procedure TCsConfForm.Excluir1Click(Sender: TObject);
+var
+podeIR : Boolean;
+
+begin
+podeIR:=True;
+
+  BancodeDados.Veiculos.Close;
+  BancodeDados.Veiculos.SQL.Text:='select * from veiculos where conf_id = '+IntToStr(BancodeDados.ConfigCONF_ID.Value);
+  BancodeDados.Veiculos.Open();
+
+  if not BancodeDados.Veiculos.IsEmpty then
+  begin
+   podeIR:=False;
+   Mensagem('Existe(m) veículo(s) associado(s) ao registro!',mtInformation,[mbok],mrok,0);
+  end;
+
+
+  if podeIR then
+  begin
+    if PrincipalForm.LiberaAcesso then
+    begin
+      if not BancodeDados.FDConnection1.InTransaction then
+        BancodeDados.FDConnection1.StartTransaction;
+      BancodeDados.Config.Delete;
+      BancodeDados.FDConnection1.CommitRetaining;
+    end;
+  end;
+
 end;
 
 procedure TCsConfForm.BtNovo1Click(Sender: TObject);

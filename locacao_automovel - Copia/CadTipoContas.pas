@@ -24,6 +24,8 @@ type
     Label4: TLabel;
     EditReferecnia: TDBEdit;
     MainMenu1: TMainMenu;
+    Image1: TImage;
+    Label19: TLabel;
     procedure BtInserirClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

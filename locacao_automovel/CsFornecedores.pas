@@ -25,7 +25,8 @@ type
     Panel2: TPanel;
     DBGrid1: TSedDBGrid;
     BtExecutar: TSpeedButton;
-    Image3: TImage;
+    Image1: TImage;
+    Label1: TLabel;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure BtNovoClick(Sender: TObject);
@@ -54,6 +55,7 @@ uses Base, Principal, CadFornecedores, Acesso, unRecursos;
 
 procedure TCsFornecedoresForm.DBGrid1DblClick(Sender: TObject);
 begin
+if BancodeDados.FornecedoresFORNE_ID.Value>0 then
   try
     if not assigned(CadFornecedoresForm) then
       CadFornecedoresForm := TCadFornecedoresForm.create(Application);

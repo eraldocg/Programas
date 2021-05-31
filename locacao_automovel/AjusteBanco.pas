@@ -74,6 +74,7 @@ type
     TabSheet1: TTabSheet;
     TabSheet5: TTabSheet;
     Memo2_off: TMemo;
+    Image1: TImage;
     procedure btExecutarClick(Sender: TObject);
     procedure Image2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);

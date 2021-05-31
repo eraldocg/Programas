@@ -68,7 +68,10 @@ begin
     if not assigned(CadServClienteForm) then
       CadServClienteForm := TCadServClienteForm.create(Application);
     try
+
       BancodeDados.Cont_Serv_Clien.Append;
+     // BancodeDados.Cont_Serv_Clien.Refresh;
+
       CadServClienteForm.ShowModal;
     finally
       CadServClienteForm.Release;
@@ -152,9 +155,7 @@ end;
 procedure TRelacaoServicosForm.FormCreate(Sender: TObject);
 begin
 BancodeDados.Cont_Serv_Clien.Close;
-BancodeDados.Cont_Serv_Clien.SQL.Text :=
-'select * from cont_serv_clien where cli_id = ' + IntToStr(BancodeDados.ClientesCLI_ID.Value) + ' order by sit, dt_cad desc';
-
+BancodeDados.Cont_Serv_Clien.SQL.Text := 'select * from cont_serv_clien where cli_id = ' + IntToStr(BancodeDados.ClientesCLI_ID.Value) + ' order by sit, dt_cad desc';
 BancodeDados.Cont_Serv_Clien.Open;
 
 end;

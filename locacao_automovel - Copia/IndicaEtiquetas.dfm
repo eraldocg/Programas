@@ -6,7 +6,7 @@ object IndicaEtiquetasForm: TIndicaEtiquetasForm
   Caption = 'Impress'#227'o de Etiquetas'
   ClientHeight = 378
   ClientWidth = 298
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,6 +20,20 @@ object IndicaEtiquetasForm: TIndicaEtiquetasForm
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
+  object Label4: TLabel
+    Left = 210
+    Top = 25
+    Width = 61
+    Height = 21
+    Alignment = taRightJustify
+    Caption = 'Etiquetas'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Franklin Gothic Medium Cond'
+    Font.Style = []
+    ParentFont = False
+  end
   object GroupBox2: TGroupBox
     Left = 3
     Top = 293
@@ -46,7 +60,7 @@ object IndicaEtiquetasForm: TIndicaEtiquetasForm
   end
   object gbOpcao: TGroupBox
     Left = 3
-    Top = 0
+    Top = 6
     Width = 290
     Height = 129
     Caption = 'Destinat'#225'rio'
@@ -140,9 +154,11 @@ object IndicaEtiquetasForm: TIndicaEtiquetasForm
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 4
+    ExplicitLeft = 3
+    ExplicitTop = 346
     object BtOK: TButton
       Left = 217
       Top = 4

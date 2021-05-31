@@ -1096,7 +1096,6 @@ type
     VeiculosPLACA: TStringField;
     VeiculosMARCA: TStringField;
     VeiculosMODELO: TStringField;
-    VeiculosANO: TIntegerField;
     VeiculosCOR: TStringField;
     VeiculosRENAVAM: TStringField;
     VeiculosSIT: TIntegerField;
@@ -1158,6 +1157,11 @@ type
     qryCliNOME: TStringField;
     qryServVEICULO_ID: TIntegerField;
     Cont_Serv_ClienDT_CONTRATO_FIM: TDateField;
+    BancosCHAVE_PIX: TStringField;
+    VeiculosANO_FAB: TIntegerField;
+    VeiculosANO_MODELO: TIntegerField;
+    VeiculosPLACA_ANTERIOR: TStringField;
+    Cont_Serv_ClienDias_locacao: TIntegerField;
     procedure ClientesAfterOpen(DataSet: TDataSet);
     procedure ClientesBeforeClose(DataSet: TDataSet);
     procedure ClientesAfterInsert(DataSet: TDataSet);
@@ -1265,6 +1269,7 @@ type
     procedure Cont_Serv_ClienBeforePost(DataSet: TDataSet);
     procedure Cont_Serv_ClienAfterPost(DataSet: TDataSet);
     procedure Cont_Serv_ClienBeforeOpen(DataSet: TDataSet);
+    procedure BancosBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
     PCopiaCarbono : Boolean;
@@ -1910,6 +1915,15 @@ begin
   BancosCONT_ENCERRADA.Value  := 0;
   BancosHOMOLOGACAO.Value     := 0;
   BancosNOME_ARQ_RET.Value    := 0;
+end;
+
+procedure TBancodeDados.BancosBeforePost(DataSet: TDataSet);
+begin
+if  (BancosBANCO_NOME.Value = '') then
+  Abort;
+if  (BancosABREV.Value = '') then
+  Abort;
+
 end;
 
 procedure TBancodeDados.BoletosAfterInsert(DataSet: TDataSet);
@@ -2664,7 +2678,31 @@ begin
   Cont_Serv_ClienSIT.Value        := 1;
   Cont_Serv_ClienFORNE_ID.Value   := -1;
   Cont_Serv_ClienDT_CAD.Value     := Now;
-  Cont_Serv_ClienDT_CONTRATO_FIM.Value:= date+30;
+  Cont_Serv_ClienDT_CONTRATO_FIM.Value:= date+7;
+
+  QrySql.Close;
+  QrySql.SQL.Text:='select banco_id from bancos';
+  QrySql.Open();
+  if QrySql.RecordCount=1 then
+  Cont_Serv_ClienBANCO_ID.Value:=QrySql.FieldByName('banco_id').Value;
+
+  QrySql.Close;
+  QrySql.SQL.Text:='select grade_id from grade_financeira where padrao = 1';
+  QrySql.Open();
+
+  if not QrySql.IsEmpty then
+   Cont_Serv_ClienGRADE_ID.Value:=QrySql.FieldByName('grade_id').Value
+  else
+  begin
+    QrySql.Close;
+    QrySql.SQL.Text:='select grade_id from grade_financeira';
+    QrySql.Open();
+
+    if QrySql.RecordCount=1 then
+    Cont_Serv_ClienGRADE_ID.Value:=QrySql.FieldByName('grade_id').Value;
+  end;
+  QrySql.Close
+
 
 end;
 
@@ -2712,7 +2750,9 @@ begin
   case Cont_Serv_ClienSIT.Value of
      1 : Cont_Serv_ClienSituacao_Nome.Value:='Locado';
      2 : Cont_Serv_ClienSituacao_Nome.Value:='Cancelado';
-     3 : Cont_Serv_ClienSituacao_Nome.Value:='Devolvido';
+     3 : Cont_Serv_ClienSituacao_Nome.Value:='Devolvido'
+     else
+      Cont_Serv_ClienSituacao_Nome.Value:='';
   end;
 
   if Cont_Serv_ClienVEICULO_ID.Value > 0 then
@@ -2724,6 +2764,12 @@ begin
     Cont_Serv_ClienModelo.Value := qryVeicMODELO.Value;
     Cont_Serv_ClienMarca.Value  := qryVeicMARCA.Value;
     qryVeic.open;
+  end else
+  begin
+    Cont_Serv_ClienPlaca.Value  := '';
+    Cont_Serv_ClienModelo.Value := '';
+    Cont_Serv_ClienMarca.Value  := '';
+
   end;
 
 
@@ -2734,6 +2780,19 @@ begin
     QryFornec.Open;
     Cont_Serv_ClienFornecedor_nome.Value := QryFornecNOME.Value;
     QryFornec.Close;
+  end;
+
+  if (Cont_Serv_ClienDT_CONTRATO_FIM.Value >0) and (Cont_Serv_ClienDT_CONTRATO.Value >0) then
+  try
+
+    if Cont_Serv_ClienDT_CONTRATO_FIM.Value > Cont_Serv_ClienDT_CONTRATO.Value then
+     Cont_Serv_ClienDias_locacao.Value:=Trunc(Cont_Serv_ClienDT_CONTRATO_FIM.Value- Cont_Serv_ClienDT_CONTRATO.Value)
+    else
+     Cont_Serv_ClienDias_locacao.Value:=0;
+
+
+  except
+    Cont_Serv_ClienDias_locacao.Value:=0;
   end;
 
 end;
@@ -2884,6 +2943,12 @@ begin
   if Trim(ConfigEMAIL_PASS.Value) <> '' then
     if DecifrarSed(ConfigEMAIL_PASS.Value, False, 8267) = '' then
       ConfigEMAIL_PASS.Value := CifrarSed(ConfigEMAIL_PASS.Value, 8267);
+
+if  (ConfigNOME.Value = '') then
+  Abort;
+if  (ConfigCNPJ.Value = '') then
+  Abort;
+
 end;
 
 procedure TBancodeDados.ConfigCalcFields(DataSet: TDataSet);

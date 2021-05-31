@@ -1034,7 +1034,7 @@ object CadDocHTMLForm: TCadDocHTMLForm
     Top = 65
     Width = 1000
     Height = 502
-    ActivePage = tbConf
+    ActivePage = tbPrin
     Align = alClient
     MultiLine = True
     TabOrder = 2
@@ -1309,6 +1309,9 @@ object CadDocHTMLForm: TCadDocHTMLForm
             '4; Conta banc'#225'ria                                 ; <%conta_banc' +
             'aria%>       ;'
           
+            '4; Tipo de conta banc'#225'ria                     ; <%conta_bancaria' +
+            '_tipo%>       ;'
+          
             '4; PIX da conta banc'#225'ria (Banco)         ; <%banco_chave_pix%>  ' +
             '   ;'
           
@@ -1577,7 +1580,7 @@ object CadDocHTMLForm: TCadDocHTMLForm
     Left = 270
     Top = 298
     Bitmap = {
-      494C010113006800140110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010113006800180110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

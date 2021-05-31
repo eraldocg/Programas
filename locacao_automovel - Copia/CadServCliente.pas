@@ -8,7 +8,7 @@ uses
   Vcl.ExtCtrls, SEDDBDateEdit, SEDDBComboBox, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Imaging.jpeg;
 
 type
   TCadServClienteForm = class(TForm)
@@ -20,8 +20,6 @@ type
     DBNavigator1: TDBNavigator;
     Label4: TLabel;
     EditDtInicioContrato: TSedDbDateEdit;
-    Label7: TLabel;
-    EditDiaVenc: TDBComboBox;
     Label2: TLabel;
     EditValorMensal: TDBEdit;
     GroupBox1: TGroupBox;
@@ -49,10 +47,10 @@ type
     qryValor: TFDQuery;
     qryValorVL_MULT_CONTRATUAL: TFloatField;
     qryValorVALOR: TFloatField;
-    Label15: TLabel;
-    EditMulJur: TDBEdit;
     Label16: TLabel;
     EditDtFinalContrato: TSedDbDateEdit;
+    DBText1: TDBText;
+    Image2: TImage;
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BtGravarClick(Sender: TObject);

@@ -48,6 +48,7 @@ type
     EditAnoMod: TDBEdit;
     EditPlacaAnterior: TDBEdit;
     Image2: TImage;
+    Label14: TLabel;
     procedure BtInserirClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

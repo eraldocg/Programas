@@ -6,7 +6,7 @@ object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
   Caption = 'Cadastro de Grade Financeira'
   ClientHeight = 248
   ClientWidth = 282
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -30,11 +30,13 @@ object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Descri'#231#227'o:'
+    Color = clGray
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
+    ParentColor = False
     ParentFont = False
     Transparent = True
   end
@@ -80,11 +82,13 @@ object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Juros ao dia(%):'
+    Color = clGray
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
+    ParentColor = False
     ParentFont = False
     Transparent = True
   end
@@ -96,11 +100,13 @@ object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Multa(%):'
+    Color = clGray
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
+    ParentColor = False
     ParentFont = False
     Transparent = True
   end
@@ -145,11 +151,13 @@ object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Juros ao m'#234's(%):'
+    Color = clGray
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
+    ParentColor = False
     ParentFont = False
     Transparent = True
   end
@@ -160,13 +168,29 @@ object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
     Height = 14
     Alignment = taRightJustify
     Caption = 'Tipo de Juros:'
+    Color = clGray
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
+    ParentColor = False
     ParentFont = False
     Transparent = True
+  end
+  object Label19: TLabel
+    Left = 52
+    Top = 29
+    Width = 171
+    Height = 21
+    Alignment = taRightJustify
+    Caption = 'Cadastro de Grade Financeira'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Franklin Gothic Medium Cond'
+    Font.Style = []
+    ParentFont = False
   end
   object Panel1: TPanel
     Left = 0
@@ -175,7 +199,7 @@ object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
     Height = 30
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 7
     object DBText5: TDBText
@@ -187,20 +211,20 @@ object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
       DataField = 'GRADE_ID'
       DataSource = BancodeDados.DSGrade
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
       ParentFont = False
     end
     object Label13: TLabel
-      Left = 6
+      Left = 4
       Top = 8
       Width = 42
       Height = 14
       Caption = 'C'#243'digo:'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]

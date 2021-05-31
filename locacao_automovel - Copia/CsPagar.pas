@@ -14,7 +14,6 @@ type
     BtNovo: TButton;
     BtCancelar: TButton;
     Panel2: TPanel;
-    Image2: TImage;
     Label2: TLabel;
     Label4: TLabel;
     CBOpcao: TComboBox;
@@ -38,7 +37,6 @@ type
     lbContadorN: TLabel;
     F31: TMenuItem;
     ctrf1: TMenuItem;
-    Image1: TImage;
     Label7: TLabel;
     CBData: TComboBox;
     ImageList1: TImageList;
@@ -55,6 +53,8 @@ type
     ckAtraz: TCheckBox;
     btImp: TButton;
     lbAnalitico: TRadioButton;
+    Label1: TLabel;
+    Image2: TImage;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);

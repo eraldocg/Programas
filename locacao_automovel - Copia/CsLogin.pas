@@ -30,6 +30,7 @@ type
     BtExecutar: TSpeedButton;
     N2: TMenuItem;
     GerarNFSeAutomticamente1: TMenuItem;
+    Label1: TLabel;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);

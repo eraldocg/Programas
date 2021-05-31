@@ -24,7 +24,6 @@ type
     F31: TMenuItem;
     Panel3: TPanel;
     BtExecutar: TSpeedButton;
-    Image3: TImage;
     Label1: TLabel;
     Label6: TLabel;
     CBOpcao: TComboBox;
@@ -42,6 +41,8 @@ type
     ins1: TMenuItem;
     lbLivroCaixa: TRadioButton;
     btImp: TButton;
+    Image2: TImage;
+    Label5: TLabel;
     procedure DBGrid1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

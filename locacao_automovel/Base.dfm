@@ -2203,6 +2203,7 @@ object BancodeDados: TBancodeDados
   end
   object Bancos: TFDQuery
     AfterInsert = BancosAfterInsert
+    BeforePost = BancosBeforePost
     Connection = FDConnection1
     ResourceOptions.AssignedValues = [rvParamCreate]
     UpdateObject = upBancos
@@ -2283,7 +2284,7 @@ object BancodeDados: TBancodeDados
     end
     object BancosABREV: TStringField
       FieldName = 'ABREV'
-      Size = 16
+      Size = 60
     end
     object BancosUSR_CAD: TIntegerField
       FieldName = 'USR_CAD'

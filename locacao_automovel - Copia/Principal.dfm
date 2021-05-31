@@ -5,7 +5,7 @@ object PrincipalForm: TPrincipalForm
   Caption = 'Loca'#231#227'o de Autom'#243'vel'
   ClientHeight = 455
   ClientWidth = 942
-  Color = clWhite
+  Color = clBlack
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -371,9 +371,8 @@ object PrincipalForm: TPrincipalForm
     Center = True
     PopupMenu = PopImagem
     Transparent = True
-    ExplicitTop = 2
-    ExplicitWidth = 1365
-    ExplicitHeight = 810
+    ExplicitWidth = 728
+    ExplicitHeight = 410
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -996,11 +995,11 @@ object PrincipalForm: TPrincipalForm
         OnClick = Atualizarlistadeclientesnosite1_OFFClick
       end
       object Gradefinanceira12: TMenuItem
-        Caption = 'Grade financeira'
+        Caption = 'Grade Financeira'
         OnClick = Gradefinanceira12Click
       end
       object tipodeContas1: TMenuItem
-        Caption = 'Tipo de Contas'
+        Caption = 'Tipo de Conta'
         OnClick = tipodeContas1Click
       end
     end
@@ -1184,7 +1183,7 @@ object PrincipalForm: TPrincipalForm
     Left = 170
     Top = 34
     Bitmap = {
-      494C0101050009003C0410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900580410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1464,7 +1463,7 @@ object PrincipalForm: TPrincipalForm
     Left = 138
     Top = 34
     Bitmap = {
-      494C0101080009003C0410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010108000900580410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

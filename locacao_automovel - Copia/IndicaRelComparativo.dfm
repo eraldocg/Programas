@@ -6,7 +6,7 @@ object IndicaRelComparativoForm: TIndicaRelComparativoForm
   Caption = 'Relat'#243'rio comparativo de entradas e sa'#237'das'
   ClientHeight = 143
   ClientWidth = 251
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -27,6 +27,14 @@ object IndicaRelComparativoForm: TIndicaRelComparativoForm
     Height = 13
     Alignment = taRightJustify
     Caption = 'Data inicial:'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
   end
   object Label2: TLabel
     Left = 80
@@ -35,6 +43,28 @@ object IndicaRelComparativoForm: TIndicaRelComparativoForm
     Height = 13
     Alignment = taRightJustify
     Caption = 'Data final:'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 28
+    Top = 8
+    Width = 195
+    Height = 21
+    Alignment = taRightJustify
+    Caption = 'Comparativo de entradas e sa'#237'das'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Franklin Gothic Medium Cond'
+    Font.Style = []
+    ParentFont = False
   end
   object DtIni: TSedDateEdit
     Left = 134
@@ -59,7 +89,7 @@ object IndicaRelComparativoForm: TIndicaRelComparativoForm
     Height = 30
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 2
     DesignSize = (
@@ -90,7 +120,7 @@ object IndicaRelComparativoForm: TIndicaRelComparativoForm
     end
   end
   object MainMenu1: TMainMenu
-    Left = 60
-    Top = 12
+    Left = 24
+    Top = 88
   end
 end

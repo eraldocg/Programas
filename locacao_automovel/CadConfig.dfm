@@ -16,6 +16,8 @@ object CadConfigForm: TCadConfigForm
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
@@ -30,7 +32,6 @@ object CadConfigForm: TCadConfigForm
     Color = 7562340
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = 306
     DesignSize = (
       498
       31)
@@ -42,7 +43,6 @@ object CadConfigForm: TCadConfigForm
       Cursor = crHandPoint
       Anchors = [akRight, akBottom]
       Caption = 'Gravar'
-      ModalResult = 2
       TabOrder = 0
       OnClick = btOkClick
     end
@@ -63,7 +63,7 @@ object CadConfigForm: TCadConfigForm
     Top = 0
     Width = 498
     Height = 321
-    ActivePage = TabSheet5
+    ActivePage = TabSheet4
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -73,7 +73,6 @@ object CadConfigForm: TCadConfigForm
     ParentFont = False
     Style = tsButtons
     TabOrder = 1
-    ExplicitHeight = 306
     object TabSheet5: TTabSheet
       Caption = 'Pessoa F'#237'sica'
       Font.Charset = DEFAULT_CHARSET
@@ -82,7 +81,6 @@ object CadConfigForm: TCadConfigForm
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitHeight = 275
       object Label37: TLabel
         Left = 84
         Top = 13
@@ -148,7 +146,7 @@ object CadConfigForm: TCadConfigForm
         Alignment = taRightJustify
         Caption = 'Sexo:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -233,7 +231,7 @@ object CadConfigForm: TCadConfigForm
         Alignment = taRightJustify
         Caption = 'U.F.:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = []
@@ -1025,7 +1023,6 @@ object CadConfigForm: TCadConfigForm
     object TabSheet2: TTabSheet
       Caption = 'Empresa(OFF)'
       ImageIndex = 4
-      ExplicitHeight = 275
       object Label2: TLabel
         Left = 47
         Top = 11
@@ -1124,7 +1121,7 @@ object CadConfigForm: TCadConfigForm
         Alignment = taRightJustify
         Caption = 'Inc. Municipal:'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -11
         Font.Name = 'Arial'
         Font.Style = [fsBold]
@@ -1233,7 +1230,6 @@ object CadConfigForm: TCadConfigForm
     object TabSheet3: TTabSheet
       Caption = 'Endere'#231'o'
       ImageIndex = 5
-      ExplicitHeight = 275
       object Label12: TLabel
         Left = 50
         Top = 139
@@ -1470,7 +1466,6 @@ object CadConfigForm: TCadConfigForm
     object tbEmail: TTabSheet
       Caption = 'Email'
       ImageIndex = 1
-      ExplicitHeight = 275
       object Label1: TLabel
         Left = 14
         Top = 22
@@ -1713,7 +1708,6 @@ object CadConfigForm: TCadConfigForm
     object tbMsg: TTabSheet
       Caption = 'Mensagem'
       ImageIndex = 1
-      ExplicitHeight = 275
       object Image4: TImage
         Left = -132
         Top = -306
@@ -2399,13 +2393,11 @@ object CadConfigForm: TCadConfigForm
         DataSource = BancodeDados.dsConfig
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitHeight = 275
       end
     end
     object tbImagens: TTabSheet
       Caption = 'Imagens'
       ImageIndex = 2
-      ExplicitHeight = 275
       object Label26: TLabel
         Left = 14
         Top = 17
@@ -2474,7 +2466,6 @@ object CadConfigForm: TCadConfigForm
     object TabSheet1: TTabSheet
       Caption = 'NFSe'
       ImageIndex = 3
-      ExplicitHeight = 275
       object Label52: TLabel
         Left = 14
         Top = 15
@@ -2878,7 +2869,6 @@ object CadConfigForm: TCadConfigForm
     object TabSheet4: TTabSheet
       Caption = 'Financeiro'
       ImageIndex = 6
-      ExplicitHeight = 275
       object Label32: TLabel
         Left = 17
         Top = 24
@@ -3009,20 +2999,20 @@ object CadConfigForm: TCadConfigForm
     end
   end
   object PopupMenu1: TPopupMenu
-    Left = 414
-    Top = 172
+    Left = 448
+    Top = 138
     object altera: TMenuItem
       Caption = 'Modificar'
     end
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Filter = 'Imagens JPEG|*.jpg;*.jpeg'
-    Left = 428
-    Top = 202
+    Left = 426
+    Top = 262
   end
   object PopupMenu2: TPopupMenu
-    Left = 374
-    Top = 174
+    Left = 348
+    Top = 146
     object Modificar1: TMenuItem
       Caption = 'Modificar'
       OnClick = Modificar1Click

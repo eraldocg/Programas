@@ -1238,7 +1238,7 @@ begin
 
 
   StatusBar1.Panels[0].Text := 'Locação de Automóvel';
-  StatusBar1.Panels[2].Text := 'SED Soft';
+  StatusBar1.Panels[2].Text := 'Aluguel Exclusivo para Motorista de Aplicativos';
   Cadastro1.Visible:=False;
   PrincipalForm.locatario1.Visible    :=false;
 
@@ -1418,7 +1418,7 @@ begin
                   except
                   end;
 
-                  PrincipalForm.Caption := SistemaNome + ' (Licença Teste do Programa) '; //+ //BancodeDados.ConfigFANTASIA.AsString;
+                  PrincipalForm.Caption := SistemaNome + ' (Licença Temporária) '; //+ //BancodeDados.ConfigFANTASIA.AsString;
 
                   ClienteCNPJ:=BancodeDados.ConfigCNPJ.AsString;
 
@@ -1440,6 +1440,7 @@ begin
                   finally
                     AjusteBancoForm.Release;
                     AjusteBancoForm := nil;
+
                   end;
 
                 end;
@@ -2304,16 +2305,18 @@ end;
 
 procedure TPrincipalForm.Limpar12Click(Sender: TObject);
 begin
-
- if (usrNivel in [1,2]) then
-if(usrID > 0) then
-if not (BancodeDados.ConfigLOGO3.IsNull)  then
-if Mensagem('Deseja limpar a imagem?',mtConfirmation,[mbYes,mbNo],mrNo,0)=idYes then begin
-    if not (BancodeDados.Config.State in [dsEdit]) then
-    BancodeDados.Config.Edit;
-    BancodeDados.ConfigLOGO3.Clear;
-    imgvisualizar.Picture := Nil;
-end;
+  if(usrID > 0) then
+  begin
+    if (usrNivel in [1,2]) then
+    if not (BancodeDados.ConfigLOGO3.IsNull)  then
+    if Mensagem('Deseja limpar a imagem?',mtConfirmation,[mbYes,mbNo],mrNo,0)=idYes then
+    begin
+        if not (BancodeDados.Config.State in [dsEdit]) then
+        BancodeDados.Config.Edit;
+        BancodeDados.ConfigLOGO3.Clear;
+        imgvisualizar.Picture := Nil;
+    end;
+  end;
 end;
 
 procedure TPrincipalForm.Consultadettulos1Click(Sender: TObject);

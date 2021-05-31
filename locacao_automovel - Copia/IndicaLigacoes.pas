@@ -8,13 +8,12 @@ uses
   Vcl.Buttons, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, SEDDateEdit, Data.DB, 
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, 
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, 
-  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Imaging.jpeg;
 
 type
   TIndicaLigacoesForm = class(TForm)
-    Label2: TLabel;
     cbSituacao: TComboBox;
-    Label1: TLabel;
     cbTipo: TComboBox;
     Label19: TLabel;
     Label20: TLabel;
@@ -23,11 +22,6 @@ type
     Panel1: TPanel;
     BtOK: TButton;
     btCancelar: TButton;
-    gbOpcao: TGroupBox;
-    rbClient: TRadioButton;
-    gbOrdenar: TGroupBox;
-    rb1: TRadioButton;
-    rb2: TRadioButton;
     gbAgrupar: TGroupBox;
     chkAgrup3: TRadioButton;
     chkAgrup1: TRadioButton;
@@ -36,7 +30,6 @@ type
     lbCod1: TLabel;
     EditCodigo: TEdit;
     btF2: TSpeedButton;
-    LbNome: TLabel;
     CsClientes: TFDQuery;
     CsClientesCLI_ID: TIntegerField;
     CsClientesNOME: TStringField;
@@ -55,6 +48,12 @@ type
     CsClientesVISITA: TIntegerField;
     CsClientesOUTRO: TIntegerField;
     CsClientesCOBRANCA: TIntegerField;
+    gbOrdenar: TGroupBox;
+    rb1: TRadioButton;
+    rb2: TRadioButton;
+    Label2: TLabel;
+    Label1: TLabel;
+    Label3: TLabel;
     procedure FormShow(Sender: TObject);
     procedure BtOKClick(Sender: TObject);
     procedure CsClientesCalcFields(DataSet: TDataSet);
@@ -102,7 +101,7 @@ try
     RelLigacoesForm.lbTipo1.Caption     :='Tipo: '+cbTipo.Text;
     RelLigacoesForm.lbPeriodo1.Caption  :='Período: '+Dt_Inicial.DateTimeStr +' até '+Dt_Final.DateTimeStr;
     if EditCodigo.Text<>'' then
-    RelLigacoesForm.lbCliente1.Caption  :='Cliente: '+LbNome.Caption else RelLigacoesForm.lbCliente1.Caption  :='';
+    //RelLigacoesForm.lbCliente1.Caption  :='Cliente: '+LbNome.Caption else RelLigacoesForm.lbCliente1.Caption  :='';
 
 
   BancodeDados.PrepararRel(RelLigacoesForm.RLReport1);

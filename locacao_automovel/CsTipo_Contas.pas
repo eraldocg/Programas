@@ -25,7 +25,8 @@ type
     MainMenu1: TMainMenu;
     Excluir2: TMenuItem;
     Editar2: TMenuItem;
-    Image3: TImage;
+    Image2: TImage;
+    Label1: TLabel;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);

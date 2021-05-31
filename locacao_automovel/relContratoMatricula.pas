@@ -1331,6 +1331,11 @@ begin
     else
       txtPagina := SubstituirString2(txtPagina, '<%banco_chave_pix%>', '***');
 
+    if (BancodeDados.BancosTIPO_CONTA_CORRENTE.Value) >0 then
+      txtPagina := SubstituirString2(txtPagina, '<%conta_bancaria_tipo%>',IntToStr( BancodeDados.BancosTIPO_CONTA_CORRENTE.Value))
+    else
+      txtPagina := SubstituirString2(txtPagina, '<%conta_bancaria_tipo%>', '***');
+
 
     if Trim(BancodeDados.BancosCONTA_CORRENTE.Value) <> EmptyStr then
     begin

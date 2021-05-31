@@ -254,6 +254,7 @@ type
     BoletosDupOBS: TMemoField;
     BoletosDupOBS_BOLETO: TMemoField;
     BoletosDupCLIENTE: TStringField;
+    Label12: TLabel;
     procedure FormShow(Sender: TObject);
     procedure BTIniciarClick(Sender: TObject);
     procedure RBProcessarClick(Sender: TObject);

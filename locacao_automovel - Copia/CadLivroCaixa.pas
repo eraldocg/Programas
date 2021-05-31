@@ -20,7 +20,6 @@ type
     DBText5: TDBText;
     Label2: TLabel;
     EditObs: TDBMemo;
-    Image3: TImage;
     Dt_Pagar: TSedDbDateEdit;
     Label3: TLabel;
     Label6: TLabel;
@@ -42,6 +41,8 @@ type
     MainMenu1: TMainMenu;
     F21: TMenuItem;
     DBNavigator2: TDBNavigator;
+    Image2: TImage;
+    Label12: TLabel;
     procedure BtInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

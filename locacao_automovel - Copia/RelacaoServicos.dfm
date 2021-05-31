@@ -3,10 +3,10 @@ object RelacaoServicosForm: TRelacaoServicosForm
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Rela'#231#227'o de Servi'#231'os'
+  Caption = 'Rela'#231#227'o de Servi'#231'o de Loca'#231#227'o'
   ClientHeight = 263
   ClientWidth = 736
-  Color = clWhite
+  Color = 7562340
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -25,11 +25,9 @@ object RelacaoServicosForm: TRelacaoServicosForm
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -8
-    ExplicitTop = 234
     DesignSize = (
       736
       31)
@@ -106,7 +104,7 @@ object RelacaoServicosForm: TRelacaoServicosForm
     Height = 232
     Align = alClient
     DataSource = BancodeDados.dsContServClien
-    FixedColor = clSilver
+    FixedColor = clWhite
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11

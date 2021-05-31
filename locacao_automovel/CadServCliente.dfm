@@ -3,8 +3,8 @@ object CadServClienteForm: TCadServClienteForm
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Servi'#231'o'
-  ClientHeight = 428
+  Caption = 'Cadastro de Servi'#231'o de Loca'#231#227'o'
+  ClientHeight = 411
   ClientWidth = 377
   Color = clWhite
   Ctl3D = False
@@ -655,25 +655,17 @@ object CadServClienteForm: TCadServClienteForm
   end
   object Label4: TLabel
     Left = 20
-    Top = 185
+    Top = 163
     Width = 104
     Height = 13
     Alignment = taRightJustify
     Caption = 'In'#237'cio de Contrato:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-  end
-  object Label7: TLabel
-    Left = 75
-    Top = 163
-    Width = 49
-    Height = 13
-    Alignment = taRightJustify
-    Caption = 'Dia Venc.:'
   end
   object Label2: TLabel
     Left = 20
@@ -684,7 +676,7 @@ object CadServClienteForm: TCadServClienteForm
     AutoSize = False
     Caption = 'Valor Semanal:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
@@ -699,7 +691,7 @@ object CadServClienteForm: TCadServClienteForm
     Alignment = taRightJustify
     Caption = 'Ve'#237'culo:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
@@ -707,14 +699,14 @@ object CadServClienteForm: TCadServClienteForm
   end
   object Label6: TLabel
     Left = 20
-    Top = 226
+    Top = 204
     Width = 104
     Height = 14
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Observa'#231#227'o:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -730,7 +722,7 @@ object CadServClienteForm: TCadServClienteForm
     AutoSize = False
     Caption = 'Placa:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -746,7 +738,7 @@ object CadServClienteForm: TCadServClienteForm
     AutoSize = False
     Caption = 'Modelo:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -762,7 +754,7 @@ object CadServClienteForm: TCadServClienteForm
     AutoSize = False
     Caption = 'Marca:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []
@@ -771,13 +763,13 @@ object CadServClienteForm: TCadServClienteForm
   end
   object Label5: TLabel
     Left = 26
-    Top = 284
+    Top = 262
     Width = 98
     Height = 13
     Alignment = taRightJustify
     Caption = 'Grade Financeira:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
@@ -785,36 +777,27 @@ object CadServClienteForm: TCadServClienteForm
   end
   object Label1: TLabel
     Left = 91
-    Top = 305
+    Top = 283
     Width = 33
     Height = 13
     Alignment = taRightJustify
     Caption = 'Banco:'
-  end
-  object Label15: TLabel
-    Left = 191
-    Top = 163
-    Width = 119
-    Height = 13
-    Alignment = taRightJustify
-    Caption = 'Toler'#226'ncia Mul/Jur(Dias):'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    Transparent = True
   end
   object Label16: TLabel
     Left = 25
-    Top = 205
+    Top = 183
     Width = 99
     Height = 13
     Alignment = taRightJustify
     Caption = 'Final de Contrato:'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clWhite
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
@@ -822,7 +805,7 @@ object CadServClienteForm: TCadServClienteForm
   end
   object DBText1: TDBText
     Left = 254
-    Top = 205
+    Top = 183
     Width = 48
     Height = 13
     AutoSize = True
@@ -837,14 +820,15 @@ object CadServClienteForm: TCadServClienteForm
   end
   object Panel1: TPanel
     Left = 0
-    Top = 397
+    Top = 380
     Width = 377
     Height = 31
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
-    TabOrder = 13
+    TabOrder = 11
+    ExplicitTop = 397
     object DBText5: TDBText
       Left = 51
       Top = 8
@@ -854,7 +838,7 @@ object CadServClienteForm: TCadServClienteForm
       DataField = 'C_S_C_ID'
       DataSource = BancodeDados.dsContServClien
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
@@ -867,7 +851,7 @@ object CadServClienteForm: TCadServClienteForm
       Height = 14
       Caption = 'C'#243'digo:'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
@@ -896,7 +880,7 @@ object CadServClienteForm: TCadServClienteForm
   end
   object DBNavigator1: TDBNavigator
     Left = 287
-    Top = 180
+    Top = 158
     Width = 80
     Height = 20
     Cursor = crHandPoint
@@ -905,59 +889,17 @@ object CadServClienteForm: TCadServClienteForm
     Flat = True
     Ctl3D = False
     ParentCtl3D = False
-    TabOrder = 15
+    TabOrder = 13
     OnClick = DBNavigator1Click
   end
   object EditDtInicioContrato: TSedDbDateEdit
     Left = 127
-    Top = 182
+    Top = 160
     Width = 121
     Height = 19
     DataField = 'DT_CONTRATO'
     DataSource = BancodeDados.dsContServClien
     MaxLength = 10
-    TabOrder = 7
-  end
-  object EditDiaVenc: TDBComboBox
-    Left = 127
-    Top = 160
-    Width = 55
-    Height = 21
-    BevelKind = bkFlat
-    DataField = 'VENC_DIA'
-    DataSource = BancodeDados.dsContServClien
-    Items.Strings = (
-      '1'
-      '2'
-      '3'
-      '4'
-      '5'
-      '6'
-      '7'
-      '8'
-      '9'
-      '10'
-      '11'
-      '12'
-      '13'
-      '14'
-      '15'
-      '16'
-      '17'
-      '18'
-      '19'
-      '20'
-      '21'
-      '22'
-      '23'
-      '24'
-      '25'
-      '26'
-      '27'
-      '28'
-      '29'
-      '30'
-      '31')
     TabOrder = 5
   end
   object EditValorMensal: TDBEdit
@@ -982,7 +924,7 @@ object CadServClienteForm: TCadServClienteForm
     Width = 343
     Height = 63
     Caption = 'Representante / Forcecedor'
-    TabOrder = 14
+    TabOrder = 12
     object Label8: TLabel
       Left = 71
       Top = 32
@@ -1024,7 +966,7 @@ object CadServClienteForm: TCadServClienteForm
   end
   object EditObservacao: TDBMemo
     Left = 127
-    Top = 222
+    Top = 200
     Width = 240
     Height = 57
     DataField = 'OBS'
@@ -1035,7 +977,7 @@ object CadServClienteForm: TCadServClienteForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 9
+    TabOrder = 7
   end
   object EditPlaca: TDBEdit
     Left = 127
@@ -1090,7 +1032,7 @@ object CadServClienteForm: TCadServClienteForm
   end
   object EditGrade: TDBLookupComboBox
     Left = 127
-    Top = 281
+    Top = 259
     Width = 240
     Height = 19
     Color = clWhite
@@ -1100,11 +1042,11 @@ object CadServClienteForm: TCadServClienteForm
     ListField = 'DESCRICAO'
     ListSource = BancodeDados.DSGrade
     NullValueKey = 46
-    TabOrder = 10
+    TabOrder = 8
   end
   object EditBanco: TDBLookupComboBox
     Left = 127
-    Top = 302
+    Top = 280
     Width = 240
     Height = 19
     Color = clWhite
@@ -1114,15 +1056,21 @@ object CadServClienteForm: TCadServClienteForm
     ListField = 'BANCO_NOME'
     ListSource = BancodeDados.DSBancos
     NullValueKey = 46
-    TabOrder = 11
+    TabOrder = 9
   end
   object GroupBox2: TGroupBox
     Left = 38
-    Top = 324
+    Top = 302
     Width = 329
     Height = 73
     Caption = 'Situa'#231#227'o:'
-    TabOrder = 12
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 10
     object Label12: TLabel
       Left = 59
       Top = 45
@@ -1131,7 +1079,7 @@ object CadServClienteForm: TCadServClienteForm
       Alignment = taRightJustify
       Caption = 'Data:'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -1146,7 +1094,7 @@ object CadServClienteForm: TCadServClienteForm
       AutoSize = False
       Caption = 'Situa'#231#227'o:'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -1187,31 +1135,15 @@ object CadServClienteForm: TCadServClienteForm
       TabOrder = 0
     end
   end
-  object EditMulJur: TDBEdit
-    Left = 312
-    Top = 160
-    Width = 55
-    Height = 20
-    AutoSelect = False
-    DataField = 'DIAS_TOL'
-    DataSource = BancodeDados.dsContServClien
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Arial'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 6
-  end
   object EditDtFinalContrato: TSedDbDateEdit
     Left = 127
-    Top = 202
+    Top = 180
     Width = 121
     Height = 19
     DataField = 'DT_CONTRATO_FIM'
     DataSource = BancodeDados.dsContServClien
     MaxLength = 10
-    TabOrder = 8
+    TabOrder = 6
   end
   object qryValor: TFDQuery
     Connection = BancodeDados.FDConnection1

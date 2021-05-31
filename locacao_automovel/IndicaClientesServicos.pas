@@ -35,6 +35,7 @@ type
     chkFaturaNotas: TCheckBox;
     chkEntrBoletos: TCheckBox;
     chkQuebrar: TCheckBox;
+    Label1: TLabel;
     procedure BtOKClick(Sender: TObject);
     procedure btF2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);

@@ -31,6 +31,8 @@ type
     BtExecutar: TSpeedButton;
     N2: TMenuItem;
     Ativo1: TMenuItem;
+    Image2: TImage;
+    Label1: TLabel;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

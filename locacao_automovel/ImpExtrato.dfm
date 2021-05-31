@@ -29,14 +29,25 @@ object ImpExtratoForm: TImpExtratoForm
     Height = 580
     Align = alLeft
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
+    ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = -28
+    ExplicitTop = -32
     object Label1: TLabel
       Left = 8
       Top = 21
       Width = 79
       Height = 14
       Caption = 'Nome do Banco:'
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
     end
     object Gauge1: TGauge
       Left = 8
@@ -48,14 +59,14 @@ object ImpExtratoForm: TImpExtratoForm
     end
     object LBOperacao: TLabel
       Left = 8
-      Top = 279
+      Top = 276
       Width = 307
       Height = 13
       Alignment = taCenter
       AutoSize = False
       Caption = 'LBOperacao'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -70,7 +81,7 @@ object ImpExtratoForm: TImpExtratoForm
       AutoSize = False
       Caption = 'LbArquivo'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -84,7 +95,7 @@ object ImpExtratoForm: TImpExtratoForm
       AutoSize = False
       Caption = 'LbNumero'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -92,20 +103,26 @@ object ImpExtratoForm: TImpExtratoForm
     end
     object Label2: TLabel
       Left = 8
-      Top = 138
+      Top = 136
       Width = 83
       Height = 14
       Caption = 'Conta de Origem:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
     end
     object lbRegistro: TLabel
       Left = 8
-      Top = 327
+      Top = 330
       Width = 307
       Height = 13
       AutoSize = False
       Caption = 'LbNumero'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -119,7 +136,7 @@ object ImpExtratoForm: TImpExtratoForm
       AutoSize = False
       Caption = 'OBSERVA'#199#213'ES:'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -141,7 +158,7 @@ object ImpExtratoForm: TImpExtratoForm
         'Para alterar a coluna descri'#231#227'o, basta digitar sobre o registro ' +
         'na grade ao lado.'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -158,7 +175,7 @@ object ImpExtratoForm: TImpExtratoForm
         'D'#234' um clique-duplo sobre o registro para associar ao tipo de con' +
         'ta.'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = []
@@ -261,6 +278,12 @@ object ImpExtratoForm: TImpExtratoForm
       Width = 307
       Height = 67
       Caption = 'Op'#231'oes do Livro Caixa'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
       ParentShowHint = False
       ShowHint = False
       TabOrder = 1
@@ -305,10 +328,11 @@ object ImpExtratoForm: TImpExtratoForm
     Width = 738
     Height = 580
     Align = alClient
+    Color = clMenu
     DataSource = dsTemp
-    FixedColor = clGray
+    FixedColor = 7562340
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Arial'
     Font.Style = []

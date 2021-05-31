@@ -18,7 +18,6 @@ type
     CBOpcao: TComboBox;
     EditConsulta: TEdit;
     CBTipo: TComboBox;
-    Image1: TImage;
     PopupMenu1: TPopupMenu;
     Excluir1: TMenuItem;
     Editar1: TMenuItem;
@@ -26,6 +25,8 @@ type
     MainMenu1: TMainMenu;
     Excluir2: TMenuItem;
     Editar2: TMenuItem;
+    Image2: TImage;
+    Label1: TLabel;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);

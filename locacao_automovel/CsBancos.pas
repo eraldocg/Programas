@@ -73,6 +73,8 @@ type
     qryBancosMENSAGEM_2: TMemoField;
     qryBancosMENSAGEM_3: TMemoField;
     qryBancosOBSERVACAO_1: TMemoField;
+    Image1: TImage;
+    Label1: TLabel;
     procedure FormShow(Sender: TObject);
     procedure EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DBGrid1TitleClick(Column: TColumn);

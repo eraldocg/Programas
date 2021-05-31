@@ -6,7 +6,7 @@ object IndicaSaldoContasForm: TIndicaSaldoContasForm
   Caption = 'Saldo de Contas'
   ClientHeight = 168
   ClientWidth = 388
-  Color = clWhite
+  Color = 7562340
   Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -27,6 +27,14 @@ object IndicaSaldoContasForm: TIndicaSaldoContasForm
     Height = 13
     Alignment = taRightJustify
     Caption = 'Data Inicial:'
+    Color = 7562340
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
   end
   object Label2: TLabel
     Left = 85
@@ -35,6 +43,14 @@ object IndicaSaldoContasForm: TIndicaSaldoContasForm
     Height = 13
     Alignment = taRightJustify
     Caption = 'Data Final:'
+    Color = 7562340
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
   end
   object Label3: TLabel
     Left = 105
@@ -43,6 +59,28 @@ object IndicaSaldoContasForm: TIndicaSaldoContasForm
     Height = 13
     Alignment = taRightJustify
     Caption = 'Conta:'
+    Color = 7562340
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 25
+    Top = 18
+    Width = 94
+    Height = 21
+    Alignment = taRightJustify
+    Caption = 'Saldo de Contas'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Franklin Gothic Medium Cond'
+    Font.Style = []
+    ParentFont = False
   end
   object dtIni: TSedDateEdit
     Left = 140
@@ -77,7 +115,7 @@ object IndicaSaldoContasForm: TIndicaSaldoContasForm
     Height = 30
     Align = alBottom
     BevelOuter = bvNone
-    Color = clSilver
+    Color = 7562340
     ParentBackground = False
     TabOrder = 3
     object BtOK: TButton

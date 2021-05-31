@@ -33,6 +33,7 @@ type
     EditJurosMes: TDBEdit;
     Label8: TLabel;
     EditJrMesOp: TSedDBComboBox;
+    Label19: TLabel;
     procedure BtInserirClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

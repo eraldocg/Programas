@@ -36,7 +36,6 @@ type
     Gauge1: TGauge;
     rgCarteira: TRadioGroup;
     cbData: TComboBox;
-    Image1: TImage;
     btCamRem: TSpeedButton;
     MainMenu1: TMainMenu;
     f31: TMenuItem;
@@ -111,6 +110,8 @@ type
     BoletosTem_End: TStringField;
     BoletosCLI_BANC_ACATAMENTO: TMemoField;
     BoletosOBS: TMemoField;
+    Image1: TImage;
+    Label12: TLabel;
     procedure FormShow(Sender: TObject);
     procedure BTIniciarClick(Sender: TObject);
     procedure EditBancoChange(Sender: TObject);

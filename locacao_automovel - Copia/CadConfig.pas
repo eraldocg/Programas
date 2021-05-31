@@ -5,14 +5,83 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ExtCtrls, DB, SEDDBComboBox, Mask, DBCtrls, SEDDBImage, Vcl.ExtDlgs, Vcl.Menus,
-  SEDDBDateEdit;
+  SEDDBDateEdit, Vcl.Imaging.jpeg;
 
 type
   TCadConfigForm = class(TForm)
-    PageControl1: TPageControl;
     Panel1: TPanel;
     btOk: TButton;
     btSair: TButton;
+    PopupMenu1: TPopupMenu;
+    OpenPictureDialog1: TOpenPictureDialog;
+    PopupMenu2: TPopupMenu;
+    altera: TMenuItem;
+    Modificar1: TMenuItem;
+    PageControl1: TPageControl;
+    TabSheet5: TTabSheet;
+    Label37: TLabel;
+    Label39: TLabel;
+    Label40: TLabel;
+    Label41: TLabel;
+    Label42: TLabel;
+    Label43: TLabel;
+    Label75: TLabel;
+    Label44: TLabel;
+    Label46: TLabel;
+    Label45: TLabel;
+    Label68: TLabel;
+    Label49: TLabel;
+    Label48: TLabel;
+    Label47: TLabel;
+    EditPF_Nome: TDBEdit;
+    EditPF_CPF: TDBEdit;
+    EditPF_Sexo: TDBComboBox;
+    EditPF_Nasc: TSedDbDateEdit;
+    EditPF_Nacionalid: TSedDBComboBox;
+    EditPF_UF_Nat: TDBLookupComboBox;
+    EditPF_Nacional: TDBLookupComboBox;
+    EditPF_EstadoCivil: TDBComboBox;
+    EditPF_Profissao: TDBEdit;
+    EditPF_RGOrgao: TDBLookupComboBox;
+    EditPF_Passaporte: TDBEdit;
+    EditPF_RgUF: TSedDBComboBox;
+    EditPF_RGExp: TSedDbDateEdit;
+    EditPF_RG: TDBEdit;
+    TabSheet2: TTabSheet;
+    Label2: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label30: TLabel;
+    Label23: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
+    EditNome: TDBEdit;
+    EditFantasia: TDBEdit;
+    EditCNPJ: TDBEdit;
+    EditSlogan: TDBEdit;
+    SedDBImage1: TSedDBImage;
+    EditSite: TDBEdit;
+    EditSimpNac: TSedDBComboBox;
+    EditInscMunic: TDBEdit;
+    TabSheet3: TTabSheet;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label17: TLabel;
+    Label20: TLabel;
+    Label19: TLabel;
+    Label31: TLabel;
+    Label33: TLabel;
+    EditCep: TDBEdit;
+    EditLogradouro: TDBEdit;
+    EditBairro: TDBEdit;
+    EditTele1: TDBEdit;
+    EditCelular_1: TDBEdit;
+    EditEmailComercial: TDBEdit;
+    EditEstadoProvinc: TDBLookupComboBox;
+    EditNaturalidade: TDBLookupComboBox;
+    EditPais: TDBLookupComboBox;
     tbEmail: TTabSheet;
     Label1: TLabel;
     Label3: TLabel;
@@ -37,113 +106,45 @@ type
     DBMemo1: TDBMemo;
     tbImagens: TTabSheet;
     Label26: TLabel;
-    EditLogo1: TSedDBImage;
     Label27: TLabel;
-    EditLogo2: TSedDBImage;
     Label57: TLabel;
-    PopupMenu1: TPopupMenu;
-    OpenPictureDialog1: TOpenPictureDialog;
+    EditLogo1: TSedDBImage;
+    EditLogo2: TSedDBImage;
     TabSheet1: TTabSheet;
     Label52: TLabel;
     Label53: TLabel;
     Label61: TLabel;
     Label81: TLabel;
+    Label21: TLabel;
+    Label25: TLabel;
+    Label24: TLabel;
+    Label16: TLabel;
+    Label18: TLabel;
+    Label34: TLabel;
+    Label35: TLabel;
+    Label36: TLabel;
     EditNSerie: TDBEdit;
     EditAmbiente: TSedDBComboBox;
     EditPercISS: TDBEdit;
     EditSerie: TDBEdit;
-    TabSheet2: TTabSheet;
-    Label2: TLabel;
-    EditNome: TDBEdit;
-    Label10: TLabel;
-    EditFantasia: TDBEdit;
-    Label11: TLabel;
-    EditCNPJ: TDBEdit;
-    Label30: TLabel;
-    EditSlogan: TDBEdit;
-    TabSheet3: TTabSheet;
-    SedDBImage1: TSedDBImage;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label17: TLabel;
-    Label20: TLabel;
-    EditCep: TDBEdit;
-    EditLogradouro: TDBEdit;
-    EditBairro: TDBEdit;
-    EditTele1: TDBEdit;
-    EditCelular_1: TDBEdit;
-    Label23: TLabel;
-    EditSite: TDBEdit;
-    Label19: TLabel;
-    EditEmailComercial: TDBEdit;
-    TabSheet4: TTabSheet;
-    Label32: TLabel;
-    SedDBComboBox2: TSedDBComboBox;
-    Label21: TLabel;
     EditTipoRPS: TDBEdit;
-    Label25: TLabel;
     EditCodigoCNAE: TDBEdit;
-    Label24: TLabel;
     SedDBComboBox1: TSedDBComboBox;
-    Label28: TLabel;
-    EditSimpNac: TSedDBComboBox;
-    Label29: TLabel;
-    EditInscMunic: TDBEdit;
-    Label31: TLabel;
-    EditEstadoProvinc: TDBLookupComboBox;
-    Label33: TLabel;
-    EditNaturalidade: TDBLookupComboBox;
-    EditPais: TDBLookupComboBox;
-    Label16: TLabel;
     EditCodTribuSErv: TDBEdit;
     EditNumerSerieRPS: TDBEdit;
-    Label18: TLabel;
-    Label34: TLabel;
     EditAtvidaMunic: TDBEdit;
     SedDBComboBox3: TSedDBComboBox;
-    Label35: TLabel;
-    Label36: TLabel;
     editSeqNfse: TDBEdit;
-    PopupMenu2: TPopupMenu;
-    altera: TMenuItem;
-    Modificar1: TMenuItem;
-    TabSheet5: TTabSheet;
-    Label37: TLabel;
-    EditPF_Nome: TDBEdit;
-    Label39: TLabel;
-    Label40: TLabel;
-    Label41: TLabel;
-    Label42: TLabel;
-    Label43: TLabel;
-    Label75: TLabel;
-    Label44: TLabel;
-    Label46: TLabel;
-    Label45: TLabel;
-    Label68: TLabel;
-    Label49: TLabel;
-    Label48: TLabel;
-    Label47: TLabel;
-    EditPF_CPF: TDBEdit;
-    EditPF_Sexo: TDBComboBox;
-    EditPF_Nasc: TSedDbDateEdit;
-    EditPF_Nacionalid: TSedDBComboBox;
-    EditPF_UF_Nat: TDBLookupComboBox;
-    EditPF_Nacional: TDBLookupComboBox;
-    EditPF_EstadoCivil: TDBComboBox;
-    EditPF_Profissao: TDBEdit;
-    EditPF_RGOrgao: TDBLookupComboBox;
-    EditPF_Passaporte: TDBEdit;
-    EditPF_RgUF: TSedDBComboBox;
-    EditPF_RGExp: TSedDbDateEdit;
-    EditPF_RG: TDBEdit;
+    TabSheet4: TTabSheet;
+    Label32: TLabel;
     Label22: TLabel;
-    EditChave_PIX: TDBEdit;
     Label38: TLabel;
-    EditValorMensal: TDBEdit;
     Label50: TLabel;
+    SedDBComboBox2: TSedDBComboBox;
+    EditChave_PIX: TDBEdit;
+    EditValorMensal: TDBEdit;
     EditVlContrato: TDBEdit;
+    Image4: TImage;
     procedure btOkClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure EditEmailPassChange(Sender: TObject);
@@ -153,6 +154,8 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Modificar1Click(Sender: TObject);
     procedure EditPF_CPFExit(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
      procedure PegarEstadoProvincia(NacionalID: String);
@@ -174,6 +177,10 @@ var
   emailTeste: String;
   hr: TTime;
 begin
+  if Trim(BancodeDados.ConfigNOME.Value)<>EmptyStr then
+  begin
+
+
   HabilitarBotoes(Self, False);
 
   Screen.Cursor := crSQLWait;
@@ -194,13 +201,15 @@ begin
       if BancodeDados.EnviarEmail(emailTeste, 'Teste de email', 'Esta é uma mensagem de teste.', '') then
         Mensagem('Mensagem enviada com sucesso.' + #13 + 'Tempo gasto: ' + TimeToStr(Time - hr), mtInformation, [mbOk], mrOk, 0);
     end;
+    Close;
   end
   else
     ModalResult := mrOk;
   HabilitarBotoes(Self, true);
   Screen.Cursor := crDefault;
-end;
+  end;
 
+end;
 procedure TCadConfigForm.EditEmailPassChange(Sender: TObject);
 begin
   if not(BancodeDados.Config.State in [dsInsert, dsEdit]) then
@@ -239,6 +248,18 @@ begin
 
 end;
 
+procedure TCadConfigForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if BancodeDados.Config.State in [dsedit, dsinsert] then  BancodeDados.Config.Cancel;
+
+end;
+
+procedure TCadConfigForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  if Mensagem('Deseja sair agora?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idNo then
+    CanClose := False;
+end;
+
 procedure TCadConfigForm.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   if (Key = #13) and not(ActiveControl is TDBMemo) then
@@ -274,6 +295,11 @@ var
 PaisID, CidadeID : Integer;
 
 begin
+
+tbEmail.TabVisible:=False;
+tbMsg.TabVisible:=False;
+TabSheet1.TabVisible:=False;
+
   PaisID  := StrToIntDef(BancodeDados.ConfigNACIONALIDADE.Value,0);
   CidadeID:=StrToIntDef(BancodeDados.ConfigUF_NATURAL.Value,0);
 

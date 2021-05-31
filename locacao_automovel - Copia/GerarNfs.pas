@@ -16,7 +16,6 @@ type
     Panel1: TPanel;
     BtFechar: TButton;
     Panel3: TPanel;
-    Image2: TImage;
     Label6: TLabel;
     Label5: TLabel;
     BtExecutar: TSpeedButton;

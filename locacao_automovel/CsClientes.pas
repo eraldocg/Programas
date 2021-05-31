@@ -48,6 +48,9 @@ type
     Servicos1: TMenuItem;
     btLocacao: TButton;
     Image1: TImage;
+    Image2: TImage;
+    Label5: TLabel;
+    Label6: TLabel;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

@@ -13,12 +13,24 @@ type
     BtOk: TButton;
     BtCancelar: TButton;
     BtNovo: TButton;
-    Label2: TLabel;
-    Label4: TLabel;
     CBOpcao: TComboBox;
     EditConsulta: TEdit;
     CBTipo: TComboBox;
-    Image3: TImage;
+    Label1: TLabel;
+    Label3: TLabel;
+    Image2: TImage;
+    Label5: TLabel;
+    MainMenu1: TMainMenu;
+    CtrlDel1: TMenuItem;
+    Editar2: TMenuItem;
+    Novo2: TMenuItem;
+    PopupMenu1: TPopupMenu;
+    Editar1: TMenuItem;
+    Excluir1: TMenuItem;
+    N1: TMenuItem;
+    Novo1: TMenuItem;
+    N2: TMenuItem;
+    Definirpadro1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure EditNomeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DBGrid1TitleClick(Column: TColumn);
@@ -26,6 +38,7 @@ type
     procedure BtNovoClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure EditConsultaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Excluir1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -63,8 +76,37 @@ begin
     DBGrid1.SetFocus;
 end;
 
+procedure TCsGrade_FinanceiraForm.Excluir1Click(Sender: TObject);
+begin
+if BancodeDados.GradeFinGRADE_ID.Value>0 then
+begin
+HabilitarBotoes(self,false);
+  try
+
+    BancodeDados.QrySql.Close;
+    BancodeDados.QrySql.SQL.Text:='select distinct grade_id from cont_serv_clien where grade_id = '+IntToStr(BancodeDados.GradeFinGRADE_ID.Value);
+    BancodeDados.QrySql.Open;
+
+    if BancodeDados.QrySql.IsEmpty then
+    begin
+      if PrincipalForm.LiberaAcesso then
+      begin
+        if not BancodeDados.FDConnection1.InTransaction then BancodeDados.FDConnection1.StartTransaction;
+
+        BancodeDados.GradeFin.Delete;
+        Bancodedados.FDConnection1.CommitRetaining;
+      end;
+    end else Mensagem('Registro com vínculo ao serviço de locação!'#13+'Ação não permitida!', mtInformation, [mbOk], mrOk, 0);
+  except on E : Exception do
+    TraduzErro(E.Message);
+  end;
+HabilitarBotoes(self,true);
+end;
+end;
+
 procedure TCsGrade_FinanceiraForm.DBGrid1TitleClick(Column: TColumn);
 begin
+
   BancodeDados.MudaOrdem(BancodeDados.GradeFin, Column.Field);
 end;
 

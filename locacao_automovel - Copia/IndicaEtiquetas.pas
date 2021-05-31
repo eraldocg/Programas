@@ -30,6 +30,7 @@ type
     EditObs: TEdit;
     Label3: TLabel;
     btLimpar: TButton;
+    Label4: TLabel;
     procedure BtOKClick(Sender: TObject);
     procedure btF2Click(Sender: TObject);
     procedure btLimparClick(Sender: TObject);

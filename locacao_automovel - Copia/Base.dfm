@@ -2203,6 +2203,7 @@ object BancodeDados: TBancodeDados
   end
   object Bancos: TFDQuery
     AfterInsert = BancosAfterInsert
+    BeforePost = BancosBeforePost
     Connection = FDConnection1
     ResourceOptions.AssignedValues = [rvParamCreate]
     UpdateObject = upBancos
@@ -2283,7 +2284,7 @@ object BancodeDados: TBancodeDados
     end
     object BancosABREV: TStringField
       FieldName = 'ABREV'
-      Size = 9
+      Size = 60
     end
     object BancosUSR_CAD: TIntegerField
       FieldName = 'USR_CAD'
@@ -2387,6 +2388,11 @@ object BancodeDados: TBancodeDados
     end
     object BancosNOME_ARQ_RET: TSmallintField
       FieldName = 'NOME_ARQ_RET'
+    end
+    object BancosCHAVE_PIX: TStringField
+      FieldName = 'CHAVE_PIX'
+      Origin = 'CHAVE_PIX'
+      Size = 60
     end
   end
   object DSBancos: TDataSource
@@ -3092,11 +3098,6 @@ object BancodeDados: TBancodeDados
       Origin = 'MODELO'
       Size = 60
     end
-    object VeiculosANO: TIntegerField
-      DisplayLabel = 'Ano'
-      FieldName = 'ANO'
-      Origin = 'ANO'
-    end
     object VeiculosCOR: TStringField
       DisplayLabel = 'Cor'
       FieldName = 'COR'
@@ -3135,6 +3136,21 @@ object BancodeDados: TBancodeDados
       FieldName = 'VL_FRANQ_SEGURO'
       Origin = 'VL_FRANQ_SEGURO'
       DisplayFormat = ',0.00'
+    end
+    object VeiculosANO_FAB: TIntegerField
+      DisplayLabel = 'Ano(Fabrica'#231#227'o)'
+      FieldName = 'ANO_FAB'
+      Origin = 'ANO_FAB'
+    end
+    object VeiculosANO_MODELO: TIntegerField
+      DisplayLabel = 'Ano(Modelo)'
+      FieldName = 'ANO_MODELO'
+      Origin = 'ANO_MODELO'
+    end
+    object VeiculosPLACA_ANTERIOR: TStringField
+      DisplayLabel = 'Placa(Anterior)'
+      FieldName = 'PLACA_ANTERIOR'
+      Origin = 'PLACA_ANTERIOR'
     end
   end
   object dsVeiculos: TDataSource
@@ -3262,6 +3278,11 @@ object BancodeDados: TBancodeDados
       FieldName = 'DT_CONTRATO_FIM'
       Origin = 'DT_CONTRATO_FIM'
     end
+    object Cont_Serv_ClienDias_locacao: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'Dias_locacao'
+      Calculated = True
+    end
   end
   object QryFornec: TFDQuery
     Connection = FDConnection1
@@ -3316,119 +3337,137 @@ object BancodeDados: TBancodeDados
   object upBancos: TFDUpdateSQL
     Connection = FDConnection1
     InsertSQL.Strings = (
-      'insert into bancos'
+      'INSERT INTO BANCOS'
+      '(BANCO_ID, BANCO_NOME, CODIGO_BANCO, DIG_BANCO, '
+      '  AGENCIA, DIG_AGENCIA, CONTA_CORRENTE, DIG_CONTA_CORRENTE, '
+      '  CODIGO_CEDENTE, DIG_COD_CEDENTE, NOME_CEDENTE, '
+      '  LOGOMARCA, CONVENIO, MENS_CABECALHO, LOCAL_PAGAMENTO, '
+      '  INST_ID, NOSSO_NUMERO, CARTEIRA, DIAS_TOLERANCIA, '
+      '  ABREV, USR_CAD, USUARIO_ID, DT_ALTERADO, '
+      '  MENSAGEM_1, MENSAGEM_2, MENSAGEM_3, OBSERVACAO_1, '
+      '  LAYOUT, CAMINHO_RETORNO, OCULTO, COB_REG, '
+      '  FOL_CONTRAT_REM, VAR_CARTEIRA, DIAS_PROTESTO, '
+      '  DESC_TOL, CONTRATO, TIPO_CONTA_CORRENTE, '
+      '  CODIGO_BANCO2, N_SEQ_REM, CAMINHO_REMESSA, '
+      '  ESPECIE_DOC, SAC_AVALISTA, ACEITA_DEB_AUT, '
+      '  INF_JUROS, INF_DESC, CONT_ENCERRADA, N_SEQ_REM_DEB_AUTO, '
+      '  HOMOLOGACAO, DIAS_BAIXAR_BANCO, BAIX_BOL_PARAM, '
+      '  NOME_ARQ_RET, CHAVE_PIX)'
       
-        '  (ABREV, ACEITA_DEB_AUT, AGENCIA, BANCO_ID, BANCO_NOME, CAMINHO' +
-        '_REMESSA, '
+        'VALUES (:NEW_BANCO_ID, :NEW_BANCO_NOME, :NEW_CODIGO_BANCO, :NEW_' +
+        'DIG_BANCO, '
       
-        '   CAMINHO_RETORNO, CARTEIRA, COB_REG, CODIGO_BANCO, CODIGO_BANC' +
-        'O2, CODIGO_CEDENTE, '
+        '  :NEW_AGENCIA, :NEW_DIG_AGENCIA, :NEW_CONTA_CORRENTE, :NEW_DIG_' +
+        'CONTA_CORRENTE, '
+      '  :NEW_CODIGO_CEDENTE, :NEW_DIG_COD_CEDENTE, :NEW_NOME_CEDENTE, '
       
-        '   CONT_ENCERRADA, CONTA_CORRENTE, CONTRATO, CONVENIO, DESC_TOL,' +
-        ' DIAS_PROTESTO, '
+        '  :NEW_LOGOMARCA, :NEW_CONVENIO, :NEW_MENS_CABECALHO, :NEW_LOCAL' +
+        '_PAGAMENTO, '
       
-        '   DIAS_TOLERANCIA, DIG_AGENCIA, DIG_BANCO, DIG_COD_CEDENTE, DIG' +
-        '_CONTA_CORRENTE, '
+        '  :NEW_INST_ID, :NEW_NOSSO_NUMERO, :NEW_CARTEIRA, :NEW_DIAS_TOLE' +
+        'RANCIA, '
+      '  :NEW_ABREV, :NEW_USR_CAD, :NEW_USUARIO_ID, :NEW_DT_ALTERADO, '
       
-        '   DT_ALTERADO, ESPECIE_DOC, FOL_CONTRAT_REM, INF_DESC, INF_JURO' +
-        'S,  LAYOUT, LOCAL_PAGAMENTO, '
-      '   LOGOMARCA, MENS_CABECALHO, MENSAGEM_1, MENSAGEM_2, '
+        '  :NEW_MENSAGEM_1, :NEW_MENSAGEM_2, :NEW_MENSAGEM_3, :NEW_OBSERV' +
+        'ACAO_1, '
+      '  :NEW_LAYOUT, :NEW_CAMINHO_RETORNO, :NEW_OCULTO, :NEW_COB_REG, '
+      '  :NEW_FOL_CONTRAT_REM, :NEW_VAR_CARTEIRA, :NEW_DIAS_PROTESTO, '
+      '  :NEW_DESC_TOL, :NEW_CONTRATO, :NEW_TIPO_CONTA_CORRENTE, '
+      '  :NEW_CODIGO_BANCO2, :NEW_N_SEQ_REM, :NEW_CAMINHO_REMESSA, '
+      '  :NEW_ESPECIE_DOC, :NEW_SAC_AVALISTA, :NEW_ACEITA_DEB_AUT, '
       
-        '   MENSAGEM_3, N_SEQ_REM, N_SEQ_REM_DEB_AUTO, NOME_CEDENTE, NOSS' +
-        'O_NUMERO, '
+        '  :NEW_INF_JUROS, :NEW_INF_DESC, :NEW_CONT_ENCERRADA, :NEW_N_SEQ' +
+        '_REM_DEB_AUTO, '
       
-        '   OBSERVACAO_1, SAC_AVALISTA, TIPO_CONTA_CORRENTE, USR_CAD, USU' +
-        'ARIO_ID, '
-      
-        '   VAR_CARTEIRA, HOMOLOGACAO, DIAS_BAIXAR_BANCO, BAIX_BOL_PARAM,' +
-        ' NOME_ARQ_RET)'
-      'values'
-      
-        '  (:ABREV, :ACEITA_DEB_AUT, :AGENCIA, :BANCO_ID, :BANCO_NOME, :C' +
-        'AMINHO_REMESSA, '
-      
-        '   :CAMINHO_RETORNO, :CARTEIRA, :COB_REG, :CODIGO_BANCO, :CODIGO' +
-        '_BANCO2, '
-      
-        '   :CODIGO_CEDENTE, :CONT_ENCERRADA, :CONTA_CORRENTE, :CONTRATO,' +
-        ' :CONVENIO, '
-      
-        '   :DESC_TOL, :DIAS_PROTESTO, :DIAS_TOLERANCIA, :DIG_AGENCIA, :D' +
-        'IG_BANCO, '
-      
-        '   :DIG_COD_CEDENTE, :DIG_CONTA_CORRENTE, :DT_ALTERADO, :ESPECIE' +
-        '_DOC, :FOL_CONTRAT_REM, '
-      
-        '   :INF_DESC, :INF_JUROS, :LAYOUT, :LOCAL_PAGAMENTO, :LOGOMARCA,' +
+        '  :NEW_HOMOLOGACAO, :NEW_DIAS_BAIXAR_BANCO, :NEW_BAIX_BOL_PARAM,' +
         ' '
-      
-        '   :MENS_CABECALHO, :MENSAGEM_1, :MENSAGEM_2, :MENSAGEM_3, :N_SE' +
-        'Q_REM, '
-      
-        '   :N_SEQ_REM_DEB_AUTO, :NOME_CEDENTE, :NOSSO_NUMERO, :OBSERVACA' +
-        'O_1, :SAC_AVALISTA, '
-      
-        '   :TIPO_CONTA_CORRENTE, :USR_CAD, :USUARIO_ID, :VAR_CARTEIRA, :' +
-        'HOMOLOGACAO, :DIAS_BAIXAR_BANCO, :BAIX_BOL_PARAM,'
-      '   :NOME_ARQ_RET)')
+      '  :NEW_NOME_ARQ_RET, :NEW_CHAVE_PIX)')
     ModifySQL.Strings = (
-      'update bancos'
-      'set'
-      '  ABREV = :ABREV,'
-      '  ACEITA_DEB_AUT = :ACEITA_DEB_AUT,'
-      '  AGENCIA = :AGENCIA,'
-      '  BANCO_ID = :BANCO_ID,'
-      '  BANCO_NOME = :BANCO_NOME,'
-      '  CAMINHO_REMESSA = :CAMINHO_REMESSA,'
-      '  CAMINHO_RETORNO = :CAMINHO_RETORNO,'
-      '  CARTEIRA = :CARTEIRA,'
-      '  COB_REG = :COB_REG,'
-      '  CODIGO_BANCO = :CODIGO_BANCO,'
-      '  CODIGO_BANCO2 = :CODIGO_BANCO2,'
-      '  CODIGO_CEDENTE = :CODIGO_CEDENTE,'
-      '  CONT_ENCERRADA = :CONT_ENCERRADA,'
-      '  CONTA_CORRENTE = :CONTA_CORRENTE,'
-      '  CONTRATO = :CONTRATO,'
-      '  CONVENIO = :CONVENIO,'
-      '  DESC_TOL = :DESC_TOL,'
-      '  DIAS_PROTESTO = :DIAS_PROTESTO,'
-      '  DIAS_TOLERANCIA = :DIAS_TOLERANCIA,'
-      '  DIG_AGENCIA = :DIG_AGENCIA,'
-      '  DIG_BANCO = :DIG_BANCO,'
-      '  DIG_COD_CEDENTE = :DIG_COD_CEDENTE,'
-      '  DIG_CONTA_CORRENTE = :DIG_CONTA_CORRENTE,'
-      '  DT_ALTERADO = :DT_ALTERADO,'
-      '  ESPECIE_DOC = :ESPECIE_DOC,'
-      '  FOL_CONTRAT_REM = :FOL_CONTRAT_REM,'
-      '  INF_DESC = :INF_DESC,'
-      '  INF_JUROS = :INF_JUROS,'
-      '  LAYOUT = :LAYOUT,'
-      '  LOCAL_PAGAMENTO = :LOCAL_PAGAMENTO,'
-      '  LOGOMARCA = :LOGOMARCA,'
-      '  MENS_CABECALHO = :MENS_CABECALHO,'
-      '  MENSAGEM_1 = :MENSAGEM_1,'
-      '  MENSAGEM_2 = :MENSAGEM_2,'
-      '  MENSAGEM_3 = :MENSAGEM_3,'
-      '  N_SEQ_REM = :N_SEQ_REM,'
-      '  N_SEQ_REM_DEB_AUTO = :N_SEQ_REM_DEB_AUTO,'
-      '  NOME_CEDENTE = :NOME_CEDENTE,'
-      '  NOSSO_NUMERO = :NOSSO_NUMERO,'
-      '  OBSERVACAO_1 = :OBSERVACAO_1,'
-      '  SAC_AVALISTA = :SAC_AVALISTA,'
-      '  TIPO_CONTA_CORRENTE = :TIPO_CONTA_CORRENTE,'
-      '  USR_CAD = :USR_CAD,'
-      '  USUARIO_ID = :USUARIO_ID,'
-      '  VAR_CARTEIRA = :VAR_CARTEIRA,'
-      '  HOMOLOGACAO = :HOMOLOGACAO,'
-      '  DIAS_BAIXAR_BANCO = :DIAS_BAIXAR_BANCO,'
-      '  BAIX_BOL_PARAM = :BAIX_BOL_PARAM,'
-      '  NOME_ARQ_RET = :NOME_ARQ_RET'
-      'where'
-      '  BANCO_ID = :OLD_BANCO_ID')
+      'UPDATE BANCOS'
+      
+        'SET BANCO_ID = :NEW_BANCO_ID, BANCO_NOME = :NEW_BANCO_NOME, CODI' +
+        'GO_BANCO = :NEW_CODIGO_BANCO, '
+      
+        '  DIG_BANCO = :NEW_DIG_BANCO, AGENCIA = :NEW_AGENCIA, DIG_AGENCI' +
+        'A = :NEW_DIG_AGENCIA, '
+      
+        '  CONTA_CORRENTE = :NEW_CONTA_CORRENTE, DIG_CONTA_CORRENTE = :NE' +
+        'W_DIG_CONTA_CORRENTE, '
+      
+        '  CODIGO_CEDENTE = :NEW_CODIGO_CEDENTE, DIG_COD_CEDENTE = :NEW_D' +
+        'IG_COD_CEDENTE, '
+      '  NOME_CEDENTE = :NEW_NOME_CEDENTE, LOGOMARCA = :NEW_LOGOMARCA, '
+      
+        '  CONVENIO = :NEW_CONVENIO, MENS_CABECALHO = :NEW_MENS_CABECALHO' +
+        ', '
+      
+        '  LOCAL_PAGAMENTO = :NEW_LOCAL_PAGAMENTO, INST_ID = :NEW_INST_ID' +
+        ', '
+      '  NOSSO_NUMERO = :NEW_NOSSO_NUMERO, CARTEIRA = :NEW_CARTEIRA, '
+      '  DIAS_TOLERANCIA = :NEW_DIAS_TOLERANCIA, ABREV = :NEW_ABREV, '
+      
+        '  USR_CAD = :NEW_USR_CAD, USUARIO_ID = :NEW_USUARIO_ID, DT_ALTER' +
+        'ADO = :NEW_DT_ALTERADO, '
+      '  MENSAGEM_1 = :NEW_MENSAGEM_1, MENSAGEM_2 = :NEW_MENSAGEM_2, '
+      
+        '  MENSAGEM_3 = :NEW_MENSAGEM_3, OBSERVACAO_1 = :NEW_OBSERVACAO_1' +
+        ', '
+      '  LAYOUT = :NEW_LAYOUT, CAMINHO_RETORNO = :NEW_CAMINHO_RETORNO, '
+      
+        '  OCULTO = :NEW_OCULTO, COB_REG = :NEW_COB_REG, FOL_CONTRAT_REM ' +
+        '= :NEW_FOL_CONTRAT_REM, '
+      
+        '  VAR_CARTEIRA = :NEW_VAR_CARTEIRA, DIAS_PROTESTO = :NEW_DIAS_PR' +
+        'OTESTO, '
+      
+        '  DESC_TOL = :NEW_DESC_TOL, CONTRATO = :NEW_CONTRATO, TIPO_CONTA' +
+        '_CORRENTE = :NEW_TIPO_CONTA_CORRENTE, '
+      
+        '  CODIGO_BANCO2 = :NEW_CODIGO_BANCO2, N_SEQ_REM = :NEW_N_SEQ_REM' +
+        ', '
+      
+        '  CAMINHO_REMESSA = :NEW_CAMINHO_REMESSA, ESPECIE_DOC = :NEW_ESP' +
+        'ECIE_DOC, '
+      
+        '  SAC_AVALISTA = :NEW_SAC_AVALISTA, ACEITA_DEB_AUT = :NEW_ACEITA' +
+        '_DEB_AUT, '
+      
+        '  INF_JUROS = :NEW_INF_JUROS, INF_DESC = :NEW_INF_DESC, CONT_ENC' +
+        'ERRADA = :NEW_CONT_ENCERRADA, '
+      
+        '  N_SEQ_REM_DEB_AUTO = :NEW_N_SEQ_REM_DEB_AUTO, HOMOLOGACAO = :N' +
+        'EW_HOMOLOGACAO, '
+      
+        '  DIAS_BAIXAR_BANCO = :NEW_DIAS_BAIXAR_BANCO, BAIX_BOL_PARAM = :' +
+        'NEW_BAIX_BOL_PARAM, '
+      '  NOME_ARQ_RET = :NEW_NOME_ARQ_RET, CHAVE_PIX = :NEW_CHAVE_PIX'
+      'WHERE BANCO_ID = :OLD_BANCO_ID')
     DeleteSQL.Strings = (
-      'delete from bancos'
-      'where'
-      '  BANCO_ID = :OLD_BANCO_ID')
+      'DELETE FROM BANCOS'
+      'WHERE BANCO_ID = :OLD_BANCO_ID')
+    FetchRowSQL.Strings = (
+      
+        'SELECT BANCO_ID, BANCO_NOME, CODIGO_BANCO, DIG_BANCO, AGENCIA, D' +
+        'IG_AGENCIA, '
+      
+        '  CONTA_CORRENTE, DIG_CONTA_CORRENTE, CODIGO_CEDENTE, DIG_COD_CE' +
+        'DENTE, '
+      
+        '  NOME_CEDENTE, LOGOMARCA, CONVENIO, MENS_CABECALHO, LOCAL_PAGAM' +
+        'ENTO, '
+      '  INST_ID, NOSSO_NUMERO, CARTEIRA, DIAS_TOLERANCIA, ABREV, '
+      '  USR_CAD, USUARIO_ID, DT_ALTERADO, MENSAGEM_1, MENSAGEM_2, '
+      '  MENSAGEM_3, OBSERVACAO_1, LAYOUT, CAMINHO_RETORNO, OCULTO, '
+      
+        '  COB_REG, FOL_CONTRAT_REM, VAR_CARTEIRA, DIAS_PROTESTO, DESC_TO' +
+        'L, '
+      '  CONTRATO, TIPO_CONTA_CORRENTE, CODIGO_BANCO2, N_SEQ_REM, '
+      '  CAMINHO_REMESSA, ESPECIE_DOC, SAC_AVALISTA, ACEITA_DEB_AUT, '
+      '  INF_JUROS, INF_DESC, CONT_ENCERRADA, N_SEQ_REM_DEB_AUTO, '
+      '  HOMOLOGACAO, DIAS_BAIXAR_BANCO, BAIX_BOL_PARAM, NOME_ARQ_RET, '
+      '  CHAVE_PIX'
+      'FROM BANCOS'
+      'WHERE BANCO_ID = :BANCO_ID')
     Left = 282
     Top = 220
   end

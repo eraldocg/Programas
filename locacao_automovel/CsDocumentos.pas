@@ -33,6 +33,8 @@ type
     CBTipo: TComboBox;
     EditConsulta: TEdit;
     Image1: TImage;
+    Image2: TImage;
+    Label1: TLabel;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);

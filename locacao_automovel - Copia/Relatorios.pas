@@ -8,7 +8,6 @@ uses
 
 type
   TRelatoriosForm = class(TForm)
-    Image2: TImage;
     Panel2: TPanel;
     BtOK: TButton;
     BtCancelar: TButton;
@@ -21,8 +20,11 @@ type
     chkLigacoes: TRadioButton;
     MainMenu1: TMainMenu;
     TabSheet2: TTabSheet;
+    Image2: TImage;
+    Image4: TImage;
+    Image1: TImage;
+    Label1: TLabel;
     procedure FormKeyPress(Sender: TObject; var Key: Char);
-    procedure PageControl1Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BtOKClick(Sender: TObject);
   private
@@ -53,17 +55,6 @@ begin
   begin
     Key := #0;
     Perform(WM_NextDlgCtl, 0, 0);
-  end;
-end;
-
-procedure TRelatoriosForm.PageControl1Change(Sender: TObject);
-var
-  i: Integer;
-begin
-  for i := 0 to ComponentCount - 1 do
-  begin
-    if Components[i] is TRadioButton then
-      (Components[i] as TRadioButton).Checked := False;
   end;
 end;
 

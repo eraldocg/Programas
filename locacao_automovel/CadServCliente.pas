@@ -20,8 +20,6 @@ type
     DBNavigator1: TDBNavigator;
     Label4: TLabel;
     EditDtInicioContrato: TSedDbDateEdit;
-    Label7: TLabel;
-    EditDiaVenc: TDBComboBox;
     Label2: TLabel;
     EditValorMensal: TDBEdit;
     GroupBox1: TGroupBox;
@@ -49,8 +47,6 @@ type
     qryValor: TFDQuery;
     qryValorVL_MULT_CONTRATUAL: TFloatField;
     qryValorVALOR: TFloatField;
-    Label15: TLabel;
-    EditMulJur: TDBEdit;
     Label16: TLabel;
     EditDtFinalContrato: TSedDbDateEdit;
     DBText1: TDBText;
