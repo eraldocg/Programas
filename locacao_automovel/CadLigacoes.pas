@@ -87,7 +87,7 @@ begin
 EditTipo.SetFocus;
 
 BancodeDados.CsClientes.Close;
-BancodeDados.CsClientes.SQL.Text := 'select * from clientes where tipo = '+QuotedStr('001 - Escola')+' order by fantasia';
+BancodeDados.CsClientes.SQL.Text := 'select * from clientes where tipo = '+QuotedStr('001 - Escola')+' order by nome';
 BancodeDados.CsClientes.Open;
 BancodeDados.CsClientes.Last;
 

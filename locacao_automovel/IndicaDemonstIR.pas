@@ -125,7 +125,7 @@ begin
         0:
           CampoData := 'b.recebimento';
         1:
-          CampoData := 'l.DATA';
+          CampoData := 'l.data';
       end;
       RelDemonstIRForm.Receitas.SQL.Text := 'select c.nome as cliente, c.cnpj, coalesce(b.valor_mensal, 0) + coalesce(b.valor_lic, 0) as valor_integral, sum(b.valor_pago) as valor_com_juros, ' + ' min(l.data) as prim_data, max(l.data) as ult_data, count(b.boleto_id) as qtd' + ' from boletos b' +
         ' left join livro_caixa l on (l.boleto_id = b.boleto_id)' + ' left join clientes c on (c.cli_id = b.cli_id)' + ' where ' + CampoData + ' between ' + QuotedStr(FormatDateTime('yyyy/mm/dd',dtIni.DateTime)) + ' and ' + QuotedStr(FormatDateTime('yyyy/mm/dd',dtFim.DateTime));

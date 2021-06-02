@@ -718,8 +718,8 @@ object RelLigacoesForm: TRelLigacoesForm
     end
   end
   object RLReport1: TRLReport
-    Left = 53
-    Top = 43
+    Left = 141
+    Top = 333
     Width = 794
     Height = 1123
     DataSource = IndicaLigacoesForm.DsCsClientes

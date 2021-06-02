@@ -134,7 +134,6 @@ object IndicaDemonstIRForm: TIndicaDemonstIRForm
     Color = 7562340
     ParentBackground = False
     TabOrder = 7
-    ExplicitLeft = 2
     object BtOK: TButton
       Left = 310
       Top = 3

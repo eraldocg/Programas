@@ -498,8 +498,6 @@ object RelatoriosForm: TRelatoriosForm
     Color = 7562340
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 2
-    ExplicitTop = 245
     DesignSize = (
       390
       30)
@@ -531,7 +529,7 @@ object RelatoriosForm: TRelatoriosForm
     Top = 50
     Width = 262
     Height = 193
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Style = tsFlatButtons
     TabOrder = 0
     object TabSheet1: TTabSheet

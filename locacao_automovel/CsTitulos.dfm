@@ -887,7 +887,7 @@ object CsTitulosForm: TCsTitulosForm
     Height = 295
     Align = alClient
     Color = clWhite
-    DataSource = BancodeDados.DSCaixaPagar
+    DataSource = BancodeDados.DSBoletos
     FixedColor = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -917,6 +917,7 @@ object CsTitulosForm: TCsTitulosForm
       item
         Expanded = False
         FieldName = 'PARCELA'
+        Width = 64
         Visible = True
       end
       item
@@ -945,11 +946,13 @@ object CsTitulosForm: TCsTitulosForm
       item
         Expanded = False
         FieldName = 'VALOR_LIC'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'VALOR_MENSAL'
+        Width = 64
         Visible = True
       end
       item
@@ -965,6 +968,7 @@ object CsTitulosForm: TCsTitulosForm
       item
         Expanded = False
         FieldName = 'SITUACAO_BOLETO'
+        Width = 64
         Visible = True
       end
       item
@@ -981,21 +985,25 @@ object CsTitulosForm: TCsTitulosForm
       item
         Expanded = False
         FieldName = 'JurosCalc'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'vlAPagarCalc'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'RECEBIMENTO'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DESCRICAO_PAGO'
+        Width = 64
         Visible = True
       end
       item
@@ -1012,6 +1020,7 @@ object CsTitulosForm: TCsTitulosForm
       item
         Expanded = False
         FieldName = 'CLIENTE'
+        Width = 64
         Visible = True
       end>
   end

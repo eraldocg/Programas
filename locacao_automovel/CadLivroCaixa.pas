@@ -12,7 +12,6 @@ type
     Panel1: TPanel;
     Label13: TLabel;
     Label1: TLabel;
-    EditDocumento: TDBEdit;
     EditAbrev: TDBEdit;
     BtInserir: TButton;
     Button1: TButton;
@@ -43,6 +42,7 @@ type
     DBNavigator2: TDBNavigator;
     Image2: TImage;
     Label12: TLabel;
+    EditDoc_placa: TDBComboBox;
     procedure BtInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -175,7 +175,7 @@ begin
 
   if BancodeDados.Livro_CaixaEXTRATO.Value>0 then
   begin
-   EditDocumento.Enabled:=false;
+   EditDoc_placa.Enabled:=false;
    Dt_Pagar.Enabled     :=false;
    EditEntrada.Enabled  :=false;
    EditSaida.Enabled    :=false;
@@ -186,6 +186,21 @@ begin
   Dt_Pagar.SetFocus else EditAbrev.SetFocus;
 
 
+  if (BancodeDados.Livro_Caixa.State in [dsInsert]) then
+  begin
+
+    BancodeDados.Veiculos.Close;
+    BancodeDados.Veiculos.SQL.Text := 'select * from veiculos order by dt_cad desc';
+    BancodeDados.Veiculos.Open;
+
+    BancodeDados.Veiculos.First;
+    while not BancodeDados.Veiculos.eof do
+    begin
+
+      EditDoc_placa.Items.Add(BancodeDados.VeiculosPLACA.AsString);
+      BancodeDados.Veiculos.Next;
+    end;
+  end;
 
 end;
 

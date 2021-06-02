@@ -400,7 +400,7 @@ begin    //PopupMenu1
           NmAlunos.DelimitedText := LimpoNome;
 
           Memo1.Clear;
-          Memo1.Lines.Add('CLIENTE: '+AnsiUpperCase(qryTitulosCLIENTE_FANTASIA.Value));
+          Memo1.Lines.Add('CLIENTE: '+AnsiUpperCase(qryTitulosCLIENTE_NOME.Value));
           Memo1.Lines.Add('PARCELA: '+qryTitulosPARCELA.Value);
           Memo1.Lines.Add('DATA DE RECEBIDO: '+DateToStr(qryTitulosDATA_RECEBIMENTO.Value) );
           Memo1.Lines.Add('VALOR PAGO R$: '+FormatFloat(',0.00',qryTitulosVALOR_PAGO.Value) );
@@ -542,7 +542,7 @@ begin //PopupMenu2
           NmAlunos.DelimitedText := LimpoNome;
 
           Memo1.Clear;
-          Memo1.Lines.Add('CLIENTE: '+AnsiUpperCase(qryTitulosCLIENTE_FANTASIA.Value));
+          Memo1.Lines.Add('CLIENTE: '+AnsiUpperCase(qryTitulosCLIENTE_NOME.Value));
           Memo1.Lines.Add('PARCELA: '+qryTitulosPARCELA.Value);
           Memo1.Lines.Add('DATA DE RECEBIDO: '+DateToStr(qryTitulosDATA_RECEBIMENTO.Value) );
           Memo1.Lines.Add('VALOR PAGO R$: '+FormatFloat(',0.00',qryTitulosVALOR_PAGO.Value) );

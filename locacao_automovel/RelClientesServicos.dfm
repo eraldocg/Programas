@@ -549,7 +549,7 @@ object RelClientesServicosForm: TRelClientesServicosForm
           Width = 231
           Height = 11
           AutoSize = False
-          DataField = 'FANTASIA'
+          DataField = 'NOME'
           DataSource = BancodeDados.DsClientes
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -696,10 +696,6 @@ object RelClientesServicosForm: TRelClientesServicosForm
     object csClientesServicosNOME: TStringField
       FieldName = 'NOME'
       Size = 60
-    end
-    object csClientesServicosFANTASIA: TStringField
-      FieldName = 'FANTASIA'
-      Size = 40
     end
     object csClientesServicosCNPJ: TStringField
       FieldName = 'CNPJ'

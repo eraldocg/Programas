@@ -929,6 +929,7 @@ object PrincipalForm: TPrincipalForm
   end
   object MainMenu1: TMainMenu
     Images = ImageMn
+    OnChange = MainMenu1Change
     Left = 48
     Top = 54
     object Arquivo1: TMenuItem
@@ -1104,6 +1105,7 @@ object PrincipalForm: TPrincipalForm
       end
       object ConsultadeNotasFiscias12: TMenuItem
         Caption = 'Consulta de Notas Fiscias'
+        Enabled = False
         OnClick = ConsultadeNotasFiscias12Click
       end
       object N11: TMenuItem
@@ -1111,6 +1113,7 @@ object PrincipalForm: TPrincipalForm
       end
       object AssistenteparaGeraodeNFS12: TMenuItem
         Caption = 'Assistente para Gera'#231#227'o de NFS'
+        Enabled = False
         OnClick = AssistenteparaGeraodeNFS12Click
       end
     end
@@ -1183,7 +1186,7 @@ object PrincipalForm: TPrincipalForm
     Left = 170
     Top = 34
     Bitmap = {
-      494C010105000900580410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900600410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1463,7 +1466,7 @@ object PrincipalForm: TPrincipalForm
     Left = 138
     Top = 34
     Bitmap = {
-      494C010108000900580410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010108000900600410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

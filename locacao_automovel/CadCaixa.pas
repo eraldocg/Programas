@@ -43,6 +43,7 @@ type
     btImp: TButton;
     Image2: TImage;
     Label5: TLabel;
+    Image1: TImage;
     procedure DBGrid1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -72,6 +73,7 @@ type
 
 var
   CadCaixaForm: TCadCaixaForm;
+  NaopodAgrupar : Boolean = false;
   //AtivaEvento: Integer;
 
 implementation
@@ -141,10 +143,12 @@ begin
       RelLivroCaixaForm.lbPeriodo.Caption := 'Período ' + FormatDateTime('dd/mm/yyyy', Dt_Inicial.DateTime) + ' até ' +
         FormatDateTime('dd/mm/yyyy', Dt_Final.DateTime);
 
-      condicao := AnsiUpperCase(BancodeDados.Livro_Caixa.sql.Text);
-      Delete(condicao, 1, Pos('WHERE', condicao) + 5);
-      Delete(condicao, Pos('ORDER', condicao), length(condicao));
+//      condicao := AnsiUpperCase(BancodeDados.Livro_Caixa.sql.Text);
+//      Delete(condicao, 1, Pos('WHERE', condicao) + 5);
+//      Delete(condicao, Pos('ORDER', condicao), length(condicao));
       // (Condicao);
+      condicao:=PrincipalForm.PegarTexto(BancodeDados.Livro_Caixa.SQL.Text,'where 1=1  and', 'order', true);
+
 
       RelLivroCaixaForm.QryTotais.close;
       RelLivroCaixaForm.QryTotais.sql.Text := 'select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) as TOTAL from livro_caixa l where l.descricao_pago=' + QuotedStr('Dinheiro') + ' and ' + condicao;
@@ -183,6 +187,12 @@ begin
       RelLivroCaixaForm.lbOutros.Caption := 'Outros:  ' + FormatFloat(',0.00', RelLivroCaixaForm.QryTotaisTOTAL.Value);
 
       RelLivroCaixaForm.QryTotais.close;
+
+
+      if NaopodAgrupar then
+      RelLivroCaixaForm.RLGroup2.DataFields:='';
+
+
       BancodeDados.PrepararRel(RelLivroCaixaForm.RLReport2);
     finally
       RelLivroCaixaForm.Release;
@@ -255,7 +265,9 @@ end;
 procedure TCadCaixaForm.DBGrid1TitleClick(Column: TColumn);
 begin
   // if  ((Column.FieldName<>'Conta_Tipo_Nome') and (column.FieldName<>'ATIVO')) then
-  BancodeDados.MudaOrdem(BancodeDados.Livro_Caixa, Column.Field);
+//  RelLivroCaixaForm.RLGroup1.DataFields:='';
+BancodeDados.MudaOrdem(BancodeDados.Livro_Caixa, Column.Field);
+NaopodAgrupar:=true;
 end;
 
 procedure TCadCaixaForm.BtExecutarClick(Sender: TObject);

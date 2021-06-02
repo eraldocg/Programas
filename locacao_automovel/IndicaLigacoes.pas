@@ -33,7 +33,6 @@ type
     CsClientes: TFDQuery;
     CsClientesCLI_ID: TIntegerField;
     CsClientesNOME: TStringField;
-    CsClientesFANTASIA: TStringField;
     DsCsClientes: TDataSource;
     qryContador: TFDQuery;
     qryContadorTOTAL: TIntegerField;
@@ -91,7 +90,7 @@ try
 
   if Trim(EditCodigo.Text) <> '' then
   CsClientes.SQL.Add(' and CLI_ID in (' + (EditCodigo.Text) +')') else
-  CsClientes.SQL.Add(' and TIPO = '+QuotedStr('001 - Escola')+' order by fantasia');
+  CsClientes.SQL.Add(' and TIPO = '+QuotedStr('001 - Escola')+' order by nome');
   CsClientes.Open;
 
   if not CsClientes.IsEmpty then  begin
@@ -244,7 +243,7 @@ qryContador.Close;
 
 //deixar no final
 if (IndicaLigacoesForm.CsClientesTOTALIZADO.Value > 0) then
-CsClientesFANTASIA2.AsString:=CsClientesFANTASIA.Value else CsClientesFANTASIA2.AsString:='* '+CsClientesFANTASIA.Value;
+CsClientesFANTASIA2.AsString:=CsClientesNOME.Value else CsClientesFANTASIA2.AsString:='* '+CsClientesNOME.Value;
 
 
 

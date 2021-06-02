@@ -755,6 +755,13 @@ object CsDocumentosForm: TCsDocumentosForm
       ShortCut = 16430
       OnClick = Excluir1Click
     end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object DuplicarRegistro1: TMenuItem
+      Caption = 'Duplicar Registro'
+      OnClick = DuplicarRegistro1Click
+    end
     object N1: TMenuItem
       Caption = '-'
     end

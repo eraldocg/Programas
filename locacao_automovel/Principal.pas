@@ -203,7 +203,9 @@ type
     procedure Iniciar1Click(Sender: TObject);
     procedure Parar1Click(Sender: TObject);
     procedure AtualizarBancodeDados1Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject); //add por Denilson
+    procedure FormCreate(Sender: TObject);
+    procedure MainMenu1Change(Sender: TObject; Source: TMenuItem;
+      Rebuild: Boolean); //add por Denilson
  //   procedure ColorControl(Sender: TObject);
   private
     { Private declarations }
@@ -325,7 +327,6 @@ uses
   CsVeiculos, CsConf;
 
 {$R *.dfm}
-
 
 function TPrincipalForm.SQLrepositorio(IdSql: SmallInt): string;
 var  SqlTmp : string;
@@ -1927,6 +1928,22 @@ begin
 end;
 
 
+
+procedure TPrincipalForm.MainMenu1Change(Sender: TObject; Source: TMenuItem;
+  Rebuild: Boolean);
+begin
+ Tesouraria1.Enabled:=False;
+ ConsultadeNotasFiscias12.Enabled:=False;
+ AssistenteparaGeraodeNFS12.Enabled:=False;
+
+
+ Processararquivoderetorno12.Enabled:=False;
+ GerarArquivodeRemessa1.Enabled:=False;
+ RelatriodeRemessa1.Enabled:=False;
+ ConciliaoBancria1.Enabled:=False;
+ BoletosEmitidos2.Enabled:=False;
+
+end;
 
 procedure TPrincipalForm.MalaDiretaEmail1_OffClick(Sender: TObject);
 begin

@@ -108,17 +108,17 @@ uses
   CsVeiculos in 'CsVeiculos.pas' {CsVeiculosForm},
   CadVeiculos in 'CadVeiculos.pas' {CadVeiculosForm},
   CsConf in 'CsConf.pas' {CsConfForm},
-  GeraBoletoVeic in 'GeraBoletoVeic.pas' {GeraBoletoVeicForm};
+  GeraBoletoVeic in 'GeraBoletoVeic.pas' {GeraBoletoVeicForm},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskBar := True;
+  Application.Title := 'Locação de Automóveis';
   Application.CreateForm(TBancodeDados, BancodeDados);
   Application.CreateForm(TPrincipalForm, PrincipalForm);
-  Application.CreateForm(TCsConfForm, CsConfForm);
-  Application.CreateForm(TCsConfForm, CsConfForm);
-  Application.CreateForm(TGeraBoletoVeicForm, GeraBoletoVeicForm);
   Application.Run;
 end.

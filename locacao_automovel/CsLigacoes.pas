@@ -401,7 +401,7 @@ lbContador.Caption := FormatFloat('000000', BancodeDados.Ligacoes.RecordCount) +
     BancodeDados.CsClientes.SQL.Text := 'select * from clientes where 1=1';
     if Assigned(CsClientesForm) then
     BancodeDados.CsClientes.SQL.Add(' and cli_id = '+IntToStr(BancodeDados.ClientesCLI_ID.Value)) else
-    BancodeDados.CsClientes.SQL.Add(' and tipo = '+QuotedStr('001 - Escola')+' order by fantasia');
+    BancodeDados.CsClientes.SQL.Add(' and tipo = '+QuotedStr('001 - Escola')+' order by nome');
     BancodeDados.CsClientes.Open;
 
     BancodeDados.CsClientes.First;
@@ -410,7 +410,7 @@ lbContador.Caption := FormatFloat('000000', BancodeDados.Ligacoes.RecordCount) +
     cbTipo_Cliente.Items.Add('TODOS OS TIPOS');
     while not BancodeDados.CsClientes.Eof do
     begin
-      cbTipo_Cliente.Items.Add(FormatFloat('000000', BancodeDados.CsClientesCLI_ID.AsInteger) + ' - ' + (BancodeDados.CsClientesFANTASIA.Value));
+      cbTipo_Cliente.Items.Add(FormatFloat('000000', BancodeDados.CsClientesCLI_ID.AsInteger) + ' - ' + (BancodeDados.CsClientesNOME.Value));
       BancodeDados.CsClientes.Next;
     end; // while
 

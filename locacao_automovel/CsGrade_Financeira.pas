@@ -39,6 +39,9 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure EditConsultaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Excluir1Click(Sender: TObject);
+    procedure Definirpadro1Click(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
 
   private
     { Private declarations }
@@ -110,6 +113,32 @@ begin
   BancodeDados.MudaOrdem(BancodeDados.GradeFin, Column.Field);
 end;
 
+procedure TCsGrade_FinanceiraForm.Definirpadro1Click(Sender: TObject);
+var
+IDTemp : integer;
+begin
+if BancodeDados.GradeFinGRADE_ID.Value>0 then
+if (BancodeDados.GradeFinPADRAO.IsNull) or (BancodeDados.GradeFinPADRAO.Value<>1) then
+if Mensagem('Definir o registro como grade financeira padrão?', mtConfirmation, [mbYes, mbNo], mrYes, 0)=idYes then
+begin
+  try
+    IDTemp:=BancodeDados.GradeFinGRADE_ID.Value;
+    if not BancodeDados.FDConnection1.InTransaction then BancodeDados.FDConnection1.StartTransaction;
+    BancodeDados.Adiciona.SQL.Text:='update grade_financeira set padrao=0 where not grade_id='+IntToStr(BancodeDados.GradeFinGRADE_ID.Value);
+    BancodeDados.Adiciona.ExecSQL;
+    BancodeDados.Adiciona.SQL.Text:='update grade_financeira set padrao=1 where grade_id='+IntToStr(BancodeDados.GradeFinGRADE_ID.Value);
+    BancodeDados.Adiciona.ExecSQL;
+    BancodeDados.FDConnection1.CommitRetaining;
+    BancodeDados.GradeFin.Close;
+    BancodeDados.GradeFin.Open;
+    BancodeDados.GradeFin.Locate('GRADE_ID', IDTemp, []);
+  except On E:Exception do
+    TraduzErro(E.Message);
+  end;
+end;
+
+end;
+
 procedure TCsGrade_FinanceiraForm.DBGrid1DblClick(Sender: TObject);
 begin
   try
@@ -135,6 +164,20 @@ begin
   end;
   Screen.Cursor := crDefault;
 
+end;
+
+procedure TCsGrade_FinanceiraForm.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if BancodeDados.GradeFinGRADE_ID.Value>0 then
+  begin
+    if not (gdSelected in State) then
+    begin
+      if BancodeDados.GradeFinPADRAO.Value=1 then
+      DBGrid1.Canvas.Font.Color:=clBlue;
+      DBGrid1.DefaultDrawDataCell(Rect, DBGrid1.Columns[datacol].Field, State);
+    end;
+  end;
 end;
 
 procedure TCsGrade_FinanceiraForm.BtNovoClick(Sender: TObject);

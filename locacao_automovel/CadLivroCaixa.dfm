@@ -25,12 +25,12 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
   TextHeight = 14
   object Label1: TLabel
     Left = 7
-    Top = 98
+    Top = 96
     Width = 89
     Height = 14
     Alignment = taRightJustify
     AutoSize = False
-    Caption = 'Documento:'
+    Caption = 'Documento/Placa:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWhite
     Font.Height = -11
@@ -70,7 +70,7 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
   end
   object Label3: TLabel
     Left = 7
-    Top = 79
+    Top = 77
     Width = 89
     Height = 13
     Alignment = taRightJustify
@@ -145,7 +145,7 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
   end
   object Label9: TLabel
     Left = 248
-    Top = 79
+    Top = 77
     Width = 53
     Height = 14
     Alignment = taRightJustify
@@ -166,6 +166,7 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Conta de Destino:'
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWhite
     Font.Height = -11
@@ -746,25 +747,15 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
       TabOrder = 1
     end
     object DBNavigator2: TDBNavigator
-      Left = 129
-      Top = 2
-      Width = 92
-      Height = 25
+      Left = 138
+      Top = 6
+      Width = 80
+      Height = 18
       DataSource = BancodeDados.DSLivroCaixa
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       TabOrder = 2
       OnClick = DBNavigator2Click
     end
-  end
-  object EditDocumento: TDBEdit
-    Left = 99
-    Top = 96
-    Width = 281
-    Height = 20
-    AutoSelect = False
-    DataField = 'DOCUMENTO'
-    DataSource = BancodeDados.DSLivroCaixa
-    TabOrder = 2
   end
   object EditAbrev: TDBEdit
     Left = 99
@@ -772,6 +763,7 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
     Width = 281
     Height = 20
     AutoSelect = False
+    CharCase = ecUpperCase
     DataField = 'DESCRICAO'
     DataSource = BancodeDados.DSLivroCaixa
     TabOrder = 3
@@ -787,7 +779,7 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
   end
   object Dt_Pagar: TSedDbDateEdit
     Left = 99
-    Top = 76
+    Top = 74
     Width = 111
     Height = 20
     DataField = 'DATA'
@@ -850,7 +842,7 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
   end
   object EditHora: TDBEdit
     Left = 303
-    Top = 76
+    Top = 74
     Width = 77
     Height = 20
     DataField = 'HORA'
@@ -866,6 +858,7 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
     Cursor = crHandPoint
     DataField = 'CONTA_ID_DEST'
     DataSource = BancodeDados.DSLivroCaixa
+    Enabled = False
     KeyField = 'CONTA_ID'
     ListField = 'CONTA'
     ListSource = BancodeDados.DSContas
@@ -881,6 +874,19 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
     DataSource = BancodeDados.DSLivroCaixa
     ReadOnly = True
     TabOrder = 9
+  end
+  object EditDoc_placa: TDBComboBox
+    Left = 99
+    Top = 94
+    Width = 281
+    Height = 22
+    BevelInner = bvNone
+    BevelOuter = bvNone
+    CharCase = ecUpperCase
+    DataField = 'DOCUMENTO'
+    DataSource = BancodeDados.DSLivroCaixa
+    Sorted = True
+    TabOrder = 2
   end
   object MainMenu1: TMainMenu
     Left = 334

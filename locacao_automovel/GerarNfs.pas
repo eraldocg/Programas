@@ -319,7 +319,7 @@ begin
     cliente.Close;
     cliente.SQL.Clear;
     cliente.SQL.Add('insert into clientes (cli_id, nome, cnpj, logradouro, bairro, ');
-    cliente.SQL.Add('cidade, estado, cep, email_contato1,email_contato2, sit, fantasia, fat_nota,FONE1, FONE2) values (GEN_ID(gen_clicod, 1), ');
+    cliente.SQL.Add('cidade, estado, cep, email_contato1,email_contato2, sit, nome as fantasia, fat_nota,FONE1, FONE2) values (GEN_ID(gen_clicod, 1), ');
     cliente.SQL.Add(':Nome, :Cnpj, :Logradouro,:Bairro,(select  first 1 municipios.codmun from municipios where municipios.nome =:Cidade), (select  first 1 estados.uf_cod from estados where estados.uf =:Estado),:CEP, :Email,:Email, 1, :Fantasia, 1,:FONE1,:FONE2 )');
     cliente.ExecSQL;
 

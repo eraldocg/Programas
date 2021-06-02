@@ -712,7 +712,7 @@ object CadClientesForm: TCadClientesForm
           end
           object EditNaturalidade: TDBLookupComboBox
             Left = 75
-            Top = 24
+            Top = 23
             Width = 414
             Height = 20
             Color = clWhite
@@ -728,10 +728,6 @@ object CadClientesForm: TCadClientesForm
         object TabSheet6: TTabSheet
           Caption = 'Internet'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label21: TLabel
             Left = 54
             Top = 7

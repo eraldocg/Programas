@@ -696,7 +696,6 @@ type
     LigacoesATIVO: TBooleanField;
     LigacoesTIPO: TSmallintField;
     qryClientes: TFDQuery;
-    qryClientesFANTASIA: TStringField;
     qryClientesFONE1: TStringField;
     qryClientesFONE2: TStringField;
     Ligacoesfone1: TStringField;
@@ -1162,6 +1161,7 @@ type
     VeiculosANO_MODELO: TIntegerField;
     VeiculosPLACA_ANTERIOR: TStringField;
     Cont_Serv_ClienDias_locacao: TIntegerField;
+    qryClientesNOME: TStringField;
     procedure ClientesAfterOpen(DataSet: TDataSet);
     procedure ClientesBeforeClose(DataSet: TDataSet);
     procedure ClientesAfterInsert(DataSet: TDataSet);
@@ -1270,6 +1270,7 @@ type
     procedure Cont_Serv_ClienAfterPost(DataSet: TDataSet);
     procedure Cont_Serv_ClienBeforeOpen(DataSet: TDataSet);
     procedure BancosBeforePost(DataSet: TDataSet);
+    procedure VeiculosBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
     PCopiaCarbono : Boolean;
@@ -2105,7 +2106,7 @@ if LigacoesCLI_ID.Value> 0 then begin
   qryClientes.Close;
   qryClientes.Params[0].Value:=LigacoesCLI_ID.Value;
   qryClientes.open;
-  LigacoesCliente_Nome.AsString:=qryClientesFANTASIA.AsString;
+  LigacoesCliente_Nome.AsString:=qryClientesNOME.AsString;
   Ligacoesfone1.AsString       :=qryClientesFONE1.AsString;
   Ligacoesfone2.AsString       :=qryClientesFONE2.AsString;
 end;
@@ -3205,6 +3206,13 @@ begin
   VeiculosDT_CAD.Value:=Date;
 
   VeiculosSIT.Value := 0;
+
+end;
+
+procedure TBancodeDados.VeiculosBeforePost(DataSet: TDataSet);
+begin
+if  (VeiculosPLACA.Value = EmptyStr) then
+  Abort;
 
 end;
 

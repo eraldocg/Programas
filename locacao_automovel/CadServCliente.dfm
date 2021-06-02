@@ -828,7 +828,6 @@ object CadServClienteForm: TCadServClienteForm
     Color = 7562340
     ParentBackground = False
     TabOrder = 11
-    ExplicitTop = 397
     object DBText5: TDBText
       Left = 51
       Top = 8
@@ -1109,7 +1108,13 @@ object CadServClienteForm: TCadServClienteForm
       DataField = 'DT_SIT'
       DataSource = BancodeDados.dsContServClien
       Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       MaxLength = 10
+      ParentFont = False
       TabOrder = 1
     end
     object EditSituacao: TSedDBComboBox
@@ -1122,12 +1127,18 @@ object CadServClienteForm: TCadServClienteForm
       Ctl3D = False
       DataField = 'SIT'
       DataSource = BancodeDados.dsContServClien
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ItemHeight = 14
       Items.Strings = (
         'Locado'
         'Cancelado'
         'Devolvido')
       ParentCtl3D = False
+      ParentFont = False
       Values.Strings = (
         '1'
         '2'

@@ -349,8 +349,8 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     ResourceOptions.AssignedValues = [rvParamCreate]
     SQL.Strings = (
       'select * from CLIENTES')
-    Left = 220
-    Top = 192
+    Left = 192
+    Top = 126
     object CsClientesCLI_ID: TIntegerField
       FieldName = 'CLI_ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -359,10 +359,6 @@ object IndicaLigacoesForm: TIndicaLigacoesForm
     object CsClientesNOME: TStringField
       FieldName = 'NOME'
       Size = 60
-    end
-    object CsClientesFANTASIA: TStringField
-      FieldName = 'FANTASIA'
-      Size = 40
     end
     object CsClientesTOTALIZADO: TIntegerField
       FieldKind = fkCalculated

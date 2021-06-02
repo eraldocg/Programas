@@ -35,6 +35,8 @@ type
     Image1: TImage;
     Image2: TImage;
     Label1: TLabel;
+    DuplicarRegistro1: TMenuItem;
+    N2: TMenuItem;
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
@@ -45,6 +47,7 @@ type
     procedure EditConsultaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure Excluir1Click(Sender: TObject);
+    procedure DuplicarRegistro1Click(Sender: TObject);
     // procedure DBGrid1CellClick(Column: TColumn);
   private
     { Private declarations }
@@ -90,6 +93,62 @@ end;
 procedure TCsDocumentosForm.DBGrid1TitleClick(Column: TColumn);
 begin
   BancodeDados.MudaOrdem(BancodeDados.Documentos, Column.Field);
+end;
+
+procedure TCsDocumentosForm.DuplicarRegistro1Click(Sender: TObject);
+var
+i       : integer;
+nmCampo : string;
+
+begin
+
+  if BancodeDados.DocumentosDOC_ID.Value>0 then
+  begin
+    HabilitarBotoes(self,false);
+    if Mensagem('Deseja duplicar o registro atual?',mtConfirmation,[mbyes,mbno],mrok,0)=idyes then
+    try
+    Screen.Cursor:=crSQLWait;
+
+    BancodeDados.QrySql.Close;
+    BancodeDados.QrySql.SQL.Text:='select * from documentos where doc_id = '+IntToStr(BancodeDados.DocumentosDOC_ID.Value);
+    BancodeDados.QrySql.Open;
+
+
+    if not (Bancodedados.Documentos.State in [dsInsert,dsEdit]) then
+    begin
+      if not BancodEDados.FDConnection1.InTransaction then BancodeDados.FDConnection1.StartTransaction;
+      BancodeDados.Documentos.Append;
+
+      for i:=0 to BancodeDados.QrySql.FieldCount-1 do
+      begin
+
+        nmcampo:=AnsiUpperCase(BancodeDados.QrySql.Fields[i].FieldName);
+
+        if nmcampo<>'DOC_ID' then
+        try
+          BancodeDados.Documentos.FieldByName(nmcampo).Value:=BancodeDados.QrySql.FieldByName(nmcampo).Value;
+        except
+        end;
+
+      end;
+      BancodeDados.DocumentosDOC_NOME.Value:='Cópia '+BancodeDados.QrySql.FieldByName('DOC_NOME').Value;
+
+
+    end;
+    BancodeDados.Documentos.Post;
+
+    BancodeDados.QrySql.Close;
+    HabilitarBotoes(self,true);
+    Screen.Cursor:=crDefault;
+
+    except on E : Exception do
+    TraduzErro(E.Message);
+    end;
+
+    HabilitarBotoes(self,true);
+    Screen.Cursor:=crDefault;
+
+  end;
 end;
 
 procedure TCsDocumentosForm.BtExecutarClick(Sender: TObject);

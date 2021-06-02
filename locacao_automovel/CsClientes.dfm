@@ -5615,10 +5615,10 @@ object CsClientesForm: TCsClientesForm
   end
   object PopupMenu1: TPopupMenu
     OnPopup = PopupMenu1Popup
-    Left = 376
-    Top = 194
+    Left = 224
+    Top = 152
     object RelaodeServios1: TMenuItem
-      Caption = 'Loca'#231#227'o de Ve'#237'culos'
+      Caption = ' Servi'#231'o de Loca'#231#227'o de Ve'#237'culoa'
       ShortCut = 16460
       OnClick = RelaodeServios1Click
     end
@@ -5668,7 +5668,7 @@ object CsClientesForm: TCsClientesForm
     Left = 432
     Top = 180
     Bitmap = {
-      494C010105000900240110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900280110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

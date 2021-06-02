@@ -527,7 +527,6 @@ object CsGrade_FinanceiraForm: TCsGrade_FinanceiraForm
     Color = 7562340
     ParentBackground = False
     TabOrder = 4
-    ExplicitTop = 388
     object BtOk: TButton
       Left = 422
       Top = 3
@@ -600,6 +599,7 @@ object CsGrade_FinanceiraForm: TCsGrade_FinanceiraForm
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
+    OnDrawColumnCell = DBGrid1DrawColumnCell
     OnDblClick = DBGrid1DblClick
     OnEditButtonClick = DBGrid1DblClick
     OnTitleClick = DBGrid1TitleClick
@@ -701,7 +701,7 @@ object CsGrade_FinanceiraForm: TCsGrade_FinanceiraForm
     end
     object Definirpadro1: TMenuItem
       Caption = 'Definir padr'#227'o'
-      Visible = False
+      OnClick = Definirpadro1Click
     end
   end
 end

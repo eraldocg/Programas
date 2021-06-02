@@ -69,7 +69,6 @@ type
     dsClientesServ: TDataSource;
     csClientesServicosCLI_ID: TIntegerField;
     csClientesServicosNOME: TStringField;
-    csClientesServicosFANTASIA: TStringField;
     csClientesServicosCNPJ: TStringField;
     csClientesServicosCLIENTE_DESDE: TDateField;
     csClientesServicosCIDADE: TStringField;
