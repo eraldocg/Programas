@@ -3153,6 +3153,10 @@ object BancodeDados: TBancodeDados
       FieldName = 'PLACA_ANTERIOR'
       Origin = 'PLACA_ANTERIOR'
     end
+    object VeiculosC_S_C_ID: TIntegerField
+      FieldName = 'C_S_C_ID'
+      Origin = 'C_S_C_ID'
+    end
   end
   object dsVeiculos: TDataSource
     DataSet = Veiculos

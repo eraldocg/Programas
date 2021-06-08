@@ -123,6 +123,12 @@ type
     Label17: TLabel;
     Label27: TLabel;
     SedDBComboBox1: TSedDBComboBox;
+    PopupOBS: TPopupMenu;
+    Novo2: TMenuItem;
+    Editar1: TMenuItem;
+    Excluir2: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
     procedure BTgravarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
@@ -149,6 +155,10 @@ type
     procedure Abrirdocumento1Click(Sender: TObject);
     procedure Adicionarnovodocumento1Click(Sender: TObject);
     procedure Excluirdocumento1Click(Sender: TObject);
+    procedure Novo2Click(Sender: TObject);
+    procedure Excluir2Click(Sender: TObject);
+    procedure Editar1Click(Sender: TObject);
+    procedure SedDBGrid2DblClick(Sender: TObject);
   private
     { Private declarations }
          procedure PegarEstadoProvincia(NacionalID: String);
@@ -285,6 +295,7 @@ begin
 
  tbScanDoc.TabVisible:=False;
 
+ EditNome.SetFocus;
 end;
 
 
@@ -396,6 +407,50 @@ begin
   TabSheet7.Show;
 end;
 
+procedure TCadClientesForm.Editar1Click(Sender: TObject);
+var
+  Frm: TForm;
+  MM: TDBMemo;
+begin
+
+if Editar1.Enabled then begin
+  //if not (BancodeDados.Observacoes.State in [dsedit, dsinsert]) then BancodeDados.Observacoes.Append;
+  if (BancodeDados.ObservacoesCLI_ID.Value>0)  then begin
+    HabilitarBotoes(self, false);
+      Frm := TForm.Create(nil);
+      HabilitarBotoes(self, false);
+      try
+        Frm.Width := 428;
+        Frm.Height := 250;
+        Frm.Position := poScreenCenter;
+        Frm.BorderIcons := [biSystemMenu];
+        Frm.BorderStyle := bsSingle;
+        Frm.Caption := 'Observação';
+        MM := TDBMemo.Create(nil);
+        try
+          MM.Parent := Frm;
+          MM.Align := alClient;
+          // MM.OnKeyPress  :=CadPagarForm.OnKeyPress;
+          MM.DataSource := BancodeDados.dsObservac;
+          MM.DataField := 'OBS';
+          // MM.ReadOnly:=True;
+          Frm.ShowModal;
+          if BancodeDados.Observacoes.State in [dsedit, dsinsert] then
+            BancodeDados.Observacoes.Post;
+        finally
+          MM.Free;
+        end;
+      finally
+        Frm.Free;
+        HabilitarBotoes(self, true);
+      end;
+    HabilitarBotoes(self, true);
+  end;
+end;
+
+
+end;
+
 procedure TCadClientesForm.EditCNPJExit(Sender: TObject);
 begin
     if Trim(EditCNPJ.Text) <> EmptyStr then
@@ -409,6 +464,18 @@ end;
 procedure TCadClientesForm.EditFotoDblClick(Sender: TObject);
 begin
 Novo1Click(Sender);
+end;
+
+procedure TCadClientesForm.Excluir2Click(Sender: TObject);
+begin
+  if BancodeDados.ObservacoesOBS_ID.Value > 0 then
+    if Mensagem('Deseja excluir registro?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idYes then
+    begin
+      if not BancodeDados.FDConnection1.InTransaction then
+        BancodeDados.FDConnection1.StartTransaction;
+      BancodeDados.Observacoes.Delete;
+      BancodeDados.FDConnection1.CommitRetaining;
+    end;
 end;
 
 procedure TCadClientesForm.Excluirdocumento1Click(Sender: TObject);
@@ -461,6 +528,51 @@ if PrincipalForm.OpenPictureDialog1.Execute then begin
 end;
 end;
 
+procedure TCadClientesForm.Novo2Click(Sender: TObject);
+var
+  Frm: TForm;
+  MM: TDBMemo;
+begin
+
+if Novo2.Enabled then
+begin
+  if not (BancodeDados.Observacoes.State in [dsedit, dsinsert]) then BancodeDados.Observacoes.Insert;
+  if (BancodeDados.ObservacoesCLI_ID.Value>0)  then begin
+    HabilitarBotoes(self, false);
+      Frm := TForm.Create(nil);
+      HabilitarBotoes(self, false);
+      try
+        Frm.Width := 428;
+        Frm.Height := 250;
+        Frm.Position := poScreenCenter;
+        Frm.BorderIcons := [biSystemMenu];
+        Frm.BorderStyle := bsSingle;
+        Frm.Caption := 'Observação';
+        MM := TDBMemo.Create(nil);
+        try
+          MM.Parent := Frm;
+          MM.Align := alClient;
+          // MM.OnKeyPress  :=CadPagarForm.OnKeyPress;
+          MM.DataSource := BancodeDados.dsObservac;
+          MM.DataField := 'OBS';
+          // MM.ReadOnly:=True;
+          Frm.ShowModal;
+          if BancodeDados.Observacoes.State in [dsedit, dsinsert] then
+            BancodeDados.Observacoes.Post;
+        finally
+          MM.Free;
+        end;
+      finally
+        Frm.Free;
+        HabilitarBotoes(self, true);
+      end;
+    HabilitarBotoes(self, true);
+  end;
+end;
+
+
+end;
+
 procedure TCadClientesForm.PageControl1Change(Sender: TObject);
 begin
   if (PageControl1.ActivePage = TabSheet8) then
@@ -510,6 +622,12 @@ procedure TCadClientesForm.SedDBGrid1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
 if key=13 then key:=9;
+end;
+
+procedure TCadClientesForm.SedDBGrid2DblClick(Sender: TObject);
+begin
+Editar1Click(Sender);
+
 end;
 
 procedure TCadClientesForm.SedDBGrid2DrawColumnCell(Sender: TObject;

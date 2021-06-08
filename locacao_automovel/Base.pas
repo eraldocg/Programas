@@ -1162,6 +1162,7 @@ type
     VeiculosPLACA_ANTERIOR: TStringField;
     Cont_Serv_ClienDias_locacao: TIntegerField;
     qryClientesNOME: TStringField;
+    VeiculosC_S_C_ID: TIntegerField;
     procedure ClientesAfterOpen(DataSet: TDataSet);
     procedure ClientesBeforeClose(DataSet: TDataSet);
     procedure ClientesAfterInsert(DataSet: TDataSet);
@@ -1816,11 +1817,13 @@ begin
     ClientesCLI_ID.Value := PegaNovo('GEN_CLICOD');
 
   ClientesCONFIAVEL.Value := 1;
-  ClientesFAT_NOTA.Value  := 1;
+  ClientesFAT_NOTA.Value  := 0;
   ClientesENTREGUE_BOL.Value := 0;
   ClientesIMP_BOL.Value   := 0;
   ClientesSIT.Value       := 1;
   ClientesCONTRATO.Value  := 0;
+
+  ClientesPROFISSAO.Value  := 'MOTORISTA';
 
   if not Config.Active then Config.Open;
 

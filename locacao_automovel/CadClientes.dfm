@@ -5,7 +5,7 @@ object CadClientesForm: TCadClientesForm
   BorderStyle = bsSingle
   Caption = 'Cadastro de Clientes'
   ClientHeight = 526
-  ClientWidth = 517
+  ClientWidth = 516
   Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
@@ -26,13 +26,14 @@ object CadClientesForm: TCadClientesForm
   object Panel1: TPanel
     Left = 0
     Top = 496
-    Width = 517
+    Width = 516
     Height = 30
     Align = alBottom
     BevelOuter = bvNone
     Color = 7562340
     ParentBackground = False
     TabOrder = 1
+    ExplicitWidth = 517
     object DBText5: TDBText
       Left = 50
       Top = 8
@@ -94,15 +95,17 @@ object CadClientesForm: TCadClientesForm
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 517
+    Width = 516
     Height = 496
-    ActivePage = TabSheet1
+    ActivePage = TabSheet8
     Align = alClient
     Style = tsFlatButtons
     TabOrder = 0
     OnChange = PageControl1Change
+    ExplicitWidth = 517
     object TabSheet1: TTabSheet
       Caption = 'Dados principais'
+      ExplicitWidth = 509
       object Label1: TLabel
         Left = 41
         Top = 10
@@ -415,15 +418,17 @@ object CadClientesForm: TCadClientesForm
       object PageControl2: TPageControl
         Left = 0
         Top = 260
-        Width = 509
+        Width = 508
         Height = 204
         ActivePage = TabSheet7
         Align = alBottom
         Style = tsFlatButtons
         TabOrder = 16
         OnChange = PageControl2Change
+        ExplicitWidth = 509
         object TabSheet7: TTabSheet
           Caption = 'Endere'#231'o'
+          ExplicitWidth = 501
           object Label8: TLabel
             Left = 14
             Top = 65
@@ -472,7 +477,7 @@ object CadClientesForm: TCadClientesForm
             Width = 36
             Height = 14
             Alignment = taRightJustify
-            Caption = 'Fone 1:'
+            Caption = 'Celular:'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -11
@@ -481,12 +486,12 @@ object CadClientesForm: TCadClientesForm
             ParentFont = False
           end
           object Label15: TLabel
-            Left = 52
+            Left = 6
             Top = 105
-            Width = 21
+            Width = 67
             Height = 14
             Alignment = taRightJustify
-            Caption = 'Fax:'
+            Caption = 'Telefone Fixo:'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -11
@@ -495,12 +500,12 @@ object CadClientesForm: TCadClientesForm
             ParentFont = False
           end
           object Label16: TLabel
-            Left = 266
+            Left = 262
             Top = 85
-            Width = 36
+            Width = 40
             Height = 14
             Alignment = taRightJustify
-            Caption = 'Fone 2:'
+            Caption = 'Contato:'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -11
@@ -728,6 +733,7 @@ object CadClientesForm: TCadClientesForm
         object TabSheet6: TTabSheet
           Caption = 'Internet'
           ImageIndex = 2
+          ExplicitWidth = 501
           object Label21: TLabel
             Left = 54
             Top = 7
@@ -1682,15 +1688,17 @@ object CadClientesForm: TCadClientesForm
       Caption = 'Informa'#231#245'es de registro'
       ImageIndex = 1
       TabVisible = False
+      ExplicitWidth = 509
       object Panel2: TPanel
         Left = 0
         Top = 293
-        Width = 509
+        Width = 508
         Height = 30
         Align = alBottom
         BevelOuter = bvNone
         Color = clSilver
         TabOrder = 0
+        ExplicitWidth = 509
         object Button1: TButton
           Left = 395
           Top = 3
@@ -1713,7 +1721,7 @@ object CadClientesForm: TCadClientesForm
       object DBGrid2: TSedDBGrid
         Left = 0
         Top = 323
-        Width = 509
+        Width = 508
         Height = 141
         Align = alBottom
         FixedColor = clGray
@@ -1753,10 +1761,11 @@ object CadClientesForm: TCadClientesForm
     object TabSheet8: TTabSheet
       Caption = 'Observa'#231#245'es'
       ImageIndex = 6
+      ExplicitWidth = 509
       object SedDBGrid2: TSedDBGrid
         Left = 0
         Top = 0
-        Width = 509
+        Width = 508
         Height = 464
         Align = alClient
         DataSource = BancodeDados.dsObservac
@@ -1768,6 +1777,7 @@ object CadClientesForm: TCadClientesForm
         Font.Style = []
         Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         ParentFont = False
+        PopupMenu = PopupOBS
         ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = ANSI_CHARSET
@@ -1776,6 +1786,7 @@ object CadClientesForm: TCadClientesForm
         TitleFont.Name = 'Arial'
         TitleFont.Style = [fsBold]
         OnDrawColumnCell = SedDBGrid2DrawColumnCell
+        OnDblClick = SedDBGrid2DblClick
         AutoAppend = True
         Columns = <
           item
@@ -1794,10 +1805,11 @@ object CadClientesForm: TCadClientesForm
     object tbScanDoc: TTabSheet
       Caption = 'Documentos Diversos'
       ImageIndex = 7
+      ExplicitWidth = 509
       object SedDBGrid3: TSedDBGrid
         Left = 0
         Top = 0
-        Width = 509
+        Width = 508
         Height = 464
         Align = alClient
         DataSource = BancodeDados.dsS_Doc
@@ -1888,6 +1900,28 @@ object CadClientesForm: TCadClientesForm
     end
     object Excluirdocumento1: TMenuItem
       Caption = 'Excluir Documento'
+    end
+  end
+  object PopupOBS: TPopupMenu
+    Left = 280
+    Top = 124
+    object Editar1: TMenuItem
+      Caption = 'Editar'
+      OnClick = Editar1Click
+    end
+    object N3: TMenuItem
+      Caption = '-'
+    end
+    object Novo2: TMenuItem
+      Caption = 'Novo'
+      OnClick = Novo2Click
+    end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object Excluir2: TMenuItem
+      Caption = 'Excluir'
+      OnClick = Excluir2Click
     end
   end
 end
