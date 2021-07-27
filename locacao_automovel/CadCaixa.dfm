@@ -141,7 +141,7 @@ object CadCaixaForm: TCadCaixaForm
       Font.Height = -11
       Font.Name = 'MS Sans Serif'
       Font.Style = []
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick]
+      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick]
       ParentFont = False
       PopupMenu = PopupMenu1
       ReadOnly = True
@@ -1377,7 +1377,7 @@ object CadCaixaForm: TCadCaixaForm
     Left = 350
     Top = 28
     Bitmap = {
-      494C010106000900A40010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010106000900B40010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

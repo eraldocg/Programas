@@ -109,8 +109,7 @@ uses
   CadVeiculos in 'CadVeiculos.pas' {CadVeiculosForm},
   CsConf in 'CsConf.pas' {CsConfForm},
   GeraBoletoVeic in 'GeraBoletoVeic.pas' {GeraBoletoVeicForm},
-  Vcl.Themes,
-  Vcl.Styles;
+  CsAjuda1 in 'CsAjuda1.pas' {CsAjuda1Form};
 
 {$R *.res}
 
@@ -120,5 +119,7 @@ begin
   Application.Title := 'Locação de Automóveis';
   Application.CreateForm(TBancodeDados, BancodeDados);
   Application.CreateForm(TPrincipalForm, PrincipalForm);
+  Application.CreateForm(TCsAjuda1Form, CsAjuda1Form);
   Application.Run;
+
 end.

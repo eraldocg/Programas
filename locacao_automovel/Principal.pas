@@ -3,32 +3,33 @@ unit Principal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, 
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, vcl.Menus, 
-  Vcl.StdCtrls, vcl.Grids, Vcl.ImgList, data.DB, vcl.AppEvnts, MidasLib, 
-  ComCtrls, RLReport, Vcl.ExtCtrls, unThread, System.INIFiles, unRecursos, 
-  Vcl.DBCtrls, Vcl.ExtDlgs, SEDRegistro2, Winapi.ShellApi, Vcl.Imaging.jpeg, 
-  Data.FMTBcd, Data.SqlExpr, Vcl.DBGrids, FileCtrl, System.ImageList, 
-  Vcl.Samples.Gauges, SEDDBImage, System.UITypes, NFseCSTh, ACBrIntegrador, 
-  ACBrBase, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, 
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, 
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,
+  Vcl.StdCtrls, Vcl.Grids, Vcl.ImgList, data.DB, Vcl.AppEvnts, MidasLib,
+  ComCtrls, RLReport, Vcl.ExtCtrls, unThread, System.INIFiles, unRecursos,
+  Vcl.DBCtrls, Vcl.ExtDlgs, SEDRegistro2, Winapi.ShellApi, Vcl.Imaging.jpeg,
+  data.FMTBcd, data.SqlExpr, Vcl.DBGrids, Vcl.FileCtrl, System.ImageList,
+  Vcl.Samples.Gauges, SEDDBImage, System.UITypes, NFseCSTh, ACBrIntegrador,
+  ACBrBase, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  SedDBGrid;
+  SedDBGrid, IdSSLOpenSSLHeaders;
 
-  const
-  //SED_MUDARANO = WM_USER + 103;
+const
+  // SED_MUDARANO = WM_USER + 103;
   WM_SED_ASK_CONN_STR = WM_USER + 300;
   WM_SED_REFRESH_DOC_SCAN = WM_USER + 301;
 
 type
   PTSedScan = ^TSedScan;
+
   TSedScan = record
-    iTipo     : integer;
-    idPessoa  : integer;
-    idUsr     : integer;
-    OrigId    : Integer;
-    OrigNome  : ShortString;
-    connStr   : ShortString;
+    iTipo: integer;
+    idPessoa: integer;
+    idUsr: integer;
+    OrigId: integer;
+    OrigNome: ShortString;
+    connStr: ShortString;
   end;
 
 type
@@ -205,19 +206,22 @@ type
     procedure AtualizarBancodeDados1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MainMenu1Change(Sender: TObject; Source: TMenuItem;
-      Rebuild: Boolean); //add por Denilson
- //   procedure ColorControl(Sender: TObject);
+      Rebuild: Boolean); // add por Denilson
+    // procedure ColorControl(Sender: TObject);
   private
     { Private declarations }
     DirTemp: String;
     procedure ResponderConnStr(var Msg: TMessage); message WM_SED_ASK_CONN_STR;
-    procedure AtualizarListaDocScan(var Msg: TMessage); message WM_SED_REFRESH_DOC_SCAN;
+    procedure AtualizarListaDocScan(var Msg: TMessage);
+      message WM_SED_REFRESH_DOC_SCAN;
 
   public
     { Public declarations }
-    procedure CalcularValorBaixaIndividual(DataReceb: TDate; ApenasSomar: Boolean);
+    procedure CalcularValorBaixaIndividual(DataReceb: TDate;
+      ApenasSomar: Boolean);
     function LiberaAcesso: Boolean;
-    procedure ImprimeBoletos(IDsBoletos: String; usaTolerancia, papelCortado: Boolean);
+    procedure ImprimeBoletos(IDsBoletos: String;
+      usaTolerancia, papelCortado: Boolean);
     procedure CalcularValorPagar;
     procedure CalContas;
     procedure ImpNotaFiscal;
@@ -225,17 +229,19 @@ type
     function DataHoraServidor: TDateTime;
     function DataServidor: TDate;
     function RetornaLimpo(em: string): string;
-    function GeraMalaDireta(tabela: TFDQuery; incluirTitulos: Boolean; Gauge: TGauge): Boolean;
+    function GeraMalaDireta(tabela: TFDQuery; incluirTitulos: Boolean;
+      Gauge: TGauge): Boolean;
     Procedure CarregaFotoParaBanco(FileName: String);
     procedure VerificaRemessaPendentes;
     procedure IncluirRetirarProtesto(acao, idProtesto: integer);
-    function csContainingLIKE(csTipo: String; TipoIndex : SmallInt; noCaseSensitive : boolean = true ): String;
-    function PegarTexto(Texto, Delimitador1, Delimitador2: String; CaseSensitive : boolean = false): string;
+    function csContainingLIKE(csTipo: String; TipoIndex: SmallInt;
+      noCaseSensitive: Boolean = true): String;
+    function PegarTexto(Texto, Delimitador1, Delimitador2: String;
+      CaseSensitive: Boolean = false): string;
     procedure FormChange(Sender: TObject);
     function SQLrepositorio(IdSql: SmallInt): string;
 
   end;
-
 
 var
   PrincipalForm: TPrincipalForm;
@@ -244,13 +250,13 @@ var
   SistemaNome: String = 'Locação de Automóvel';
   ChaveRegSED: String = 'SOFTWARE\SEDSoft\LocacaoAuto';
   CnpjID: String = '';
-  NovoCliente_ID : integer;
+  NovoCliente_ID: integer;
   pedirSenha: Boolean = true;
-  AtivaMulta: Integer = 0;
-  AtivaJuros: Integer = 0;
+  AtivaMulta: integer = 0;
+  AtivaJuros: integer = 0;
   RetirarDesc: Boolean = false;
-  OpcaoTipoValor: Integer = 0;
-  OpcaoMulta: Integer = 0;
+  OpcaoTipoValor: integer = 0;
+  OpcaoMulta: integer = 0;
   vlTotalJuros: Currency = 0;
   vlTotalMulta: Currency = 0;
   vlTotalDesc: Currency = 0;
@@ -258,61 +264,60 @@ var
   vlTotalCredito: Currency = 0;
   vlTotalInteral: Currency = 0;
   vlTotalAPagar: Currency = 0;
-  qtdTitARec: Integer = 0;
+  qtdTitARec: integer = 0;
   vlTotalPago: Currency = 0;
   CalculandoBaixaInd: Boolean = false;
   SenhaActive: TSEDLogin;
   SomenteActiveSoft: Boolean = true;
   thCalculaValores: TThreadPadrao;
-  usrID: Integer = 0;
-  GerarNfseAutom : Boolean = false;
+  usrID: integer = 0;
+  GerarNfseAutom: Boolean = false;
+  //ApplicationEvParar : Boolean = True;
   usrLogin: String = '';
-  usrNivel: Integer = 0;
-  supervisorID: Integer = 0;
+  usrNivel: integer = 0;
+  supervisorID: integer = 0;
   supervisorLogin: String = '';
-  supervisorNivel: Integer = 0;
-  ImpBoletoAcbrSED        : Boolean = false;
-  RemotoDriveID : Integer = 1;
+  supervisorNivel: integer = 0;
+  ImpBoletoAcbrSED: Boolean = false;
+  RemotoDriveID: integer = 1;
   GrupoLayout: String = 'locacao';
-  Serv : String;
-  BancNome, BancUsuario, BancPassword, BancPorta : String;
+  Serv: String;
+  BancNome, BancUsuario, BancPassword, BancPorta: String;
 
-  CodigoCliente  : Integer = 0;
+  CodigoCliente: integer = 0;
 
-  ContaID : Integer = 0;
-  tentativas: Smallint = 0;
-  ultTipoConta : Integer = 0;
-  IndexCBTipoClient : Smallint = 0;
-  homologacao : Boolean = false;
-  EnvNotaPorRetorno : Boolean = False;
-  TipoBoletoInstrucoes: Smallint = 0;
+  ContaID: integer = 0;
+  tentativas: SmallInt = 0;
+  ultTipoConta: integer = 0;
+  IndexCBTipoClient: SmallInt = 0;
+  homologacao: Boolean = false;
+  EnvNotaPorRetorno: Boolean = false;
+  TipoBoletoInstrucoes: SmallInt = 0;
   retopcaix: integer = -1;
   anexarelviabanc: integer = 1;
-  MostraMSG: Boolean = False;
-  IDsEmissao          : String ='';
-  IDsBoletos          : String ='';
-  sqlTmp              : String ='';
-  Suporte             : Boolean = false;
-  AtivandoEve, DesatEvent, IndexCBTipBanc : integer;
-  ClienteCNPJ         : string;
+  MostraMSG: Boolean = false;
+  IDsEmissao: String = '';
+  IDsBoletos: String = '';
+  sqlTmp: String = '';
+  Suporte: Boolean = false;
+  AtivandoEve, DesatEvent, IndexCBTipBanc: integer;
+  ClienteCNPJ: string;
   listaCliSite: TStringList;
-  ServicoAtivoNFSe    : Boolean;
-  myNFseCSTh          : TNfseConsulta;
-  PodeImpor           : Boolean = False;
-  AbcFBTmp            : string='';
+  ServicoAtivoNFSe: Boolean;
+  myNFseCSTh: TNfseConsulta;
+  PodeImpor: Boolean = false;
+  AbcFBTmp: string = '';
 
-  //novos SQls
- // PagarSQL            : string = '';
+  // novos SQls
+  // PagarSQL            : string = '';
 
-  function DiretorioTemp: String;
-  procedure HabilitarBotoes(Formulario: TForm; Valor: Boolean);
-  function TeclaPressionada(const Key: Integer): Boolean;
-  Function TestaCPFCNPJ(cpf: string; Msg: Boolean = True): String;
-  function SelecionarDiretorio(Titulo, DirInicial: string): string;
-  procedure CriarDiretorio(Diretorio: string);
-
-
-
+function DiretorioTemp: String;
+procedure HabilitarBotoes(Formulario: TForm; Valor: Boolean);
+function TeclaPressionada(const Key: integer): Boolean;
+Function TestaCPFCNPJ(cpf: string; Msg: Boolean = true): String;
+function SelecionarDiretorio(Titulo, DirInicial: string): string;
+procedure CriarDiretorio(Diretorio: string);
+//function GetComputerSID: string; External 'recursos.dll';
 
 implementation
 
@@ -329,67 +334,65 @@ uses
 {$R *.dfm}
 
 function TPrincipalForm.SQLrepositorio(IdSql: SmallInt): string;
-var  SqlTmp : string;
+var
+  sqlTmp: string;
 begin
-  SqlTmp := '';
+  sqlTmp := '';
   Result := '';
 
   case IdSql of
-    0 : // boletos
-    begin                                                //coalesce(b.valor_mensal, 0) + coalesce(b.valor_lic, 0) as valor_integral
-      SqlTmp := 'select b.*, c.nome as cliente, c.cnpj, coalesce(b.valor_mensal, 0) + coalesce(b.valor_lic, 0) as valor_integral '+
-                'from boletos b '+
-                'left join clientes c on (c.cli_id = b.cli_id) '+
-                'left join livro_caixa l on (l.caixa_id = b.caixa_id) '+
-                'where 1=1 ';
-    end;
-    1 :
-    begin
-     SqlTmp :=  'select '+
-                'c.*, m.nome as cidade_nome, e.nome as uf_nome, '+
-                '(select count(boleto_id) from boletos where cli_id = c.cli_id and boletos.situacao_boleto=('+QuotedStr('A RECEBER')+') and c.sit=1) as n_titulos '+
-                'from clientes c '+
-                'left join municipios m on (m.codmun=c.cidade) '+
-                'left join estados e on (e.uf_cod=c.estado) '+
-                'where 1=1 ';
-    end;
-    2 :
-    begin
-     SqlTmp:=   'select l.*, c.conta as conta_nome, coalesce(l.entrada,0)-coalesce(l.saida,0) as saldo, (select descricao from pagar where pagar_id=l.pagar_id) as pagar_desc '+
-                'from livro_caixa l '+
-                'left join tipo_contas c on (c.conta_id = l.conta_id) '+
-                'where 1=1 ';
-    end;
-    3 :
-    begin
-     SqlTmp:=   'select p.*, f.nome as fornecedor, f.fantasia, f.cnpj, '+
-                '(select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) * (-1) from livro_caixa l where pagar_id=p.pagar_id) as valor_pago, '+
-                '(case when coalesce(( select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) * (-1) from livro_caixa l where pagar_id=p.pagar_id),0) >=  coalesce(p.valor_apagar,0) '+
-                ' then '+QuotedStr('PAGO')+' else '+QuotedStr('A PAGAR')+' end) as situacao_pagar, '+
-                '(case when coalesce(p.valor_apagar,0)>=(select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) * (-1) from livro_caixa l where pagar_id=p.pagar_id) then '+
-                'coalesce(p.valor_apagar,0) - (select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) * (-1) from livro_caixa l where pagar_id=p.pagar_id) else 0 end) as valor_falta '+
-                'from pagar p '+
-                'left join fornecedores f on (f.forne_id=p.forne_id)'+
-                'where 1=1 ';
-    end;
-    4 :
-    begin
-     SqlTmp:='';//novo sql
-    end;
+    0: // boletos
+      begin // coalesce(b.valor_mensal, 0) + coalesce(b.valor_lic, 0) as valor_integral
+        sqlTmp := 'select b.*, c.nome as cliente, c.cnpj, coalesce(b.valor_mensal, 0) + coalesce(b.valor_lic, 0) as valor_integral '
+          + 'from boletos b ' + 'left join clientes c on (c.cli_id = b.cli_id) '
+          + 'left join livro_caixa l on (l.caixa_id = b.caixa_id) ' +
+          'where 1=1 ';
+      end;
+    1:
+      begin
+        sqlTmp := 'select ' + 'c.*, m.nome as cidade_nome, e.nome as uf_nome, '
+          + '(select count(boleto_id) from boletos where cli_id = c.cli_id and boletos.situacao_boleto=('
+          + QuotedStr('A RECEBER') + ') and c.sit=1) as n_titulos ' +
+          'from clientes c ' + 'left join municipios m on (m.codmun=c.cidade) '
+          + 'left join estados e on (e.uf_cod=c.estado) ' + 'where 1=1 ';
+      end;
+    2:
+      begin
+        sqlTmp := 'select l.*, c.conta as conta_nome, coalesce(l.entrada,0)-coalesce(l.saida,0) as saldo, (select descricao from pagar where pagar_id=l.pagar_id) as pagar_desc '
+          + 'from livro_caixa l ' +
+          'left join tipo_contas c on (c.conta_id = l.conta_id) ' +
+          'where 1=1 ';
+      end;
+    3:
+      begin
+        sqlTmp := 'select p.*, f.nome as fornecedor, f.fantasia, f.cnpj, ' +
+          '(select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) * (-1) from livro_caixa l where pagar_id=p.pagar_id) as valor_pago, '
+          + '(case when coalesce(( select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) * (-1) from livro_caixa l where pagar_id=p.pagar_id),0) >=  coalesce(p.valor_apagar,0) '
+          + ' then ' + QuotedStr('PAGO') + ' else ' + QuotedStr('A PAGAR') +
+          ' end) as situacao_pagar, ' +
+          '(case when coalesce(p.valor_apagar,0)>=(select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) * (-1) from livro_caixa l where pagar_id=p.pagar_id) then '
+          + 'coalesce(p.valor_apagar,0) - (select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) * (-1) from livro_caixa l where pagar_id=p.pagar_id) else 0 end) as valor_falta '
+          + 'from pagar p ' +
+          'left join fornecedores f on (f.forne_id=p.forne_id)' + 'where 1=1 ';
+      end;
+    4:
+      begin
+        sqlTmp := ''; // novo sql
+      end;
 
   end;
 
-  if Trim(SqlTmp)<>EmptyStr then
-    Result:=SqlTmp
+  if Trim(sqlTmp) <> EmptyStr then
+    Result := sqlTmp
   else
-    Result:=EmptyStr;
+    Result := EmptyStr;
 end;
 
-
-function TPrincipalForm.PegarTexto(Texto, Delimitador1, Delimitador2: String; CaseSensitive : boolean = false): string;
-  var
-      Inicio, Fim : Integer;
-      Saida       : string;
+function TPrincipalForm.PegarTexto(Texto, Delimitador1, Delimitador2: String;
+  CaseSensitive: Boolean = false): string;
+var
+  Inicio, Fim: integer;
+  Saida: string;
 begin
   // Passar o texto para variável temporária
   Saida := Texto;
@@ -420,57 +423,61 @@ begin
 
 end;
 
-function TPrincipalForm.csContainingLIKE(csTipo: String; TipoIndex: SmallInt; noCaseSensitive : boolean = true ): String;
+function TPrincipalForm.csContainingLIKE(csTipo: String; TipoIndex: SmallInt;
+  noCaseSensitive: Boolean = true): String;
 var
-Tipo, FormarSQL : string;
+  Tipo, FormarSQL: string;
 begin
-  if Trim(csTipo)<>EmptyStr then
+  if Trim(csTipo) <> EmptyStr then
   begin
-    if RemotoDriveID=2 then //MYSQL
+    if RemotoDriveID = 2 then // MYSQL
     begin
-       case TipoIndex of
-          0 :
+      case TipoIndex of
+        0:
           begin
-            FormarSQL:=Trim(csTipo)+'%'; //Qualquer string que iniciem com csTipo. EX: 'csTipo%'
+            FormarSQL := Trim(csTipo) + '%';
+            // Qualquer string que iniciem com csTipo. EX: 'csTipo%'
           end;
-          1 :
+        1:
           begin
-            FormarSQL:='%'+Trim(csTipo)+'%'; //contendo string: csTipo. EX: '%csTipo%'
+            FormarSQL := '%' + Trim(csTipo) + '%';
+            // contendo string: csTipo. EX: '%csTipo%'
           end;
-          2 :
+        2:
           begin
-            FormarSQL:=Trim(csTipo); //igual a string a csTipo
+            FormarSQL := Trim(csTipo); // igual a string a csTipo
           end;
-       end;
-       Tipo:=' LIKE ';
-    end else
+      end;
+      Tipo := ' LIKE ';
+    end
+    else
     begin
-       //Padrao FB
-       case TipoIndex of
-          0 :
+      // Padrao FB
+      case TipoIndex of
+        0:
           begin
-            Tipo:=' starting with ';
+            Tipo := ' starting with ';
           end;
-          1 :
+        1:
           begin
-            Tipo:=' containing ';
+            Tipo := ' containing ';
           end;
-          2 :
+        2:
           begin
-            Tipo:=' = ';
+            Tipo := ' = ';
           end;
-       end;
-       FormarSQL:=Trim(csTipo);
+      end;
+      FormarSQL := Trim(csTipo);
     end;
 
     try
       if noCaseSensitive then
-        Result := Tipo  + QuotedStr(Trim(AnsiUpperCase(FormarSQL)))
+        Result := Tipo + QuotedStr(Trim(ansiUpperCase(FormarSQL)))
       else
-        Result := Tipo  + QuotedStr(Trim(FormarSQL));
+        Result := Tipo + QuotedStr(Trim(FormarSQL));
 
     except
-      Result :='';
+      Result := '';
     end;
 
   end;
@@ -498,23 +505,30 @@ begin
         begin
           tituloAtual := StrToInt(listaBoletos[I]);
 
-          if BancodeDados.Boletos.Locate('BOLETO_ID', tituloAtual, []) then // localiza cada um dos títulos marcados
+          if BancodeDados.Boletos.Locate('BOLETO_ID', tituloAtual, []) then
+          // localiza cada um dos títulos marcados
           begin // aki vc vai ter cada um dos títulos marcados individualmente
             BancodeDados.Cont_Prt_Boleto.Close;
-            BancodeDados.Cont_Prt_Boleto.SQL.Text := 'select * from cont_prt_boleto where prot_sit=0 and boleto_id = ' + IntToStr(BancodeDados.BoletosBOLETO_ID.Value);
+            BancodeDados.Cont_Prt_Boleto.SQL.Text :=
+              'select * from cont_prt_boleto where prot_sit=0 and boleto_id = '
+              + IntToStr(BancodeDados.BoletosBOLETO_ID.Value);
             BancodeDados.Cont_Prt_Boleto.Open;
 
             if (acao = 1) then // incluir
             begin
-              if (BancodeDados.BoletosSITUACAO_BOLETO.Value = 'A RECEBER') and (BancodeDados.BoletosVENCIMENTO.Value < DataServidor) then
+              if (BancodeDados.BoletosSITUACAO_BOLETO.Value = 'A RECEBER') and
+                (BancodeDados.BoletosVENCIMENTO.Value < DataServidor) then
               // apenas se estiver aberto e atrasado
               begin
-                if not BancodeDados.Cont_Prt_Boleto.Locate('PRT_BLT_ID', idProtesto, []) then // se não encontrar o tipo, insere
+                if not BancodeDados.Cont_Prt_Boleto.Locate('PRT_BLT_ID',
+                  idProtesto, []) then // se não encontrar o tipo, insere
                 begin
                   BancodeDados.Cont_Prt_Boleto.Append;
-                  BancodeDados.Cont_Prt_BoletoPROT_SIT.Value := 0; { 0-Protestado; 1-Retirado; 2- Cancelado }
+                  BancodeDados.Cont_Prt_BoletoPROT_SIT.Value := 0;
+                  { 0-Protestado; 1-Retirado; 2- Cancelado }
                   BancodeDados.Cont_Prt_BoletoPRT_BLT_ID.Value := idProtesto;
-                  BancodeDados.Cont_Prt_BoletoBOLETO_ID.Value := BancodeDados.BoletosBOLETO_ID.Value;
+                  BancodeDados.Cont_Prt_BoletoBOLETO_ID.Value :=
+                    BancodeDados.BoletosBOLETO_ID.Value;
                   BancodeDados.Cont_Prt_Boleto.Post;
                 end;
               end;
@@ -522,13 +536,17 @@ begin
 
             if (acao = 2) then // Editar
             begin
-              if BancodeDados.Cont_Prt_Boleto.Locate('PRT_BLT_ID', idProtesto, []) then // se encontrar o tipo, apaga
+              if BancodeDados.Cont_Prt_Boleto.Locate('PRT_BLT_ID', idProtesto,
+                []) then // se encontrar o tipo, apaga
               begin
-                if not (BancodeDados.Cont_Prt_Boleto.State in [dsEdit, dsInsert]) then
+                if not(BancodeDados.Cont_Prt_Boleto.State in [dsEdit, dsInsert])
+                then
                   BancodeDados.Cont_Prt_Boleto.edit;
 
-                BancodeDados.Cont_Prt_BoletoPROT_SIT.Value := 1; { 0-Protestado; 1-Retirado; 2- Cancelado }
-                BancodeDados.Cont_Prt_BoletoDT_SIT.Value := PrincipalForm.DataServidor;
+                BancodeDados.Cont_Prt_BoletoPROT_SIT.Value := 1;
+                { 0-Protestado; 1-Retirado; 2- Cancelado }
+                BancodeDados.Cont_Prt_BoletoDT_SIT.Value :=
+                  PrincipalForm.DataServidor;
                 BancodeDados.Cont_Prt_Boleto.Post;
 
               end;
@@ -556,35 +574,37 @@ begin
       Mensagem('Tipo de protesto inválido.', mtInformation, [mbOk], mrOk, 0);
   end
   else
-    Mensagem('Marque algum título antes de prosseguir.', mtInformation, [mbOk], mrOk, 0);
+    Mensagem('Marque algum título antes de prosseguir.', mtInformation,
+      [mbOk], mrOk, 0);
 end;
-
 
 procedure TPrincipalForm.Iniciar1Click(Sender: TObject);
 begin
-if not BancodeDados.Config.Active then BancodeDados.Config.Open;
+  if not BancodeDados.Config.Active then
+    BancodeDados.Config.Open;
 
 
 
-//fazer tratamento para verificar a validade do certificado.
+  // fazer tratamento para verificar a validade do certificado.
 
-if Trim(BancodeDados.ConfigNFSE_CERT_DIG_NUM_SERIE.Value)<>EmptyStr then
-begin
-  if (usrNivel in [1,2]) then
+  if Trim(BancodeDados.ConfigNFSE_CERT_DIG_NUM_SERIE.Value) <> EmptyStr then
   begin
-  if (ServicoAtivoNFSe = False) then
+    if (usrNivel in [1, 2]) then
     begin
-      ServicoAtivoNFSe := TRUE;
-      myNFseCSTh      := TNfseConsulta.Create(True); { Create suspended-second process does not run yet. }
-   end
-    else
-      MessageDlg('Já existe um processo em andamento de verificação de NFse!', mtInformation, [mbOk], 0);
-  end;
+      if (ServicoAtivoNFSe = false) then
+      begin
+        ServicoAtivoNFSe := true;
+        myNFseCSTh := TNfseConsulta.Create(true);
+        { Create suspended-second process does not run yet. }
+      end
+      else
+        MessageDlg('Já existe um processo em andamento de verificação de NFse!',
+          mtInformation, [mbOk], 0);
+    end;
 
-end else
-  MessageDlg('Certificado não encontrado!', mtInformation, [mbOk], 0);
-
-
+  end
+  else
+    MessageDlg('Certificado não encontrado!', mtInformation, [mbOk], 0);
 
 end;
 
@@ -601,180 +621,179 @@ begin
   End;
 end;
 
-
 procedure TPrincipalForm.VerificaRemessaPendentes;
 var
   DTtmp: TDate;
   QryCs: TFDQuery;
 begin
-if(usrID > 0) then
-begin
-
-  DTtmp := PrincipalForm.DataServidor - 5;
-  try
-    if DTtmp > 0 then
-    begin
-      QryCs := TFDQuery.create(nil);
-      try
-        QryCs.Connection    := BancodeDados.FDConnection1;
-        try                                                                                  //and SITUACAO_BOLETO = ' + QuotedStr('A RECEBER') + '
-        QryCs.close;
-        with QryCs.FormatOptions do
-        begin
-          OwnMapRules := True;
-          with MapRules.Add do
-          begin
-            TargetDataType := dtInt32;
-            SourceDataType := dtInt64;
-          end;
-        end;
-
-
-          QryCs.SQL.Text := 'select count(emissao_id) as total from v_boletos_remessa where coalesce(retorno_id,0) = 0 and coalesce(remessa,0)=0 and coalesce(alt_via_banco,0)=0 and coalesce(cancelado,0)=0';
-          QryCs.SQL.Add(' and (dt_proces >' + QuotedStr(FormatDateTime('yyyy/mm/dd', DTtmp)) + ')');
-
-          if suporte then
-          Mensagem(QryCs.SQL.Text, mtInformation, [mbok], mrok, 0);
-
-          QryCs.open;
-        except
-            on E: Exception do
-              TraduzErro(E.Message);
-        end;
-
-
-
-        QryCs.Last;
-
-        //Application.ProcessMessages;
-        if (QryCs.FieldByName('total').AsInteger > 0) then
-        //if (QryCs.RecordCount > 0) then
-        begin
-          MostraMSG := True;
-
-          PrincipalForm.pnl_titulo_msg.Caption := '';
-          Msg := 'Pesquisa de remessa não enviada:';
-          QryCs.first;
-          //while not QryCs.eof do
-          //begin
-            //Msg := Msg + #13 + 'N.º de registro(s): ' + FormatFloat('000', QryCs.FieldByName('TOTAL').AsInteger);
-            //if (QryCs.RecordCount <= 300) then
-            if (QryCs.FieldByName('total').AsInteger > 0) then
-            Msg := Msg + #13 + 'N.º de registro(s): ' + FormatFloat('000', QryCs.FieldByName('total').AsInteger)
-            else//FormatFloat('000', QryCs.RecordCount) else
-            Msg := Msg + #13 + 'N.º de registro(s) +300';
-
-            //QryCs.Next;
-          //end;
-          QryCs.close;
-          PrincipalForm.pnl_titulo_msg.Caption := (Msg);
-          PrincipalForm.pnl_msg.Visible := True;
-
-        end
-        else
-        begin
-          PrincipalForm.pnl_msg.Visible := false;
-          BancodeDados.QrySql.close;
-          MostraMSG := false;
-        end;
-
-      finally
-        QryCs.close;
-        QryCs.Free;
-      end;
-
-    end;
-  except
-
-      if not Assigned(AjusteBancoForm) then
-      AjusteBancoForm := tAjusteBancoForm.Create(Application);
-      try
-        AjusteBancoForm.ShowModal;
-      ///  AjusteBancoForm.btAjustabancClick();
-      finally
-        AjusteBancoForm.Release;
-        AjusteBancoForm := nil;
-      end;
-  end;
-
-
-end;
-end;
-{
-procedure TPrincipalForm.VerificaRemessaPendentes;
-var
-  DTtmp: TDate;
-  QryCs: TFDQuery;
-begin
-
   if (usrID > 0) then
   begin
-    if (usrNivel in [1, 2]) then
-    begin
-      DTtmp := PrincipalForm.DataServidor - 5;
-      try
-        if DTtmp > 0 then
-        begin
-          QryCs := TFDQuery.create(nil);
-          try
-            QryCs.Connection    := BancodeDados.FDConnection1;
 
-
-            QryCs.close;
-            with qryCs.FormatOptions do
+    DTtmp := PrincipalForm.DataServidor - 5;
+    try
+      if DTtmp > 0 then
+      begin
+        QryCs := TFDQuery.Create(nil);
+        try
+          QryCs.Connection := BancodeDados.FDConnection1;
+          try // and SITUACAO_BOLETO = ' + QuotedStr('A RECEBER') + '
+            QryCs.Close;
+            with QryCs.FormatOptions do
             begin
-              OwnMapRules := True;
+              OwnMapRules := true;
               with MapRules.Add do
               begin
                 TargetDataType := dtInt32;
                 SourceDataType := dtInt64;
               end;
             end;
-            QryCs.SQL.Text := 'select count(emissao_id) as total from v_boletos_remessa where situacao_boleto = ' + QuotedStr('A RECEBER') + ' and coalesce(retorno_id,0) = 0 and coalesce(remessa,0)=0 and coalesce(alt_via_banco,0)=0 and coalesce(cancelado,0)=0 and (coalesce(cli_debito_auto, 0) = 0)' + ' and (dt_proces >' + QuotedStr(FormatDateTime('yyyy/mm/dd', DTtmp)) + ')';
-            QryCs.open;
 
-            //Application.ProcessMessages;
-            if (QryCs.FieldByName('TOTAL').AsInteger > 0) then
-            begin
-              MostraMSG := True;
+            QryCs.SQL.Text :=
+              'select count(emissao_id) as total from v_boletos_remessa where coalesce(retorno_id,0) = 0 and coalesce(remessa,0)=0 and coalesce(alt_via_banco,0)=0 and coalesce(cancelado,0)=0';
+            QryCs.SQL.Add(' and (dt_proces >' +
+              QuotedStr(FormatDateTime('yyyy/mm/dd', DTtmp)) + ')');
 
-              PrincipalForm.pnl_titulo_msg.Caption := '';
-              Msg := 'Pesquisa de remessa não enviada:';
-              QryCs.first;
-              //while not QryCs.eof do
-              //begin
-                Msg := Msg + #13 + 'N.º de registro(s): ' + FormatFloat('000', QryCs.FieldByName('TOTAL').AsInteger);
-                //QryCs.Next;
-              //end;
-              QryCs.close;
-              PrincipalForm.pnl_titulo_msg.Caption := (Msg);
-              PrincipalForm.pnl_msg.Visible := True;
+            if Suporte then
+              Mensagem(QryCs.SQL.Text, mtInformation, [mbOk], mrOk, 0);
 
-            end
-            else
-            begin
-              PrincipalForm.pnl_msg.Visible := false;
-              BancodeDados.QrySql.close;
-              MostraMSG := false;
-            end;
-
-          finally
-            QryCs.close;
-            QryCs.Free;
+            QryCs.Open;
+          except
+            on E: Exception do
+              TraduzErro(E.Message);
           end;
 
-        end;
-      except
-        on E: Exception do
-          TraduzErro(E.Message);
-      end;
+          QryCs.Last;
 
+          // Application.ProcessMessages;
+          if (QryCs.FieldByName('total').AsInteger > 0) then
+          // if (QryCs.RecordCount > 0) then
+          begin
+            MostraMSG := true;
+
+            PrincipalForm.pnl_titulo_msg.Caption := '';
+            Msg := 'Pesquisa de remessa não enviada:';
+            QryCs.first;
+            // while not QryCs.eof do
+            // begin
+            // Msg := Msg + #13 + 'N.º de registro(s): ' + FormatFloat('000', QryCs.FieldByName('TOTAL').AsInteger);
+            // if (QryCs.RecordCount <= 300) then
+            if (QryCs.FieldByName('total').AsInteger > 0) then
+              Msg := Msg + #13 + 'N.º de registro(s): ' +
+                FormatFloat('000', QryCs.FieldByName('total').AsInteger)
+            else // FormatFloat('000', QryCs.RecordCount) else
+              Msg := Msg + #13 + 'N.º de registro(s) +300';
+
+            // QryCs.Next;
+            // end;
+            QryCs.Close;
+            PrincipalForm.pnl_titulo_msg.Caption := (Msg);
+            PrincipalForm.pnl_msg.Visible := true;
+
+          end
+          else
+          begin
+            PrincipalForm.pnl_msg.Visible := false;
+            BancodeDados.QrySql.Close;
+            MostraMSG := false;
+          end;
+
+        finally
+          QryCs.Close;
+          QryCs.Free;
+        end;
+
+      end;
+    except
+
+      if not Assigned(AjusteBancoForm) then
+        AjusteBancoForm := tAjusteBancoForm.Create(Application);
+      try
+        AjusteBancoForm.ShowModal;
+        /// AjusteBancoForm.btAjustabancClick();
+      finally
+        AjusteBancoForm.Release;
+        AjusteBancoForm := nil;
+      end;
     end;
+
+  end;
+end;
+{
+  procedure TPrincipalForm.VerificaRemessaPendentes;
+  var
+  DTtmp: TDate;
+  QryCs: TFDQuery;
+  begin
+
+  if (usrID > 0) then
+  begin
+  if (usrNivel in [1, 2]) then
+  begin
+  DTtmp := PrincipalForm.DataServidor - 5;
+  try
+  if DTtmp > 0 then
+  begin
+  QryCs := TFDQuery.create(nil);
+  try
+  QryCs.Connection    := BancodeDados.FDConnection1;
+
+
+  QryCs.close;
+  with qryCs.FormatOptions do
+  begin
+  OwnMapRules := True;
+  with MapRules.Add do
+  begin
+  TargetDataType := dtInt32;
+  SourceDataType := dtInt64;
+  end;
+  end;
+  QryCs.SQL.Text := 'select count(emissao_id) as total from v_boletos_remessa where situacao_boleto = ' + QuotedStr('A RECEBER') + ' and coalesce(retorno_id,0) = 0 and coalesce(remessa,0)=0 and coalesce(alt_via_banco,0)=0 and coalesce(cancelado,0)=0 and (coalesce(cli_debito_auto, 0) = 0)' + ' and (dt_proces >' + QuotedStr(FormatDateTime('yyyy/mm/dd', DTtmp)) + ')';
+  QryCs.open;
+
+  //Application.ProcessMessages;
+  if (QryCs.FieldByName('TOTAL').AsInteger > 0) then
+  begin
+  MostraMSG := True;
+
+  PrincipalForm.pnl_titulo_msg.Caption := '';
+  Msg := 'Pesquisa de remessa não enviada:';
+  QryCs.first;
+  //while not QryCs.eof do
+  //begin
+  Msg := Msg + #13 + 'N.º de registro(s): ' + FormatFloat('000', QryCs.FieldByName('TOTAL').AsInteger);
+  //QryCs.Next;
+  //end;
+  QryCs.close;
+  PrincipalForm.pnl_titulo_msg.Caption := (Msg);
+  PrincipalForm.pnl_msg.Visible := True;
+
+  end
+  else
+  begin
+  PrincipalForm.pnl_msg.Visible := false;
+  BancodeDados.QrySql.close;
+  MostraMSG := false;
   end;
 
-end;    }
+  finally
+  QryCs.close;
+  QryCs.Free;
+  end;
 
-function TPrincipalForm.GeraMalaDireta(tabela: TFDQuery; incluirTitulos: Boolean; Gauge: TGauge): Boolean;
+  end;
+  except
+  on E: Exception do
+  TraduzErro(E.Message);
+  end;
+
+  end;
+  end;
+
+  end; }
+
+function TPrincipalForm.GeraMalaDireta(tabela: TFDQuery;
+  incluirTitulos: Boolean; Gauge: TGauge): Boolean;
 var
   I, TotalCampos: integer;
   F: TextFile;
@@ -782,7 +801,7 @@ var
   vlCampos: string;
   vlValores, vlTxt: string;
 begin
-  Result := True;
+  Result := true;
   try
     Screen.Cursor := crSQLWait;
     SaveDialog1.InitialDir := ExtractFilePath(ParamStr(0));
@@ -790,11 +809,11 @@ begin
     begin
 
       if Assigned(Gauge) then
-        Gauge.Visible := True;
+        Gauge.Visible := true;
       tabela.Last;
       if Assigned(Gauge) then
         Gauge.MaxValue := tabela.RecNo;
-      tabela.First;
+      tabela.first;
 
       TotalCampos := tabela.FieldCount;
       // vlCampos :=VarArrayCreate([0,TotalCampos - 1], varVariant);
@@ -803,14 +822,16 @@ begin
       vlCampos := '';
       for I := 0 to TotalCampos - 1 do
       begin
-        if { (Trim(UpperCase(Tabela.Fields[i].FieldName)) <> 'ATIVO') and } (Trim(UpperCase(tabela.Fields[I].FieldName)) <> 'FOTO') and (Trim(UpperCase(tabela.Fields[I].FieldName)) <> 'LOGOMARCA') then
+        if { (Trim(UpperCase(Tabela.Fields[i].FieldName)) <> 'ATIVO') and }
+          (Trim(UpperCase(tabela.Fields[I].FieldName)) <> 'FOTO') and
+          (Trim(UpperCase(tabela.Fields[I].FieldName)) <> 'LOGOMARCA') then
         begin
           if Trim(vlCampos) = '' then
-          //  vlCampos := tabela.Fields[I].FieldName
+            // vlCampos := tabela.Fields[I].FieldName
             vlCampos := tabela.Fields[I].DisplayName
           else
             vlCampos := vlCampos + ';' + tabela.Fields[I].DisplayName;
-            //vlCampos := vlCampos + ';' + tabela.Fields[I].FieldName;
+          // vlCampos := vlCampos + ';' + tabela.Fields[I].FieldName;
         end;
       end;
 
@@ -827,19 +848,24 @@ begin
           vlValores := '';
           for I := 0 to TotalCampos - 1 do
           begin
-            if { (Trim(UpperCase(Tabela.Fields[i].FieldName)) <> 'ATIVO') and } (Trim(UpperCase(tabela.Fields[I].FieldName)) <> 'FOTO') and (Trim(UpperCase(tabela.Fields[I].FieldName)) <> 'LOGOMARCA') then
+            if { (Trim(UpperCase(Tabela.Fields[i].FieldName)) <> 'ATIVO') and }
+              (Trim(UpperCase(tabela.Fields[I].FieldName)) <> 'FOTO') and
+              (Trim(UpperCase(tabela.Fields[I].FieldName)) <> 'LOGOMARCA') then
             begin
-              if (tabela.Fields[I].DataType in [ftFloat, ftCurrency, ftBCD]) then
+              if (tabela.Fields[I].DataType in [ftFloat, ftCurrency, ftBCD])
+              then
                 vlTxt := FormatFloat(',0.00', tabela.Fields[I].AsCurrency)
               else
                 vlTxt := tabela.Fields[I].AsString;
 
               vlTxt := StringReplace(vlTxt, #13, ' ', [rfReplaceAll]);
               vlTxt := StringReplace(vlTxt, #10, '', [rfReplaceAll]);
-              vlTxt := StringReplace(vlTxt, '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ', '', [rfReplaceAll]);
+              vlTxt := StringReplace(vlTxt,
+                '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ',
+                '', [rfReplaceAll]);
 
-              //Atualização Alex Eloy - 24/10/2016
-              //if (valores = '') then
+              // Atualização Alex Eloy - 24/10/2016
+              // if (valores = '') then
               if (I = 0) then
                 vlValores := vlTxt
               else
@@ -854,13 +880,15 @@ begin
       finally
         CloseFile(F);
       end;
-      Mensagem('Processo concluído com sucesso.', mtInformation, [mbOk], mrOk, 0);
+      Mensagem('Processo concluído com sucesso.', mtInformation,
+        [mbOk], mrOk, 0);
     end; // SaveDialog
   except
     on E: Exception do
     begin
       Result := false;
-      Mensagem('Erro ao gerar mala direta.' + #13 + E.Message, mtWarning, [mbOk], mrOk, 0);
+      Mensagem('Erro ao gerar mala direta.' + #13 + E.Message, mtWarning,
+        [mbOk], mrOk, 0);
     end
   end;
   if Assigned(Gauge) then
@@ -871,37 +899,36 @@ begin
   Screen.Cursor := crDefault;
 end;
 
-
 function TPrincipalForm.RetornaLimpo(em: string): string;
 var
-  i: Integer;
+  I: integer;
   temp: string;
   letras: string;
-  x: Integer;
+  x: integer;
 begin
   letras := '0123456789';
 
   for x := 1 to Length(em) do
-    for i := 1 to Length(letras) do
-      if em[x] = letras[i] then
+    for I := 1 to Length(letras) do
+      if em[x] = letras[I] then
         temp := temp + em[x];
 
-  result := Trim(temp);
+  Result := Trim(temp);
 end;
 
 function TPrincipalForm.DataHoraServidor: TDateTime;
 begin
   Result := Now;
 
+  try
     try
-      try
-        BancodeDados.DataHora.Open;
-        Result := BancodeDados.DataHoraCURRENT_TIMESTAMP.Value;
-      finally
-        BancodeDados.DataHora.Close;
-      end;
-    except
+      BancodeDados.DataHora.Open;
+      Result := BancodeDados.DataHoraCURRENT_TIMESTAMP.Value;
+    finally
+      BancodeDados.DataHora.Close;
     end;
+  except
+  end;
 
 end;
 
@@ -932,15 +959,15 @@ function TPrincipalForm.DataServidor: TDate;
 begin
   Result := Date;
 
+  try
     try
-      try
-        BancodeDados.DataHora.Open;
-        Result := BancodeDados.DataHoraCURRENT_DATE.Value;
-      finally
-        BancodeDados.DataHora.Close;
-      end;
-    except
+      BancodeDados.DataHora.Open;
+      Result := BancodeDados.DataHoraCURRENT_DATE.Value;
+    finally
+      BancodeDados.DataHora.Close;
     end;
+  except
+  end;
 end;
 
 function SelecionarDiretorio(Titulo, DirInicial: string): string;
@@ -958,12 +985,12 @@ end;
 { Funçoes p/ Verificar validade do CPF e CNJ }
 function CalculaCnpjCpf(numero: String): String;
 var
-  i, j, k: Integer;
-  Soma: Integer;
-  Digito: Integer;
+  I, j, k: integer;
+  Soma: integer;
+  Digito: integer;
   CNPJ: Boolean;
 begin
-  result := '';
+  Result := '';
   CNPJ := false;
   case Length(numero) of
     9:
@@ -971,14 +998,14 @@ begin
     12:
       CNPJ := true;
   end;
-  result := numero;
+  Result := numero;
   for j := 1 to 2 do
   begin
     k := 2;
     Soma := 0;
-    for i := Length(result) downto 1 do
+    for I := Length(Result) downto 1 do
     begin
-      Soma := Soma + (Ord(result[i]) - Ord('0')) * k;
+      Soma := Soma + (Ord(Result[I]) - Ord('0')) * k;
       Inc(k);
       if (k > 9) and CNPJ then
         k := 2;
@@ -986,7 +1013,7 @@ begin
     Digito := 11 - Soma mod 11;
     if Digito >= 10 then
       Digito := 0;
-    result := result + Chr(Digito + Ord('0'));
+    Result := Result + Chr(Digito + Ord('0'));
   end;
 end;
 
@@ -994,27 +1021,28 @@ function TestaCPFCNPJ(cpf: string; Msg: Boolean = true): String;
 var
   temp: string;
   temp2: string;
-  i: Integer;
+  I: integer;
   cgcnovo: string;
   numero: String;
 begin
-  result := '';
-  if trim(cpf) <> '' then
+  Result := '';
+  if Trim(cpf) <> '' then
   begin
     temp := cpf;
     { testa se o CPF/CGC e Valido }
-    for i := 1 to Length(temp) do
-      if temp[i] in ['0' .. '9'] then
-        numero := numero + temp[i];
+    for I := 1 to Length(temp) do
+      if temp[I] in ['0' .. '9'] then
+        numero := numero + temp[I];
     if Length(numero) = 11 then
       temp := Copy(numero, 1, 9);
     if Length(numero) = 14 then
       temp := Copy(numero, 1, 12);
     if CalculaCnpjCpf(temp) <> numero then
     begin
-      result := '';
+      Result := '';
       if (Msg = true) then
-        Mensagem('Verifique a autenticidade do CNPJ/CPF!', mtInformation, [mbOk], mrOK, 0);
+        Mensagem('Verifique a autenticidade do CNPJ/CPF!', mtInformation,
+          [mbOk], mrOk, 0);
     end
     else
     begin
@@ -1022,18 +1050,22 @@ begin
       if temp <> '' then
       begin
         temp2 := '';
-        for i := 0 to Length(temp) do
-          if temp[i] in ['0' .. '9'] then
-            temp2 := temp2 + temp[i];
+        for I := 0 to Length(temp) do
+          if temp[I] in ['0' .. '9'] then
+            temp2 := temp2 + temp[I];
         if Length(temp2) <= 11 then
         begin
-          cgcnovo := temp2[1] + temp2[2] + temp2[3] + '.' + temp2[4] + temp2[5] + temp2[6] + '.' + temp2[7] + temp2[8] + temp2[9] + '-' + temp2[10] + temp2[11];
-          result := cgcnovo;
+          cgcnovo := temp2[1] + temp2[2] + temp2[3] + '.' + temp2[4] + temp2[5]
+            + temp2[6] + '.' + temp2[7] + temp2[8] + temp2[9] + '-' + temp2[10]
+            + temp2[11];
+          Result := cgcnovo;
         end
         else
         begin
-          cgcnovo := temp2[1] + temp2[2] + '.' + temp2[3] + temp2[4] + temp2[5] + '.' + temp2[6] + temp2[7] + temp2[8] + '/' + temp2[9] + temp2[10] + temp2[11] + temp2[12] + '-' + temp2[13] + temp2[14];
-          result := cgcnovo;
+          cgcnovo := temp2[1] + temp2[2] + '.' + temp2[3] + temp2[4] + temp2[5]
+            + '.' + temp2[6] + temp2[7] + temp2[8] + '/' + temp2[9] + temp2[10]
+            + temp2[11] + temp2[12] + '-' + temp2[13] + temp2[14];
+          Result := cgcnovo;
         end;
       end;
     end;
@@ -1043,45 +1075,59 @@ end;
 function CPFTeste(cpfTmp: String): Boolean;
 begin
   cpfTmp := TestaCPFCNPJ(cpfTmp, false);
-  if (trim(cpfTmp) = '') or (trim(cpfTmp) = '000.000.000-00') or (trim(cpfTmp) = '111.111.111-11') or (trim(cpfTmp) = '222.222.222-22') or (trim(cpfTmp) = '333.333.333-33') or (trim(cpfTmp) = '444.444.444-44') or (trim(cpfTmp) = '555.555.555-55') or (trim(cpfTmp) = '666.666.666-66') or
-    (trim(cpfTmp) = '777.777.777-77') or (trim(cpfTmp) = '888.888.888-88') or (trim(cpfTmp) = '999.999.999-99') or (trim(cpfTmp) = '000.000.001-91') or (trim(cpfTmp) = '00.000.000/0000-00') or (trim(cpfTmp) = '11.111.111/1111-11') or (trim(cpfTmp) = '22.222.222/2222-22') or
-    (trim(cpfTmp) = '33.333.333/3333-33') or (trim(cpfTmp) = '44.444.444/4444-44') or (trim(cpfTmp) = '55.555.555/5555-55') or (trim(cpfTmp) = '66.666.666/6666-66') or (trim(cpfTmp) = '77.777.777/7777-77') or (trim(cpfTmp) = '88.888.888/8888-88') or (trim(cpfTmp) = '99.999.999/9999-99') then
-    result := true
+  if (Trim(cpfTmp) = '') or (Trim(cpfTmp) = '000.000.000-00') or
+    (Trim(cpfTmp) = '111.111.111-11') or (Trim(cpfTmp) = '222.222.222-22') or
+    (Trim(cpfTmp) = '333.333.333-33') or (Trim(cpfTmp) = '444.444.444-44') or
+    (Trim(cpfTmp) = '555.555.555-55') or (Trim(cpfTmp) = '666.666.666-66') or
+    (Trim(cpfTmp) = '777.777.777-77') or (Trim(cpfTmp) = '888.888.888-88') or
+    (Trim(cpfTmp) = '999.999.999-99') or (Trim(cpfTmp) = '000.000.001-91') or
+    (Trim(cpfTmp) = '00.000.000/0000-00') or
+    (Trim(cpfTmp) = '11.111.111/1111-11') or
+    (Trim(cpfTmp) = '22.222.222/2222-22') or
+    (Trim(cpfTmp) = '33.333.333/3333-33') or
+    (Trim(cpfTmp) = '44.444.444/4444-44') or
+    (Trim(cpfTmp) = '55.555.555/5555-55') or
+    (Trim(cpfTmp) = '66.666.666/6666-66') or
+    (Trim(cpfTmp) = '77.777.777/7777-77') or
+    (Trim(cpfTmp) = '88.888.888/8888-88') or
+    (Trim(cpfTmp) = '99.999.999/9999-99') then
+    Result := true
   else
-    result := false;
+    Result := false;
 end;
 
 procedure TPrincipalForm.ResponderConnStr(var Msg: TMessage);
 var
   SedScan: PTSedScan;
   hMem: THandle;
-  idPessoa, iTipo, origId: integer;
-  origNome : ShortString;
+  idPessoa, iTipo, OrigId: integer;
+  OrigNome: ShortString;
 begin
   // try
   idPessoa := 0;
   iTipo := 0;
 
-  if Assigned(CadClientesForm)  then
+  if Assigned(CadClientesForm) then
   begin
-    iTipo     := 1;
-    idPessoa  := BancodeDados.ClientesCLI_ID.Value;
-    origId    := BancodeDados.ClientesCLI_ID.Value;
-    origNome  := 'CLIENTE';
+    iTipo := 1;
+    idPessoa := BancodeDados.ClientesCLI_ID.Value;
+    OrigId := BancodeDados.ClientesCLI_ID.Value;
+    OrigNome := 'CLIENTE';
   end;
 
   if (idPessoa > 0) and (iTipo > 0) then
   begin
-    hMem := CreateFileMapping($FFFFFFFF, nil, PAGE_READWRITE, 0, sizeof(TSedScan), 'ArqMemoria2');
+    hMem := CreateFileMapping($FFFFFFFF, nil, PAGE_READWRITE, 0,
+      sizeof(TSedScan), 'ArqMemoria2');
 
     SedScan := MapViewOfFile(hMem, FILE_MAP_WRITE, 0, 0, sizeof(TSedScan));
 
-    SedScan.iTipo     := iTipo;
-    SedScan.idPessoa  := idPessoa;
-    SedScan.idUsr     := usrID;
-    SedScan.connStr   := (BancNome);
-    SedScan.origID    := origId;
-    SedScan.origNome  := origNome;
+    SedScan.iTipo := iTipo;
+    SedScan.idPessoa := idPessoa;
+    SedScan.idUsr := usrID;
+    SedScan.connStr := (BancNome);
+    SedScan.OrigId := OrigId;
+    SedScan.OrigNome := OrigNome;
 
     Msg.Result := 1;
   end
@@ -1094,7 +1140,6 @@ begin
   // end;
 end;
 
-
 procedure TPrincipalForm.AtualizarListaDocScan(var Msg: TMessage);
 begin
   if BancodeDados.SDoc.Active then
@@ -1104,7 +1149,7 @@ begin
   end;
 end;
 
-function TeclaPressionada(const Key: Integer): Boolean;
+function TeclaPressionada(const Key: integer): Boolean;
 begin
   Result := GetKeyState(Key) and 128 > 0;
 end;
@@ -1133,14 +1178,14 @@ begin
 end;
 
 procedure HabilitarBotoes(Formulario: TForm; Valor: Boolean);
-//var
-//  i: Integer;
+// var
+// i: Integer;
 begin
-{  for i := 0 to Formulario.ComponentCount - 1 do
-  begin
+  { for i := 0 to Formulario.ComponentCount - 1 do
+    begin
     if (Formulario.Components[i] is TButton) then
-      (Formulario.Components[i] as TButton).Enabled := Valor;
-  end;}
+    (Formulario.Components[i] as TButton).Enabled := Valor;
+    end; }
 end;
 
 procedure TPrincipalForm.Sair1Click(Sender: TObject);
@@ -1150,12 +1195,12 @@ end;
 
 procedure TPrincipalForm.Servios12Click(Sender: TObject);
 begin
-//  if not(usrID > 0) then
-//    Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
-//  else
-//  begin
-    if (usrNivel in [1, 2]) then
-    begin
+  // if not(usrID > 0) then
+  // Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
+  // else
+  // begin
+  if (usrNivel in [1, 2]) then
+  begin
     if not Assigned(CsVeiculosForm) then
       CsVeiculosForm := tCsVeiculosForm.Create(Application);
     try
@@ -1165,7 +1210,7 @@ begin
       CsVeiculosForm := nil;
     end;
   end;
-//  end;
+  // end;
 end;
 
 procedure TPrincipalForm.Timer1Timer(Sender: TObject);
@@ -1178,30 +1223,31 @@ begin
   else
   begin
     BancodeDados.Login.Close;
-    BancodeDados.Login.SQL.text := 'select * from login where ativo = 1';
+    BancodeDados.Login.SQL.Text := 'select * from login where ativo = 1';
     BancodeDados.Login.Open;
     usrID := BancodeDados.LoginLOGIN_ID.Value;
     usrLogin := BancodeDados.LoginLOGIN.Value;
     usrNivel := BancodeDados.LoginNIVEL.Value;
-    GerarNfseAutom:= (BancodeDados.LoginGERA_NFSE.Value=1);
+    GerarNfseAutom := (BancodeDados.LoginGERA_NFSE.Value = 1);
 
-    StatusBar1.Panels[1].text := usrLogin;
+    StatusBar1.Panels[1].Text := usrLogin;
     BancodeDados.Login.Close;
   end;
 end;
 
 procedure TPrincipalForm.Timer2Timer(Sender: TObject);
 var
-  q : TFDQuery;
+  q: TFDQuery;
 begin
-  //Timer que garante a conexão com o banco de dados
+  // Timer que garante a conexão com o banco de dados
 
-  if not BancodeDados.FDConnection1.Connected then exit;
+  if not BancodeDados.FDConnection1.Connected then
+    exit;
 
   q := TFDQuery.Create(nil);
   try
     q.Connection := BancodeDados.FDConnection1;
-    q.close;
+    q.Close;
     q.SQL.Text := 'select ''ping'' from clientes where cli_id = 0;';
     q.Open;
   finally
@@ -1212,24 +1258,27 @@ end;
 procedure TPrincipalForm.FormShow(Sender: TObject);
 var
   registro, regRegistro: TSEDRegistro;
-  SenhaBCTemp : string;
+  SenhaBCTemp: string;
 begin
-  //if not Assigned(regRegistro) then
+  // if not Assigned(regRegistro) then
   registro := TSEDRegistro.Create;
   try
     registro.RootKey := HKEY_LOCAL_MACHINE;
-    if Registro.AbrirChave(ChaveRegSED) then
+    if registro.AbrirChave(ChaveRegSED) then
     begin
 
-      Serv        := registro.LerTexto('serv', 'localhost');
-      BancNome    := registro.LerTexto('banco','D:\sedsoftdb\locacao_auto.fdb.fdb');
-      BancPorta   := registro.LerTexto('porta','3050');
-      BancUsuario := registro.LerTexto('usuario','sysdba');
-      SenhaBCTemp := registro.LerTexto('pswd','');
-      RemotoDriveID:= Registro.LerNumero('bcdrive', 1);
+      Serv := registro.LerTexto('serv', 'localhost');
+      BancNome := registro.LerTexto('banco',
+        'D:\sedsoftdb\locacao_auto.fdb.fdb');
+      BancPorta := registro.LerTexto('porta', '3050');
+      BancUsuario := registro.LerTexto('usuario', 'sysdba');
+      SenhaBCTemp := registro.LerTexto('pswd', '');
+      RemotoDriveID := registro.LerNumero('bcdrive', 1);
 
-      if Length(SenhaBCTemp)>0 then
-      BancPassword:=BancodeDados.Criptografar(SenhaBCTemp) else BancPassword:='';
+      if Length(SenhaBCTemp) > 0 then
+        BancPassword := BancodeDados.Criptografar(SenhaBCTemp)
+      else
+        BancPassword := '';
 
       registro.FecharChave;
     end;
@@ -1237,246 +1286,255 @@ begin
     registro.Free;
   end;
 
-
   StatusBar1.Panels[0].Text := 'Locação de Automóvel';
-  StatusBar1.Panels[2].Text := 'Aluguel Exclusivo para Motorista de Aplicativos';
-  Cadastro1.Visible:=False;
-  PrincipalForm.locatario1.Visible    :=false;
+  StatusBar1.Panels[2].Text :=
+    'Aluguel Exclusivo para Motorista de Aplicativos';
+  Cadastro1.Visible := false;
+  PrincipalForm.locatario1.Visible := false;
 
-  Relatrios1.Visible:=False;
-  //Componentes12.Visible:=False;
-  Utilitarios1.Visible:=False;
-  MovimentacaoBancaria12.Visible:=False;
+  Relatrios1.Visible := false;
+  // Componentes12.Visible:=False;
+  Utilitarios1.Visible := false;
+  MovimentacaoBancaria12.Visible := false;
 
+  if (BancPorta = EmptyStr) or (BancUsuario = EmptyStr) or
+    (BancPassword = EmptyStr) or (Serv = EmptyStr) or (BancNome = EmptyStr) then
+  begin
 
-    if (BancPorta=EmptyStr) or (BancUsuario=EmptyStr) or (BancPassword=EmptyStr) or (Serv=EmptyStr) or (BancNome=EmptyStr)
-    then
+    Mensagem('Servidor ou caminho do banco de dados não foi informado!',
+      mtInformation, [mbOk], mrOk, 0);
+
+    if not Assigned(AlterandoServidorForm) then
+      AlterandoServidorForm := TAlterandoServidorForm.Create(Application);
+    try
+      AlterandoServidorForm.ShowModal;
+    finally
+      AlterandoServidorForm.Release;
+      AlterandoServidorForm := nil;
+    end;
+  end
+  else if (Serv <> EmptyStr) and (BancNome <> EmptyStr) then
+  begin
+
+    BancodeDados.FechaConexoes;
+
+    with BancodeDados do
     begin
+      // BANCO 1
+      try // 1
+        FDConnection1.Close;
+        FDConnection1.FormatOptions.OwnMapRules := false;
+        FDConnection1.FormatOptions.MapRules.Clear;
+        FDConnection1.Params.Clear;
+        FDConnection1.LoginPrompt := false;
+        FDConnection1.Params.Add('Pooled=false');
 
-        Mensagem('Servidor ou caminho do banco de dados não foi informado!',mtInformation,[mbOk],mrOk,0);
+        case RemotoDriveID of
+          2: // 'MySQL':
+            begin
 
-       if not Assigned(AlterandoServidorForm) then
-        AlterandoServidorForm := TAlterandoServidorForm.Create(Application);
-       try
-        AlterandoServidorForm.ShowModal;
-      finally
-        AlterandoServidorForm.Release;
-        AlterandoServidorForm := nil;
-      end;
-    end else
-    if (Serv<>EmptyStr) and (BancNome<>EmptyStr) then
-    begin
-
-        BancodeDados.FechaConexoes;
-
-        with BancodeDados do
-        begin
-          //BANCO 1
-          try //1
-              FDConnection1.close;
-              FDConnection1.FormatOptions.OwnMapRules := False;
-              FDConnection1.FormatOptions.MapRules.Clear;
-              FDConnection1.Params.Clear;
-              FDConnection1.LoginPrompt:= False;
-              FDConnection1.Params.Add('Pooled=false');
-
-              case RemotoDriveID of
-              2: //'MySQL':
-                begin
-
-                  FDConnection1.FormatOptions.OwnMapRules := True;
-                  //1
-                  with FDConnection1.FormatOptions.MapRules.Add do
-                  begin
-                    SourceDataType := dtWideString; //incorreto
-                    TargetDataType := dtAnsiString; //certo
-                  end;
-                 { //2
-                  with FDConnection1.FormatOptions.MapRules.Add do
-                  begin
-                    SourceDataType := dtMemo;//incorreto
-                    TargetDataType := dtBlob;//certo
-                  end;
-
-                  }
-                  //3
-                  with FDConnection1.FormatOptions.MapRules.Add do
-                  begin
-                    SourceDataType := dtFmtBCD;//incorreto
-                    TargetDataType := dtInt64;//certo
-                  end;
-                  //4
-                  with FDConnection1.FormatOptions.MapRules.Add do
-                  begin
-                    SourceDataType := dtUInt16;//incorreto
-                    TargetDataType := dtInt64;//certo
-                  end;
-                  //5
-                  with FDConnection1.FormatOptions.MapRules.Add do
-                  begin
-                    TargetDataType := dtDateTime;
-                    SourceDataType := dtDateTimeStamp;
-                  end;
-
-                  FDConnection1.DriverName := trim('MySQL'); //drive do banco
-                  FDConnection1.Params.Add('server='+Serv);//IP do servidor do banco de dados
-                  FDConnection1.Params.Add('database='+BancNome); //caminho do banco de dados
-                  FDConnection1.Params.Add('user_name='+BancUsuario);
-                  FDConnection1.Params.Add('password='+BancPassword);
-                  FDConnection1.Params.Add('drivername='+FDConnection1.DriverName);
-                  FDConnection1.Params.Add('procol='+'TCPIP');
-                  FDConnection1.Params.Add('port='+(BancPorta));
-                  FDConnection1.Params.Add('CharacterSet=utf8');
-                  FDConnection1.Params.Add('blobsize=');
-
-
-
-               end
-               ELSE
-               begin  //0, 1
-
-                  FDConnection1.FormatOptions.OwnMapRules := True;
-
-                  with FDConnection1.FormatOptions.MapRules.Add do
-                  begin
-                    TargetDataType := dtDateTime;
-                    SourceDataType := dtDateTimeStamp;
-                  end;
-
-                  with FDConnection1.FormatOptions.MapRules.Add do
-                  begin
-                    TargetDataType := dtAnsiString;
-                    SourceDataType := dtWideString;
-                  end;
-
-                  FDConnection1.DriverName := trim('FB');
-                  FDConnection1.Params.Add('server='+Serv);
-                  FDConnection1.Params.Add('database='+BancNome); //caminho do banco de dados
-                  FDConnection1.Params.Add('user_name='+BancUsuario);
-                  FDConnection1.Params.Add('password='+BancPassword);
-                  FDConnection1.Params.Add('drivername='+FDConnection1.DriverName);
-                  FDConnection1.Params.Add('procol='+'TCPIP');
-                  FDConnection1.Params.Add('port='+(Bancporta));
-                  FDConnection1.Params.Add('DriverID=FB');//drive do banco
-                  FDConnection1.Params.Add('CharacterSet=win1252');
-                  FDConnection1.Params.Add('blobsize=-1');
-
-               end;
-              end;
-
-              FDConnection1.Open;
-
-
-              if FDConnection1.Connected then
+              FDConnection1.FormatOptions.OwnMapRules := true;
+              // 1
+              with FDConnection1.FormatOptions.MapRules.Add do
               begin
-               StatusBar1.Panels[4].text := 'Configuração: '+FDConnection1.DriverName;
-
-               Screen.Cursor := crSQLWait;
-               BancodeDados.RLPreviewSetup1.ZoomFactor := 130;
-
-               if not Assigned(listaCliSite) then  listaCliSite := TStringList.Create;
-               listaCliSite.Clear;
-               listaCliSite.Sorted := True;
-               listaCliSite.Duplicates := dupIgnore;
-
-                //criando temporario campo para ajsutar o banco automaticamente na miracao de banco
-                //sem precisar da rotina de ajuste...
-                with BancodeDados.Script1 do
+                SourceDataType := dtWideString; // incorreto
+                TargetDataType := dtAnsiString; // certo
+              end;
+              { //2
+                with FDConnection1.FormatOptions.MapRules.Add do
                 begin
-
-                  try
-                    BancodeDados.FDConnection1.StartTransaction;
-                    SQLScripts.Clear;
-                    SQLScripts.Add;
-
-                    with SQLScripts[0].SQL do
-                    begin
-                      ADD('alter table config add import_bc_fb smallint;');
-                    end;
-                    ValidateAll;
-                    ExecuteAll;
-
-                      try
-                        BancodeDados.FDConnection1.CommitRetaining;
-                      except
-                      end;
-
-                  except
-                  //  BancodeDados.FDConnection1.Rollback;
-                  end;
+                SourceDataType := dtMemo;//incorreto
+                TargetDataType := dtBlob;//certo
                 end;
 
-
-                // caso haja algum erro sera chamando o ajuste de banco de dados..
-                try
-                  if not BancodeDados.Config.active then BancodeDados.Config.Open;
-                  PrincipalForm.VerificaRemessaPendentes;
-                  //PrincipalForm.AtualizarFinanceiro1Click(Sender);
-
-
-                  try
-                  PrincipalForm.btImagemClick(Sender);
-                  except
-                  end;
-
-                  PrincipalForm.Caption := SistemaNome + ' (Licença Temporária) '; //+ //BancodeDados.ConfigFANTASIA.AsString;
-
-                  ClienteCNPJ:=BancodeDados.ConfigCNPJ.AsString;
-
-                  if not BancodeDados.Clientes.active then BancodeDados.Clientes.Open;
-                  BancodeDados.Clientes.Close;
-
-                  if not BancodeDados.Boletos.active then BancodeDados.Boletos.Open;
-                  BancodeDados.Boletos.Close;
-
-                 //carregando SQL  Padrão
-
-                except
-
-                  if not Assigned(AjusteBancoForm) then
-                  AjusteBancoForm := tAjusteBancoForm.Create(Application);
-                  try
-                    //AjusteBancoForm.ShowModal;
-                    AjusteBancoForm.btAjustabancClick(sender);
-                  finally
-                    AjusteBancoForm.Release;
-                    AjusteBancoForm := nil;
-
-                  end;
-
-                end;
-                Screen.Cursor := crDefault;
+              }
+              // 3
+              with FDConnection1.FormatOptions.MapRules.Add do
+              begin
+                SourceDataType := dtFmtBCD; // incorreto
+                TargetDataType := dtInt64; // certo
+              end;
+              // 4
+              with FDConnection1.FormatOptions.MapRules.Add do
+              begin
+                SourceDataType := dtUInt16; // incorreto
+                TargetDataType := dtInt64; // certo
+              end;
+              // 5
+              with FDConnection1.FormatOptions.MapRules.Add do
+              begin
+                TargetDataType := dtDateTime;
+                SourceDataType := dtDateTimeStamp;
               end;
 
-          except on E:Exception do
-           begin
-             // ErroReg:=true;
-              if (Pos('Error while trying to open file', E.Message)>0) then
-              Mensagem ('O banco de dados da unidade  '+QuotedStr(Serv)+'  não foi localizado.'+#13+'Entre em contato com o suporte técnico.', mtWarning, [mbOk], mrOk, 0)
-              else
-              Mensagem('Falha na conexão com o servidor/remoto.'+#13+E.Message,mtWarning,[mbOk],mrOk,0);
+              FDConnection1.DriverName := Trim('MySQL'); // drive do banco
+              FDConnection1.Params.Add('server=' + Serv);
+              // IP do servidor do banco de dados
+              FDConnection1.Params.Add('database=' + BancNome);
+              // caminho do banco de dados
+              FDConnection1.Params.Add('user_name=' + BancUsuario);
+              FDConnection1.Params.Add('password=' + BancPassword);
+              FDConnection1.Params.Add
+                ('drivername=' + FDConnection1.DriverName);
+              FDConnection1.Params.Add('procol=' + 'TCPIP');
+              FDConnection1.Params.Add('port=' + (BancPorta));
+              FDConnection1.Params.Add('CharacterSet=utf8');
+              FDConnection1.Params.Add('blobsize=');
 
+            end
+        ELSE
+          begin // 0, 1
 
-               if not Assigned(AlterandoServidorForm) then
-                AlterandoServidorForm := TAlterandoServidorForm.Create(Application);
-               try
-                AlterandoServidorForm.ShowModal;
-              finally
-                AlterandoServidorForm.Release;
-                AlterandoServidorForm := nil;
+            FDConnection1.FormatOptions.OwnMapRules := true;
+
+            with FDConnection1.FormatOptions.MapRules.Add do
+            begin
+              TargetDataType := dtDateTime;
+              SourceDataType := dtDateTimeStamp;
+            end;
+
+            with FDConnection1.FormatOptions.MapRules.Add do
+            begin
+              TargetDataType := dtAnsiString;
+              SourceDataType := dtWideString;
+            end;
+
+            FDConnection1.DriverName := Trim('FB');
+            FDConnection1.Params.Add('server=' + Serv);
+            FDConnection1.Params.Add('database=' + BancNome);
+            // caminho do banco de dados
+            FDConnection1.Params.Add('user_name=' + BancUsuario);
+            FDConnection1.Params.Add('password=' + BancPassword);
+            FDConnection1.Params.Add('drivername=' + FDConnection1.DriverName);
+            FDConnection1.Params.Add('procol=' + 'TCPIP');
+            FDConnection1.Params.Add('port=' + (BancPorta));
+            FDConnection1.Params.Add('DriverID=FB'); // drive do banco
+            FDConnection1.Params.Add('CharacterSet=win1252');
+            FDConnection1.Params.Add('blobsize=-1');
+
+          end;
+        end;
+
+        FDConnection1.Open;
+
+        if FDConnection1.Connected then
+        begin
+          StatusBar1.Panels[4].Text := 'Configuração: ' +
+            FDConnection1.DriverName;
+
+          Screen.Cursor := crSQLWait;
+          BancodeDados.RLPreviewSetup1.ZoomFactor := 130;
+
+          if not Assigned(listaCliSite) then
+            listaCliSite := TStringList.Create;
+          listaCliSite.Clear;
+          listaCliSite.Sorted := true;
+          listaCliSite.Duplicates := dupIgnore;
+
+          // criando temporario campo para ajsutar o banco automaticamente na miracao de banco
+          // sem precisar da rotina de ajuste...
+          with BancodeDados.Script1 do
+          begin
+
+            try
+              BancodeDados.FDConnection1.StartTransaction;
+              SQLScripts.Clear;
+              SQLScripts.Add;
+
+              with SQLScripts[0].SQL do
+              begin
+                Add('alter table config add import_bc_fb smallint;');
               end;
-               Application.Terminate;
+              ValidateAll;
+              ExecuteAll;
+
+              try
+                BancodeDados.FDConnection1.CommitRetaining;
+              except
+              end;
+
+            except
+              // BancodeDados.FDConnection1.Rollback;
+            end;
+          end;
+
+          // caso haja algum erro sera chamando o ajuste de banco de dados..
+          try
+            if not BancodeDados.Config.Active then
+              BancodeDados.Config.Open;
+            PrincipalForm.VerificaRemessaPendentes;
+            // PrincipalForm.AtualizarFinanceiro1Click(Sender);
+
+            try
+              PrincipalForm.btImagemClick(Sender);
+            except
+            end;
+
+            PrincipalForm.Caption := SistemaNome + ' (Licença Temporária) ';
+            // + //BancodeDados.ConfigFANTASIA.AsString;
+
+            ClienteCNPJ := BancodeDados.ConfigCNPJ.AsString;
+
+            if not BancodeDados.Clientes.Active then
+              BancodeDados.Clientes.Open;
+            BancodeDados.Clientes.Close;
+
+            if not BancodeDados.Boletos.Active then
+              BancodeDados.Boletos.Open;
+            BancodeDados.Boletos.Close;
+
+            // carregando SQL  Padrão
+
+          except
+
+            if not Assigned(AjusteBancoForm) then
+              AjusteBancoForm := tAjusteBancoForm.Create(Application);
+            try
+              // AjusteBancoForm.ShowModal;
+              AjusteBancoForm.btAjustabancClick(Sender);
+            finally
+              AjusteBancoForm.Release;
+              AjusteBancoForm := nil;
+
             end;
 
           end;
-
+          Screen.Cursor := crDefault;
         end;
 
+      except
+        on E: Exception do
+        begin
+          // ErroReg:=true;
+          if (Pos('Error while trying to open file', E.Message) > 0) then
+            Mensagem('O banco de dados da unidade  ' + QuotedStr(Serv) +
+              '  não foi localizado.' + #13 +
+              'Entre em contato com o suporte técnico.', mtWarning,
+              [mbOk], mrOk, 0)
+          else
+            Mensagem('Falha na conexão com o servidor/remoto.' + #13 +
+              E.Message, mtWarning, [mbOk], mrOk, 0);
+
+          if not Assigned(AlterandoServidorForm) then
+            AlterandoServidorForm := TAlterandoServidorForm.Create(Application);
+          try
+            AlterandoServidorForm.ShowModal;
+          finally
+            AlterandoServidorForm.Release;
+            AlterandoServidorForm := nil;
+          end;
+          Application.Terminate;
+        end;
+
+      end;
+
     end;
-    // else
-    //begin
-    // Mensagem('Servidor ou caminho do banco de dados não foi informado!',mtInformation,[mbOk],mrOk,0);
-    //end;
+
+  end;
+  // else
+  // begin
+  // Mensagem('Servidor ou caminho do banco de dados não foi informado!',mtInformation,[mbOk],mrOk,0);
+  // end;
 
 end;
 
@@ -1484,13 +1542,13 @@ Procedure LimpaArquivos(vMasc: String);
 { Apaga arquivos usando mascaras tipo: *.zip, *.* }
 Var
   Dir: TsearchRec;
-  Erro: Integer;
+  Erro: integer;
 Begin
 {$WARNINGS OFF}
   Erro := FindFirst(vMasc, faArchive, Dir);
   While Erro = 0 do
   Begin
-    DeleteFile(ExtractFilePAth(vMasc) + Dir.Name);
+    DeleteFile(ExtractFilePath(vMasc) + Dir.Name);
     Erro := FindNext(Dir);
   End;
   FindClose(Dir);
@@ -1504,66 +1562,63 @@ begin
   // CanClose:=False;
 
   if ServicoAtivoNFSe then
-  if Mensagem('Existe um processo de verificação de NFse. Deseja parar?',mtConfirmation,[mbYes,mbNo],mrNo,0)=idYes then
-  begin
-   // MyProcess.Tabela:=nil;
-    myNFseCSTh.Terminate();
-    PrincipalForm.StatusBar1.Panels[3].Text := '';
-    PrincipalForm.StatusBar1.Panels[4].Text := '';
-    PrincipalForm.StatusBar1.Panels[5].Text := '';
-    ServicoAtivoNFSe := FALSE;
-  end else CanClose:=False;
+    if Mensagem('Existe um processo de verificação de NFse. Deseja parar?',
+      mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
+    begin
+      // MyProcess.Tabela:=nil;
+      myNFseCSTh.Terminate();
+      PrincipalForm.StatusBar1.Panels[3].Text := '';
+      PrincipalForm.StatusBar1.Panels[4].Text := '';
+      PrincipalForm.StatusBar1.Panels[5].Text := '';
+      ServicoAtivoNFSe := false;
+    end
+    else
+      CanClose := false;
 
 end;
 
 procedure TPrincipalForm.FormCreate(Sender: TObject);
 begin
-Screen.OnActiveFormChange := FormChange;
+  Screen.OnActiveFormChange := FormChange;
 end;
-
-
 
 procedure TPrincipalForm.FormChange(Sender: TObject);
 var
-//  Ano, Mes, Dia: Word;
+  // Ano, Mes, Dia: Word;
   ComponenteTmp: TComponent;
-  i: integer;
-//  marcado: Boolean;
+  I: integer;
+  // marcado: Boolean;
 begin
   try
     // Screen.ActiveForm.Position:=poScreenCenter;
-    for i := 0 to Screen.ActiveForm.ComponentCount - 1 do
+    for I := 0 to Screen.ActiveForm.ComponentCount - 1 do
     begin
-      ComponenteTmp := Screen.ActiveForm.Components[i];
-
+      ComponenteTmp := Screen.ActiveForm.Components[I];
 
       if (ComponenteTmp is TPanel) then
       begin
-    //    TPanel(ComponenteTmp).Color     := TPanel(ComponenteTmp).Color = clWindow; //'$00E5E5E5';
+        // TPanel(ComponenteTmp).Color     := TPanel(ComponenteTmp).Color = clWindow; //'$00E5E5E5';
       end
-      else
-      if (ComponenteTmp is TSedDBGrid) then
+      else if (ComponenteTmp is TSedDBGrid) then
       begin
         TSedDBGrid(ComponenteTmp).GrupoLayout := GrupoLayout;
-        TSedDBGrid(ComponenteTmp).Options     := TSedDBGrid(ComponenteTmp).Options + [dgTitleClick];
+        TSedDBGrid(ComponenteTmp).Options := TSedDBGrid(ComponenteTmp).Options +
+          [dgTitleClick];
 
-      //  TSedDBGrid(ComponenteTmp).FixedColor     := TSedDBGrid(ComponenteTmp).FixedColor =clWindow; //'$00E5E5E5';
+        // TSedDBGrid(ComponenteTmp).FixedColor     := TSedDBGrid(ComponenteTmp).FixedColor =clWindow; //'$00E5E5E5';
       end
-      else
-      if (ComponenteTmp is TEdit) then
+      else if (ComponenteTmp is TEdit) then
       begin
         if (UpperCase(ComponenteTmp.Name) = UpperCase('EditConsulta')) then
         begin
           TEdit(ComponenteTmp).Hint := 'Ctrl+L - Limpar...';
-          TEdit(ComponenteTmp).ShowHint := True;
+          TEdit(ComponenteTmp).ShowHint := true;
         end;
       end;
     end;
   except
   end;
 end;
-
-
 
 procedure TPrincipalForm.FormKeyPress(Sender: TObject; var Key: Char);
 begin
@@ -1584,11 +1639,10 @@ procedure TPrincipalForm.FormResize(Sender: TObject);
 begin
 
   if Assigned(PrincipalForm) and MostraMSG then
-  try
-    pnl_msg.Visible := (PrincipalForm.WindowState = wsMaximized);
-  except
-  end;
-
+    try
+      pnl_msg.Visible := (PrincipalForm.WindowState = wsMaximized);
+    except
+    end;
 
 end;
 
@@ -1598,7 +1652,7 @@ begin
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-     if (usrNivel in [1, 2]) then
+    if (usrNivel in [1, 2]) then
     begin
       try
         if not Assigned(RemessaForm) then
@@ -1619,14 +1673,14 @@ begin
   else
   begin
     if (usrNivel in [1, 2]) then
-    try
-      if not Assigned(CsGrade_FinanceiraForm) then
-        CsGrade_FinanceiraForm := TCsGrade_FinanceiraForm.Create(Application);
-      CsGrade_FinanceiraForm.ShowModal;
-    finally
-      CsGrade_FinanceiraForm.Release;
-      CsGrade_FinanceiraForm := nil;
-    end;
+      try
+        if not Assigned(CsGrade_FinanceiraForm) then
+          CsGrade_FinanceiraForm := TCsGrade_FinanceiraForm.Create(Application);
+        CsGrade_FinanceiraForm.ShowModal;
+      finally
+        CsGrade_FinanceiraForm.Release;
+        CsGrade_FinanceiraForm := nil;
+      end;
   end;
 end;
 
@@ -1670,92 +1724,91 @@ begin
   end;
 end;
 
-procedure TPrincipalForm.Atualizarlistadeclientesnosite1_OFFClick(Sender: TObject);
+procedure TPrincipalForm.Atualizarlistadeclientesnosite1_OFFClick
+  (Sender: TObject);
 begin
   if not(usrID > 0) then
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-  if listaCliSite.Count=0 then
+    if listaCliSite.Count = 0 then
     begin
-    if not Assigned(AtualizaCliSiteForm) then
-      AtualizaCliSiteForm := TAtualizaCliSiteForm.Create(Application);
-    try
-      AtualizaCliSiteForm.ShowModal;
-    finally
-      AtualizaCliSiteForm.Release;
-      AtualizaCliSiteForm := nil;
-    end;
-    end else
+      if not Assigned(AtualizaCliSiteForm) then
+        AtualizaCliSiteForm := TAtualizaCliSiteForm.Create(Application);
+      try
+        AtualizaCliSiteForm.ShowModal;
+      finally
+        AtualizaCliSiteForm.Release;
+        AtualizaCliSiteForm := nil;
+      end;
+    end
+    else
     begin
-    if not Assigned(AtualizaCliSiteForm) then
-      AtualizaCliSiteForm := TAtualizaCliSiteForm.Create(Application);
-    try
-      AtualizaCliSiteForm.btIniciarClick(Sender);
-    finally
-      AtualizaCliSiteForm.Release;
-      AtualizaCliSiteForm := nil;
-    end;
+      if not Assigned(AtualizaCliSiteForm) then
+        AtualizaCliSiteForm := TAtualizaCliSiteForm.Create(Application);
+      try
+        AtualizaCliSiteForm.btIniciarClick(Sender);
+      finally
+        AtualizaCliSiteForm.Release;
+        AtualizaCliSiteForm := nil;
+      end;
     end;
   end;
 end;
 
 procedure TPrincipalForm.Autenticarusurio1Click(Sender: TObject);
 var
-QryCs : TFDQuery;
+  QryCs: TFDQuery;
 begin
-  if not Assigned(AcessoForm) then AcessoForm := TAcessoForm.Create(Application);
+  if not Assigned(AcessoForm) then
+    AcessoForm := TAcessoForm.Create(Application);
   try
 
-    usrID       := 0;
-    usrLogin    := '';
-    usrNivel    := 0;
-    StatusBar1.Panels[1].text := '';
+    usrID := 0;
+    usrLogin := '';
+    usrNivel := 0;
+    StatusBar1.Panels[1].Text := '';
     if AcessoForm.ShowModal = mrOk then
     begin
-      StatusBar1.Panels[1].text := usrLogin;
+      StatusBar1.Panels[1].Text := usrLogin;
     end;
   finally
     PrincipalForm.VerificaRemessaPendentes;
 
     if GerarNfseAutom then
-    PrincipalForm.Iniciar1Click(Sender);
+      PrincipalForm.Iniciar1Click(Sender);
 
     AcessoForm.Release;
     AcessoForm := nil;
   end;
+  {
+    // teste apos o login
+    if (usrID > 0) then
+    begin
 
+    QryCs := TFDQuery.Create(nil);
+    try
 
-  //teste apos o login
-  if(usrID > 0) then
-  begin
+    try
+    QryCs.Connection := BancodeDados.FDConnection1;
+    QryCs.Close;
+    QryCs.SQL.Text := 'select distinct import_bc_fb from config where 1=1';
+    QryCs.Open();
 
+    if not(QryCs.FieldByName('import_bc_fb').AsInteger > 0) then
+    begin
+    AtualizarBancodeDados1Click(Sender);
+    end;
+    except
+    end;
 
-   QryCs := TFDQuery.create(nil);
-   try
+    finally
+    QryCs.Close;
+    QryCs.Free;
+    end;
 
-     try
-       QryCs.Connection    := BancodeDados.FDConnection1;
-       QryCs.Close;
-       QryCs.SQL.Text:='select distinct import_bc_fb from config where 1=1';
-       QryCs.Open();
-
-       if not (QryCs.FieldByName('import_bc_fb').AsInteger > 0)  then
-       begin
-        AtualizarBancodeDados1Click(Sender);
-       end;
-     except
-     end;
-
-   finally
-     QryCs.close;
-     QryCs.Free;
-   end;
-
-  end;
-
-
-
+    end;
+  }
 end;
 
 procedure TPrincipalForm.Bacos1Click(Sender: TObject);
@@ -1784,20 +1837,21 @@ begin
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-    Application.CreateForm(TCsClientesForm,CsClientesForm);
-   // PrincipalForm.configVisaoCliente;
+    Application.CreateForm(TCsClientesForm, CsClientesForm);
+    // PrincipalForm.configVisaoCliente;
     try
-      if not BancodeDados.Clientes.Active then BancodeDados.Clientes.Open;
+      if not BancodeDados.Clientes.Active then
+        BancodeDados.Clientes.Open;
       CsClientesForm.ShowModal;
     finally
       CsClientesForm.Release;
       CsClientesForm := nil;
     end;
 
-    if listaCliSite.Count>0 then
+    if listaCliSite.Count > 0 then
     begin
-     // if Mensagem('Deseja enviar as alterações para o servidor(web)?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
-     // PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
+      // if Mensagem('Deseja enviar as alterações para o servidor(web)?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
+      // PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
     end;
 
   end;
@@ -1809,20 +1863,20 @@ begin
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-  if (usrNivel in [1, 2]) then
-    try
-      if not Assigned(CsClientesForm) then
-        CsClientesForm := TCsClientesForm.Create(Application);
-      CsClientesForm.ShowModal;
-    finally
-      CsClientesForm.Release;
-      CsClientesForm := nil;
-    end;
+    if (usrNivel in [1, 2]) then
+      try
+        if not Assigned(CsClientesForm) then
+          CsClientesForm := TCsClientesForm.Create(Application);
+        CsClientesForm.ShowModal;
+      finally
+        CsClientesForm.Release;
+        CsClientesForm := nil;
+      end;
 
-    if listaCliSite.Count>0 then
+    if listaCliSite.Count > 0 then
     begin
-     // if Mensagem('Deseja enviar as alterações para enviar para o servidor(web)?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
-     // PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
+      // if Mensagem('Deseja enviar as alterações para enviar para o servidor(web)?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
+      // PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
     end;
 
   end;
@@ -1830,19 +1884,20 @@ end;
 
 procedure TPrincipalForm.Financeiro311Click(Sender: TObject);
 begin
-if (usrNivel in [1, 2]) then
+  if (usrNivel in [1, 2]) then
   begin
-    NovoCliente_ID:=qryDevCLI_ID.Value;
-    if NovoCliente_ID>0 then
-    try
-      if not assigned(Boletos1Form) then
-        Boletos1Form := TBoletos1Form.create(Application);
-      Boletos1Form.Caption := 'Financeiro do cliente - ' + qryDevFANTASIA.Value;
-      Boletos1Form.ShowModal;
-    finally
-      Boletos1Form.Release;
-      Boletos1Form := nil;
-    end;
+    NovoCliente_ID := qryDevCLI_ID.Value;
+    if NovoCliente_ID > 0 then
+      try
+        if not Assigned(Boletos1Form) then
+          Boletos1Form := TBoletos1Form.Create(Application);
+        Boletos1Form.Caption := 'Financeiro do cliente - ' +
+          qryDevFANTASIA.Value;
+        Boletos1Form.ShowModal;
+      finally
+        Boletos1Form.Release;
+        Boletos1Form := nil;
+      end;
   end;
 end;
 
@@ -1856,16 +1911,15 @@ begin
   LimpaArquivos(DiretorioTemp + '*.xml');
   // LimpaArquivos(ExtractFilePath(ParamStr(0))+'*.map');
 
-
   if ServicoAtivoNFSe then
   begin
     myNFseCSTh.OnTerminate := nil;
-    ServicoAtivoNFSe      := FALSE;
+    ServicoAtivoNFSe := false;
     myNFseCSTh.Terminate();
     myNFseCSTh := nil;
   end;
 
-  listaCliSite.free;
+  listaCliSite.Free;
 end;
 
 procedure TPrincipalForm.tipodeContas1Click(Sender: TObject);
@@ -1894,9 +1948,10 @@ begin
   begin
     if (usrNivel in [1, 2]) then
     begin
-      if not Assigned(CadCaixaForm) then CadCaixaForm := TCadCaixaForm.Create(Application);
+      if not Assigned(CadCaixaForm) then
+        CadCaixaForm := TCadCaixaForm.Create(Application);
       try
-        CadCaixaForm.DBGrid1.Columns[0].Visible:=False;
+        CadCaixaForm.DBGrid1.Columns[0].Visible := false;
         CadCaixaForm.ShowModal;
       finally
         CadCaixaForm.Release;
@@ -1921,34 +1976,31 @@ begin
       finally
         CsLoginForm.Release;
         CsLoginForm := nil;
-       ///
+        ///
       end;
     end;
   end;
 end;
 
-
-
 procedure TPrincipalForm.MainMenu1Change(Sender: TObject; Source: TMenuItem;
   Rebuild: Boolean);
 begin
- Tesouraria1.Enabled:=False;
- ConsultadeNotasFiscias12.Enabled:=False;
- AssistenteparaGeraodeNFS12.Enabled:=False;
+  Tesouraria1.Enabled := false;
+  ConsultadeNotasFiscias12.Enabled := false;
+  AssistenteparaGeraodeNFS12.Enabled := false;
 
-
- Processararquivoderetorno12.Enabled:=False;
- GerarArquivodeRemessa1.Enabled:=False;
- RelatriodeRemessa1.Enabled:=False;
- ConciliaoBancria1.Enabled:=False;
- BoletosEmitidos2.Enabled:=False;
+  Processararquivoderetorno12.Enabled := false;
+  GerarArquivodeRemessa1.Enabled := false;
+  RelatriodeRemessa1.Enabled := false;
+  ConciliaoBancria1.Enabled := false;
+  BoletosEmitidos2.Enabled := false;
 
 end;
 
 procedure TPrincipalForm.MalaDiretaEmail1_OffClick(Sender: TObject);
 begin
-if not Assigned(MalaDiretaForm) then
-MalaDiretaForm := tMalaDiretaForm.Create(Application);
+  if not Assigned(MalaDiretaForm) then
+    MalaDiretaForm := tMalaDiretaForm.Create(Application);
   try
     MalaDiretaForm.ShowModal;
   finally
@@ -1967,48 +2019,51 @@ begin
 
     if (usrNivel in [1, 2]) then
     begin
-      if not Assigned(CsClientesForm) then CsClientesForm := TCsClientesForm.Create(Application);
+      if not Assigned(CsClientesForm) then
+        CsClientesForm := TCsClientesForm.Create(Application);
       try
 
-        CsClientesForm.Maladireta := True;
-        CsClientesForm.SMS        := True;
+        CsClientesForm.Maladireta := true;
+        CsClientesForm.SMS := true;
         CsClientesForm.ShowModal;
       finally
         CsClientesForm.Release;
         CsClientesForm := nil;
       end;
 
-      if listaCliSite.Count>0 then
+      if listaCliSite.Count > 0 then
       begin
-       // if Mensagem('Deseja enviar as alterações para enviar para o servidor(web)?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
-       // PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
+        // if Mensagem('Deseja enviar as alterações para enviar para o servidor(web)?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
+        // PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
       end;
     end;
 
   end;
 
-{
+  {
 
-  Application.CreateForm(TCsClientesForm,CsClientesForm);
-  try
+    Application.CreateForm(TCsClientesForm,CsClientesForm);
+    try
     CsClientesForm.Maladireta := True;
     CsClientesForm.SMS        := True;
     CsClientesForm.ShowModal;
-  finally
+    finally
     CsClientesForm.Free;
-  end;
+    end;
 
     if listaCliSite.Count>0 then
     begin
-      PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
+    PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
     end; }
 
 end;
 
-procedure TPrincipalForm.CalcularValorBaixaIndividual(DataReceb: TDate; ApenasSomar: Boolean);
+procedure TPrincipalForm.CalcularValorBaixaIndividual(DataReceb: TDate;
+  ApenasSomar: Boolean);
 var
-  vlIntegral, VDesconto, VJuros, VMulta, VApagar, VAcrescimo, PJuros, PMulta, VlCalcJuros, vlCredTmp: Currency;
-  QtdDias, IDBol: Integer;
+  vlIntegral, VDesconto, VJuros, VMulta, VApagar, VAcrescimo, PJuros, PMulta,
+    VlCalcJuros, vlCredTmp: Currency;
+  QtdDias, IDBol: integer;
 begin
   if not(CalculandoBaixaInd = true) then
   begin
@@ -2027,10 +2082,11 @@ begin
       IDBol := BancodeDados.RecBolBOLETO_ID.Value;
 
       BancodeDados.RecBol.DisableControls;
-      BancodeDados.RecBol.First;
+      BancodeDados.RecBol.first;
 
       BancodeDados.GradeFin.Close;
-      BancodeDados.GradeFin.SQL.text := 'select * from grade_financeira order by grade_id';
+      BancodeDados.GradeFin.SQL.Text :=
+        'select * from grade_financeira order by grade_id';
       BancodeDados.GradeFin.Open;
 
       while not BancodeDados.RecBol.Eof do
@@ -2040,21 +2096,26 @@ begin
         begin
           if (BancodeDados.RecBolSITUACAO_BOLETO.Value = 'CRED A RECEBER') then
           begin
-            vlTotalCredito := vlTotalCredito + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolVALOR_INTEGRAL.Value));
+            vlTotalCredito := vlTotalCredito +
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolVALOR_INTEGRAL.Value));
             // vlTotalAPagar:=vlTotalAPagar - StrToCurr(FormatFloat('0.00', BancodeDados.RecBolVALOR_APAGAR.Value))
           end
           else if (BancodeDados.RecBolSITUACAO_BOLETO.Value = 'A RECEBER') then
           begin
             // if not (ApenasSomar = true) then begin
-            if not(BancodeDados.RecBol.State in [dsedit, dsinsert]) then
+            if not(BancodeDados.RecBol.State in [dsEdit, dsInsert]) then
               BancodeDados.RecBol.edit;
 
-            if not BancodeDados.GradeFin.Locate('GRADE_ID', BancodeDados.RecBolGRADE_ID.Value, []) then
-              BancodeDados.GradeFin.First;
+            if not BancodeDados.GradeFin.Locate('GRADE_ID',
+              BancodeDados.RecBolGRADE_ID.Value, []) then
+              BancodeDados.GradeFin.first;
 
             if (OpcaoMulta = 1) then
             begin
-              QtdDias := Trunc(DataReceb - UltimoDiaMes(BancodeDados.RecBolVENCIMENTO.Value));
+              QtdDias :=
+                Trunc(DataReceb -
+                UltimoDiaMes(BancodeDados.RecBolVENCIMENTO.Value));
               // (DateToStr(DataReceb)+#13+DateToStr(UltimoDiaMes(BancodeDados.RecBolVENCIMENTO.Value))+#13+IntToStr(QtdDias));
             end
             else
@@ -2079,7 +2140,8 @@ begin
 
             if (OpcaoTipoValor = 1) then
             begin
-              VlCalcJuros := BancodeDados.RecBolVALOR_INTEGRAL.Value - VDesconto;
+              VlCalcJuros := BancodeDados.RecBolVALOR_INTEGRAL.Value -
+                VDesconto;
             end
             else
             begin
@@ -2097,7 +2159,9 @@ begin
                 if (ApenasSomar = true) then
                   VJuros := BancodeDados.RecBolJUROS.Value
                 else
-                  VJuros := QtdDias * StrToCurr(FormatFloat('0.00', ((VlCalcJuros * PJuros) / 100)));
+                  VJuros := QtdDias *
+                    StrToCurr(FormatFloat('0.00',
+                    ((VlCalcJuros * PJuros) / 100)));
 
                 // ('2: '+currtostr(StrToCurr(FormatFloat('0.00', ((VlCalcJuros * PJuros) / 100))))+#13+inttostr(QtdDias));
 
@@ -2119,7 +2183,8 @@ begin
                 if (ApenasSomar = true) then
                   VMulta := BancodeDados.RecBolMULTA.Value
                 else
-                  VMulta := StrToCurr(FormatFloat('0.00', (VlCalcJuros * PMulta) / 100));
+                  VMulta := StrToCurr(FormatFloat('0.00',
+                    (VlCalcJuros * PMulta) / 100));
 
                 BancodeDados.RecBolMULTA.Value := VMulta;
               end
@@ -2163,7 +2228,9 @@ begin
 
             BancodeDados.RecBolVALOR_APAGAR.Value := VApagar;
 
-            if (StrToCurr(FormatFloat('0.00', VApagar)) <> StrToCurr(FormatFloat('0.00', BancodeDados.RecBolVALOR_APAGAR_ANT.Value))) then
+            if (StrToCurr(FormatFloat('0.00', VApagar)) <>
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolVALOR_APAGAR_ANT.Value))) then
             begin
               // if (VApagar <> BancodeDados.RecBolVALOR_APAGAR_ANT.Value) then begin
               BancodeDados.RecBolVALOR_PAGO.Value := VApagar;
@@ -2177,24 +2244,36 @@ begin
               if QtdDias > 0 then
                 vlTotalDesc := vlTotalDesc
               else
-                vlTotalDesc := vlTotalDesc + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolDESCONTO.Value));
+                vlTotalDesc := vlTotalDesc +
+                  StrToCurr(FormatFloat('0.00',
+                  BancodeDados.RecBolDESCONTO.Value));
             end
             else
             begin
-              vlTotalDesc := vlTotalDesc + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolDESCONTO.Value));
+              vlTotalDesc := vlTotalDesc +
+                StrToCurr(FormatFloat('0.00',
+                BancodeDados.RecBolDESCONTO.Value));
             end;
 
-            if (BancodeDados.RecBol.State in [dsedit, dsinsert]) then
+            if (BancodeDados.RecBol.State in [dsEdit, dsInsert]) then
               BancodeDados.RecBol.Post;
             // end;//apenasSomar
 
             vlTotalMulta := vlTotalMulta + BancodeDados.RecBolMULTA.Value;
             vlTotalJuros := vlTotalJuros + BancodeDados.RecBolJUROS.Value;
-            vlTotalAcre := vlTotalAcre + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolACRESCIMO.Value));
-            vlTotalInteral := vlTotalInteral + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolVALOR_INTEGRAL.Value));
-            vlTotalAPagar := vlTotalAPagar + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolVALOR_APAGAR.Value));
-            vlTotalPago := vlTotalPago + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolVALOR_PAGO.Value));
-            inc(qtdTitARec);
+            vlTotalAcre := vlTotalAcre +
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolACRESCIMO.Value));
+            vlTotalInteral := vlTotalInteral +
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolVALOR_INTEGRAL.Value));
+            vlTotalAPagar := vlTotalAPagar +
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolVALOR_APAGAR.Value));
+            vlTotalPago := vlTotalPago +
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolVALOR_PAGO.Value));
+            Inc(qtdTitARec);
 
           end; // a receber
         end; // valor>0
@@ -2212,7 +2291,7 @@ begin
         vlTotalAcre := 0;
         vlTotalInteral := 0;
         vlTotalAPagar := 0;
-        BancodeDados.RecBol.First;
+        BancodeDados.RecBol.first;
         while not BancodeDados.RecBol.Eof do
         begin
           if (BancodeDados.RecBolSITUACAO_BOLETO.Value = 'A RECEBER') then
@@ -2222,7 +2301,8 @@ begin
             begin
               if (vlCredTmp >= BancodeDados.RecBolVALOR_APAGAR.Value) then
               begin
-                BancodeDados.RecBolCREDITO.Value := BancodeDados.RecBolVALOR_APAGAR.Value;
+                BancodeDados.RecBolCREDITO.Value :=
+                  BancodeDados.RecBolVALOR_APAGAR.Value;
                 if (BancodeDados.RecBolvlAntAlterado.Value = 1) then
                   BancodeDados.RecBolVALOR_PAGO.Value := 0;
                 vlCredTmp := vlCredTmp - BancodeDados.RecBolVALOR_APAGAR.Value;
@@ -2231,7 +2311,9 @@ begin
               begin
                 BancodeDados.RecBolCREDITO.Value := vlCredTmp;
                 if (BancodeDados.RecBolvlAntAlterado.Value = 1) then
-                  BancodeDados.RecBolVALOR_PAGO.Value := BancodeDados.RecBolVALOR_APAGAR.Value - BancodeDados.RecBolCREDITO.Value;
+                  BancodeDados.RecBolVALOR_PAGO.Value :=
+                    BancodeDados.RecBolVALOR_APAGAR.Value -
+                    BancodeDados.RecBolCREDITO.Value;
                 vlCredTmp := vlCredTmp - BancodeDados.RecBolVALOR_APAGAR.Value;
               end;
             end
@@ -2241,9 +2323,15 @@ begin
 
             vlTotalMulta := vlTotalMulta + BancodeDados.RecBolMULTA.Value;
             vlTotalJuros := vlTotalJuros + BancodeDados.RecBolJUROS.Value;
-            vlTotalAcre := vlTotalAcre + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolACRESCIMO.Value));
-            vlTotalInteral := vlTotalInteral + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolVALOR_INTEGRAL.Value));
-            vlTotalAPagar := vlTotalAPagar + StrToCurr(FormatFloat('0.00', BancodeDados.RecBolVALOR_APAGAR.Value));
+            vlTotalAcre := vlTotalAcre +
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolACRESCIMO.Value));
+            vlTotalInteral := vlTotalInteral +
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolVALOR_INTEGRAL.Value));
+            vlTotalAPagar := vlTotalAPagar +
+              StrToCurr(FormatFloat('0.00',
+              BancodeDados.RecBolVALOR_APAGAR.Value));
 
           end;
           BancodeDados.RecBol.Next;
@@ -2261,7 +2349,6 @@ begin
     CalculandoBaixaInd := false;
   end;
 end;
-
 
 function TPrincipalForm.LiberaAcesso: Boolean;
 begin
@@ -2294,7 +2381,8 @@ begin
         end
         else
         begin
-          Mensagem('Acesso negado!' + #13 + 'O usúario informado não possui nível de Supervisor/Administrador.', mtWarning, [mbOk], mrOk, 0);
+          Mensagem('Acesso negado!' + #13 + 'O usúario informado não possui nível de Supervisor/Administrador.',
+            mtWarning, [mbOk], mrOk, 0);
         end;
       end; // Privilegio>0
     finally
@@ -2310,7 +2398,8 @@ begin
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-    if not Assigned(CsLigacoesForm) then CsLigacoesForm := TCsLigacoesForm.Create(Application);
+    if not Assigned(CsLigacoesForm) then
+      CsLigacoesForm := TCsLigacoesForm.Create(Application);
     try
       CsLigacoesForm.ShowModal;
     finally
@@ -2322,17 +2411,18 @@ end;
 
 procedure TPrincipalForm.Limpar12Click(Sender: TObject);
 begin
-  if(usrID > 0) then
+  if (usrID > 0) then
   begin
-    if (usrNivel in [1,2]) then
-    if not (BancodeDados.ConfigLOGO3.IsNull)  then
-    if Mensagem('Deseja limpar a imagem?',mtConfirmation,[mbYes,mbNo],mrNo,0)=idYes then
-    begin
-        if not (BancodeDados.Config.State in [dsEdit]) then
-        BancodeDados.Config.Edit;
-        BancodeDados.ConfigLOGO3.Clear;
-        imgvisualizar.Picture := Nil;
-    end;
+    if (usrNivel in [1, 2]) then
+      if not(BancodeDados.ConfigLOGO3.IsNull) then
+        if Mensagem('Deseja limpar a imagem?', mtConfirmation, [mbYes, mbNo],
+          mrNo, 0) = idYes then
+        begin
+          if not(BancodeDados.Config.State in [dsEdit]) then
+            BancodeDados.Config.edit;
+          BancodeDados.ConfigLOGO3.Clear;
+          imgvisualizar.Picture := Nil;
+        end;
   end;
 end;
 
@@ -2345,7 +2435,8 @@ begin
     if (usrNivel in [1, 2]) then
     begin
       try
-        if not Assigned(CsTitulosForm) then CsTitulosForm := TCsTitulosForm.Create(Application);
+        if not Assigned(CsTitulosForm) then
+          CsTitulosForm := TCsTitulosForm.Create(Application);
         CsTitulosForm.ShowModal;
       finally
         CsTitulosForm.Release;
@@ -2357,7 +2448,7 @@ end;
 
 procedure TPrincipalForm.Button1Click(Sender: TObject);
 var
-  i: Integer;
+  I: integer;
   imp: TSedImpDireta;
 
 begin
@@ -2366,7 +2457,7 @@ begin
   // imp.IniciaImpressao(tiMatricial, 'lpt3');
   imp.lpp8;
   imp.EspacoInicial := 5;
-  for i := 1 to 67 do
+  for I := 1 to 67 do
     imp.Imprime
       ('1234567890asdfgqwert1234567890asdfgqwert1234567890asdfgqwert1234567890asdfgqwert1234567890asdfgqwert1234567890asdfgqwert1234567890asdfgqwert123');
   imp.FinalizaImpressao;
@@ -2376,48 +2467,54 @@ end;
 
 procedure TPrincipalForm.btImagemClick(Sender: TObject);
 var
-imagem :TStream;
-Jpg    :TJPEGImage;
+  imagem: TStream;
+  Jpg: TJPEGImage;
 begin
-if not BancodeDados.ConfigLOGO3.IsNull then
-try
-  imagem  :=TMemoryStream.Create;
-  Jpg     :=TJPEGImage.Create;
-  imagem  :=BancodeDados.Config.CreateBlobStream(BancodeDados.ConfigLOGO3,bmRead);
-  Jpg.LoadFromStream(imagem);
-  imgvisualizar.Picture.Assign(Jpg);
-finally
-  imagem.Free;
-end;
+  if not BancodeDados.ConfigLOGO3.IsNull then
+    try
+      imagem := TMemoryStream.Create;
+      Jpg := TJPEGImage.Create;
+      imagem := BancodeDados.Config.CreateBlobStream
+        (BancodeDados.ConfigLOGO3, bmRead);
+      Jpg.LoadFromStream(imagem);
+      imgvisualizar.Picture.Assign(Jpg);
+    finally
+      imagem.Free;
+    end;
 
 end;
 
 procedure TPrincipalForm.Image1Click(Sender: TObject);
 begin
-GerarArquivodeRemessa1Click(Sender);
+  GerarArquivodeRemessa1Click(Sender);
 end;
 
 procedure TPrincipalForm.Imagem1Click(Sender: TObject);
 begin
- if (usrNivel in [1,2]) then
-if(usrID > 0) then
-if OpenPictureDialog1.Execute then begin
-if not BancodeDados.Config.active then BancodeDados.Config.Open;
-  if not (BancodeDados.Config.State in [dsInsert,dsEdit]) then BancodeDados.Config.Edit;
-  if BancodeDados.ResizeImage(OpenPictureDialog1.FileName, 1000) then
-    BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO3, DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
-  DeleteFile(DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
-  BancodeDados.Config.Post;
-  BancodeDados.FDConnection1.CommitRetaining;
-  btImagemClick(Sender);
-end;
+  if (usrNivel in [1, 2]) then
+    if (usrID > 0) then
+      if OpenPictureDialog1.Execute then
+      begin
+        if not BancodeDados.Config.Active then
+          BancodeDados.Config.Open;
+        if not(BancodeDados.Config.State in [dsInsert, dsEdit]) then
+          BancodeDados.Config.edit;
+        if BancodeDados.ResizeImage(OpenPictureDialog1.FileName, 1000) then
+          BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO3,
+            DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
+        DeleteFile(DiretorioTemp + ExtractFileName
+          (OpenPictureDialog1.FileName));
+        BancodeDados.Config.Post;
+        BancodeDados.FDConnection1.CommitRetaining;
+        btImagemClick(Sender);
+      end;
 end;
 
 procedure TPrincipalForm.ImpNotaFiscal;
 var
   imp: TSedImpDireta;
   emiDia, emiMes, emiAno, PortaImp, condicao: String;
-  nItem: Integer;
+  nItem: integer;
   ini: TIniFile;
   procedure VerificaItem;
   begin
@@ -2500,11 +2597,11 @@ var
 
 begin
 
-  ini := TIniFile.Create(ExtractFilePAth(ParamStr(0)) + 'config.ini');
+  ini := TIniFile.Create(ExtractFilePath(ParamStr(0)) + 'config.ini');
   try
     PortaImp := ini.ReadString('config', 'portaimp', 'C:\teste.txt');
 
-    if not FileExists(ExtractFilePAth(ParamStr(0)) + 'config.ini') then
+    if not FileExists(ExtractFilePath(ParamStr(0)) + 'config.ini') then
       ini.WriteString('config', 'portaimp', PortaImp);
   finally
     ini.Free;
@@ -2521,15 +2618,20 @@ begin
     condicao := 'A VISTA';
 
     BancodeDados.Boletos.Close;
-    BancodeDados.Boletos.SQL.text := PrincipalForm.SQLrepositorio(0) + ' and b.nfs_id = ' + IntToStr(BancodeDados.NfsNFS_ID.Value) + ' and b.situacao_boleto = ' + QuotedStr('A RECEBER') + ' order by b.vencimento';
+    BancodeDados.Boletos.SQL.Text := PrincipalForm.SQLrepositorio(0) +
+      ' and b.nfs_id = ' + IntToStr(BancodeDados.NfsNFS_ID.Value) +
+      ' and b.situacao_boleto = ' + QuotedStr('A RECEBER') +
+      ' order by b.vencimento';
     BancodeDados.Boletos.Open;
 
     if not BancodeDados.Boletos.IsEmpty then
     begin
       BancodeDados.Boletos.Last;
-      if (BancodeDados.BoletosVENCIMENTO.Value > BancodeDados.NfsDT_RPS.Value) then
+      if (BancodeDados.BoletosVENCIMENTO.Value > BancodeDados.NfsDT_RPS.Value)
+      then
       begin
-        condicao := 'A PRAZO: P/ ' + FormatDateTime('dd/mm/yyyy', BancodeDados.BoletosVENCIMENTO.Value);
+        condicao := 'A PRAZO: P/ ' + FormatDateTime('dd/mm/yyyy',
+          BancodeDados.BoletosVENCIMENTO.Value);
       end
       else
       begin
@@ -2549,8 +2651,9 @@ begin
 
     imp.LinhaAtual := 15;
     imp.MicroSaltoOn(5);
-    imp.Imprime(Preenche('', 18) + Preenche(BancodeDados.NfsBAIRRO.Value, 42) + Preenche('', 16) + Preenche(BancodeDados.NfsCIDADE.Value, 45) + Preenche('', 11)
-      + BancodeDados.NfsESTADO.Value);
+    imp.Imprime(Preenche('', 18) + Preenche(BancodeDados.NfsBAIRRO.Value, 42) +
+      Preenche('', 16) + Preenche(BancodeDados.NfsCIDADE.Value, 45) +
+      Preenche('', 11) + BancodeDados.NfsESTADO.Value);
 
     imp.LinhaAtual := 17;
     imp.MicroSaltoOn(6);
@@ -2562,56 +2665,67 @@ begin
 
     imp.LinhaAtual := 21;
     // imp.MicroSaltoOn(5);
-    imp.Imprime(Preenche('', 31) + Preenche(condicao, 68) + PreencheNumero(emiDia, 12) + PreencheNumero(emiMes, 12) + PreencheNumero(emiAno, 13));
+    imp.Imprime(Preenche('', 31) + Preenche(condicao, 68) +
+      PreencheNumero(emiDia, 12) + PreencheNumero(emiMes, 12) +
+      PreencheNumero(emiAno, 13));
 
     BancodeDados.Boletos.Close;
-    BancodeDados.Boletos.SQL.text := PrincipalForm.SQLrepositorio(0) + ' and b.nfs_id = ' + IntToStr(BancodeDados.NfsNFS_ID.Value) + ' order by b.vencimento';
+    BancodeDados.Boletos.SQL.Text := PrincipalForm.SQLrepositorio(0) +
+      ' and b.nfs_id = ' + IntToStr(BancodeDados.NfsNFS_ID.Value) +
+      ' order by b.vencimento';
     BancodeDados.Boletos.Open;
 
     // Itens
     nItem := 0;
-    BancodeDados.NfsServ.First;
+    BancodeDados.NfsServ.first;
     while not BancodeDados.NfsServ.Eof do
     begin
-      inc(nItem);
+      Inc(nItem);
 
       VerificaItem;
 
-      imp.Imprime(PreencheNumero(FormatFloat(',0.##', BancodeDados.NfsServQUANT.Value), 8) + Preenche('', 13) + Preenche(BancodeDados.NfsServDESCRICAO.Value,
-        78) + '   ' + PreencheNumero(FormatFloat(',0.00', BancodeDados.NfsServVL_UNIT.Value), 16) + '    ' +
-        PreencheNumero(FormatFloat(',0.00', BancodeDados.NfsServVL_TOTAL.Value), 18));
+      imp.Imprime(PreencheNumero(FormatFloat(',0.##',
+        BancodeDados.NfsServQUANT.Value), 8) + Preenche('', 13) +
+        Preenche(BancodeDados.NfsServDESCRICAO.Value, 78) + '   ' +
+        PreencheNumero(FormatFloat(',0.00', BancodeDados.NfsServVL_UNIT.Value),
+        16) + '    ' + PreencheNumero(FormatFloat(',0.00',
+        BancodeDados.NfsServVL_TOTAL.Value), 18));
 
       BancodeDados.NfsServ.Next;
     end;
 
     if not BancodeDados.Boletos.IsEmpty then
     begin
-      inc(nItem);
+      Inc(nItem);
 
       VerificaItem;
 
-      imp.Imprime(Preenche('', 21) + Preenche('OBS.: NF REFERENTE AO(S) SEGUINTE(S) TITULO(S)', 78) + '   ' + PreencheNumero('* * *', 16) + '    ' +
-        PreencheNumero('* * *', 18));
+      imp.Imprime(Preenche('', 21) +
+        Preenche('OBS.: NF REFERENTE AO(S) SEGUINTE(S) TITULO(S)', 78) + '   ' +
+        PreencheNumero('* * *', 16) + '    ' + PreencheNumero('* * *', 18));
 
-      BancodeDados.Boletos.First;
+      BancodeDados.Boletos.first;
     end;
 
     while (nItem < 17) do
     begin
-      inc(nItem);
+      Inc(nItem);
 
       VerificaItem;
 
       if not BancodeDados.Boletos.Eof then
       begin
-        imp.Imprime(Preenche('', 27) + Preenche('COD.: ' + FormatFloat('000000', BancodeDados.BoletosBOLETO_ID.Value) + ' - ' + 'Vencimento: ' +
-          FormatDateTime('dd/mm/yyyy', BancodeDados.BoletosVENCIMENTO.Value) { + ' - ' + BancodeDados.BoletosDESCRICAO.Value } , 72) + '   ' +
+        imp.Imprime(Preenche('', 27) + Preenche('COD.: ' + FormatFloat('000000',
+          BancodeDados.BoletosBOLETO_ID.Value) + ' - ' + 'Vencimento: ' +
+          FormatDateTime('dd/mm/yyyy', BancodeDados.BoletosVENCIMENTO.Value)
+          { + ' - ' + BancodeDados.BoletosDESCRICAO.Value } , 72) + '   ' +
           PreencheNumero('* * *', 16) + '    ' + PreencheNumero('* * *', 18));
         BancodeDados.Boletos.Next;
       end
       else
       begin
-        imp.Imprime(Preenche('', 102) + PreencheNumero('* * *', 16) + '    ' + PreencheNumero('* * *', 18));
+        imp.Imprime(Preenche('', 102) + PreencheNumero('* * *', 16) + '    ' +
+          PreencheNumero('* * *', 18));
       end;
     end;
 
@@ -2671,12 +2785,14 @@ begin
     }
 
     imp.LinhaAtual := 58;
-    imp.Imprime(PreencheNumero(FormatFloat(',0.00', BancodeDados.NfsPERC_ISS.Value), 50) + PreencheNumero(FormatFloat(',0.00',
+    imp.Imprime(PreencheNumero(FormatFloat(',0.00',
+      BancodeDados.NfsPERC_ISS.Value), 50) + PreencheNumero(FormatFloat(',0.00',
       BancodeDados.NfsVL_TOTAL.Value), 88));
 
     imp.LinhaAtual := 60;
     imp.MicroSaltoOn(5);
-    imp.Imprime(PreencheNumero(FormatFloat(',0.00', BancodeDados.NfsVL_ISS.Value), 50) + PreencheNumero(FormatFloat(',0.00',
+    imp.Imprime(PreencheNumero(FormatFloat(',0.00',
+      BancodeDados.NfsVL_ISS.Value), 50) + PreencheNumero(FormatFloat(',0.00',
       BancodeDados.NfsVL_TOTAL.Value), 88));
 
   finally
@@ -2686,40 +2802,49 @@ begin
   end;
 end;
 
-procedure TPrincipalForm.ImprimeBoletos(IDsBoletos: String; usaTolerancia, papelCortado: Boolean);
+procedure TPrincipalForm.ImprimeBoletos(IDsBoletos: String;
+  usaTolerancia, papelCortado: Boolean);
 var
   IDEmissao, Boletos_ID: String;
   Boletotmp: TSedBoletos;
-  Desc_Exp_Dia  : integer;
-  digitosGerados_campo3 : string;
-  digitosGerados_campo4 : string;
+  Desc_Exp_Dia: integer;
+  digitosGerados_campo3: string;
+  digitosGerados_campo4: string;
 begin
-  if not Assigned(RelCarneCaixaForm) then  RelCarneCaixaForm := TRelCarneCaixaForm.Create(Application);
+  if not Assigned(RelCarneCaixaForm) then
+    RelCarneCaixaForm := TRelCarneCaixaForm.Create(Application);
   try
     RelCarneCaixaForm.qryBoletos.Close;
-    RelCarneCaixaForm.qryBoletos.SQL.text := PrincipalForm.SQLrepositorio(0) + ' and b.situacao_boleto= ' + QuotedStr('A RECEBER') + ' and b.cli_id=' +IntToStr(BancodeDados.ClientesCLI_ID.Value) + ' and b.boleto_id in (' + IDsBoletos + ') order by b.vencimento';
+    RelCarneCaixaForm.qryBoletos.SQL.Text := PrincipalForm.SQLrepositorio(0) +
+      ' and b.situacao_boleto= ' + QuotedStr('A RECEBER') + ' and b.cli_id=' +
+      IntToStr(BancodeDados.ClientesCLI_ID.Value) + ' and b.boleto_id in (' +
+      IDsBoletos + ') order by b.vencimento';
     RelCarneCaixaForm.qryBoletos.Open;
 
-    if not BancodeDados.Config.active then BancodeDados.Config.open;  //eraldo em 19/10/17
+    if not BancodeDados.Config.Active then
+      BancodeDados.Config.Open; // eraldo em 19/10/17
 
-    TipoBoletoInstrucoes  := BancodeDados.ConfigTIPO_BOLETO.Value; //0: Gerar descrições com base no vencimento e desconto (padrão) | 1: Personalizar as descrições por tipo de desconto |2 Tolerância para desconto dentro do mês de vencimento
+    TipoBoletoInstrucoes := BancodeDados.ConfigTIPO_BOLETO.Value;
+    // 0: Gerar descrições com base no vencimento e desconto (padrão) | 1: Personalizar as descrições por tipo de desconto |2 Tolerância para desconto dentro do mês de vencimento
 
     if RelCarneCaixaForm.qryBoletos.IsEmpty then
     begin
-      Mensagem('Não foram encontrados boletos para serem impressos.', mtInformation, [mbOk], mrOk, 0);
+      Mensagem('Não foram encontrados boletos para serem impressos.',
+        mtInformation, [mbOk], mrOk, 0);
     end
     else
     begin
-      if not BancodeDados.FDConnection1.InTransaction then BancodeDados.FDConnection1.StartTransaction;
+      if not BancodeDados.FDConnection1.InTransaction then
+        BancodeDados.FDConnection1.StartTransaction;
 
       digitosGerados_campo3 := '';
       digitosGerados_campo4 := '';
       RelCarneCaixaForm.qryBoletos.DisableControls;
 
-      RelCarneCaixaForm.qryBoletos.First;
+      RelCarneCaixaForm.qryBoletos.first;
       while not RelCarneCaixaForm.qryBoletos.Eof do
       begin
-      Desc_Exp_Dia := 0;
+        Desc_Exp_Dia := 0;
 
         // aqui...
         if (RelCarneCaixaForm.qryBoletosVALOR_INTEGRAL.Value > 0) then
@@ -2728,91 +2853,112 @@ begin
           Boletos_ID := RelCarneCaixaForm.qryBoletosBOLETO_ID.AsString;
 
           RelCarneCaixaForm.QryBancos.Close;
-          RelCarneCaixaForm.QryBancos.Params[0].Value := RelCarneCaixaForm.QryBoletosBANCO_ID.Value;
+          RelCarneCaixaForm.QryBancos.Params[0].Value :=
+            RelCarneCaixaForm.QryBoletosBANCO_ID.Value;
           RelCarneCaixaForm.QryBancos.Open;
 
-          if not BancodeDados.Emissoes.Active then BancodeDados.Emissoes.Open;
+          if not BancodeDados.Emissoes.Active then
+            BancodeDados.Emissoes.Open;
 
           BancodeDados.Emissoes.Append;
-          BancodeDados.EmissoesSEQ_NOSSO_NUM.Value := BancodeDados.Pega_SeqNossoNumero(RelCarneCaixaForm.QryBancosBANCO_ID.Value);
-          BancodeDados.EmissoesBANCO_ID.Value := RelCarneCaixaForm.QryBancosBANCO_ID.Value;
+          BancodeDados.EmissoesSEQ_NOSSO_NUM.Value :=
+            BancodeDados.Pega_SeqNossoNumero
+            (RelCarneCaixaForm.QryBancosBANCO_ID.Value);
+          BancodeDados.EmissoesBANCO_ID.Value :=
+            RelCarneCaixaForm.QryBancosBANCO_ID.Value;
 
           {
-          usaTolerancia:=false;
-          if (usaTolerancia = true) then
-          begin
+            usaTolerancia:=false;
+            if (usaTolerancia = true) then
+            begin
             if BancodeDados.ClientesDIAS_TOL.IsNull then
-              BancodeDados.EmissoesDIAS_TOLERANCIA.Value := RelCarneCaixaForm.QryBancosDIAS_TOLERANCIA.Value
+            BancodeDados.EmissoesDIAS_TOLERANCIA.Value := RelCarneCaixaForm.QryBancosDIAS_TOLERANCIA.Value
             else
-              BancodeDados.EmissoesDIAS_TOLERANCIA.Value := BancodeDados.ClientesDIAS_TOL.Value;
-          end
-          else
-          begin
+            BancodeDados.EmissoesDIAS_TOLERANCIA.Value := BancodeDados.ClientesDIAS_TOL.Value;
+            end
+            else
+            begin
             BancodeDados.EmissoesDIAS_TOLERANCIA.Value := 0;
-          end;
+            end;
           }
 
-
-          if RelCarneCaixaForm.QryBancosDIAS_BAIXAR_BANCO.Value>0 then
-          BancodeDados.EmissoesDIAS_BAIXAR_BANCO.Value := RelCarneCaixaForm.QryBancosDIAS_BAIXAR_BANCO.Value;
+          if RelCarneCaixaForm.QryBancosDIAS_BAIXAR_BANCO.Value > 0 then
+            BancodeDados.EmissoesDIAS_BAIXAR_BANCO.Value :=
+              RelCarneCaixaForm.QryBancosDIAS_BAIXAR_BANCO.Value;
 
           if (RelCarneCaixaForm.qryBoletosDESCONTO.Value > 0) then
-          begin  //eraldo em 19/10/17
-             //if BancodeDados.ClientesDESC_TOL.Value>0 then
-             //   Desc_Exp_Dia:=BancodeDados.ClientesDESC_TOL.Value
-             //   else
-             if RelCarneCaixaForm.QryBancosDESC_TOL.Value>0 then
-                Desc_Exp_Dia:=RelCarneCaixaForm.QryBancosDESC_TOL.Value
-                else
-                  Desc_Exp_Dia:=0;
+          begin // eraldo em 19/10/17
+            // if BancodeDados.ClientesDESC_TOL.Value>0 then
+            // Desc_Exp_Dia:=BancodeDados.ClientesDESC_TOL.Value
+            // else
+            if RelCarneCaixaForm.QryBancosDESC_TOL.Value > 0 then
+              Desc_Exp_Dia := RelCarneCaixaForm.QryBancosDESC_TOL.Value
+            else
+              Desc_Exp_Dia := 0;
           end;
 
-          BancodeDados.EmissoesGRADE_ID.Value := RelCarneCaixaForm.qryBoletosGRADE_ID.Value;
-          BancodeDados.EmissoesCLI_ID.Value   := RelCarneCaixaForm.qryBoletosCLI_ID.Value;
-          BancodeDados.EmissoesEMISSAO.Value  := RelCarneCaixaForm.qryBoletosEMISSAO.Value;
-          BancodeDados.EmissoesVENCIMENTO.Value := RelCarneCaixaForm.qryBoletosVENCIMENTO.Value;
-          BancodeDados.EmissoesPARCELA.Value  := RelCarneCaixaForm.qryBoletosPARCELA.Value;
+          BancodeDados.EmissoesGRADE_ID.Value :=
+            RelCarneCaixaForm.qryBoletosGRADE_ID.Value;
+          BancodeDados.EmissoesCLI_ID.Value :=
+            RelCarneCaixaForm.qryBoletosCLI_ID.Value;
+          BancodeDados.EmissoesEMISSAO.Value :=
+            RelCarneCaixaForm.qryBoletosEMISSAO.Value;
+          BancodeDados.EmissoesVENCIMENTO.Value :=
+            RelCarneCaixaForm.qryBoletosVENCIMENTO.Value;
+          BancodeDados.EmissoesPARCELA.Value :=
+            RelCarneCaixaForm.qryBoletosPARCELA.Value;
 
-          BancodeDados.EmissoesCODIGO_BANCO.Value := RelCarneCaixaForm.QryBancosCODIGO_BANCO.Value;
+          BancodeDados.EmissoesCODIGO_BANCO.Value :=
+            RelCarneCaixaForm.QryBancosCODIGO_BANCO.Value;
 
-          BancodeDados.EmissoesDT_PROCES.Value := date;
+          BancodeDados.EmissoesDT_PROCES.Value := Date;
 
-          BancodeDados.EmissoesESPECIE.Value  := 'DM';
-          BancodeDados.EmissoesACEITE.Value   := 'N';
-          BancodeDados.EmissoesMOEDA.Value    := 'R$';
-
+          BancodeDados.EmissoesESPECIE.Value := 'DM';
+          BancodeDados.EmissoesACEITE.Value := 'N';
+          BancodeDados.EmissoesMOEDA.Value := 'R$';
 
           // BancodeDados.EmissoesQTD_MOEDA.Value:=0;
           // BancodeDados.EmissoesVALOR_MOEDA.Value:=0;
-          BancodeDados.EmissoesVALOR_DOC.Value := RelCarneCaixaForm.qryBoletosVALOR_INTEGRAL.Value;
-          //BancodeDados.EmissoesDESCONTO.Value   := 0;
-          if RelCarneCaixaForm.qryBoletosDESCONTO.Value>0 then
-          BancodeDados.EmissoesDESCONTO.Value :=RelCarneCaixaForm.qryBoletosDESCONTO.Value;
+          BancodeDados.EmissoesVALOR_DOC.Value :=
+            RelCarneCaixaForm.qryBoletosVALOR_INTEGRAL.Value;
+          // BancodeDados.EmissoesDESCONTO.Value   := 0;
+          if RelCarneCaixaForm.qryBoletosDESCONTO.Value > 0 then
+            BancodeDados.EmissoesDESCONTO.Value :=
+              RelCarneCaixaForm.qryBoletosDESCONTO.Value;
 
           if Trim(IDEmissao) = '' then
             IDEmissao := BancodeDados.EmissoesEMISSAO_ID.AsString
           else
-            IDEmissao := IDEmissao + ',' + BancodeDados.EmissoesEMISSAO_ID.AsString;
+            IDEmissao := IDEmissao + ',' +
+              BancodeDados.EmissoesEMISSAO_ID.AsString;
 
-          BancodeDados.EmissoesOBS.AsString := BancodeDados.MontaMsgBoleto(RelCarneCaixaForm.qryBoletosOBS_BOLETO.AsString, RelCarneCaixaForm.qryBoletosGRADE_ID.Value, RelCarneCaixaForm.qryBoletosVALOR_INTEGRAL.Value, Desc_Exp_Dia);
+          BancodeDados.EmissoesOBS.AsString := BancodeDados.MontaMsgBoleto
+            (RelCarneCaixaForm.qryBoletosOBS_BOLETO.AsString,
+            RelCarneCaixaForm.qryBoletosGRADE_ID.Value,
+            RelCarneCaixaForm.qryBoletosVALOR_INTEGRAL.Value, Desc_Exp_Dia);
 
           Boletotmp := TSedBoletos.Create;
           try
 
             // Atribuir Variáveis
-            Boletotmp.SeqNossoNumero := BancodeDados.EmissoesSEQ_NOSSO_NUM.Value;
+            Boletotmp.SeqNossoNumero :=
+              BancodeDados.EmissoesSEQ_NOSSO_NUM.Value;
             Boletotmp.CodBanco := RelCarneCaixaForm.QryBancosCODIGO_BANCO.Value;
             Boletotmp.Moeda := '9';
             Boletotmp.Carteira := RelCarneCaixaForm.QryBancosCARTEIRA.AsString;
-            Boletotmp.CodCedente := Copy(RelCarneCaixaForm.QryBancosCODIGO_CEDENTE.Value, 1, 15);
-            Boletotmp.DvCodCedente := RelCarneCaixaForm.QryBancosDIG_COD_CEDENTE.Value;
+            Boletotmp.CodCedente :=
+              Copy(RelCarneCaixaForm.QryBancosCODIGO_CEDENTE.Value, 1, 15);
+            Boletotmp.DvCodCedente :=
+              RelCarneCaixaForm.QryBancosDIG_COD_CEDENTE.Value;
             Boletotmp.Agencia := RelCarneCaixaForm.QryBancosAGENCIA.Value;
             Boletotmp.DVAgencia := RelCarneCaixaForm.QryBancosDIG_AGENCIA.Value;
             Boletotmp.Conta := RelCarneCaixaForm.QryBancosCONTA_CORRENTE.Value;
-            Boletotmp.DVConta := RelCarneCaixaForm.QryBancosDIG_CONTA_CORRENTE.Value;
+            Boletotmp.DVConta :=
+              RelCarneCaixaForm.QryBancosDIG_CONTA_CORRENTE.Value;
             Boletotmp.Convenio := RelCarneCaixaForm.QryBancosCONVENIO.AsString;
             Boletotmp.DataVencimento := BancodeDados.EmissoesVENCIMENTO.Value;
-            Boletotmp.DiasTolerancia := BancodeDados.EmissoesDIAS_TOLERANCIA.Value;
+            Boletotmp.DiasTolerancia :=
+              BancodeDados.EmissoesDIAS_TOLERANCIA.Value;
             Boletotmp.Valor_Documento := BancodeDados.EmissoesVALOR_DOC.Value;
             Boletotmp.Seu_Numero := BancodeDados.EmissoesEMISSAO_ID.AsString;
 
@@ -2834,109 +2980,124 @@ begin
               Boletotmp.Seu_Numero         := BancodeDados.EmissoesEMISSAO_ID.AsString;
             }
 
+            homologacao := (RelCarneCaixaForm.QryBancosHOMOLOGACAO.Value = 1);
 
-              homologacao:= (RelCarneCaixaForm.QryBancosHOMOLOGACAO.Value = 1);
-
-
-              if homologacao then
+            if homologacao then
+            begin
+              if RelCarneCaixaForm.qryBoletos.RecNo <= 10 then
               begin
-                if RelCarneCaixaForm.qryBoletos.RecNo <= 10 then
+
+                // Mensagem('O Banco '+RelCarneCaixaForm.QryBancosBANCO_NOME.AsString + ' está configurado para Homologação!'+ #13 +'No máximo 10 Boletos serão gerados!'+#13+'Gerando Boleto '+ format('%0.2d',[RelCarneCaixaForm.qryBoletos.RecNo]) + ' / '+format('%0.2d',[RelCarneCaixaForm.qryBoletos.RecordCount]),
+                // mtInformation, [mbOk], mrOk, 0);
+                // digitosGerados := '012346';
+                // repeat
+
+                if BancodeDados.BancosCODIGO_BANCO.AsInteger = 104 then
+                // Se for caixa (pois o dígito verificador é o 10º caractere do campo 3)
                 begin
+                  repeat
+                    BancodeDados.EmissoesSEQ_NOSSO_NUM.Value :=
+                      BancodeDados.Pega_SeqNossoNumero
+                      (RelCarneCaixaForm.QryBancosBANCO_ID.Value);
+                    Boletotmp.SeqNossoNumero :=
+                      BancodeDados.EmissoesSEQ_NOSSO_NUM.Value;
+                    // Boletotmp.SeqNossoNumero + 1;
+                    Boletotmp.CalculaInformacoes;
+                    Application.ProcessMessages;
+                  until ((Pos(Copy(Boletotmp.LinhaDigitavel, 36, 1),
+                    digitosGerados_campo3) = 0) and
+                    // Testa o 10º Digito do Campo 3
+                    ((Pos(Copy(Boletotmp.LinhaDigitavel, 39, 1),
+                    digitosGerados_campo4) = 0) or
+                    (Length(digitosGerados_campo4) = 9)) and // Testa o Campo 4
+                    (Copy(Boletotmp.LinhaDigitavel, 39, 1) <> '0'));
 
-                  //Mensagem('O Banco '+RelCarneCaixaForm.QryBancosBANCO_NOME.AsString + ' está configurado para Homologação!'+ #13 +'No máximo 10 Boletos serão gerados!'+#13+'Gerando Boleto '+ format('%0.2d',[RelCarneCaixaForm.qryBoletos.RecNo]) + ' / '+format('%0.2d',[RelCarneCaixaForm.qryBoletos.RecordCount]),
-                  //mtInformation, [mbOk], mrOk, 0);
-                 //digitosGerados := '012346';
-                 //repeat
+                  digitosGerados_campo3 := digitosGerados_campo3 +
+                    Copy(Boletotmp.LinhaDigitavel, 36, 1);
 
-                  if BancodeDados.BancosCODIGO_BANCO.AsInteger = 104 then //Se for caixa (pois o dígito verificador é o 10º caractere do campo 3)
-                  begin
-                    repeat
-                      BancodeDados.EmissoesSEQ_NOSSO_NUM.Value  := BancodeDados.Pega_SeqNossoNumero(RelCarneCaixaForm.QryBancosBANCO_ID.Value);
-                      Boletotmp.SeqNossoNumero := BancodeDados.EmissoesSEQ_NOSSO_NUM.Value;//Boletotmp.SeqNossoNumero + 1;
-                      Boletotmp.CalculaInformacoes;
-                      Application.ProcessMessages;
-                    until (
-                      (pos(copy(Boletotmp.LinhaDigitavel,36,1),digitosGerados_campo3) = 0) and //Testa o 10º Digito do Campo 3
-                      ((pos(copy(Boletotmp.LinhaDigitavel,39,1),digitosGerados_campo4) = 0) or (Length(digitosGerados_campo4)=9)) and //Testa o Campo 4
-                      (copy(Boletotmp.LinhaDigitavel,39,1)<>'0')
-                      );
-
-                    digitosGerados_campo3 := digitosGerados_campo3 + copy(Boletotmp.LinhaDigitavel,36,1);
-
-                  end else
-                  begin
-                    repeat
-                      BancodeDados.EmissoesSEQ_NOSSO_NUM.Value  := BancodeDados.Pega_SeqNossoNumero(RelCarneCaixaForm.QryBancosBANCO_ID.Value);
-                      Boletotmp.SeqNossoNumero := BancodeDados.EmissoesSEQ_NOSSO_NUM.Value;//Boletotmp.SeqNossoNumero + 1;
-                      Boletotmp.CalculaInformacoes;
-                      Application.ProcessMessages;
-                    until (
-                      (pos(copy(Boletotmp.LinhaDigitavel,37,1),digitosGerados_campo3) = 0) and //Testa o 10º Digito do Campo 3
-                      ((pos(copy(Boletotmp.LinhaDigitavel,39,1),digitosGerados_campo4) = 0) or (Length(digitosGerados_campo4)=9)) and //Testa o Campo 4
-                      (copy(Boletotmp.LinhaDigitavel,39,1)<>'0')
-                      );
-
-                    digitosGerados_campo3 := digitosGerados_campo3 + copy(Boletotmp.LinhaDigitavel,37,1);
-                  end;
-
-
-                  digitosGerados_campo4 := digitosGerados_campo4 + copy(Boletotmp.LinhaDigitavel,39,1);
-                  Application.ProcessMessages;
-                end else
-                begin
-                  Boletotmp.CalculaInformacoes;
                 end
-              end else
+                else
+                begin
+                  repeat
+                    BancodeDados.EmissoesSEQ_NOSSO_NUM.Value :=
+                      BancodeDados.Pega_SeqNossoNumero
+                      (RelCarneCaixaForm.QryBancosBANCO_ID.Value);
+                    Boletotmp.SeqNossoNumero :=
+                      BancodeDados.EmissoesSEQ_NOSSO_NUM.Value;
+                    // Boletotmp.SeqNossoNumero + 1;
+                    Boletotmp.CalculaInformacoes;
+                    Application.ProcessMessages;
+                  until ((Pos(Copy(Boletotmp.LinhaDigitavel, 37, 1),
+                    digitosGerados_campo3) = 0) and
+                    // Testa o 10º Digito do Campo 3
+                    ((Pos(Copy(Boletotmp.LinhaDigitavel, 39, 1),
+                    digitosGerados_campo4) = 0) or
+                    (Length(digitosGerados_campo4) = 9)) and // Testa o Campo 4
+                    (Copy(Boletotmp.LinhaDigitavel, 39, 1) <> '0'));
+
+                  digitosGerados_campo3 := digitosGerados_campo3 +
+                    Copy(Boletotmp.LinhaDigitavel, 37, 1);
+                end;
+
+                digitosGerados_campo4 := digitosGerados_campo4 +
+                  Copy(Boletotmp.LinhaDigitavel, 39, 1);
+                Application.ProcessMessages;
+              end
+              else
               begin
                 Boletotmp.CalculaInformacoes;
-              end;
+              end
+            end
+            else
+            begin
+              Boletotmp.CalculaInformacoes;
+            end;
             // Calcular
-            //Boletotmp.CalculaInformacoes;
-           //Fim da Atualização - Alex Eloy - 03/01/2017
+            // Boletotmp.CalculaInformacoes;
+            // Fim da Atualização - Alex Eloy - 03/01/2017
 
-
-{
+            {
               if homologacao then
-                   begin
+              begin
 
-                     //digitosGerados := '012346';
-                     //repeat
-                     repeat
-                       BancodeDados.EmissoesSEQ_NOSSO_NUM.Value := BancodeDados.Pega_SeqNossoNumero(RelCarneCaixaForm.QryBancosBANCO_ID.Value);
-                       Boletotmp.SeqNossoNumero := BancodeDados.EmissoesSEQ_NOSSO_NUM.Value;
-                       Boletotmp.CalculaInformacoes;
-                       Boletos1Form.Label5.Caption := IntToStr(Boletotmp.SeqNossoNumero);
-                       Boletos1Form.Label6.Caption := Boletotmp.LinhaDigitavel;
-                       Application.ProcessMessages;
-                     until (
-                     (pos(copy(Boletotmp.LinhaDigitavel,37,1),digitosGerados_campo3) = 0) and
-                     ((pos(copy(Boletotmp.LinhaDigitavel,39,1),digitosGerados_campo4) = 0) or (Length(digitosGerados_campo4)=9)) and
-                     (copy(Boletotmp.LinhaDigitavel,39,1)<>'0')
-                     );
-
-
+              //digitosGerados := '012346';
+              //repeat
+              repeat
+              BancodeDados.EmissoesSEQ_NOSSO_NUM.Value := BancodeDados.Pega_SeqNossoNumero(RelCarneCaixaForm.QryBancosBANCO_ID.Value);
+              Boletotmp.SeqNossoNumero := BancodeDados.EmissoesSEQ_NOSSO_NUM.Value;
+              Boletotmp.CalculaInformacoes;
+              Boletos1Form.Label5.Caption := IntToStr(Boletotmp.SeqNossoNumero);
+              Boletos1Form.Label6.Caption := Boletotmp.LinhaDigitavel;
+              Application.ProcessMessages;
+              until (
+              (pos(copy(Boletotmp.LinhaDigitavel,37,1),digitosGerados_campo3) = 0) and
+              ((pos(copy(Boletotmp.LinhaDigitavel,39,1),digitosGerados_campo4) = 0) or (Length(digitosGerados_campo4)=9)) and
+              (copy(Boletotmp.LinhaDigitavel,39,1)<>'0')
+              );
 
 
-                     digitosGerados_campo3 := digitosGerados_campo3 + copy(Boletotmp.LinhaDigitavel,37,1);
-                     digitosGerados_campo4 := digitosGerados_campo4 + copy(Boletotmp.LinhaDigitavel,39,1);
-                     Boletos1Form.Label1.Caption := digitosGerados_campo3;
-                     Boletos1Form.Label3.Caption := digitosGerados_campo4;
-                     Application.ProcessMessages;
-                       //until
-                     //((Length(digitosGerados_campo3) = 10) and
-                      //(Length(digitosGerados_campo3) = 9)
-                     //);
-//                     (digitosGerados_campo3 + #13 + digitosGerados_campo4);
-                   end else
-                   begin
-                     Boletotmp.CalculaInformacoes;
-                   end;
 
-}
+
+              digitosGerados_campo3 := digitosGerados_campo3 + copy(Boletotmp.LinhaDigitavel,37,1);
+              digitosGerados_campo4 := digitosGerados_campo4 + copy(Boletotmp.LinhaDigitavel,39,1);
+              Boletos1Form.Label1.Caption := digitosGerados_campo3;
+              Boletos1Form.Label3.Caption := digitosGerados_campo4;
+              Application.ProcessMessages;
+              //until
+              //((Length(digitosGerados_campo3) = 10) and
+              //(Length(digitosGerados_campo3) = 9)
+              //);
+              //                     (digitosGerados_campo3 + #13 + digitosGerados_campo4);
+              end else
+              begin
+              Boletotmp.CalculaInformacoes;
+              end;
+
+            }
             // Receber Valores
             BancodeDados.EmissoesNOSSO_NUMERO.Value := Boletotmp.NossoNumero;
-            BancodeDados.EmissoesLINHA_DIG.Value    := Boletotmp.LinhaDigitavel;
-            BancodeDados.EmissoesCOD_BARRAS.Value   := Boletotmp.CodigoBarras;
+            BancodeDados.EmissoesLINHA_DIG.Value := Boletotmp.LinhaDigitavel;
+            BancodeDados.EmissoesCOD_BARRAS.Value := Boletotmp.CodigoBarras;
 
           finally
             Boletotmp.Free;
@@ -2944,15 +3105,19 @@ begin
 
           if Trim(Boletos_ID) = '' then
             Boletos_ID := '0';
-          BancodeDados.Adiciona.SQL.text := 'update boletos set emissao_id=' + IntToStr(BancodeDados.EmissoesEMISSAO_ID.Value) + ' where boleto_id in (' + Boletos_ID + ');';
+          BancodeDados.Adiciona.SQL.Text := 'update boletos set emissao_id=' +
+            IntToStr(BancodeDados.EmissoesEMISSAO_ID.Value) +
+            ' where boleto_id in (' + Boletos_ID + ');';
           BancodeDados.Adiciona.ExecSQL;
 
           BancodeDados.EmissoesID_BOLETOS.Value := Boletos_ID;
           BancodeDados.Emissoes.Post;
-        end else
+        end
+        else
         begin // valor>0
 
-          Mensagem('O valor integral do título não foi informado.', mtInformation, [mbOk], mrOk, 0)
+          Mensagem('O valor integral do título não foi informado.',
+            mtInformation, [mbOk], mrOk, 0)
 
         end;
         RelCarneCaixaForm.qryBoletos.Next;
@@ -2961,24 +3126,25 @@ begin
 
       BancodeDados.FDConnection1.CommitRetaining;
 
-
-      if Trim(IDEmissao)<>EmptyStr then
+      if Trim(IDEmissao) <> EmptyStr then
       begin
 
         BancodeDados.V_Boletos.Close;
-        BancodeDados.V_Boletos.SQL.text := 'select * from v_boletos where emissao_id in (' + IDEmissao + ') order by cli_nome, vencimento';
+        BancodeDados.V_Boletos.SQL.Text :=
+          'select * from v_boletos where emissao_id in (' + IDEmissao +
+          ') order by cli_nome, vencimento';
         BancodeDados.V_Boletos.Open;
 
-
         if BancodeDados.V_Boletos.IsEmpty then
-          Mensagem('Nenhuma emissão de boleto foi encontrada.', mtInformation, [mbOk], mrOk, 0)
+          Mensagem('Nenhuma emissão de boleto foi encontrada.', mtInformation,
+            [mbOk], mrOk, 0)
         else
         begin
           if (papelCortado = false) then
             BancodeDados.PrepararRel(RelCarneCaixaForm.RLReport1)
           else
             BancodeDados.PrepararRel(RelCarneCaixaForm.RLReport3);
-         end;
+        end;
 
         // if Mensagem('Deseja imprimir a capa dos boletos?', mtConfirmation, [mbYes,mbNo], mrYes, 0)=idYes then begin
         // BancodeDados.PrepararRel(RelCarneCaixaForm.RLReport2);
@@ -3014,21 +3180,22 @@ end;
 
 procedure TPrincipalForm.BoletosEmitidos2Click(Sender: TObject);
 begin
-if not(usrID > 0) then
+  if not(usrID > 0) then
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-  if (usrNivel in  [2]) then begin
-    if not Assigned(CsBoletosEmitidosForm) then
-      CsBoletosEmitidosForm := TCsBoletosEmitidosForm.Create(Application);
-    try
-      CsBoletosEmitidosForm.ShowModal;
-    finally
-      CsBoletosEmitidosForm.Release;
-      CsBoletosEmitidosForm := nil;
+    if (usrNivel in [2]) then
+    begin
+      if not Assigned(CsBoletosEmitidosForm) then
+        CsBoletosEmitidosForm := TCsBoletosEmitidosForm.Create(Application);
+      try
+        CsBoletosEmitidosForm.ShowModal;
+      finally
+        CsBoletosEmitidosForm.Release;
+        CsBoletosEmitidosForm := nil;
+      end;
     end;
   end;
-end;
 end;
 
 procedure TPrincipalForm.RastreioObjeto(codRastreio: String);
@@ -3038,7 +3205,9 @@ begin
     if not Assigned(RastreioForm) then
       RastreioForm := TRastreioForm.Create(Application);
     try
-      RastreioForm.WebBrowser1.Navigate('http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI=' + Trim(codRastreio));
+      RastreioForm.WebBrowser1.Navigate
+        ('http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI='
+        + Trim(codRastreio));
       RastreioForm.ShowModal;
     finally
       RastreioForm.Release;
@@ -3057,7 +3226,8 @@ begin
   begin
     try
       if not Assigned(IndicaClientesServicosForm) then
-        IndicaClientesServicosForm := TIndicaClientesServicosForm.Create(Application);
+        IndicaClientesServicosForm := TIndicaClientesServicosForm.Create
+          (Application);
       IndicaClientesServicosForm.ShowModal;
     finally
       IndicaClientesServicosForm.Release;
@@ -3072,7 +3242,7 @@ begin
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-      if (usrNivel in [1, 2]) then
+    if (usrNivel in [1, 2]) then
       try
         if not Assigned(RelatoriosForm) then
           RelatoriosForm := TRelatoriosForm.Create(Application);
@@ -3128,66 +3298,69 @@ procedure TPrincipalForm.Parar1Click(Sender: TObject);
 begin
 
   if (usrNivel in [1, 2]) then
-  if ServicoAtivoNFSe then
-  begin
-    if Mensagem('Existe um processo de verificação de NFse. Deseja parar?',mtConfirmation,[mbYes,mbNo],mrNo,0)=idYes then
+    if ServicoAtivoNFSe then
     begin
-      myNFseCSTh.OnTerminate := nil;
-      myNFseCSTh.Terminate();
-      ServicoAtivoNFSe := FALSE;
-      myNFseCSTh := nil;
+      if Mensagem('Existe um processo de verificação de NFse. Deseja parar?',
+        mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
+      begin
+        myNFseCSTh.OnTerminate := nil;
+        myNFseCSTh.Terminate();
+        ServicoAtivoNFSe := false;
+        myNFseCSTh := nil;
 
-      PrincipalForm.StatusBar1.Panels[3].Text := '';
-      PrincipalForm.StatusBar1.Panels[4].Text := '';
-      PrincipalForm.StatusBar1.Panels[5].Text := '';
+        PrincipalForm.StatusBar1.Panels[3].Text := '';
+        PrincipalForm.StatusBar1.Panels[4].Text := '';
+        PrincipalForm.StatusBar1.Panels[5].Text := '';
+      end;
     end;
-  end;
 
 end;
 
 procedure TPrincipalForm.pnl_msgResize(Sender: TObject);
 begin
-pnl_msg.Left := PrincipalForm.Width - pnl_msg.Width;
+  pnl_msg.Left := PrincipalForm.Width - pnl_msg.Width;
 end;
 
 procedure TPrincipalForm.PopImagemChange(Sender: TObject; Source: TMenuItem;
   Rebuild: Boolean);
 begin
-//if (BancodeDados.ConfigLOGO3.IsNull)  then Imagem1.Caption:='Imagem' else  Imagem1.Caption:='Alterar';
-if (usrID > 0) then
-begin
-  Imagem1.Visible       :=true;
-  Limpar12.Visible      :=true;
-  ServiodeNFSe1.Visible :=true;
-end else
-begin
-  Imagem1.Visible       :=False;
-  Limpar12.Visible      :=False;
-  ServiodeNFSe1.Visible :=False;
-end;
+  // if (BancodeDados.ConfigLOGO3.IsNull)  then Imagem1.Caption:='Imagem' else  Imagem1.Caption:='Alterar';
+  if (usrID > 0) then
+  begin
+    Imagem1.Visible := true;
+    Limpar12.Visible := true;
+    ServiodeNFSe1.Visible := true;
+  end
+  else
+  begin
+    Imagem1.Visible := false;
+    Limpar12.Visible := false;
+    ServiodeNFSe1.Visible := false;
+  end;
 
-
-if ServicoAtivoNFSe and (usrNivel in [2]) then
-begin
- Parar1.Visible   :=True;
- Iniciar1.Visible :=False;
-end
-else begin
- Parar1.Visible   :=False;
- Iniciar1.Visible :=true;
-end;
-
+  if ServicoAtivoNFSe and (usrNivel in [2]) then
+  begin
+    Parar1.Visible := true;
+    Iniciar1.Visible := false;
+  end
+  else
+  begin
+    Parar1.Visible := false;
+    Iniciar1.Visible := true;
+  end;
 
 end;
 
 procedure TPrincipalForm.CalcularValorPagar;
 var
-  VInicial, VAcrescimo, VAcExtra, VDesconto, PJuros, PMulta, VPagar, VJuros, VMulta: Currency;
-  QtdDias: Integer;
+  VInicial, VAcrescimo, VAcExtra, VDesconto, PJuros, PMulta, VPagar, VJuros,
+    VMulta: Currency;
+  QtdDias: integer;
 begin
-  if (BancodeDados.PagarVALOR.Value > 0) { and (BancodeDados.PagarSITUACAO_PAGAR.Value='A PAGAR') } then
+  if (BancodeDados.PagarVALOR.Value > 0)
+  { and (BancodeDados.PagarSITUACAO_PAGAR.Value='A PAGAR') } then
   begin
-    if not(BancodeDados.Pagar.State in [dsedit, dsinsert]) then
+    if not(BancodeDados.Pagar.State in [dsEdit, dsInsert]) then
       BancodeDados.Pagar.edit;
 
     VInicial := BancodeDados.PagarVALOR.Value;
@@ -3209,7 +3382,8 @@ begin
       VJuros := 0;
       VMulta := 0;
     end;
-    VPagar := ((VInicial + VAcrescimo + VAcExtra + VMulta + VJuros) - (VDesconto));
+    VPagar := ((VInicial + VAcrescimo + VAcExtra + VMulta + VJuros) -
+      (VDesconto));
     if VPagar > 0 then
       BancodeDados.PagarVALOR_APAGAR.Value := VPagar
     else
@@ -3235,13 +3409,12 @@ begin
         RetornoForm := nil;
       end;
 
-      if listaCliSite.Count>0 then
+      if listaCliSite.Count > 0 then
       begin
-       // if Mensagem('Deseja enviar as alterações para o servidor(web)?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
+        // if Mensagem('Deseja enviar as alterações para o servidor(web)?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes then
 
-       // PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
+        // PrincipalForm.Atualizarlistadeclientesnosite1Click(Sender);
       end;
-
 
     end;
   end;
@@ -3250,28 +3423,41 @@ end;
 procedure TPrincipalForm.qryDevCalcFields(DataSet: TDataSet);
 begin
   qryContador.Close;
-  qryContador.Params[0].Value:=qryDevCLI_ID.Value;
-  qryContador.Params[1].Value:=Date;
+  qryContador.Params[0].Value := qryDevCLI_ID.Value;
+  qryContador.Params[1].Value := Date;
   qryContador.Open;
-  if qryContadorTOTAL.Value>0 then
-    qryDevN_Titulos.Value:=qryContadorTOTAL.Value;
+  if qryContadorTOTAL.Value > 0 then
+    qryDevN_Titulos.Value := qryContadorTOTAL.Value;
 end;
 
-procedure TPrincipalForm.ApplicationEvents1Message(var Msg: tagMSG; var Handled: Boolean);
+procedure TPrincipalForm.ApplicationEvents1Message(var Msg: tagMSG;
+  var Handled: Boolean);
 var
-  i: SmallInt;
+  ComponenteTmp: TComponent;
+//
 begin
-  if Msg.Message = WM_MOUSEWHEEL then
+
+
+  if (Msg.Message = WM_KEYUP) then
   begin
-    Msg.Message := WM_KEYDOWN;
-    Msg.lParam := 0;
-    i := HiWord(Msg.wParam);
-    if i > 0 then
-      Msg.wParam := VK_PRIOR
-    else
-      Msg.wParam := VK_NEXT;
+    // Caption:='wParam: '+IntToStr(Msg.wParam)+' - IParam: '+IntToStr(Msg.lParam);
+
+    // if (Msg.wParam = 38) and (GetKeyState(VK_CONTROL) < 0) then begin //seta pra cima
+    if (Msg.wParam = 76) and (GetKeyState(VK_CONTROL) < 0) then
+    begin // L
+      try
+        ComponenteTmp := Screen.ActiveForm.FindComponent('EditConsulta');
+        if (ComponenteTmp <> nil) then
+        begin
+          TEdit(ComponenteTmp).Clear;
+          TEdit(ComponenteTmp).SetFocus;
+        end;
+      except
+      end;
+    end;
     Handled := false;
   end;
+
 end;
 
 procedure TPrincipalForm.Contatos1_offClick(Sender: TObject);
@@ -3295,19 +3481,19 @@ end;
 
 procedure TPrincipalForm.DBGrid1DblClick(Sender: TObject);
 begin
-if not(usrID > 0) then
-  Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
-else
-begin
-  if not Assigned(CadInformeForm) then
-    CadInformeForm := TCadInformeForm.Create(Application);
-  try
-    CadInformeForm.ShowModal;
-  finally
-    CadInformeForm.Release;
-    CadInformeForm := nil;
+  if not(usrID > 0) then
+    Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
+  else
+  begin
+    if not Assigned(CadInformeForm) then
+      CadInformeForm := TCadInformeForm.Create(Application);
+    try
+      CadInformeForm.ShowModal;
+    finally
+      CadInformeForm.Release;
+      CadInformeForm := nil;
+    end;
   end;
-end;
 
 end;
 
@@ -3335,14 +3521,14 @@ begin
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-  if not Assigned(CadInformeForm) then
-    CadInformeForm := TCadInformeForm.Create(Application);
-  try
-    CadInformeForm.ShowModal;
-  finally
-    CadInformeForm.Release;
-    CadInformeForm := nil;
-  end;
+    if not Assigned(CadInformeForm) then
+      CadInformeForm := TCadInformeForm.Create(Application);
+    try
+      CadInformeForm.ShowModal;
+    finally
+      CadInformeForm.Release;
+      CadInformeForm := nil;
+    end;
   end;
 end;
 
@@ -3366,54 +3552,62 @@ end;
 procedure TPrincipalForm.CalContas;
 begin
   BancodeDados.SomBoletos.Close;
-  BancodeDados.SomBoletos.SQL.text := 'Select sum(VALOR_APAGAR) as TT_ARECEBER from boletos where situacao_boleto =' + QuotedStr('A RECEBER') +
-    ' and VENCIMENTO < ' + QuotedStr(FormatDateTime('yyyy/mm/dd', Date));
+  BancodeDados.SomBoletos.SQL.Text :=
+    'Select sum(VALOR_APAGAR) as TT_ARECEBER from boletos where situacao_boleto ='
+    + QuotedStr('A RECEBER') + ' and VENCIMENTO < ' +
+    QuotedStr(FormatDateTime('yyyy/mm/dd', Date));
   BancodeDados.SomBoletos.Open;
   if not BancodeDados.SomBoletos.IsEmpty then
-    PrincipalForm.StatusBar1.Panels[0].text := 'Inadimplência: ' + FormatFloat(',0.00', BancodeDados.SomBoletosTT_ARECEBER.Value)
+    PrincipalForm.StatusBar1.Panels[0].Text := 'Inadimplência: ' +
+      FormatFloat(',0.00', BancodeDados.SomBoletosTT_ARECEBER.Value)
   else
-    PrincipalForm.StatusBar1.Panels[0].text := 'Inadimplência: 0,00';
+    PrincipalForm.StatusBar1.Panels[0].Text := 'Inadimplência: 0,00';
 
   BancodeDados.SomBoletos.Close;
-  BancodeDados.SomBoletos.SQL.text := 'select sum(VALOR_APAGAR) as TT_ARECEBER from boletos where situacao_boleto =' + QuotedStr('A RECEBER') +
-    ' and VENCIMENTO = ' + QuotedStr(FormatDateTime('yyyy/mm/dd', Date));
+  BancodeDados.SomBoletos.SQL.Text :=
+    'select sum(VALOR_APAGAR) as TT_ARECEBER from boletos where situacao_boleto ='
+    + QuotedStr('A RECEBER') + ' and VENCIMENTO = ' +
+    QuotedStr(FormatDateTime('yyyy/mm/dd', Date));
   BancodeDados.SomBoletos.Open;
   if not BancodeDados.SomBoletos.IsEmpty then
-    PrincipalForm.StatusBar1.Panels[1].text := 'Receber Hoje: ' + FormatFloat(',0.00', BancodeDados.SomBoletosTT_ARECEBER.Value)
+    PrincipalForm.StatusBar1.Panels[1].Text := 'Receber Hoje: ' +
+      FormatFloat(',0.00', BancodeDados.SomBoletosTT_ARECEBER.Value)
   else
-    PrincipalForm.StatusBar1.Panels[1].text := 'Receber Hoje: 0,00';
+    PrincipalForm.StatusBar1.Panels[1].Text := 'Receber Hoje: 0,00';
   BancodeDados.SomBoletos.Close;
 
   BancodeDados.SomPagar.Close;
-  BancodeDados.SomPagar.SQL.text := 'Select sum(VALOR_FALTA) as tt_pagar from v_pagar where situacao_pagar=' + QuotedStr('A PAGAR') + ' and VENCIMENTO <= ' +
+  BancodeDados.SomPagar.SQL.Text :=
+    'Select sum(VALOR_FALTA) as tt_pagar from v_pagar where situacao_pagar=' +
+    QuotedStr('A PAGAR') + ' and VENCIMENTO <= ' +
     QuotedStr(FormatDateTime('yyyy/mm/dd', Date));
   BancodeDados.SomPagar.Open;
   if not BancodeDados.SomPagar.IsEmpty then
-    PrincipalForm.StatusBar1.Panels[2].text := 'A Pagar Hoje: ' + FormatFloat(',0.00', BancodeDados.SomPagarTT_PAGAR.Value)
+    PrincipalForm.StatusBar1.Panels[2].Text := 'A Pagar Hoje: ' +
+      FormatFloat(',0.00', BancodeDados.SomPagarTT_PAGAR.Value)
   else
-    PrincipalForm.StatusBar1.Panels[2].text := 'A Pagar Hoje: 0,00';
+    PrincipalForm.StatusBar1.Panels[2].Text := 'A Pagar Hoje: 0,00';
   BancodeDados.SomPagar.Close;
 
 end;
 
 procedure TPrincipalForm.ConciliaoBancria1Click(Sender: TObject);
 begin
-if not(usrID > 0) then
+  if not(usrID > 0) then
     Mensagem('É necessário efetuar login.', mtInformation, [mbOk], mrOk, 0)
   else
   begin
-  if (usrNivel in [1, 2]) then
-  try
-    if not Assigned(ImpExtratoForm) then
-      ImpExtratoForm := TImpExtratoForm.Create(Application);
-    ImpExtratoForm.ShowModal;
-  finally
-    ImpExtratoForm.Release;
-    ImpExtratoForm := nil;
+    if (usrNivel in [1, 2]) then
+      try
+        if not Assigned(ImpExtratoForm) then
+          ImpExtratoForm := TImpExtratoForm.Create(Application);
+        ImpExtratoForm.ShowModal;
+      finally
+        ImpExtratoForm.Release;
+        ImpExtratoForm := nil;
+      end;
   end;
 end;
-end;
-
 
 procedure TPrincipalForm.Configuraes1Click(Sender: TObject);
 begin
@@ -3423,36 +3617,32 @@ begin
   else
   begin
 
-
-
-
     if (usrNivel in [1, 2]) then
     begin
-    if not Assigned(CsConfForm) then
-      CsConfForm := tCsConfForm.Create(Application);
-    try
-      CsConfForm.ShowModal;
-    finally
-      CsConfForm.Release;
-      CsConfForm := nil;
+      if not Assigned(CsConfForm) then
+        CsConfForm := tCsConfForm.Create(Application);
+      try
+        CsConfForm.ShowModal;
+      finally
+        CsConfForm.Release;
+        CsConfForm := nil;
+      end;
     end;
-  end;
-
 
   end;
 end;
 
 procedure TPrincipalForm.ConfigurandooServidordeDados1Click(Sender: TObject);
 begin
-//if(usrID > 0) then
-try
-  if not Assigned(AlterandoServidorForm) then
-    AlterandoServidorForm := TAlterandoServidorForm.Create(Application);
-  AlterandoServidorForm.ShowModal;
-finally
-  AlterandoServidorForm.Release;
-  AlterandoServidorForm := nil;
-end;
+  // if(usrID > 0) then
+  try
+    if not Assigned(AlterandoServidorForm) then
+      AlterandoServidorForm := TAlterandoServidorForm.Create(Application);
+    AlterandoServidorForm.ShowModal;
+  finally
+    AlterandoServidorForm.Release;
+    AlterandoServidorForm := nil;
+  end;
 end;
 
 procedure TPrincipalForm.ConsultadeNotasFiscias12Click(Sender: TObject);
@@ -3462,19 +3652,18 @@ begin
   else
   begin
 
-       if not Assigned(CsNfsForm) then  CsNfsForm := TCsNfsForm.Create(Application);
+    if not Assigned(CsNfsForm) then
+      CsNfsForm := TCsNfsForm.Create(Application);
 
-       try
-         //AtivEventProcNFS:=True;
-        CsNfsForm.ShowModal;
-      finally
-        CsNfsForm.Release;
-        CsNfsForm := nil;
-      end;
-    //end;
+    try
+      // AtivEventProcNFS:=True;
+      CsNfsForm.ShowModal;
+    finally
+      CsNfsForm.Release;
+      CsNfsForm := nil;
+    end;
+    // end;
   end;
 end;
-
-
 
 end.

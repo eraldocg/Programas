@@ -629,7 +629,7 @@ object RelLivroCaixaForm: TRelLivroCaixaForm
           Height = 11
           Alignment = taCenter
           AutoSize = False
-          Caption = 'Desc. Pagamento'
+          Caption = 'Documento'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -805,7 +805,7 @@ object RelLivroCaixaForm: TRelLivroCaixaForm
           Width = 66
           Height = 10
           AutoSize = False
-          DataField = 'DESCRICAO_PAGO'
+          DataField = 'DOCUMENTO'
           DataSource = BancodeDados.DSLivroCaixa
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack

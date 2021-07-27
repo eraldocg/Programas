@@ -93,7 +93,6 @@ object InforContratosForm: TInforContratosForm
       'sistema.')
     ScrollBars = ssVertical
     TabOrder = 0
-    ExplicitTop = 2
   end
   object Panel1: TPanel
     Left = 0

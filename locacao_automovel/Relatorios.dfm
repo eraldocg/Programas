@@ -534,6 +534,10 @@ object RelatoriosForm: TRelatoriosForm
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Geral'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object chkLigacoes: TRadioButton
         Left = 0
         Top = 22
@@ -558,6 +562,10 @@ object RelatoriosForm: TRelatoriosForm
     object TabSheet3: TTabSheet
       Caption = 'Caixa'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Image4: TImage
         Left = -369
         Top = -52
@@ -1211,6 +1219,10 @@ object RelatoriosForm: TRelatoriosForm
     object TabSheet2: TTabSheet
       Caption = 'Pagar'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Image2: TImage
         Left = -368
         Top = -53

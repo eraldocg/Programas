@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, DBCtrls, ExtCtrls, jpeg, DB, Grids, DBGrids,
-  Mask, SEDDBDateEdit, Menus, SedDBGrid, SEDDBComboBox, SEDDBImage, SEDButton;
+  Mask, SEDDBDateEdit, Menus, SedDBGrid, SEDDBComboBox, SEDDBImage, SEDButton,
+  Vcl.Buttons;
 
 type
   TCadClientesForm = class(TForm)
@@ -111,16 +112,6 @@ type
     EditEstadoCivil: TDBComboBox;
     Label46: TLabel;
     EditProfissao: TDBEdit;
-    EdirRGOrgao: TDBLookupComboBox;
-    EditPassaporte: TDBEdit;
-    EditRgUF: TSedDBComboBox;
-    EditRGExp: TSedDbDateEdit;
-    EditRG: TDBEdit;
-    Label18: TLabel;
-    Label68: TLabel;
-    Label49: TLabel;
-    Label48: TLabel;
-    Label17: TLabel;
     Label27: TLabel;
     SedDBComboBox1: TSedDBComboBox;
     PopupOBS: TPopupMenu;
@@ -129,12 +120,32 @@ type
     Excluir2: TMenuItem;
     N2: TMenuItem;
     N3: TMenuItem;
+    PageControl3: TPageControl;
+    TabSheetRG: TTabSheet;
+    TabSheetCNH: TTabSheet;
+    Label68: TLabel;
+    Label49: TLabel;
+    Label48: TLabel;
+    Label17: TLabel;
+    EdirRGOrgao: TDBLookupComboBox;
+    EditRgUF: TSedDBComboBox;
+    EditRGExp: TSedDbDateEdit;
+    EditRG: TDBEdit;
+    Label18: TLabel;
+    Label28: TLabel;
+    EditCNH_Data_Prim_Hab: TSedDbDateEdit;
+    EditCNH_Numero: TDBEdit;
+    Label32: TLabel;
+    EditCNH_Renach: TDBEdit;
+    btF2: TSpeedButton;
     procedure BTgravarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure DBGrid1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure DBGrid2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGrid1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DBGrid2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure EditCNPJExit(Sender: TObject);
     procedure BTfecharClick(Sender: TObject);
@@ -159,9 +170,10 @@ type
     procedure Excluir2Click(Sender: TObject);
     procedure Editar1Click(Sender: TObject);
     procedure SedDBGrid2DblClick(Sender: TObject);
+    procedure btF2Click(Sender: TObject);
   private
     { Private declarations }
-         procedure PegarEstadoProvincia(NacionalID: String);
+    procedure PegarEstadoProvincia(NacionalID: String);
   public
     { Public declarations }
 
@@ -173,7 +185,7 @@ var
 implementation
 
 uses Base, Principal, GerarSerial, acFuncoesBoleto, CsFornecedores,
-  unRecursos, ImprimirContrato, unImpressao;
+  unRecursos, ImprimirContrato, unImpressao, CsAjuda1;
 
 {$R *.dfm}
 
@@ -188,12 +200,11 @@ begin
       if not BancodeDados.FDConnection1.InTransaction then
         BancodeDados.FDConnection1.StartTransaction;
 
-
       if BancodeDados.Clientes.State in [dsedit, dsinsert] then
         BancodeDados.Clientes.Post;
 
       if BancodeDados.Celul_Emails.State in [dsedit, dsinsert] then
-         BancodeDados.Celul_Emails.Post;
+        BancodeDados.Celul_Emails.Post;
 
       BancodeDados.FDConnection1.CommitRetaining;
 
@@ -221,22 +232,24 @@ end;
 
 procedure TCadClientesForm.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-  if (Key = #13) and not(ActiveControl is TDBMemo) and not(ActiveControl is TDBGrid) then
+  if (Key = #13) and not(ActiveControl is TDBMemo) and
+    not(ActiveControl is TDBGrid) then
   begin
     Key := #0;
     Perform(WM_NextDlgCtl, 0, 0);
   end;
-  if (Key = #27) {and not (BancodeDados.Celul_Emails.State in [dsinsert, dsedit]  and not(BancodeDados.Inst.State in [dsinsert, dsedit]) } then
+  if (Key = #27)
+  { and not (BancodeDados.Celul_Emails.State in [dsinsert, dsedit]  and not(BancodeDados.Inst.State in [dsinsert, dsedit]) }
+  then
   begin
     Key := #0;
     Close;
   end;
 end;
 
-
 procedure TCadClientesForm.PegarEstadoProvincia(NacionalID: String);
 begin
-  if trim(NacionalID)<>'' then
+  if trim(NacionalID) <> '' then
   begin
     BancodeDados.qryEstados2.Close;
     BancodeDados.qryEstados2.Params[0].Value := NacionalID;
@@ -244,63 +257,61 @@ begin
     BancodeDados.qryEstados2.Last;
     BancodeDados.qryEstados2.First;
     if not BancodeDados.qryEstados2.IsEmpty then
-    BancodeDados.qryEstados2.Locate('UF',BancodeDados.ClientesESTADO.Value,[]);
+      BancodeDados.qryEstados2.Locate('UF',
+        BancodeDados.ClientesESTADO.Value, []);
   end;
 
 end;
 
 procedure TCadClientesForm.FormShow(Sender: TObject);
 begin
+
   BancodeDados.qryMunicipiosClient.Close;
-  BancodeDados.qryMunicipiosClient.Params[0].Value := BancodeDados.ClientesUF_NATURAL.Value;
+  BancodeDados.qryMunicipiosClient.Params[0].Value :=
+    BancodeDados.ClientesUF_NATURAL.Value;
   BancodeDados.qryMunicipiosClient.Open;
   BancodeDados.qryMunicipiosClient.Last;
   if not BancodeDados.qryMunicipiosClient.IsEmpty then
-  BancodeDados.qryMunicipiosClient.Locate('CODMUN',BancodeDados.ClientesUF_NATURAL.Value,[]);
+    BancodeDados.qryMunicipiosClient.Locate('CODMUN',
+      BancodeDados.ClientesUF_NATURAL.Value, []);
 
-
-  BancodeDados.qryEstadosClient.close;
-  BancodeDados.qryEstadosClient.Params[0].Value := (BancodeDados.ClientesNACIONALIDADE.Value);
+  BancodeDados.qryEstadosClient.Close;
+  BancodeDados.qryEstadosClient.Params[0].Value :=
+    (BancodeDados.ClientesNACIONALIDADE.Value);
   BancodeDados.qryEstadosClient.Open;
   BancodeDados.qryEstadosClient.Last;
 
   BancodeDados.Oper_Celular.Close;
-  BancodeDados.Oper_Celular.SQL.Text:='select * from oper_cel order by descricao';
+  BancodeDados.Oper_Celular.SQL.Text :=
+    'select * from oper_cel order by descricao';
   BancodeDados.Oper_Celular.Open;
   BancodeDados.Oper_Celular.Last;
 
   CadClientesForm.Caption := 'Cliente: ' + BancodeDados.ClientesNOME.Value;
 
-  PegarEstadoProvincia(Trim('76'));
+  PegarEstadoProvincia(trim('76'));
 
   BancodeDados.Municipios2.Close;
   BancodeDados.Municipios2.Params[0].Value := BancodeDados.ClientesESTADO.Value;
   BancodeDados.Municipios2.Open;
   BancodeDados.Municipios2.Last;
   if not BancodeDados.Municipios2.IsEmpty then
-  BancodeDados.Municipios2.Locate('CODMUN',BancodeDados.ClientesESTADO.Value,[]);
-
-
-
+    BancodeDados.Municipios2.Locate('CODMUN',
+      BancodeDados.ClientesESTADO.Value, []);
 
   BancodeDados.OrgExped.Close;
-  BancodeDados.OrgExped.SQL.Text:='select * from orgao_exped order by org_id';
+  BancodeDados.OrgExped.SQL.Text := 'select * from orgao_exped order by org_id';
   BancodeDados.OrgExped.Open;
   BancodeDados.OrgExped.Last;
 
+  CadClientesForm.Width := 519;
+  CadClientesForm.Height := 555;
 
-   CadClientesForm.Width:=519;
-   CadClientesForm.Height:=555;
+  tbScanDoc.TabVisible := False;
 
-
- tbScanDoc.TabVisible:=False;
-
- EditNome.SetFocus;
+  TabSheetRG.show;
+  EditNome.SetFocus;
 end;
-
-
-
-
 
 procedure TCadClientesForm.Button1Click(Sender: TObject);
 { var
@@ -381,30 +392,33 @@ begin
     end; }
 end;
 
-procedure TCadClientesForm.DBGrid1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TCadClientesForm.DBGrid1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
   if Key = 13 then
     Key := 9;
 end;
 
-procedure TCadClientesForm.DBGrid2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TCadClientesForm.DBGrid2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
   if Key = 13 then
     Key := 9;
 end;
 
-procedure TCadClientesForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+procedure TCadClientesForm.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
 begin
 
-
-  if Mensagem('Deseja sair agora?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idNo then
+  if Mensagem('Deseja sair agora?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idNo
+  then
     CanClose := False;
 end;
 
 procedure TCadClientesForm.FormCreate(Sender: TObject);
 begin
-  TabSheet1.Show;
-  TabSheet7.Show;
+  TabSheet1.show;
+  TabSheet7.show;
 end;
 
 procedure TCadClientesForm.Editar1Click(Sender: TObject);
@@ -413,12 +427,14 @@ var
   MM: TDBMemo;
 begin
 
-if Editar1.Enabled then begin
-  //if not (BancodeDados.Observacoes.State in [dsedit, dsinsert]) then BancodeDados.Observacoes.Append;
-  if (BancodeDados.ObservacoesCLI_ID.Value>0)  then begin
-    HabilitarBotoes(self, false);
+  if Editar1.Enabled then
+  begin
+    // if not (BancodeDados.Observacoes.State in [dsedit, dsinsert]) then BancodeDados.Observacoes.Append;
+    if (BancodeDados.ObservacoesCLI_ID.Value > 0) then
+    begin
+      HabilitarBotoes(self, False);
       Frm := TForm.Create(nil);
-      HabilitarBotoes(self, false);
+      HabilitarBotoes(self, False);
       try
         Frm.Width := 428;
         Frm.Height := 250;
@@ -444,16 +460,15 @@ if Editar1.Enabled then begin
         Frm.Free;
         HabilitarBotoes(self, true);
       end;
-    HabilitarBotoes(self, true);
+      HabilitarBotoes(self, true);
+    end;
   end;
-end;
-
 
 end;
 
 procedure TCadClientesForm.EditCNPJExit(Sender: TObject);
 begin
-    if Trim(EditCNPJ.Text) <> EmptyStr then
+  if trim(EditCNPJ.Text) <> EmptyStr then
     if BancodeDados.Clientes.State in [dsinsert, dsedit] then
     begin
       BancodeDados.ClientesCNPJ.Value := TestaCPFCNPJ(EditCNPJ.Text);
@@ -463,13 +478,14 @@ end;
 
 procedure TCadClientesForm.EditFotoDblClick(Sender: TObject);
 begin
-Novo1Click(Sender);
+  Novo1Click(Sender);
 end;
 
 procedure TCadClientesForm.Excluir2Click(Sender: TObject);
 begin
   if BancodeDados.ObservacoesOBS_ID.Value > 0 then
-    if Mensagem('Deseja excluir registro?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idYes then
+    if Mensagem('Deseja excluir registro?', mtConfirmation, [mbyes, mbNo],
+      mryes, 0) = idYes then
     begin
       if not BancodeDados.FDConnection1.InTransaction then
         BancodeDados.FDConnection1.StartTransaction;
@@ -481,14 +497,16 @@ end;
 procedure TCadClientesForm.Excluirdocumento1Click(Sender: TObject);
 begin
 
-  if (Bancodedados.SDocS_DOC_ID.Value > 0) then begin
-  HabilitarBotoes(self,false);
-  if (Mensagem('Tem certeza que deseja excluir este documento?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idYes) then
+  if (BancodeDados.SDocS_DOC_ID.Value > 0) then
   begin
-   Bancodedados.SDoc.Delete;
-   Bancodedados.SDoc.ApplyUpdates;
-  end;
-  HabilitarBotoes(self,true);
+    HabilitarBotoes(self, False);
+    if (Mensagem('Tem certeza que deseja excluir este documento?',
+      mtConfirmation, [mbyes, mbNo], mrNo, 0) = idYes) then
+    begin
+      BancodeDados.SDoc.Delete;
+      BancodeDados.SDoc.ApplyUpdates;
+    end;
+    HabilitarBotoes(self, true);
   end;
 
 end;
@@ -503,6 +521,22 @@ begin
   BancodeDados.AdicionarDocScan;
 end;
 
+procedure TCadClientesForm.btF2Click(Sender: TObject);
+begin
+if not Assigned(CsAjuda1Form) then
+  CsAjuda1Form := tCsAjuda1Form.Create(Application);
+try
+  HabilitarBotoes(Self,false);
+  CsAjuda1Form.ShowModal;
+finally
+  CsAjuda1Form.Release;
+  CsAjuda1Form := nil;
+  HabilitarBotoes(Self,true);
+end;
+
+
+end;
+
 procedure TCadClientesForm.BTfecharClick(Sender: TObject);
 begin
   Close;
@@ -514,18 +548,26 @@ begin
   // BancodeDados.Inst.Cancel;
   // if BancodeDados.Unidades.State in [dsedit, dsinsert] then
   // BancodeDados.Unidades.Cancel;
-  if (BancodeDados.Celul_Emails.State in [dsedit, dsInsert]) then BancodeDados.Celul_Emails.Cancel;
-  if BancodeDados.Clientes.State in [dsedit, dsinsert] then  BancodeDados.Clientes.Cancel;
+  if (BancodeDados.Celul_Emails.State in [dsedit, dsinsert]) then
+    BancodeDados.Celul_Emails.Cancel;
+  if BancodeDados.Clientes.State in [dsedit, dsinsert] then
+    BancodeDados.Clientes.Cancel;
 end;
 
 procedure TCadClientesForm.Novo1Click(Sender: TObject);
 begin
-if PrincipalForm.OpenPictureDialog1.Execute then begin
-  if not (BancodeDados.Clientes.State in [dsInsert,dsEdit]) then BancodeDados.Clientes.Edit;
-  if BancodeDados.ResizeImage(PrincipalForm.OpenPictureDialog1.FileName, 1000) then
-    BancodeDados.GravarBlobNaTabela(BancodeDados.ClientesLOGO, DiretorioTemp + ExtractFileName(PrincipalForm.OpenPictureDialog1.FileName));
-  DeleteFile(DiretorioTemp + ExtractFileName(PrincipalForm.OpenPictureDialog1.FileName));
-end;
+  if PrincipalForm.OpenPictureDialog1.Execute then
+  begin
+    if not(BancodeDados.Clientes.State in [dsinsert, dsedit]) then
+      BancodeDados.Clientes.Edit;
+    if BancodeDados.ResizeImage(PrincipalForm.OpenPictureDialog1.FileName, 1000)
+    then
+      BancodeDados.GravarBlobNaTabela(BancodeDados.ClientesLOGO,
+        DiretorioTemp + ExtractFileName
+        (PrincipalForm.OpenPictureDialog1.FileName));
+    DeleteFile(DiretorioTemp + ExtractFileName
+      (PrincipalForm.OpenPictureDialog1.FileName));
+  end;
 end;
 
 procedure TCadClientesForm.Novo2Click(Sender: TObject);
@@ -534,13 +576,15 @@ var
   MM: TDBMemo;
 begin
 
-if Novo2.Enabled then
-begin
-  if not (BancodeDados.Observacoes.State in [dsedit, dsinsert]) then BancodeDados.Observacoes.Insert;
-  if (BancodeDados.ObservacoesCLI_ID.Value>0)  then begin
-    HabilitarBotoes(self, false);
+  if Novo2.Enabled then
+  begin
+    if not(BancodeDados.Observacoes.State in [dsedit, dsinsert]) then
+      BancodeDados.Observacoes.Insert;
+    if (BancodeDados.ObservacoesCLI_ID.Value > 0) then
+    begin
+      HabilitarBotoes(self, False);
       Frm := TForm.Create(nil);
-      HabilitarBotoes(self, false);
+      HabilitarBotoes(self, False);
       try
         Frm.Width := 428;
         Frm.Height := 250;
@@ -566,10 +610,9 @@ begin
         Frm.Free;
         HabilitarBotoes(self, true);
       end;
-    HabilitarBotoes(self, true);
+      HabilitarBotoes(self, true);
+    end;
   end;
-end;
-
 
 end;
 
@@ -578,22 +621,25 @@ begin
   if (PageControl1.ActivePage = TabSheet8) then
   begin
     BancodeDados.Observacoes.Close;
-    BancodeDados.Observacoes.SQL.Text:='select * from observacoes where cli_id ='+IntToStr(BancodeDados.ClientesCLI_ID.Value)+' order by obs_id desc';
+    BancodeDados.Observacoes.SQL.Text :=
+      'select * from observacoes where cli_id =' +
+      IntToStr(BancodeDados.ClientesCLI_ID.Value) + ' order by obs_id desc';
     BancodeDados.Observacoes.Open;
     SedDBGrid2.SetFocus;
-  end else
-  if (PageControl1.ActivePage = tbScanDoc) then
+  end
+  else if (PageControl1.ActivePage = tbScanDoc) then
   begin
 
-    BancodeDados.PegaDocScan(1, BancodeDados.ClientesCLI_ID.Value, 0 , 'CLIENTE');
+    BancodeDados.PegaDocScan(1, BancodeDados.ClientesCLI_ID.Value, 0,
+      'CLIENTE');
   end;
 
 end;
 
 procedure TCadClientesForm.PageControl2Change(Sender: TObject);
 begin
-{if (PageControl1.ActivePage = TabSheet7) then
-  begin
+  { if (PageControl1.ActivePage = TabSheet7) then
+    begin
 
     BancodeDados.Oper_Celular.Close;
     BancodeDados.Oper_Celular.SQL.Text:='select * from oper_cel order by descricao';
@@ -601,15 +647,16 @@ begin
     BancodeDados.Oper_Celular.Last;
 
     editCEP.Text := '';
-   // PrincipalForm.PreencheEnderecos;
+    // PrincipalForm.PreencheEnderecos;
     EditCEP.SetFocus;
-  end }
+    end }
 end;
 
 procedure TCadClientesForm.Bt_Obs_ExcluirClick(Sender: TObject);
 begin
   if BancodeDados.ObservacoesOBS_ID.Value > 0 then
-    if Mensagem('Deseja excluir registro?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idYes then
+    if Mensagem('Deseja excluir registro?', mtConfirmation, [mbyes, mbNo],
+      mryes, 0) = idYes then
     begin
       if not BancodeDados.FDConnection1.InTransaction then
         BancodeDados.FDConnection1.StartTransaction;
@@ -621,18 +668,19 @@ end;
 procedure TCadClientesForm.SedDBGrid1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-if key=13 then key:=9;
+  if Key = 13 then
+    Key := 9;
 end;
 
 procedure TCadClientesForm.SedDBGrid2DblClick(Sender: TObject);
 begin
-Editar1Click(Sender);
+  Editar1Click(Sender);
 
 end;
 
 procedure TCadClientesForm.SedDBGrid2DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-  var
+var
   R: TRect;
 begin
   if Column.Field = BancodeDados.ObservacoesOBS then
@@ -640,34 +688,23 @@ begin
     R := Rect;
     Dec(R.Bottom, 2);
     SedDBGrid2.Canvas.FillRect(Rect);
-    DrawText(SedDBGrid2.Canvas.Handle, pchar(BancodeDados.ObservacoesOBS.AsString), length(BancodeDados.ObservacoesOBS.AsString), R, DT_WORDBREAK);
+    DrawText(SedDBGrid2.Canvas.Handle,
+      pchar(BancodeDados.ObservacoesOBS.AsString),
+      length(BancodeDados.ObservacoesOBS.AsString), R, DT_WORDBREAK);
   end;
 end;
 
-procedure TCadClientesForm.DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+procedure TCadClientesForm.DBNavigator1Click(Sender: TObject;
+  Button: TNavigateBtn);
 begin
   FormShow(Sender);
 end;
 
-procedure TCadClientesForm.DBNavigator2Click(Sender: TObject; Button: TNavigateBtn);
+procedure TCadClientesForm.DBNavigator2Click(Sender: TObject;
+  Button: TNavigateBtn);
 begin
-//  FormShow(Sender);
-PageControl1Change(Sender);
+  // FormShow(Sender);
+  PageControl1Change(Sender);
 end;
 
 end.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

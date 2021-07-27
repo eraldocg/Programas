@@ -124,6 +124,11 @@ object RelacaoServicosForm: TRelacaoServicosForm
     Columns = <
       item
         Expanded = False
+        FieldName = 'C_S_C_ID'
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'DT_CONTRATO'
         ReadOnly = True
         Width = 77

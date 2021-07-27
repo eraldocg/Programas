@@ -31,7 +31,7 @@ object VisualizaTitulosForm: TVisualizaTitulosForm
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = []
-    Options = [dgTitles,dgIndicator,dgColumnResize,dgColLines,dgTabs,dgConfirmDelete,dgCancelOnExit,dgTitleClick]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick]
     ParentFont = False
     ReadOnly = True
     TabOrder = 0
@@ -53,7 +53,7 @@ object VisualizaTitulosForm: TVisualizaTitulosForm
       end
       item
         Expanded = False
-        FieldName = 'Cliente'
+        FieldName = 'CLIENTE'
         Width = 211
         Visible = True
       end

@@ -622,7 +622,7 @@ object CsVeiculosForm: TCsVeiculosForm
       item
         Expanded = False
         FieldName = 'PLACA'
-        Width = 113
+        Width = 82
         Visible = True
       end
       item
@@ -646,7 +646,13 @@ object CsVeiculosForm: TCsVeiculosForm
       item
         Expanded = False
         FieldName = 'ANO_FAB'
-        Width = 93
+        Width = 60
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ANO_MODELO'
+        Width = 60
         Visible = True
       end>
   end

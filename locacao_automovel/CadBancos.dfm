@@ -504,6 +504,10 @@ object CadBancosForm: TCadBancosForm
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Dados do Banco'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label1: TLabel
         Left = 100
         Top = 28
@@ -1601,6 +1605,10 @@ object CadBancosForm: TCadBancosForm
     object TabSheet3: TTabSheet
       Caption = 'Complemento'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbNomeFolha: TLabel
         Left = 3
         Top = 1
@@ -2196,6 +2204,10 @@ object CadBancosForm: TCadBancosForm
     object TabSheet2: TTabSheet
       Caption = 'Instru'#231#245'es'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label6: TLabel
         Left = 904
         Top = -18

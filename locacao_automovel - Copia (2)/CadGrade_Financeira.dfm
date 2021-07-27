@@ -1,0 +1,406 @@
+object CadGrade_FinanceiraForm: TCadGrade_FinanceiraForm
+  Left = 351
+  Top = 200
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de Grade Financeira'
+  ClientHeight = 248
+  ClientWidth = 282
+  Color = 7562340
+  Ctl3D = False
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Arial'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 14
+  object Label1: TLabel
+    Left = 8
+    Top = 80
+    Width = 86
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Descri'#231#227'o:'
+    Color = clGray
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Label12: TLabel
+    Left = 334
+    Top = 100
+    Width = 65
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Esp'#233'cie:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+    Visible = False
+  end
+  object Label3: TLabel
+    Left = 334
+    Top = 142
+    Width = 65
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Aceite:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+    Visible = False
+  end
+  object Label4: TLabel
+    Left = 8
+    Top = 101
+    Width = 86
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Juros ao dia(%):'
+    Color = clGray
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Label5: TLabel
+    Left = 8
+    Top = 121
+    Width = 86
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Multa(%):'
+    Color = clGray
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Label6: TLabel
+    Left = 334
+    Top = 162
+    Width = 65
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Carteira:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+    Visible = False
+  end
+  object Label7: TLabel
+    Left = 334
+    Top = 120
+    Width = 65
+    Height = 13
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Moeda:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+    Visible = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 143
+    Width = 86
+    Height = 14
+    Alignment = taRightJustify
+    Caption = 'Juros ao m'#234's(%):'
+    Color = clGray
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Label8: TLabel
+    Left = 26
+    Top = 165
+    Width = 68
+    Height = 14
+    Alignment = taRightJustify
+    Caption = 'Tipo de Juros:'
+    Color = clGray
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Label19: TLabel
+    Left = 52
+    Top = 29
+    Width = 171
+    Height = 21
+    Alignment = taRightJustify
+    Caption = 'Cadastro de Grade Financeira'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Franklin Gothic Medium Cond'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 218
+    Width = 282
+    Height = 30
+    Align = alBottom
+    BevelOuter = bvNone
+    Color = 7562340
+    ParentBackground = False
+    TabOrder = 7
+    object DBText5: TDBText
+      Left = 52
+      Top = 8
+      Width = 43
+      Height = 14
+      AutoSize = True
+      DataField = 'GRADE_ID'
+      DataSource = BancodeDados.DSGrade
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 4
+      Top = 8
+      Width = 42
+      Height = 14
+      Caption = 'C'#243'digo:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object BtInserir: TButton
+      Left = 203
+      Top = 3
+      Width = 75
+      Height = 25
+      Cursor = crHandPoint
+      Caption = '&Gravar'
+      TabOrder = 0
+      OnClick = BtInserirClick
+    end
+    object btCancelar: TButton
+      Left = 123
+      Top = 3
+      Width = 75
+      Height = 25
+      Cursor = crHandPoint
+      Cancel = True
+      Caption = '&Cancelar'
+      ModalResult = 2
+      TabOrder = 1
+    end
+  end
+  object EditNome: TDBEdit
+    Left = 95
+    Top = 78
+    Width = 184
+    Height = 20
+    AutoSelect = False
+    DataField = 'DESCRICAO'
+    DataSource = BancodeDados.DSGrade
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 194
+    Top = 188
+    Width = 80
+    Height = 18
+    Cursor = crHandPoint
+    DataSource = BancodeDados.DSGrade
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+    Flat = True
+    Ctl3D = False
+    ParentCtl3D = False
+    TabOrder = 6
+  end
+  object EditEspecie: TDBEdit
+    Left = 401
+    Top = 98
+    Width = 47
+    Height = 20
+    DataField = 'ESPECIE'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    Visible = False
+  end
+  object EditAceite: TDBComboBox
+    Left = 401
+    Top = 138
+    Width = 66
+    Height = 22
+    BevelKind = bkFlat
+    DataField = 'ACEITE'
+    Items.Strings = (
+      'S'
+      'N')
+    TabOrder = 9
+    Visible = False
+  end
+  object EditJuros: TDBEdit
+    Left = 95
+    Top = 99
+    Width = 66
+    Height = 20
+    DataField = 'JUROS'
+    DataSource = BancodeDados.DSGrade
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+  end
+  object EditMulta: TDBEdit
+    Left = 95
+    Top = 120
+    Width = 66
+    Height = 20
+    DataField = 'MULTA'
+    DataSource = BancodeDados.DSGrade
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+  end
+  object EditCarteira: TDBEdit
+    Left = 401
+    Top = 160
+    Width = 47
+    Height = 20
+    DataField = 'CARTEIRA'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 10
+    Visible = False
+  end
+  object EditMoeda: TDBEdit
+    Left = 401
+    Top = 118
+    Width = 47
+    Height = 20
+    DataField = 'MOEDA'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 8
+    Visible = False
+  end
+  object EditJurosMes: TDBEdit
+    Left = 95
+    Top = 141
+    Width = 66
+    Height = 20
+    DataField = 'JUROS_MES'
+    DataSource = BancodeDados.DSGrade
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+  end
+  object EditJrMesOp: TSedDBComboBox
+    Left = 95
+    Top = 162
+    Width = 111
+    Height = 20
+    Cursor = crHandPoint
+    Style = csOwnerDrawFixed
+    BevelKind = bkFlat
+    DataField = 'JUROS_MES_OPCAO'
+    DataSource = BancodeDados.DSGrade
+    ItemHeight = 14
+    Items.Strings = (
+      'Proporcional'
+      'M'#234's fechado')
+    Values.Strings = (
+      '0'
+      '1')
+    TabOrder = 5
+  end
+end

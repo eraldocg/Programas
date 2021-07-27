@@ -302,6 +302,23 @@ object BancodeDados: TBancodeDados
       FieldName = 'PASSAPORTE'
       Origin = 'PASSAPORTE'
     end
+    object ClientesCNH_N_REG: TStringField
+      FieldName = 'CNH_N_REG'
+      Origin = 'CNH_N_REG'
+    end
+    object ClientesCNH_DT_1_HAB: TDateField
+      FieldName = 'CNH_DT_1_HAB'
+      Origin = 'CNH_DT_1_HAB'
+    end
+    object ClientesCNH_RENACH: TStringField
+      FieldName = 'CNH_RENACH'
+      Origin = 'CNH_RENACH'
+      Size = 11
+    end
+    object ClientesCNH_DT_VALIDADE: TDateField
+      FieldName = 'CNH_DT_VALIDADE'
+      Origin = 'CNH_DT_VALIDADE'
+    end
   end
   object DsClientes: TDataSource
     DataSet = Clientes
@@ -3139,12 +3156,12 @@ object BancodeDados: TBancodeDados
       DisplayFormat = ',0.00'
     end
     object VeiculosANO_FAB: TIntegerField
-      DisplayLabel = 'Ano(Fabrica'#231#227'o)'
+      DisplayLabel = 'Ano(Fab.)'
       FieldName = 'ANO_FAB'
       Origin = 'ANO_FAB'
     end
     object VeiculosANO_MODELO: TIntegerField
-      DisplayLabel = 'Ano(Modelo)'
+      DisplayLabel = 'Ano(Mod.)'
       FieldName = 'ANO_MODELO'
       Origin = 'ANO_MODELO'
     end
@@ -3173,6 +3190,7 @@ object BancodeDados: TBancodeDados
     AfterInsert = Cont_Serv_ClienAfterInsert
     BeforePost = Cont_Serv_ClienBeforePost
     AfterPost = Cont_Serv_ClienAfterPost
+    BeforeDelete = Cont_Serv_ClienBeforeDelete
     OnCalcFields = Cont_Serv_ClienCalcFields
     Connection = FDConnection1
     ResourceOptions.AssignedValues = [rvParamCreate]
@@ -3182,6 +3200,7 @@ object BancodeDados: TBancodeDados
     Left = 361
     Top = 288
     object Cont_Serv_ClienC_S_C_ID: TIntegerField
+      DisplayLabel = 'N.'#186' Contrato'
       FieldName = 'C_S_C_ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
@@ -4102,6 +4121,23 @@ object BancodeDados: TBancodeDados
       Origin = 'VALOR'
       DisplayFormat = ',0.00'
     end
+    object ConfigCNH_N_REG: TStringField
+      FieldName = 'CNH_N_REG'
+      Origin = 'CNH_N_REG'
+    end
+    object ConfigCNH_DT_1_HAB: TDateField
+      FieldName = 'CNH_DT_1_HAB'
+      Origin = 'CNH_DT_1_HAB'
+    end
+    object ConfigCNH_RENACH: TStringField
+      FieldName = 'CNH_RENACH'
+      Origin = 'CNH_RENACH'
+      Size = 11
+    end
+    object ConfigCNH_DT_VALIDADE: TDateField
+      FieldName = 'CNH_DT_VALIDADE'
+      Origin = 'CNH_DT_VALIDADE'
+    end
   end
   object upConfig: TFDUpdateSQL
     Connection = FDConnection1
@@ -4124,7 +4160,8 @@ object BancodeDados: TBancodeDados
       '  NACIONALIDADE, UF_NATURAL, NATURALIDADE, '
       '  EST_CIVIL, PROFISSAO, CONTATO, RG, RG_DATA, '
       '  RG_ORG_ID, RG_UF, PASSAPORTE, CELULAR_1, '
-      '  CHAVE_PIX, VL_MULT_CONTRATUAL, VALOR)'
+      '  CHAVE_PIX, VL_MULT_CONTRATUAL, VALOR, CNH_N_REG, '
+      '  CNH_DT_1_HAB, CNH_RENACH, CNH_DT_VALIDADE)'
       
         'VALUES (:NEW_CONF_ID, :NEW_LOGO, :NEW_EMAIL_REMET, :NEW_EMAIL_SE' +
         'RV_SMTP, '
@@ -4158,7 +4195,10 @@ object BancodeDados: TBancodeDados
         '  :NEW_EST_CIVIL, :NEW_PROFISSAO, :NEW_CONTATO, :NEW_RG, :NEW_RG' +
         '_DATA, '
       '  :NEW_RG_ORG_ID, :NEW_RG_UF, :NEW_PASSAPORTE, :NEW_CELULAR_1, '
-      '  :NEW_CHAVE_PIX, :NEW_VL_MULT_CONTRATUAL, :NEW_VALOR)')
+      
+        '  :NEW_CHAVE_PIX, :NEW_VL_MULT_CONTRATUAL, :NEW_VALOR, :NEW_CNH_' +
+        'N_REG, '
+      '  :NEW_CNH_DT_1_HAB, :NEW_CNH_RENACH, :NEW_CNH_DT_VALIDADE)')
     ModifySQL.Strings = (
       'UPDATE CONFIG'
       
@@ -4227,7 +4267,12 @@ object BancodeDados: TBancodeDados
       
         '  CHAVE_PIX = :NEW_CHAVE_PIX, VL_MULT_CONTRATUAL = :NEW_VL_MULT_' +
         'CONTRATUAL, '
-      '  VALOR = :NEW_VALOR'
+      
+        '  VALOR = :NEW_VALOR, CNH_N_REG = :NEW_CNH_N_REG, CNH_DT_1_HAB =' +
+        ' :NEW_CNH_DT_1_HAB, '
+      
+        '  CNH_RENACH = :NEW_CNH_RENACH, CNH_DT_VALIDADE = :NEW_CNH_DT_VA' +
+        'LIDADE'
       'WHERE CONF_ID = :OLD_CONF_ID')
     DeleteSQL.Strings = (
       'DELETE FROM CONFIG'
@@ -4257,7 +4302,10 @@ object BancodeDados: TBancodeDados
       
         '  RG, RG_DATA, RG_ORG_ID, RG_UF, PASSAPORTE, CELULAR_1, CHAVE_PI' +
         'X, '
-      '  VL_MULT_CONTRATUAL, VALOR'
+      
+        '  VL_MULT_CONTRATUAL, VALOR, CNH_N_REG, CNH_DT_1_HAB, CNH_RENACH' +
+        ', '
+      '  CNH_DT_VALIDADE'
       'FROM CONFIG'
       'WHERE CONF_ID = :CONF_ID')
     Left = 123
@@ -6231,9 +6279,9 @@ object BancodeDados: TBancodeDados
       'INSERT INTO CLIENTES'
       '(CLI_ID, NOME, CNPJ, TIPO, CLIENTE_DESDE, '
       '  LOGRADOURO, BAIRRO, ESTADO, CEP, FONE1, '
-      '  FONE2, FAX, OBS, VL_MENSAL, CONFIAVEL, '
-      '  ENTREGUE_BOL, SKYPE1, EMAIL_CONTATO1, FAT_NOTA, '
-      '  SIT, LOGIN, SENHA, FANTASIA_RED, COD_RASTREIO, '
+      '  FONE2, FAX, OBS, CONFIAVEL, ENTREGUE_BOL, '
+      '  SKYPE1, EMAIL_CONTATO1, FAT_NOTA, SIT, '
+      '  LOGIN, SENHA, FANTASIA_RED, COD_RASTREIO, '
       '  EMAIL_CONTATO2, IMP_BOL, LOGO, OPER_CEL1_ID, '
       '  OPER_CEL2_ID, OPER_FAX_ID, BANCO_ID, BANC_AGENCIA, '
       '  BANC_CONTA, BANC_OPERACAO, BANC_ACATAMENTO, '
@@ -6241,7 +6289,8 @@ object BancodeDados: TBancodeDados
       '  INSC_MUNICIPAL, NASCIMENTO, SEXO, NACIONALIDADE, '
       '  UF_NATURAL, NATURALIDADE, EST_CIVIL, PROFISSAO, '
       '  CONTATO, RG, RG_DATA, RG_ORG_ID, RG_UF, '
-      '  PASSAPORTE)'
+      '  PASSAPORTE, CNH_N_REG, CNH_DT_1_HAB, CNH_RENACH, '
+      '  CNH_DT_VALIDADE)'
       
         'VALUES (:NEW_CLI_ID, :NEW_NOME, :NEW_CNPJ, :NEW_TIPO, :NEW_CLIEN' +
         'TE_DESDE, '
@@ -6249,14 +6298,10 @@ object BancodeDados: TBancodeDados
         '  :NEW_LOGRADOURO, :NEW_BAIRRO, :NEW_ESTADO, :NEW_CEP, :NEW_FONE' +
         '1, '
       
-        '  :NEW_FONE2, :NEW_FAX, :NEW_OBS, :NEW_VL_MENSAL, :NEW_CONFIAVEL' +
-        ', '
-      
-        '  :NEW_ENTREGUE_BOL, :NEW_SKYPE1, :NEW_EMAIL_CONTATO1, :NEW_FAT_' +
-        'NOTA, '
-      
-        '  :NEW_SIT, :NEW_LOGIN, :NEW_SENHA, :NEW_FANTASIA_RED, :NEW_COD_' +
-        'RASTREIO, '
+        '  :NEW_FONE2, :NEW_FAX, :NEW_OBS, :NEW_CONFIAVEL, :NEW_ENTREGUE_' +
+        'BOL, '
+      '  :NEW_SKYPE1, :NEW_EMAIL_CONTATO1, :NEW_FAT_NOTA, :NEW_SIT, '
+      '  :NEW_LOGIN, :NEW_SENHA, :NEW_FANTASIA_RED, :NEW_COD_RASTREIO, '
       
         '  :NEW_EMAIL_CONTATO2, :NEW_IMP_BOL, :NEW_LOGO, :NEW_OPER_CEL1_I' +
         'D, '
@@ -6274,7 +6319,10 @@ object BancodeDados: TBancodeDados
       
         '  :NEW_CONTATO, :NEW_RG, :NEW_RG_DATA, :NEW_RG_ORG_ID, :NEW_RG_U' +
         'F, '
-      '  :NEW_PASSAPORTE)')
+      
+        '  :NEW_PASSAPORTE, :NEW_CNH_N_REG, :NEW_CNH_DT_1_HAB, :NEW_CNH_R' +
+        'ENACH, '
+      '  :NEW_CNH_DT_VALIDADE)')
     ModifySQL.Strings = (
       'UPDATE CLIENTES'
       
@@ -6286,16 +6334,13 @@ object BancodeDados: TBancodeDados
       '  BAIRRO = :NEW_BAIRRO, ESTADO = :NEW_ESTADO, CEP = :NEW_CEP, '
       '  FONE1 = :NEW_FONE1, FONE2 = :NEW_FONE2, FAX = :NEW_FAX, '
       
-        '  OBS = :NEW_OBS, VL_MENSAL = :NEW_VL_MENSAL, CONFIAVEL = :NEW_C' +
-        'ONFIAVEL, '
-      '  ENTREGUE_BOL = :NEW_ENTREGUE_BOL, SKYPE1 = :NEW_SKYPE1, '
+        '  OBS = :NEW_OBS, CONFIAVEL = :NEW_CONFIAVEL, ENTREGUE_BOL = :NE' +
+        'W_ENTREGUE_BOL, '
+      '  SKYPE1 = :NEW_SKYPE1, EMAIL_CONTATO1 = :NEW_EMAIL_CONTATO1, '
+      '  FAT_NOTA = :NEW_FAT_NOTA, SIT = :NEW_SIT, LOGIN = :NEW_LOGIN, '
       
-        '  EMAIL_CONTATO1 = :NEW_EMAIL_CONTATO1, FAT_NOTA = :NEW_FAT_NOTA' +
-        ', '
-      '  SIT = :NEW_SIT, LOGIN = :NEW_LOGIN, SENHA = :NEW_SENHA, '
-      
-        '  FANTASIA_RED = :NEW_FANTASIA_RED, COD_RASTREIO = :NEW_COD_RAST' +
-        'REIO, '
+        '  SENHA = :NEW_SENHA, FANTASIA_RED = :NEW_FANTASIA_RED, COD_RAST' +
+        'REIO = :NEW_COD_RASTREIO, '
       '  EMAIL_CONTATO2 = :NEW_EMAIL_CONTATO2, IMP_BOL = :NEW_IMP_BOL, '
       
         '  LOGO = :NEW_LOGO, OPER_CEL1_ID = :NEW_OPER_CEL1_ID, OPER_CEL2_' +
@@ -6321,7 +6366,11 @@ object BancodeDados: TBancodeDados
       '  CONTATO = :NEW_CONTATO, RG = :NEW_RG, RG_DATA = :NEW_RG_DATA, '
       
         '  RG_ORG_ID = :NEW_RG_ORG_ID, RG_UF = :NEW_RG_UF, PASSAPORTE = :' +
-        'NEW_PASSAPORTE'
+        'NEW_PASSAPORTE, '
+      '  CNH_N_REG = :NEW_CNH_N_REG, CNH_DT_1_HAB = :NEW_CNH_DT_1_HAB, '
+      
+        '  CNH_RENACH = :NEW_CNH_RENACH, CNH_DT_VALIDADE = :NEW_CNH_DT_VA' +
+        'LIDADE'
       'WHERE CLI_ID = :OLD_CLI_ID')
     DeleteSQL.Strings = (
       'DELETE FROM CLIENTES'
@@ -6339,7 +6388,10 @@ object BancodeDados: TBancodeDados
         '  DEBITO_AUTO, CONTRATO, NUMERO, CIDADE, INSC_MUNICIPAL, NASCIME' +
         'NTO, '
       '  SEXO, NACIONALIDADE, UF_NATURAL, NATURALIDADE, EST_CIVIL, '
-      '  PROFISSAO, CONTATO, RG, RG_DATA, RG_ORG_ID, RG_UF, PASSAPORTE'
+      
+        '  PROFISSAO, CONTATO, RG, RG_DATA, RG_ORG_ID, RG_UF, PASSAPORTE,' +
+        ' '
+      '  CNH_N_REG, CNH_DT_1_HAB, CNH_RENACH, CNH_DT_VALIDADE'
       'FROM CLIENTES'
       'WHERE CLI_ID = :CLI_ID')
     Left = 52

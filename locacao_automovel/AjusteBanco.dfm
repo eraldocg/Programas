@@ -102,6 +102,15 @@ object AjusteBancoForm: TAjusteBancoForm
               'alter table cont_serv_clien add valor money;'#167
               'alter table cont_serv_clien add grade_id integer;'#167
               ''
+              'alter table clientes add cnh_n_reg varchar(20);'#167
+              'alter table clientes add cnh_dt_1_hab date;'#167
+              'alter table clientes add cnh_renach varchar(11);'#167
+              'alter table clientes add cnh_dt_validade date;'#167
+              ''
+              'alter table config add cnh_n_reg varchar(20);'#167
+              'alter table config add cnh_dt_1_hab date;'#167
+              'alter table config add cnh_renach varchar(11);'#167
+              'alter table config add cnh_dt_validade date;'#167
               ''
               'alter table config add vl_mult_contratual money;'#167
               'alter table config add valor money;'#167
@@ -638,6 +647,7 @@ object AjusteBancoForm: TAjusteBancoForm
               '    cnpj,'
               '    tipo,'
               '    logradouro,'
+              '    numero,'
               '    bairro,'
               '    cidade,'
               '    estado,'
@@ -658,6 +668,7 @@ object AjusteBancoForm: TAjusteBancoForm
               '    rg_org_id,'
               '    rg_uf,'
               '    passaporte,'
+              '    cnh_n_reg, cnh_dt_1_hab, cnh_renach, cnh_dt_validade,'
               '    dia_venc,'
               '    dias_tol,'
               '    obs_contrato,'
@@ -696,15 +707,17 @@ object AjusteBancoForm: TAjusteBancoForm
               'select'
               
                 'c.cli_id, c.nome as nome_cliente, c.cnpj, c.tipo, c.logradouro, ' +
-                'c.bairro, c.cidade,  c.estado, c.cep, c.fone1, c.fone2, c.obs,'
+                ' c.numero,c.bairro, c.cidade,  c.estado, c.cep, c.fone1, c.fone2' +
+                ', c.obs,'
               
                 'c.nascimento, c.sexo, c.nacionalidade,  c.uf_natural, c.naturali' +
                 'dade, c.est_civil, c.profissao, c.contato,  c.rg,  c.rg_data,  c' +
-                '.rg_org_id, c.rg_uf,  c.passaporte, s.venc_dia,'
+                '.rg_org_id, c.rg_uf,  c.passaporte,'
+              'c.cnh_n_reg, c.cnh_dt_1_hab, c.cnh_renach, c.cnh_dt_validade, '
               
-                's.dias_tol, s.obs as obs_contrato, c.confiavel, c.entregue_bol, ' +
-                'c.skype1, c.email_contato1, c.fat_nota, c.sit as sit_cliente, c.' +
-                'cod_rastreio, c.email_contato2, c.imp_bol,'
+                's.venc_dia,s.dias_tol, s.obs as obs_contrato, c.confiavel, c.ent' +
+                'regue_bol, c.skype1, c.email_contato1, c.fat_nota, c.sit as sit_' +
+                'cliente, c.cod_rastreio, c.email_contato2, c.imp_bol,'
               
                 's.c_s_c_id, s.dt_alt_vl, s.forne_id, s.valor, s.grade_id, s.venc' +
                 '_dia, s.dt_contrato, s.dt_contrato_fim, s.banco_id, v.veiculo_id' +
@@ -1266,6 +1279,7 @@ object AjusteBancoForm: TAjusteBancoForm
               '    cnpj,'
               '    tipo,'
               '    logradouro,'
+              '    numero,'
               '    bairro,'
               '    cidade,'
               '    estado,'
@@ -1323,7 +1337,8 @@ object AjusteBancoForm: TAjusteBancoForm
               'select'
               
                 'c.cli_id, c.nome as nome_cliente, c.cnpj, c.tipo, c.logradouro, ' +
-                'c.bairro, c.cidade,  c.estado, c.cep, c.fone1, c.fone2, c.obs,'
+                'c.numero, c.bairro, c.cidade,  c.estado, c.cep, c.fone1, c.fone2' +
+                ', c.obs,'
               
                 'c.nascimento, c.sexo, c.nacionalidade,  c.uf_natural, c.naturali' +
                 'dade, c.est_civil, c.profissao, c.contato,  c.rg,  c.rg_data,  c' +
@@ -2738,7 +2753,7 @@ object AjusteBancoForm: TAjusteBancoForm
     Left = 966
     Top = 346
     Bitmap = {
-      494C010107004801380A10001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107004801480A10001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -4,7 +4,7 @@ object CadClientesForm: TCadClientesForm
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Clientes'
-  ClientHeight = 526
+  ClientHeight = 554
   ClientWidth = 516
   Color = 7562340
   Ctl3D = False
@@ -25,7 +25,7 @@ object CadClientesForm: TCadClientesForm
   TextHeight = 14
   object Panel1: TPanel
     Left = 0
-    Top = 496
+    Top = 524
     Width = 516
     Height = 30
     Align = alBottom
@@ -33,7 +33,6 @@ object CadClientesForm: TCadClientesForm
     Color = 7562340
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 517
     object DBText5: TDBText
       Left = 50
       Top = 8
@@ -96,16 +95,14 @@ object CadClientesForm: TCadClientesForm
     Left = 0
     Top = 0
     Width = 516
-    Height = 496
-    ActivePage = TabSheet8
+    Height = 524
+    ActivePage = TabSheet1
     Align = alClient
     Style = tsFlatButtons
     TabOrder = 0
     OnChange = PageControl1Change
-    ExplicitWidth = 517
     object TabSheet1: TTabSheet
       Caption = 'Dados principais'
-      ExplicitWidth = 509
       object Label1: TLabel
         Left = 41
         Top = 10
@@ -266,7 +263,7 @@ object CadClientesForm: TCadClientesForm
       end
       object Label29: TLabel
         Left = 22
-        Top = 201
+        Top = 191
         Width = 58
         Height = 14
         Alignment = taRightJustify
@@ -280,7 +277,7 @@ object CadClientesForm: TCadClientesForm
       end
       object Label46: TLabel
         Left = 31
-        Top = 223
+        Top = 213
         Width = 49
         Height = 14
         Alignment = taRightJustify
@@ -292,83 +289,9 @@ object CadClientesForm: TCadClientesForm
         Font.Style = []
         ParentFont = False
       end
-      object Label18: TLabel
-        Left = 1
-        Top = 179
-        Width = 78
-        Height = 13
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 'Passaporte:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label68: TLabel
-        Left = 354
-        Top = 158
-        Width = 21
-        Height = 14
-        Alignment = taRightJustify
-        Caption = 'U.F.:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label49: TLabel
-        Left = 1
-        Top = 158
-        Width = 78
-        Height = 13
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = #211'rg'#227'o Emissor:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label48: TLabel
-        Left = 1
-        Top = 137
-        Width = 78
-        Height = 13
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 'Expedi'#231#227'o:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label17: TLabel
-        Left = 1
-        Top = 116
-        Width = 78
-        Height = 13
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 'RG:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-      end
       object Label27: TLabel
         Left = 351
-        Top = 240
+        Top = 231
         Width = 45
         Height = 14
         Alignment = taRightJustify
@@ -413,22 +336,20 @@ object CadClientesForm: TCadClientesForm
         Items.Strings = (
           '012 - Pessoa F'#237'sica'
           '013 - Pessoa Jur'#237'dica')
-        TabOrder = 18
+        TabOrder = 14
       end
       object PageControl2: TPageControl
         Left = 0
-        Top = 260
+        Top = 288
         Width = 508
         Height = 204
         ActivePage = TabSheet7
         Align = alBottom
         Style = tsFlatButtons
-        TabOrder = 16
+        TabOrder = 12
         OnChange = PageControl2Change
-        ExplicitWidth = 509
         object TabSheet7: TTabSheet
           Caption = 'Endere'#231'o'
-          ExplicitWidth = 501
           object Label8: TLabel
             Left = 14
             Top = 65
@@ -733,7 +654,6 @@ object CadClientesForm: TCadClientesForm
         object TabSheet6: TTabSheet
           Caption = 'Internet'
           ImageIndex = 2
-          ExplicitWidth = 501
           object Label21: TLabel
             Left = 54
             Top = 7
@@ -869,7 +789,7 @@ object CadClientesForm: TCadClientesForm
         Height = 20
         DataField = 'INSC_MUNICIPAL'
         DataSource = BancodeDados.DsClientes
-        TabOrder = 17
+        TabOrder = 13
       end
       object EditFoto: TSedDBImage
         Left = 759
@@ -879,12 +799,12 @@ object CadClientesForm: TCadClientesForm
         DataField = 'LOGO'
         DataSource = BancodeDados.DsClientes
         Stretch = True
-        TabOrder = 19
+        TabOrder = 15
         OnDblClick = EditFotoDblClick
       end
       object DBCheckBox4: TDBCheckBox
         Left = 81
-        Top = 240
+        Top = 231
         Width = 75
         Height = 17
         Cursor = crHandPoint
@@ -897,13 +817,13 @@ object CadClientesForm: TCadClientesForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 14
+        TabOrder = 10
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
       object DBCheckBox6: TDBCheckBox
         Left = 172
-        Top = 240
+        Top = 231
         Width = 89
         Height = 17
         Cursor = crHandPoint
@@ -916,7 +836,7 @@ object CadClientesForm: TCadClientesForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 11
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -937,7 +857,7 @@ object CadClientesForm: TCadClientesForm
         Values.Strings = (
           '1'
           '2')
-        TabOrder = 20
+        TabOrder = 16
       end
       object EditCliDesde: TSedDbDateEdit
         Left = 684
@@ -947,7 +867,7 @@ object CadClientesForm: TCadClientesForm
         DataField = 'CLIENTE_DESDE'
         DataSource = BancodeDados.DsClientes
         MaxLength = 10
-        TabOrder = 21
+        TabOrder = 17
       end
       object EditSexo: TDBComboBox
         Left = 250
@@ -1516,7 +1436,7 @@ object CadClientesForm: TCadClientesForm
       end
       object EditEstadoCivil: TDBComboBox
         Left = 81
-        Top = 197
+        Top = 187
         Width = 273
         Height = 22
         BevelInner = bvNone
@@ -1529,144 +1449,22 @@ object CadClientesForm: TCadClientesForm
           'VI'#218'VO'
           'DIVORCIADO'
           'UNI'#195'O EST'#193'VEL')
-        TabOrder = 12
+        TabOrder = 8
       end
       object EditProfissao: TDBEdit
         Left = 81
-        Top = 220
+        Top = 210
         Width = 273
         Height = 20
         AutoSelect = False
         Color = clWhite
         DataField = 'PROFISSAO'
         DataSource = BancodeDados.DsClientes
-        TabOrder = 13
-      end
-      object EdirRGOrgao: TDBLookupComboBox
-        Left = 81
-        Top = 155
-        Width = 271
-        Height = 20
-        DataField = 'RG_ORG_ID'
-        DataSource = BancodeDados.DsClientes
-        KeyField = 'ORG_ID'
-        ListField = 'ORG_EXPED'
-        ListSource = BancodeDados.dsOrgExped
         TabOrder = 9
-      end
-      object EditPassaporte: TDBEdit
-        Left = 81
-        Top = 176
-        Width = 181
-        Height = 20
-        Color = clWhite
-        DataField = 'PASSAPORTE'
-        DataSource = BancodeDados.DsClientes
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 11
-      end
-      object EditRgUF: TSedDBComboBox
-        Left = 378
-        Top = 155
-        Width = 53
-        Height = 20
-        Style = csOwnerDrawFixed
-        BevelKind = bkFlat
-        DataField = 'RG_UF'
-        DataSource = BancodeDados.DsClientes
-        ItemHeight = 14
-        Items.Strings = (
-          'AC'
-          'AL'
-          'AM'
-          'AP'
-          'BA'
-          'CE'
-          'DF'
-          'ES'
-          'GO'
-          'MA'
-          'MG'
-          'MS'
-          'MT'
-          'PA'
-          'PB'
-          'PE'
-          'PI'
-          'PR'
-          'RJ'
-          'RN'
-          'RO'
-          'RR'
-          'RS'
-          'SC'
-          'SE'
-          'SP'
-          'TO')
-        Values.Strings = (
-          '12'
-          '27'
-          '13'
-          '16'
-          '29'
-          '23'
-          '53'
-          '32'
-          '52'
-          '21'
-          '31'
-          '50'
-          '51'
-          '15'
-          '25'
-          '26'
-          '22'
-          '41'
-          '33'
-          '24'
-          '11'
-          '14'
-          '43'
-          '42'
-          '28'
-          '35'
-          '17')
-        TabOrder = 10
-      end
-      object EditRGExp: TSedDbDateEdit
-        Left = 81
-        Top = 134
-        Width = 111
-        Height = 20
-        DataField = 'RG_DATA'
-        DataSource = BancodeDados.DsClientes
-        MaxLength = 10
-        TabOrder = 8
-      end
-      object EditRG: TDBEdit
-        Left = 81
-        Top = 113
-        Width = 167
-        Height = 20
-        Color = clWhite
-        DataField = 'RG'
-        DataSource = BancodeDados.DsClientes
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 7
       end
       object SedDBComboBox1: TSedDBComboBox
         Left = 402
-        Top = 236
+        Top = 230
         Width = 95
         Height = 22
         Style = csOwnerDrawFixed
@@ -1681,24 +1479,312 @@ object CadClientesForm: TCadClientesForm
         Values.Strings = (
           '1'
           '2')
-        TabOrder = 22
+        TabOrder = 18
+      end
+      object PageControl3: TPageControl
+        Left = -4
+        Top = 117
+        Width = 508
+        Height = 71
+        ActivePage = TabSheetCNH
+        Style = tsButtons
+        TabOrder = 7
+        object TabSheetRG: TTabSheet
+          Caption = 'RG - Carteira de Identidade'
+          object Label68: TLabel
+            Left = 355
+            Top = 24
+            Width = 21
+            Height = 14
+            Alignment = taRightJustify
+            Caption = 'U.F.:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label49: TLabel
+            Left = -1
+            Top = 24
+            Width = 81
+            Height = 13
+            Alignment = taRightJustify
+            AutoSize = False
+            Caption = #211'rg'#227'o Emissor:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label48: TLabel
+            Left = 241
+            Top = 2
+            Width = 78
+            Height = 13
+            Alignment = taRightJustify
+            AutoSize = False
+            Caption = 'Expedi'#231#227'o:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            Visible = False
+          end
+          object Label17: TLabel
+            Left = -1
+            Top = 2
+            Width = 81
+            Height = 13
+            Alignment = taRightJustify
+            AutoSize = False
+            Caption = 'N'#250'mero:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+          end
+          object EdirRGOrgao: TDBLookupComboBox
+            Left = 81
+            Top = 21
+            Width = 273
+            Height = 20
+            DataField = 'RG_ORG_ID'
+            DataSource = BancodeDados.DsClientes
+            KeyField = 'ORG_ID'
+            ListField = 'ORG_EXPED'
+            ListSource = BancodeDados.dsOrgExped
+            TabOrder = 2
+          end
+          object EditRgUF: TSedDBComboBox
+            Left = 379
+            Top = 21
+            Width = 53
+            Height = 20
+            Style = csOwnerDrawFixed
+            BevelKind = bkFlat
+            DataField = 'RG_UF'
+            DataSource = BancodeDados.DsClientes
+            ItemHeight = 14
+            Items.Strings = (
+              'AC'
+              'AL'
+              'AM'
+              'AP'
+              'BA'
+              'CE'
+              'DF'
+              'ES'
+              'GO'
+              'MA'
+              'MG'
+              'MS'
+              'MT'
+              'PA'
+              'PB'
+              'PE'
+              'PI'
+              'PR'
+              'RJ'
+              'RN'
+              'RO'
+              'RR'
+              'RS'
+              'SC'
+              'SE'
+              'SP'
+              'TO')
+            Values.Strings = (
+              '12'
+              '27'
+              '13'
+              '16'
+              '29'
+              '23'
+              '53'
+              '32'
+              '52'
+              '21'
+              '31'
+              '50'
+              '51'
+              '15'
+              '25'
+              '26'
+              '22'
+              '41'
+              '33'
+              '24'
+              '11'
+              '14'
+              '43'
+              '42'
+              '28'
+              '35'
+              '17')
+            TabOrder = 3
+          end
+          object EditRGExp: TSedDbDateEdit
+            Left = 320
+            Top = 0
+            Width = 111
+            Height = 20
+            DataField = 'RG_DATA'
+            DataSource = BancodeDados.DsClientes
+            MaxLength = 10
+            TabOrder = 1
+            Visible = False
+          end
+          object EditRG: TDBEdit
+            Left = 81
+            Top = 0
+            Width = 150
+            Height = 20
+            AutoSelect = False
+            Color = clWhite
+            DataField = 'RG'
+            DataSource = BancodeDados.DsClientes
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object TabSheetCNH: TTabSheet
+          Caption = 'CNH - Carteira Nacional de Habilita'#231#227'o'
+          ImageIndex = 1
+          object Label18: TLabel
+            Left = 2
+            Top = 24
+            Width = 78
+            Height = 13
+            Alignment = taRightJustify
+            AutoSize = False
+            Caption = '1'#170' Habilita'#231#227'o:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label28: TLabel
+            Left = 2
+            Top = 2
+            Width = 78
+            Height = 13
+            Alignment = taRightJustify
+            AutoSize = False
+            Caption = 'N.'#186' de Registro:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label32: TLabel
+            Left = 207
+            Top = 24
+            Width = 78
+            Height = 13
+            Alignment = taRightJustify
+            AutoSize = False
+            Caption = 'Renach:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+          end
+          object btF2: TSpeedButton
+            Left = 432
+            Top = 22
+            Width = 18
+            Height = 19
+            Cursor = crHandPoint
+            Hint = 'Onde Encontrar o Renach na CNH?'
+            Caption = '?'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlack
+            Font.Height = -8
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            OnClick = btF2Click
+          end
+          object EditCNH_Data_Prim_Hab: TSedDbDateEdit
+            Left = 81
+            Top = 21
+            Width = 111
+            Height = 20
+            DataField = 'CNH_DT_1_HAB'
+            DataSource = BancodeDados.DsClientes
+            MaxLength = 10
+            TabOrder = 1
+          end
+          object EditCNH_Numero: TDBEdit
+            Left = 81
+            Top = 0
+            Width = 150
+            Height = 20
+            AutoSelect = False
+            Color = clWhite
+            DataField = 'CNH_N_REG'
+            DataSource = BancodeDados.DsClientes
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+          object EditCNH_Renach: TDBEdit
+            Left = 287
+            Top = 21
+            Width = 145
+            Height = 20
+            Color = clWhite
+            DataField = 'CNH_RENACH'
+            DataSource = BancodeDados.DsClientes
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 2
+          end
+        end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Informa'#231#245'es de registro'
       ImageIndex = 1
       TabVisible = False
-      ExplicitWidth = 509
       object Panel2: TPanel
         Left = 0
-        Top = 293
+        Top = 321
         Width = 508
         Height = 30
         Align = alBottom
         BevelOuter = bvNone
         Color = clSilver
         TabOrder = 0
-        ExplicitWidth = 509
         object Button1: TButton
           Left = 395
           Top = 3
@@ -1720,7 +1806,7 @@ object CadClientesForm: TCadClientesForm
       end
       object DBGrid2: TSedDBGrid
         Left = 0
-        Top = 323
+        Top = 351
         Width = 508
         Height = 141
         Align = alBottom
@@ -1761,12 +1847,11 @@ object CadClientesForm: TCadClientesForm
     object TabSheet8: TTabSheet
       Caption = 'Observa'#231#245'es'
       ImageIndex = 6
-      ExplicitWidth = 509
       object SedDBGrid2: TSedDBGrid
         Left = 0
         Top = 0
         Width = 508
-        Height = 464
+        Height = 492
         Align = alClient
         DataSource = BancodeDados.dsObservac
         FixedColor = clWhite
@@ -1805,12 +1890,11 @@ object CadClientesForm: TCadClientesForm
     object tbScanDoc: TTabSheet
       Caption = 'Documentos Diversos'
       ImageIndex = 7
-      ExplicitWidth = 509
       object SedDBGrid3: TSedDBGrid
         Left = 0
         Top = 0
         Width = 508
-        Height = 464
+        Height = 492
         Align = alClient
         DataSource = BancodeDados.dsS_Doc
         FixedColor = clWhite

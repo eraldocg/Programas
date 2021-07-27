@@ -376,6 +376,10 @@ object CadContatosForm: TCadContatosForm
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Dados principais'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label1: TLabel
         Left = 36
         Top = 9
@@ -730,6 +734,10 @@ object CadContatosForm: TCadContatosForm
     object TabSheet3: TTabSheet
       Caption = 'Observa'#231#245'es'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBMemo1: TDBMemo
         Left = 0
         Top = 0

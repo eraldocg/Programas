@@ -4,8 +4,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, ExtCtrls, DB, SEDDBComboBox, Mask, DBCtrls, SEDDBImage, Vcl.ExtDlgs, Vcl.Menus,
-  SEDDBDateEdit, Vcl.Imaging.jpeg;
+  Dialogs, ComCtrls, StdCtrls, ExtCtrls, DB, SEDDBComboBox, Mask, DBCtrls,
+  SEDDBImage, Vcl.ExtDlgs, Vcl.Menus,
+  SEDDBDateEdit, Vcl.Imaging.jpeg, Vcl.Buttons;
 
 type
   TCadConfigForm = class(TForm)
@@ -28,11 +29,6 @@ type
     Label75: TLabel;
     Label44: TLabel;
     Label46: TLabel;
-    Label45: TLabel;
-    Label68: TLabel;
-    Label49: TLabel;
-    Label48: TLabel;
-    Label47: TLabel;
     EditPF_Nome: TDBEdit;
     EditPF_CPF: TDBEdit;
     EditPF_Sexo: TDBComboBox;
@@ -42,11 +38,6 @@ type
     EditPF_Nacional: TDBLookupComboBox;
     EditPF_EstadoCivil: TDBComboBox;
     EditPF_Profissao: TDBEdit;
-    EditPF_RGOrgao: TDBLookupComboBox;
-    EditPF_Passaporte: TDBEdit;
-    EditPF_RgUF: TSedDBComboBox;
-    EditPF_RGExp: TSedDbDateEdit;
-    EditPF_RG: TDBEdit;
     TabSheet2: TTabSheet;
     Label2: TLabel;
     Label10: TLabel;
@@ -145,6 +136,32 @@ type
     EditValorMensal: TDBEdit;
     EditVlContrato: TDBEdit;
     Image4: TImage;
+    PageControl3: TPageControl;
+    TabSheetRG: TTabSheet;
+    Label68: TLabel;
+    Label49: TLabel;
+    Label48: TLabel;
+    Label45: TLabel;
+    EdirRGOrgao: TDBLookupComboBox;
+    EditRgUF: TSedDBComboBox;
+    EditRGExp: TSedDbDateEdit;
+    EditRG: TDBEdit;
+    TabSheetCNH: TTabSheet;
+    Label47: TLabel;
+    Label51: TLabel;
+    Label54: TLabel;
+    EditCNH_Data_Prim_Hab: TSedDbDateEdit;
+    EditCNH_Numero: TDBEdit;
+    EditCNH_Renach: TDBEdit;
+    btF2: TSpeedButton;
+    PopupMenu3: TPopupMenu;
+    InserirFoto1: TMenuItem;
+    N2: TMenuItem;
+    CapturarImagem1: TMenuItem;
+    N1: TMenuItem;
+    ExcluirFoto1: TMenuItem;
+    N3: TMenuItem;
+    SalvarImagemnoDisco1: TMenuItem;
     procedure btOkClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure EditEmailPassChange(Sender: TObject);
@@ -156,9 +173,11 @@ type
     procedure EditPF_CPFExit(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btF2Click(Sender: TObject);
+    procedure ExcluirFoto1Click(Sender: TObject);
   private
     { Private declarations }
-     procedure PegarEstadoProvincia(NacionalID: String);
+    procedure PegarEstadoProvincia(NacionalID: String);
   public
     { Public declarations }
   end;
@@ -168,48 +187,77 @@ var
 
 implementation
 
-uses Base, unRecursos, Principal;
+uses Base, unRecursos, Principal, CsAjuda1;
 
 {$R *.dfm}
+
+procedure TCadConfigForm.btF2Click(Sender: TObject);
+begin
+if not Assigned(CsAjuda1Form) then
+  CsAjuda1Form := tCsAjuda1Form.Create(Application);
+try
+  HabilitarBotoes(Self,false);
+  CsAjuda1Form.ShowModal;
+finally
+  CsAjuda1Form.Release;
+  CsAjuda1Form := nil;
+  HabilitarBotoes(Self,true);
+end;
+
+end;
 
 procedure TCadConfigForm.btOkClick(Sender: TObject);
 var
   emailTeste: String;
   hr: TTime;
 begin
-  if Trim(BancodeDados.ConfigNOME.Value)<>EmptyStr then
+  if Trim(BancodeDados.ConfigNOME.Value) <> EmptyStr then
   begin
 
+    HabilitarBotoes(Self, False);
 
-  HabilitarBotoes(Self, False);
+    Screen.Cursor := crSQLWait;
+    if not BancodeDados.FDConnection1.InTransaction then
+      BancodeDados.FDConnection1.StartTransaction;
 
-  Screen.Cursor := crSQLWait;
-  if not BancodeDados.FDConnection1.InTransaction then
-    BancodeDados.FDConnection1.StartTransaction;
-  if (BancodeDados.Config.State in [dsInsert, dsEdit]) then
-  begin
-    BancodeDados.ConfigEMAIL_PASS.Value := Trim(EditEmailPass.Text);
-    BancodeDados.Config.Post;
-  end;
-  BancodeDados.FDConnection1.CommitRetaining;
-  if (Sender = btTestar) then
-  begin
-    hr := Time;
-    emailTeste := BancodeDados.ConfigEMAIL_USER.Value;
-    if InputQuery('e-mail: ', 'Informe o email para envio', emailTeste) then
+    if (BancodeDados.Config.State in [dsInsert, dsEdit]) then
     begin
-      if BancodeDados.EnviarEmail(emailTeste, 'Teste de email', 'Esta é uma mensagem de teste.', '') then
-        Mensagem('Mensagem enviada com sucesso.' + #13 + 'Tempo gasto: ' + TimeToStr(Time - hr), mtInformation, [mbOk], mrOk, 0);
+
+     if BancodeDados.ConfigLOGO.IsNull then
+     begin
+      PrincipalForm.ImgRel.Picture.SaveToFile(DiretorioTemp+'r.jpg');
+
+      BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO, DiretorioTemp+'r.jpg');
+     end;
+
+      BancodeDados.ConfigEMAIL_PASS.Value := Trim(EditEmailPass.Text);
+      BancodeDados.Config.Post;
     end;
-    Close;
-  end
-  else
-    ModalResult := mrOk;
-  HabilitarBotoes(Self, true);
-  Screen.Cursor := crDefault;
+
+
+
+    BancodeDados.FDConnection1.CommitRetaining;
+    if (Sender = btTestar) then
+    begin
+      hr := Time;
+      emailTeste := BancodeDados.ConfigEMAIL_USER.Value;
+      if InputQuery('e-mail: ', 'Informe o email para envio', emailTeste) then
+      begin
+        if BancodeDados.EnviarEmail(emailTeste, 'Teste de email',
+          'Esta é uma mensagem de teste.', '') then
+          Mensagem('Mensagem enviada com sucesso.' + #13 + 'Tempo gasto: ' +
+            TimeToStr(Time - hr), mtInformation, [mbOk], mrOk, 0);
+      end;
+      Close;
+    end
+    else
+      ModalResult := mrOk;
+    HabilitarBotoes(Self, true);
+    Screen.Cursor := crDefault;
   end;
 
 end;
+
 procedure TCadConfigForm.EditEmailPassChange(Sender: TObject);
 begin
   if not(BancodeDados.Config.State in [dsInsert, dsEdit]) then
@@ -218,45 +266,63 @@ end;
 
 procedure TCadConfigForm.EditLogo1DblClick(Sender: TObject);
 begin
-if OpenPictureDialog1.Execute then
-begin
-  if not (BancodeDados.Config.State in [dsInsert,dsEdit]) then BancodeDados.Config.Edit;
-  if BancodeDados.ResizeImage(OpenPictureDialog1.FileName, 200) then
-    BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO, DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
-  DeleteFile(DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
-end;
+  if OpenPictureDialog1.Execute then
+  begin
+    if not(BancodeDados.Config.State in [dsInsert, dsEdit]) then
+      BancodeDados.Config.Edit;
+    if BancodeDados.ResizeImage(OpenPictureDialog1.FileName, 200) then
+      BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO,
+        DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
+    DeleteFile(DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
+  end;
 end;
 
 procedure TCadConfigForm.EditLogo2DblClick(Sender: TObject);
 begin
-if OpenPictureDialog1.Execute then
-begin
-  if not (BancodeDados.Config.State in [dsInsert,dsEdit]) then BancodeDados.Config.Edit;
-  if BancodeDados.ResizeImage(OpenPictureDialog1.FileName, 200) then
-    BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO_PREFEITURA, DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
-  DeleteFile(DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
-end;
+  if OpenPictureDialog1.Execute then
+  begin
+    if not(BancodeDados.Config.State in [dsInsert, dsEdit]) then
+      BancodeDados.Config.Edit;
+    if BancodeDados.ResizeImage(OpenPictureDialog1.FileName, 200) then
+      BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO_PREFEITURA,
+        DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
+    DeleteFile(DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
+  end;
 end;
 
 procedure TCadConfigForm.EditPF_CPFExit(Sender: TObject);
 begin
-    if Trim(EditCNPJ.Text) <> EmptyStr then
-    if BancodeDados.Config.State in [dsinsert, dsedit] then
+  if Trim(EditCNPJ.Text) <> EmptyStr then
+    if BancodeDados.Config.State in [dsInsert, dsEdit] then
     begin
       BancodeDados.ConfigCNPJ.Value := TestaCPFCNPJ(EditCNPJ.Text);
     end;
 
 end;
 
+procedure TCadConfigForm.ExcluirFoto1Click(Sender: TObject);
+begin
+  if Mensagem('Tem certeza que deseja excluir?', mtConfirmation, [mbYes, mbNo], mrNo, 0) = idyes then
+    if BancodeDados.ConfigCONF_ID.Value > 0 then
+    begin
+      if not(BancodeDados.Config.State in [dsinsert, dsedit]) then
+        BancodeDados.Config.Edit;
+      BancodeDados.ConfigLOGO.Clear;
+      EditLogo1.Refresh;
+    end;
+end;
+
 procedure TCadConfigForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  if BancodeDados.Config.State in [dsedit, dsinsert] then  BancodeDados.Config.Cancel;
+  if BancodeDados.Config.State in [dsEdit, dsInsert] then
+    BancodeDados.Config.Cancel;
 
 end;
 
 procedure TCadConfigForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-  if Mensagem('Deseja sair agora?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idNo then
+  if Mensagem('Deseja sair agora?', mtConfirmation, [mbyes, mbNo], mryes, 0) = idNo
+  then
     CanClose := False;
 end;
 
@@ -267,43 +333,44 @@ begin
     Key := #0;
     Perform(WM_NextDlgCtl, 0, 0);
   end;
-  if (Key = #27) { and not(BancodeDados.Unidades.State in [dsinsert, dsedit]) and not(BancodeDados.Inst.State in [dsinsert, dsedit]) } then
+  if (Key = #27)
+  { and not(BancodeDados.Unidades.State in [dsinsert, dsedit]) and not(BancodeDados.Inst.State in [dsinsert, dsedit]) }
+  then
   begin
     Key := #0;
     Close;
   end;
 end;
 
-
 procedure TCadConfigForm.PegarEstadoProvincia(NacionalID: String);
 begin
-  if trim(NacionalID)<>'' then begin
+  if Trim(NacionalID) <> '' then
+  begin
     BancodeDados.qryEstados2.Close;
     BancodeDados.qryEstados2.Params[0].Value := NacionalID;
     BancodeDados.qryEstados2.Open;
     BancodeDados.qryEstados2.Last;
     BancodeDados.qryEstados2.First;
     if not BancodeDados.qryEstados2.IsEmpty then
-    BancodeDados.qryEstados2.Locate('UF',BancodeDados.ConfigUF.Value,[]);
+      BancodeDados.qryEstados2.Locate('UF', BancodeDados.ConfigUF.Value, []);
   end;
 
 end;
 
-
 procedure TCadConfigForm.FormShow(Sender: TObject);
 var
-PaisID, CidadeID : Integer;
+  PaisID, CidadeID: Integer;
 
 begin
 
-tbEmail.TabVisible:=False;
-tbMsg.TabVisible:=False;
-TabSheet1.TabVisible:=False;
+  tbEmail.TabVisible := False;
+  tbMsg.TabVisible := False;
+  TabSheet1.TabVisible := False;
 
-  PaisID  := StrToIntDef(BancodeDados.ConfigNACIONALIDADE.Value,0);
-  CidadeID:=StrToIntDef(BancodeDados.ConfigUF_NATURAL.Value,0);
+  PaisID := StrToIntDef(BancodeDados.ConfigNACIONALIDADE.Value, 0);
+  CidadeID := StrToIntDef(BancodeDados.ConfigUF_NATURAL.Value, 0);
 
-  BancodeDados.qryEstados3.close;
+  BancodeDados.qryEstados3.Close;
   BancodeDados.qryEstados3.Params[0].Value := IntToStr(PaisID);
   BancodeDados.qryEstados3.Open;
   BancodeDados.qryEstados3.Last;
@@ -314,33 +381,34 @@ TabSheet1.TabVisible:=False;
   BancodeDados.Municipios3.Last;
 
   BancodeDados.OrgExped.Close;
-  BancodeDados.OrgExped.SQL.Text:='select * from orgao_exped order by org_id';
+  BancodeDados.OrgExped.SQL.Text := 'select * from orgao_exped order by org_id';
   BancodeDados.OrgExped.Open;
   BancodeDados.OrgExped.Last;
 
-
- CadConfigForm.Width:=504;
- CadConfigForm.Height:=366;
-
+  CadConfigForm.Width := 504;
+  CadConfigForm.Height := 366;
 
   CadConfigForm.TabSheet5.Show;
   CadConfigForm.EditPF_Nome.SetFocus;
 
-  //PageControl1.ActivePage := tbEmail;
- // BancodeDados.Config.Close;
-  if not BancodeDados.Config.Active then BancodeDados.Config.Open;
+  // PageControl1.ActivePage := tbEmail;
+  // BancodeDados.Config.Close;
+  if not BancodeDados.Config.Active then
+    BancodeDados.Config.Open;
   CadConfigForm.EditEmailPass.Text := Trim(BancodeDados.ConfigEMAIL_PASS.Value);
 
-  CadConfigForm.TabSheet2.TabVisible:=False;
-  CadConfigForm.TabSheet2.Caption:='Empresa';
+  CadConfigForm.TabSheet2.TabVisible := False;
+  CadConfigForm.TabSheet2.Caption := 'Empresa';
 
-  //DEIXAR ESTE BLOCO JUNTO
-  if not BancodeDados.Nacionalidade.Active then BancodeDados.Nacionalidade.Open;
-     BancodeDados.Nacionalidade.Last;
-     BancodeDados.Nacionalidade.First;
+  // DEIXAR ESTE BLOCO JUNTO
+  if not BancodeDados.Nacionalidade.Active then
+    BancodeDados.Nacionalidade.Open;
+  BancodeDados.Nacionalidade.Last;
+  BancodeDados.Nacionalidade.First;
 
   if not BancodeDados.Nacionalidade.IsEmpty then
-  BancodeDados.Nacionalidade.Locate('CODIGO',BancodeDados.ConfigPAIS.Value,[]);
+    BancodeDados.Nacionalidade.Locate('CODIGO',
+      BancodeDados.ConfigPAIS.Value, []);
 
   PegarEstadoProvincia(Trim(BancodeDados.ConfigPAIS.Value));
 
@@ -349,26 +417,29 @@ TabSheet1.TabVisible:=False;
   BancodeDados.Municipios2.Open;
   BancodeDados.Municipios2.Last;
   if not BancodeDados.Municipios2.IsEmpty then
-  BancodeDados.Municipios2.Locate('CODMUN',BancodeDados.ConfigCIDADE.Value,[]);
+    BancodeDados.Municipios2.Locate('CODMUN',
+      BancodeDados.ConfigCIDADE.Value, []);
 
-
+TabSheetRG.show;
 end;
 
 procedure TCadConfigForm.Modificar1Click(Sender: TObject);
 begin
-editSeqNfse.Color    := clWindow;
-editSeqNfse.ReadOnly  := False;
+  editSeqNfse.Color := clWindow;
+  editSeqNfse.ReadOnly := False;
 end;
 
 procedure TCadConfigForm.SedDBImage1DblClick(Sender: TObject);
 begin
-if OpenPictureDialog1.Execute then
-begin
-  if not (BancodeDados.Config.State in [dsInsert,dsEdit]) then BancodeDados.Config.Edit;
-  if BancodeDados.ResizeImage(OpenPictureDialog1.FileName, 1000) then
-    BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO1, DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
-  DeleteFile(DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
-end;
+  if OpenPictureDialog1.Execute then
+  begin
+    if not(BancodeDados.Config.State in [dsInsert, dsEdit]) then
+      BancodeDados.Config.Edit;
+    if BancodeDados.ResizeImage(OpenPictureDialog1.FileName, 1000) then
+      BancodeDados.GravarBlobNaTabela(BancodeDados.ConfigLOGO1,
+        DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
+    DeleteFile(DiretorioTemp + ExtractFileName(OpenPictureDialog1.FileName));
+  end;
 end;
 
 end.

@@ -560,6 +560,10 @@ object CadFornecedoresForm: TCadFornecedoresForm
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Dados Principais'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label1: TLabel
         Left = 2
         Top = 9
@@ -984,6 +988,10 @@ object CadFornecedoresForm: TCadFornecedoresForm
     object TabSheet2: TTabSheet
       Caption = 'Dados Complementares'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Image2: TImage
         Left = -76
         Top = -10

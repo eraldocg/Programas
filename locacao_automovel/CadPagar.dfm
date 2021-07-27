@@ -1337,6 +1337,10 @@ object CadPagarForm: TCadPagarForm
       object TabSheet2: TTabSheet
         Caption = 'Livro Caixa'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object DBGrid1: TSedDBGrid
           Left = 0
           Top = 0

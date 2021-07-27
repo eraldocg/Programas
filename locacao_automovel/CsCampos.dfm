@@ -8,7 +8,7 @@ object CsCamposForm: TCsCamposForm
     ' a Vari'#225'vel/Campo.'
   ClientHeight = 517
   ClientWidth = 834
-  Color = clSilver
+  Color = 7562340
   Ctl3D = False
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -28,7 +28,7 @@ object CsCamposForm: TCsCamposForm
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    Color = clGray
+    Color = 7562340
     ParentBackground = False
     TabOrder = 0
     object Label2: TLabel
