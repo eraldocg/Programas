@@ -824,8 +824,7 @@ object CadLivroCaixaForm: TCadLivroCaixaForm
       'Negociado'
       'Boleto'
       'Outros'
-      'Extrato'
-      'Deposito')
+      'Extrato')
     TabOrder = 6
   end
   object EditTipoConta: TDBLookupComboBox

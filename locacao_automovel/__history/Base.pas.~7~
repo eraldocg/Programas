@@ -2200,7 +2200,7 @@ begin
   Livro_CaixaHORA.Value := time;
   // LivroCaixaUSR_CAD.Value:=CodUsuario;
   // LivroCaixaINST_ID.Value:=BancodeDados.ConfigINST_ID.value;
-  Livro_CaixaDESCRICAO_PAGO.Value := 'Deposito';
+  Livro_CaixaDESCRICAO_PAGO.Value := 'Dinheiro';
   Livro_CaixaSITUACAO.Value := 0;
   Livro_CaixaSAIDA.Value := 0;
   Livro_CaixaENTRADA.Value := 0;

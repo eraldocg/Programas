@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2021/07/26 15:09:14.127,=E:\SED_FONTES\Programas\locacao_automovel\Unit2.pas</Transaction>
-    <Transaction>2021/07/26 15:09:46.183,E:\SED_FONTES\Programas\locacao_automovel\CsAjuda1.dfm=E:\SED_FONTES\Programas\locacao_automovel\Unit2.dfm</Transaction>
-    <Transaction>2021/07/26 15:09:46.183,E:\SED_FONTES\Programas\locacao_automovel\CsAjuda1.pas=E:\SED_FONTES\Programas\locacao_automovel\Unit2.pas</Transaction>
+	<Transactions>
+    <Transaction>2021/07/26 15:09:14.000.127,=E:\SED_FONTES\Programas\locacao_automovel\Unit2.pas</Transaction>
+    <Transaction>2021/07/26 15:09:46.000.183,E:\SED_FONTES\Programas\locacao_automovel\Unit2.pas=E:\SED_FONTES\Programas\locacao_automovel\CsAjuda1.pas</Transaction>
+    <Transaction>2021/07/26 15:09:46.000.183,E:\SED_FONTES\Programas\locacao_automovel\Unit2.dfm=E:\SED_FONTES\Programas\locacao_automovel\CsAjuda1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

@@ -209,16 +209,6 @@ begin
         FormatFloat(',0.00', RelLivroCaixaForm.QryTotaisTOTAL.Value);
 
       RelLivroCaixaForm.QryTotais.close;
-      RelLivroCaixaForm.QryTotais.SQL.Text :=
-        'select sum(coalesce(l.entrada,0)-coalesce(l.saida,0)) as TOTAL from livro_caixa l where l.descricao_pago='
-        + QuotedStr('Deposito') + ' and ' + condicao;
-      // ('Outros:  ' +RelLivroCaixaForm.QryTotais.sql.Text);
-      RelLivroCaixaForm.QryTotais.Open;
-      RelLivroCaixaForm.lbOutros.Caption := 'Deposito:  ' +
-        FormatFloat(',0.00', RelLivroCaixaForm.QryTotaisTOTAL.Value);
-
-
-      RelLivroCaixaForm.QryTotais.close;
 
       if NaopodAgrupar then
         RelLivroCaixaForm.RLGroup2.DataFields := '';
