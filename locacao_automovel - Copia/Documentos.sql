@@ -1,0 +1,24 @@
+﻿CREATE TABLE DOCUMENTOS (
+    DOC_ID               INTOBRIG,
+    DOC_NOME             STRING60,
+    PAG1                 MEMO,
+    IMG                  IMAGEM,
+    OCULTAR_CAB          SMALLINT,
+    ATIVO                SMALLINT,
+    ESP_LINHA            SMALLINT,
+    MARGENS              SMALLINT,
+    DOC_HTML             MEMO,
+    FORCAR_RODAPE_IE     SMALLINT,
+    TIPO_IMG_CAB         SMALLINT,
+    TAM_FONTE_CAB        SMALLINT,
+    CABEC_TODAS          SMALLINT,
+    ADIMPLENT            SMALLINT,
+    ADIMP_DOC_MAT        SMALLINT,
+    OCULTAR_CEP          SMALLINT,
+    OCULTAR_RESOLUCAO    SMALLINT,
+    OCULTAR_PARC_ABERTO  SMALLINT
+);
+ALTER TABLE DOCUMENTOS ADD PRIMARY KEY (DOC_ID);
+
+CREATE GENERATOR GEN_DOC_COD;
+

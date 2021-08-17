@@ -1,0 +1,40 @@
+[
+  {
+    "Id": "0",
+    "Name": "File Encoding Checker v1.0",
+    "DevelopmentStatus": "Stable",
+    "Description": "*Build*: 1.0.0.0\n*Release date*: 19-Jan-2011\n\nFirst stable version of the File Encoding Checker tool. Supports viewing of file encodings and validation of encodings against a selected set of valid character sets.\n\n!! Credits\nFor encoding detection, File Encoding Checker uses the [url:ude library|http://code.google.com/p/ude], which is a C# port of the [url:Mozilla Universal Charset Detector|http://mxr.mozilla.org/mozilla/source/extensions/universalchardet/src] library.",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2011-01-21T00:15:49.09-08:00",
+    "Files": [
+      {
+        "Id": "e38b6b4d-6273-47f2-bf48-381813287e89",
+        "FileName": "EncodingChecker.application",
+        "Url": "./0/e38b6b4d-6273-47f2-bf48-381813287e89",
+        "Type": "Application",
+        "UploadDate": "2011-01-21T00:14:17.99-08:00"
+      },
+      {
+        "Id": "62078055-48cc-4e57-9c33-7239826629c4",
+        "FileName": "EncodingChecker-1.0.0.0-src.zip",
+        "Url": "./0/62078055-48cc-4e57-9c33-7239826629c4",
+        "Type": "Source Code",
+        "UploadDate": "2011-01-19T03:15:30.473-08:00"
+      },
+      {
+        "Id": "661fe6e2-7846-4be6-9b03-ed9346b255be",
+        "FileName": "EncodingChecker-1.0.0.0-bin.zip",
+        "Url": "./0/661fe6e2-7846-4be6-9b03-ed9346b255be",
+        "Type": "Application",
+        "UploadDate": "2011-01-19T03:15:30.537-08:00"
+      },
+      {
+        "Id": "e695b362-1c64-4eac-afbb-f24126fe6145",
+        "FileName": "EncodingChecker-1.0.0.0-setup.zip",
+        "Url": "./0/e695b362-1c64-4eac-afbb-f24126fe6145",
+        "Type": "Application",
+        "UploadDate": "2011-01-19T03:15:30.583-08:00"
+      }
+    ]
+  }
+]
